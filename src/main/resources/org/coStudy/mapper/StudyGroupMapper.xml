@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.coStudy.mapper.StudyGroupMapper">
+	<insert id="insertApplyGroupStudy" parameterType="org.coStudy.domain.ApplyGroupMemberVO">
+		insert into apply_group_member values('O',#{user_no},#{studyGroup_no})
+	</insert>
+
+	<insert id="insertStudyGroup" parameterType="org.coStudy.domain.StudyGroupVO">
+		insert into studygroup values(seq_studygroup.nextval,#{studygroup_name},#{studygroup_info},#{studygroup_location},0,#{max_user_number},#{current_user_number},sysdate,'N',#{isface},#{category_no},#{user_no})
+	</insert>
+	
+	<select id="studyGroupDetail" parameterType="int" resultType="org.coStudy.domain.StudyGroupVO">
+		select * from studygroup where studygroup_no=#{studygroup_no}
+	</select>
+	
+ 	 <select id="studyGroupListInfo" resultType="org.coStudy.domain.StudyGroupVO">
+		select * from studygroup
+		order by studygroup_no desc
+	</select>  
+	
+	<select id="countstudyGroupList" resultType="int">
+		select count(*) from studygroup
+	</select>
+	
+	<select id="getGroupNo" parameterType="String" resultType="int">
+		select * from studygroup where studygroup_name=#{studygroup_name}
+	</select>
+</mapper>

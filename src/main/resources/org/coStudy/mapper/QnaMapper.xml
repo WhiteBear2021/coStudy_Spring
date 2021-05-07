@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.coStudy.mapper.QnaMapper">
+	<cache />
+	<select id="QnaInfo" resultType="org.coStudy.domain.QnaVO">
+		select *
+		from manager_qna
+		where
+		levels=1
+	</select>
+	<!--처음 글을 쓸때 -->
+	<insert id="QnaUserInsert" parameterType="org.coStudy.domain.QnaVO">
+		INSERT INTO MANAGER_QNA
+		(qna_no,qna_title,qna_content,regdate,parentNo,ISREAD,levels,USER_NO)
+		values
+		(seq_m_qna_no.nextval,#{qna_title},
+		#{qna_content},SYSDATE,0,0,1,1)
+	</insert>
+
+	<select id="QnaDetail" parameterType="int" resultType="org.coStudy.domain.QnaVO">
+		select *
+		from MANAGER_QNA
+		where QNA_NO=#{qna_no}
+		OR
+		PARENTNO=#{qna_no}
+	</select>
+	<insert id="QnaInsertManagerReply" parameterType="org.coStudy.domain.QnaVO">
+		INSERT INTO
+		MANAGER_QNA
+		(qna_no,qna_title,qna_content,regdate,parentNo,ISREAD,levels,MANAGER_NO)
+		values
+		(seq_m_qna_no.nextval,#{qna_title},#{qna_content},SYSDATE,#{parentNo},0,2,#{manager_no})
+
+	</insert>
+
+	<insert id="QnaInsertUserReply" parameterType="org.coStudy.domain.QnaVO">
+		INSERT INTO MANAGER_QNA
+		(qna_no,qna_title,qna_content,regdate,parentNo,ISREAD,levels,USER_NO)
+		values
+		(seq_m_qna_no.nextval,#{qna_title},#{qna_content},SYSDATE,#{parentNo},0,2,1)
+
+	</insert>
+	<select id="countQna" resultType="int">
+		select count(*) from MANAGER_QNA
+	</select>
+</mapper>

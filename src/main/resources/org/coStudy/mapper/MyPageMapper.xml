@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.coStudy.mapper.MyPageMapper">
+	<cache />
+
+	<update id="updateUser" parameterType="org.coStudy.domain.UserVO">
+		update user_info set user_phoneNo=#{user_phoneNo}, user_post=#{user_post}, user_address1=#{user_address1}, user_address2=#{user_address2}, user_email=#{user_email}
+		where user_no=#{user_no}
+	</update>
+	
+	<insert id="writeStudyDiary" parameterType="org.coStudy.domain.StudyNoteVO">
+		insert into STUDYNOTE values(seq_studyNote.nextval,#{studyNote_keyword},#{studyNote_content},null,SYSDATE,#{user_no})
+	</insert>
+	
+	<select id="studyDiaryList" parameterType="int" resultType="org.coStudy.domain.StudyNoteVO">
+		select * from STUDYNOTE where user_no=#{user_no}
+	</select>
+	
+	<select id="joinGroupList" parameterType="int" resultType="org.coStudy.domain.StudyGroupVO">
+		select * from STUDYGROUP WHERE studygroup_no in (select studygroup_no
+                                            			 from groupuser where user_no = #{user_no})
+	</select>
+
+</mapper>

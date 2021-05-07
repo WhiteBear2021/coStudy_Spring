@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.coStudy.mapper.NoticeMapper">
+	<cache />
+	<select id="noticeInfo" resultType="org.coStudy.domain.NoticeVO">
+		select * from notice
+		order by notice_no desc
+	</select>
+	<insert id="noticeCreate" parameterType="org.coStudy.domain.NoticeVO">
+		insert into notice (
+		notice_no,notice_title,notice_content,notice_date,manager_no
+		)
+		values(
+		seq_notice.nextval,
+		#{notice_title},
+		#{notice_content},
+		SYSDATE,
+		#{manager_no}
+		)
+	</insert>
+	<select id="countNotice" resultType="int">
+		select count(*) from notice
+	</select>
+	<select id="noticeDetail" parameterType="int"
+		resultType="org.coStudy.domain.NoticeVO">
+		select * from notice where notice_no=#{notice_no}
+	</select>
+	<update id="noticeUpdate" parameterType="org.coStudy.domain.NoticeVO">
+		update notice set
+		notice_title=#{notice_title},
+		notice_content=#{notice_content}
+		where
+		notice_no=#{notice_no}
+	</update>
+	<delete id="noticeDelete" parameterType="int">
+		delete from notice
+		where
+		notice_no=#{notice_no}
+	</delete>
+</mapper>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.coStudy.mapper.GroupPageMapper">
+	<cache />
+	<insert id="insertGroupBoard" parameterType="org.coStudy.domain.GroupPageBoardVO">
+		INSERT INTO
+		group_page_board values (
+		seq_group_page_board.NEXTVAL,'title',#{page_board_content},'aa',
+		sysdate ,null,#{studyGroup_no})
+	</insert>
+
+	<select id="selectGroupBoard" resultType="org.coStudy.domain.GroupPageBoardVO"
+		parameterType="int">
+		<!-- SELECT page_board_content FROM group_page_board -->
+		SELECT *
+		FROM group_page_board
+		where STUDYGROUP_NO=#{STUDYGROUP_NO}
+		order by
+		PAGE_BOARD_NO desc
+	</select>
+
+
+	<select id="selectApplyList" resultType="org.coStudy.domain.ApplyGroupMemberVO" parameterType ="int">
+		select * from Apply_Group_Member
+
+		where ISACCEPT ='O' and STUDYGROUP_NO=#{STUDYGROUP_NO}
+
+	</select>
+
+	<update id="acceptMember" parameterType="org.coStudy.domain.ApplyGroupMemberVO">
+
+		update APPLY_GROUP_MEMBER
+		set ISACCEPT =#{isAccept}
+		where USER_NO =#{user_no}
+		and STUDYGROUP_NO =#{studyGroup_no}
+
+	</update>
+
+	<insert id="insertAcceptMember">
+		INSERT INTO
+		GROUPUSER (
+		USER_NO,
+		STUDYGROUP_NO
+		)
+
+		values (
+		#{user_no},
+		#{studyGroup_no}
+		)
+
+	</insert>
+
+
+
+</mapper>
