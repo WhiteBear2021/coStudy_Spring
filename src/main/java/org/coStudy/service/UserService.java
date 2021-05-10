@@ -1,5 +1,9 @@
 package org.coStudy.service;
 
-public interface UserService {
+import org.coStudy.domain.LoginVO;
+import org.coStudy.domain.UserVO;
 
+public interface UserService {
+	int insertUser(UserVO user);
+	UserVO login(LoginVO login);
 }

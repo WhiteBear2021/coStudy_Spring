@@ -44,7 +44,7 @@
 					<h2 class="title">회원가입</h2>
 				</div>
 				<div class="card-body">
-					<form action="signUpAction.do" method="post">
+					<form action="signUp" method="post">
 						<div class="form-row m-b-55">
 							<div class="name">이름</div>
 							<div class="value">

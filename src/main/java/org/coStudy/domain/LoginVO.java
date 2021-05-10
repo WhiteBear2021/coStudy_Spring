@@ -41,4 +41,12 @@ public class LoginVO {
 		this.member = member;
 	}
 
+	@Override
+	public String toString() {
+		return "LoginVO [userId=" + userId + ", userPw=" + userPw + ", useCookie=" + useCookie + ", member=" + member
+				+ "]";
+	}
+	
+	
+
 }
