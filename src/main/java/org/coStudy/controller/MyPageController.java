@@ -9,6 +9,7 @@ import org.coStudy.domain.StudyGroupVO;
 import org.coStudy.domain.StudyNoteVO;
 import org.coStudy.domain.UserVO;
 import org.coStudy.service.MyPageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,6 +24,7 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/myPage")
 @Log4j
 public class MyPageController {
+	@Autowired
 	MyPageService service;
 	
 	@GetMapping("/userProfile")
@@ -99,14 +101,14 @@ public class MyPageController {
 		log.info("studyDiaryUpdate post");
 		log.info("수정할 studyNote:"+studyNote);
 		
-		return "studyDiaryList";
+		return "myPage/studyDiaryList";
 	}
 	
 	@DeleteMapping("/studyDiaryUpdate")
 	public String studyDiaryUpdate(@RequestParam("studyNote_no")int studyNote_no){
 		log.info("*********************");
 		log.info("studyDiary Delete");
-		return "studyDiaryList";
+		return "myPage/studyDiaryList";
 	}
 	
 	@GetMapping("/studyDiary")
@@ -146,7 +148,7 @@ public class MyPageController {
 		log.info("*********************");
 		log.info("applyQuitUserCheck Post");
 		log.info("회원정보 확인 user 정보:"+login);
-		return "applyQuitUser";
+		return "myPage/applyQuitUser";
 		
 	}
 	
