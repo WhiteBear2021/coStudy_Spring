@@ -152,6 +152,10 @@ public class MyPageController {
 		
 	}
 	
-	
+	@GetMapping("/scheduleList")
+	public void scheduleList(Model model){
+		log.info("*********************");
+		log.info("scheduleList 페이지로 이동");
+	}
 	
 }
