@@ -10,5 +10,5 @@ public interface ManagerService {
 	int insert(ManagerVO manager);
 	List<ManagerVO> list();
 	int delete(int manager_no);
-	ManagerVO managerLogin(LoginVO login);
+	ManagerVO login(LoginVO login);
 }

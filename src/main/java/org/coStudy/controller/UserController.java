@@ -69,19 +69,15 @@ public class UserController {
 				return "user/loginForm";
 			}
 		}
-		//Manager로 로그인하는 것 손대면 겹칠거같아서 안했습니다.
-		
-		//else if(member.equals("manager")) {
-//			ManagerVO manager= m_service.login(request);
-//			session.setAttribute("manager", manager);
-//			if(manager!=null) {
-//				forward.setRedirect(true);
-//				forward.setPath("/CoStudy/manager/main.do");
-//			}else {
-//				forward.setRedirect(true);
-//				forward.setPath("login.do");
-//			}
-//		}
+		else if(member.equals("manager")) {
+			ManagerVO manager= m_service.login(login);
+			if(manager!=null) {
+				session.setAttribute("manager", manager);
+				return "redirect:/manager/main";
+			}else {
+				return "user/loginForm";
+			}
+		}
 		return "home"; //이것도 임시로 설정해놓은 것!!
 	}
 	
