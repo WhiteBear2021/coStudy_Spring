@@ -12,7 +12,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	<context:annotation-config/>
 	<context:component-scan base-package="org.coStudy.service"/>
-
+	<context:component-scan base-package="org.coStudy.aop"/>
 
 		 <!-- Connection poll을 만드는 과정, driver, url, userid, password 등등 값 가진것을 connection poll 이라고 하나?  -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
@@ -20,8 +20,8 @@
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"></property> -->
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"></property>
-		<property name="username" value="costudy"></property>
-		<property name="password" value="costudy"></property>
+		<property name="username" value="kosta211"></property>
+		<property name="password" value="1234"></property>
 	</bean>
 	
 	<!-- DataSource 생성하기 HikariConfig 를 이용하여 HikariConfigDataSource bean 생성 -->
@@ -40,7 +40,5 @@
 	
 	<mybatis-spring:scan base-package="org.coStudy.mapper"/>
 	
-	
-	<context:component-scan base-package="org.coStudy.aop"></context:component-scan>
 	<aop:aspectj-autoproxy/>
 </beans>
