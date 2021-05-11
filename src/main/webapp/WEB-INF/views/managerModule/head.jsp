@@ -1,6 +1,6 @@
 
-    <link rel="stylesheet" href="../css/managerstyle.css">
-    <link rel="stylesheet" href="../css/button.css">    
+    <link rel="stylesheet" href="../resources/css/managerstyle.css">
+    <link rel="stylesheet" href="../resources/css/button.css">    
 
     <style>
         body {

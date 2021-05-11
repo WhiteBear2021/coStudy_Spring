@@ -53,14 +53,12 @@
 															</tr>
 														</thead>
 														<tbody>
-															<c:forEach var="manager" items="${managerList}">
+															<c:forEach var="manager" items="${list}">
 																<tr>
-																	<td>${manager.manager_no }</td>
-																	<td>${manager.manager_id }</td>
-																	<td>${manager.manager_pw }</td>
-																	<td>
-																		<input type="button" onclick="location.href='deleteManager.do?manager_no=${manager.manager_no }'" value="삭제">
-																	</td>
+																	<td><c:out value="${manager.manager_no }" /></td>
+																	<td><c:out value="${manager.manager_id }" /></td>
+																	<td><c:out value="${manager.manager_pw }" /></td>
+																	<td><button onclick="location.href='delete?manager_no=<c:out value="${manager.manager_no }"/>'"/>삭제</td>
 																</tr>
 															</c:forEach>
 														</tbody>
@@ -71,7 +69,7 @@
 										</div>
 										<div class="form-row float-right">
 
-											<form action="addManager.do" method="post">
+											<form action="add" method="post">
 
 												<input type="text" placeholder="아이디" name="manager_id"
 													id="manager_id"> <input type="text"
@@ -91,5 +89,22 @@
 		</div>
 	</div>
 </body>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var result = '<c:out value="${result}"/>';
+		checkModal(result);
+		
+		function checkModal(result){
+			if(result ===''){
+				return;
+			}
+			if(parseInt(result)>0){
+				$(".modal-body").html(parseInt(result)+"번째 관리자가 등록되었습니다.");
+			}
+			$("#myModal").modal("show");
+		}
+	});
+</script>
 <jsp:include page="../managerModule/footer.jsp"></jsp:include><hr>
 </html>
