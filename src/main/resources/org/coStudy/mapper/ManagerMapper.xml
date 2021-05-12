@@ -19,7 +19,7 @@
 		delete from manager where manager_no = #{manager_no}
 	</delete>
 	
-	<select id="managerLogin" parameterType="org.coStudy.domain.LoginVO" resultType="org.coStudy.domain.ManagerVO">
+	<select id="login" parameterType="org.coStudy.domain.LoginVO" resultType="org.coStudy.domain.ManagerVO">
 		select *
 		from manager where manager_id=#{userId} and manager_pw = #{userPw}
 	</select>

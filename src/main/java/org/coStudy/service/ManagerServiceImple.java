@@ -29,8 +29,8 @@ public class ManagerServiceImple implements ManagerService{
 	}
 
 	@Override
-	public ManagerVO managerLogin(LoginVO login) {
-		return mapper.managerLogin(login);
+	public ManagerVO login(LoginVO login) {
+		return mapper.login(login);
 	}
 
 }
