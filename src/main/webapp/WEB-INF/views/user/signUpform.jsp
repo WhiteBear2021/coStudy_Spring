@@ -12,13 +12,13 @@
 
 <title>회원가입</title>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script src="../js/signUp/addressapi.js"></script>
+<script src="../resources/js/signUp/addressapi.js"></script>
 <!-- Icons font CSS-->
 <link
-	href="../vendor/mdi-font/css/material-design-iconic-font.min.css"
+	href="../resources/vendor/mdi-font/css/material-design-iconic-font.min.css"
 	rel="stylesheet" media="all">
 <link
-	href="../vendor/font-awesome-4.7/css/font-awesome.min.css"
+	href="../resources/vendor/font-awesome-4.7/css/font-awesome.min.css"
 	rel="stylesheet" media="all">
 
 <!-- Font special for pages-->
@@ -27,13 +27,13 @@
 	rel="stylesheet">
 
 <!-- Vendor CSS-->
-<link href="../vendor/select2/select2.min.css"
+<link href="../resources/vendor/select2/select2.min.css"
 	rel="stylesheet" media="all">
-<link href="../vendor/datepicker/daterangepicker.css"
+<link href="../resources/vendor/datepicker/daterangepicker.css"
 	rel="stylesheet" media="all">
 
 <!-- Main CSS-->
-<link href="../css/signUp/main.css" rel="stylesheet" media="all">
+<link href="../resources/css/signUp/main.css" rel="stylesheet" media="all">
 
 </head>
 <body>
@@ -44,7 +44,7 @@
 					<h2 class="title">회원가입</h2>
 				</div>
 				<div class="card-body">
-					<form action="signUpAction.do" method="post">
+					<form action="signUp" method="post">
 						<div class="form-row m-b-55">
 							<div class="name">이름</div>
 							<div class="value">
@@ -171,15 +171,15 @@
 	</div>
 
 	<!-- Jquery JS-->
-	<script src="../vendor/jquery/jquery.min.js"></script>
+	<script src="../resources/vendor/jquery/jquery.min.js"></script>
 
 	<!-- Vendor JS-->
-	<script src="../vendor/select2/select2.min.js"></script>
-	<script src="../vendor/datepicker/moment.min.js"></script>
-	<script src="../vendor/datepicker/daterangepicker.js"></script>
+	<script src="../resources/vendor/select2/select2.min.js"></script>
+	<script src="../resources/vendor/datepicker/moment.min.js"></script>
+	<script src="../resources/vendor/datepicker/daterangepicker.js"></script>
 
 	<!-- Main JS-->
-	<script src="../js/signUp/global.js"></script>
+	<script src="../resources/js/signUp/global.js"></script>
 
 </body>
 </html>

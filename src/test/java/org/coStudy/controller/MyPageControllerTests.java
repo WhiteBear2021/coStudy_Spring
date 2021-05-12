@@ -1,5 +1,35 @@
 package org.coStudy.controller;
 
-public class MyPageControllerTests {
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MockMvcBuilder;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
+import lombok.Setter;
+import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j;
+
+@Controller
+@ContextConfiguration({
+	"file:src/main/webapp/WEB-INF/spring/root-context.xml",
+	"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"
+	})
+@Log4j
+public class MyPageControllerTests {
+	@Setter(onMethod_=@Autowired)
+	private WebApplicationContext ctx;
+	
+	private MockMvc mockMvc;
+	
+	@Before
+	public void setup(){
+		this.mockMvc=MockMvcBuilders.webAppContextSetup(ctx).build();
+	}
+	
+	
 }

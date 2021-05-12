@@ -1,0 +1,28 @@
+@charset "UTF-8";
+#time_output{
+    color: #3D5A5B!important;
+    font-size: 50px;
+}
+
+#timer{
+    display: inline-block;
+}
+
+#timer_bnt_save{ 
+	border-top-left-radius: 5px; 
+	border-bottom-left-radius: 5px; 
+	margin-right:-4px; 
+} 
+	
+#timer_bnt_start{ 
+	border-top-right-radius: 5px; 
+	border-bottom-right-radius: 5px; 
+	margin-left:0px; 
+} 
+	
+.content_center{ 
+	background-color: rgba(0,0,0,0); 
+	color: #3D5A5B; 
+} 
+	
+

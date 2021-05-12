@@ -9,8 +9,8 @@
 <meta name="viewport" content="width=device-width", initial-scale="1">
 <title>Insert title here</title>
 <jsp:include page="../common/header.jsp"></jsp:include><hr> 
-<link rel="stylesheet" href="../css/myPage/myPage.css">
-<link rel="stylesheet" href="../bootstrap-icons/font/bootstrap-icons.css">
+<link rel="stylesheet" href="/resources/css/myPage/myPage.css">
+<link rel="stylesheet" href="/resources/vendor/bootstrap-icons/font/bootstrap-icons.css">
 </head>
 <body>
 
@@ -19,13 +19,13 @@
             <div class="col-lg-3 bg-secondary m-3 text-center">
                     <nav id="side_left" class="my-auto">
                         <ul class="list-unstyled" >
-                            <li class="p-1"><a href="/CoStudy/myPage/studyDiaryListAction.do">공부일기</span>&nbsp;&nbsp;<i class="bi bi-journal-check fs-1"></i></a></li>
-                            <li class="p-1"><a href="/CoStudy/myPage/scheduleListAction.do">일정관리&nbsp;&nbsp; <i class="bi bi-calendar-month fs-1"></i></a></li>
-                            <li class="p-1"><a href="#">1:1 채팅목록&nbsp;&nbsp;<i class="bi bi-chat-square-quote fs-1"></i></a></li>
-                            <li class="p-1"><a href="/CoStudy/myPage/joinGroupListAction.do">참가 그룹 목록&nbsp;&nbsp;<i class="bi bi-chat-quote fs-1"></i></a></li>
-                            <li class="p-1"><a href="/CoStudy/myPage/categoryUpdateFormAction.do">관심 분야 수정&nbsp;&nbsp;<i class="bi bi-pencil-fill fs-1"></i></a></li>
-                            <li class="p-1"><a href="/CoStudy/myPage/userUpdateFormAction.do">회원 정보 수정&nbsp;&nbsp;<i class="bi bi-tools fs-1"></i></a></li>
-                            <li class="p-1"><a href="/CoStudy/myPage/applyQuitUserCheckFormAction.do">회원 탈퇴 신청&nbsp;&nbsp;<i class="bi bi-person-x fs-1"></i></a></li>
+								<li class="p-1"><a href="/myPage/studyDiaryList">공부일기</span>&nbsp;&nbsp;<i class="bi bi-journal-check fs-1"></i></a></li>
+								<li class="p-1"><a href="/myPage/scheduleList">일정관리&nbsp;&nbsp; <i class="bi bi-calendar-month fs-1"></i></a></li>
+								<li class="p-1"><a href="#">1:1 채팅목록&nbsp;&nbsp;<i class="bi bi-chat-square-quote fs-1"></i></a></li>
+								<li class="p-1"><a href="/myPage/joinGroupList">참가 그룹 목록&nbsp;&nbsp;<i class="bi bi-chat-quote fs-1"></i></a></li>
+								<li class="p-1"><a href="/myPage/categoryUpdate">관심 분야 수정&nbsp;&nbsp;<i class="bi bi-pencil-fill fs-1"></i></a></li>
+								<li class="p-1"><a href="/myPage/userUpdate">회원 정보 수정&nbsp;&nbsp;<i class="bi bi-tools fs-1"></i></a></li>
+								<li class="p-1"><a href="/myPage/applyQuitUserCheck">회원 탈퇴 신청&nbsp;&nbsp;<i class="bi bi-person-x fs-1"></i></a></li>
                         </ul>
                     </nav>
             </div>
@@ -34,8 +34,9 @@
                 <hr style="width:800px;" class="text-primary">
 		        <div class="row mb-5">
                     <div class="col-lg-8 m-auto bg-white border border-primary p-3">
-					<form action="userUpdateAction.do" method="post">
+					<form action="userUpdate" method="post">
 					        <input type="hidden" name="user_no" value="${user.user_no}">
+					        <input type="hidden" name="user_id" value="${user.user_id}">
 					        <label>
 					        	<p><b>아이디 :</b> ${sessionScope.user.user_id}
 					        </label>

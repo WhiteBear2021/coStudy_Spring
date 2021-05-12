@@ -3,19 +3,19 @@ package org.coStudy.domain;
 import java.io.Serializable;
 
 public class UserVO implements Serializable{
-	private int user_no;					//회원번호
-	private int category_no;				//카테고리번호
-	private String user_id;					//회원아이디
-	private String user_pw;					//회원비밀번호
-	private String user_lastName;			//회원 성
-	private String user_firstName;			//회원 이름
-	private String user_phoneNo;			//회원 전화번호
-	private String user_post;				//우편번호
-	private String user_address1;			//회원 주소2
-	private String user_address2;			//회원 주소3
-	private String user_birth;				//회원 생년월일
-	private String user_email;				//회원 이메일
-	private String user_register_date;		//회원 등록일
+	private int user_no;					//�쉶�썝踰덊샇
+	private int category_no;				//移댄뀒怨좊━踰덊샇
+	private String user_id;					//�쉶�썝�븘�씠�뵒
+	private String user_pw;					//�쉶�썝鍮꾨�踰덊샇
+	private String user_lastName;			//�쉶�썝 �꽦
+	private String user_firstName;			//�쉶�썝 �씠由�
+	private String user_phoneNo;			//�쉶�썝 �쟾�솕踰덊샇
+	private String user_post;				//�슦�렪踰덊샇
+	private String user_address1;			//�쉶�썝 二쇱냼2
+	private String user_address2;			//�쉶�썝 二쇱냼3
+	private String user_birth;				//�쉶�썝 �깮�뀈�썡�씪
+	private String user_email;				//�쉶�썝 �씠硫붿씪
+	private String user_register_date;		//�쉶�썝 �벑濡앹씪
 	public UserVO() {
 		super();
 	}
