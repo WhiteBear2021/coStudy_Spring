@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.coStudy.mapper.ChattingMapper">
+
+	
+	<insert id="insert" parameterType="org.coStudy.domain.MessageVO">
+		INSERT INTO
+		group_msg(group_msg_no, group_chatting_no, group_msg_log, group_msg_date)
+		values (
+		seq_group_msg.NEXTVAL, #{group_chatting_no}, #{group_msg_log}, SYSDATE )
+	</insert>
+	
+	<select id="list" parameterType="int" resultType="org.coStudy.domain.MessageVO">
+		SELECT *
+		FROM group_msg
+		WHERE group_chatting_no = (
+														SELECT group_chatting_no
+														FROM group_chatting
+													 	WHERE studygroup_no = #{studygroup_no}
+													)
+	
+	</select>
+
+
+
+</mapper>
