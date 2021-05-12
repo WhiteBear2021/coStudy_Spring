@@ -8,7 +8,4 @@ public class LoginVO {
 	private String userPw;
 	private boolean useCookie;
 	private String member;
-
-	
-
 }
