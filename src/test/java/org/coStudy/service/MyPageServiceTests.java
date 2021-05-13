@@ -28,12 +28,12 @@ public class MyPageServiceTests {
 		log.info(service);
 	}
 	
-	@Test
-	public void updateUserTest(){
-		UserVO user=new UserVO(1, 1, "kosta211", "k1234", "수정하는 last name2", "수정하는 first name2", "010-1111-1111", "43210", "서울2", "강의실2", null, "WhiteBear2021@github2.com", null);
-		int re=service.updateUser(user);
-		log.info("update User 횟수:"+re);
-	}
+//	@Test
+//	public void updateUserTest(){
+//		UserVO user=new UserVO(1, 1, "kosta211", "k1234", "수정하는 last name2", "수정하는 first name2", "010-1111-1111", "43210", "서울2", "강의실2", null, "WhiteBear2021@github2.com", null);
+//		int re=service.updateUser(user);
+//		log.info("update User 횟수:"+re);
+//	}
 	
 	@Test
 	public void writeStudyDiaryTest(){
