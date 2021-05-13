@@ -1,4 +1,7 @@
 package org.coStudy.mapper;
+import java.util.List;
+
+import org.coStudy.domain.CategoryVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +21,11 @@ public class UserMapperTests {
 	@Test
 	public void setup(){
 		log.info("mapper받아옴:"+mapper);
+	}
+	
+	@Test
+	public void categoryListTest(){
+		List<CategoryVO> list=mapper.categoryAllList();
+		log.info(list);
 	}
 }

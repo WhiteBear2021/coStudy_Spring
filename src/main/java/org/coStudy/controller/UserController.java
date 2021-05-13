@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.coStudy.domain.CategoryVO;
 import org.coStudy.domain.LoginVO;
 import org.coStudy.domain.ManagerVO;
 import org.coStudy.domain.StudyGroupVO;
@@ -37,9 +38,11 @@ public class UserController {
 	ManagerService m_service;
 	
 	@GetMapping("/signUp")
-	public String signUp(){
+	public String signUp(Model model){
 		log.info("*********************");
 		log.info("signUp 페이지로 이동!!");
+		List<CategoryVO> list=service.categoryAllList();
+		model.addAttribute("categoryList", list);
 		return "user/signUpform";
 	}
 	

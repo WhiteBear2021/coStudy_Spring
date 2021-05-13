@@ -1,5 +1,7 @@
 $(function(){
 	console.log("user.js 시작!!")
+	
+	
 	//ID 중복체크 하는 Ajax
 	$("#checkId").on("click",function(){
 		let user_id=$('#user_id').val();
@@ -17,4 +19,5 @@ $(function(){
 			}
 		});//end ajax
 	})//end click event of checkId
+	
 });

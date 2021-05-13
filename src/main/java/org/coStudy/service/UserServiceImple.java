@@ -1,5 +1,8 @@
 package org.coStudy.service;
 
+import java.util.List;
+
+import org.coStudy.domain.CategoryVO;
 import org.coStudy.domain.LoginVO;
 import org.coStudy.domain.UserVO;
 import org.coStudy.mapper.UserMapper;
@@ -25,5 +28,11 @@ public class UserServiceImple implements UserService{
 	public int idCheck(String user_id) {
 		// TODO Auto-generated method stub
 		return mapper.idCheck(user_id);
+	}
+
+	@Override
+	public List<CategoryVO> categoryAllList() {
+		// TODO Auto-generated method stub
+		return mapper.categoryAllList();
 	}
 }
