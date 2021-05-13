@@ -59,18 +59,18 @@
 															</tr>
 														</thead>
 														<tbody>
-															<c:forEach var="user" items="${userList}">
+															<c:forEach var="user" items="${list}">
 																<tr>
-																	<td>${user.user_no }</td>
-																	<td>${user.user_id}</td>
-																	<td>${user.user_lastName}</td>
-																	<td>${user.user_firstName}</td>
-																	<td>${user.user_phoneNo}</td>
-																	<td>${user.user_address1}</td>
+																	<td><c:out value="${user.user_no }"/></td>
+																	<td><c:out value="${user.user_id }"/></td>
+																	<td><c:out value="${user.user_lastName }"/></td>
+																	<td><c:out value="${user.user_firstName }"/></td>
+																	<td><c:out value="${user.user_phoneNo }"/></td>
+																	<td><c:out value="${user.user_address1 }"/></td>
 																	<td><fmt:parseDate var="dt"
 																			value="${user.user_birth }" pattern="yyyy-MM-dd " />
 																		<fmt:formatDate value="${dt }" pattern="yyyy/MM/dd" /></td>
-																	<td>${user.user_email}</td>
+																	<td><c:out value="${user.user_email }"/></td>
 																	<td><fmt:parseDate var="dt"
 																			value="${user.user_register_date }"
 																			pattern="yyyy-MM-dd " /> <fmt:formatDate

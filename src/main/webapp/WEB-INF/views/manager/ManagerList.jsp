@@ -58,11 +58,38 @@
 																	<td><c:out value="${manager.manager_no }" /></td>
 																	<td><c:out value="${manager.manager_id }" /></td>
 																	<td><c:out value="${manager.manager_pw }" /></td>
-																	<td><button onclick="location.href='delete?manager_no=<c:out value="${manager.manager_no }"/>'"/>삭제</td>
+																	<td><button
+																			onclick="location.href='delete?manager_no=<c:out value="${manager.manager_no }"/>'" />삭제</td>
 																</tr>
 															</c:forEach>
 														</tbody>
 													</table>
+
+													<div class="modal fade" id="myModal" tabindex="-1"
+														role="dialog" aria-labelledby="myModalLabel"
+														aria-hidden="true">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<button type="button" class="close"
+																		data-dismiss="modal" aria-hidden="true">&times;</button>
+																	<h4 class="modal-title" id="myModalLabel">Modal
+																		title</h4>
+																</div>
+																<div class="modal-body">처리 완료</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-default"
+																		data-dismiss="modal">Close</button>
+																	<button type="button" class="btn btn-primary">Save
+																		changes</button>
+																</div>
+															</div>
+															<!-- /.modal-content -->
+														</div>
+														<!-- /.modal-dialog -->
+													</div>
+													<!-- /.modal -->
+
 												</div>
 											</div>
 
@@ -91,16 +118,16 @@
 </body>
 
 <script type="text/javascript">
-	$(document).ready(function(){
+	$(document).ready(function() {
 		var result = '<c:out value="${result}"/>';
 		checkModal(result);
-		
-		function checkModal(result){
-			if(result ===''){
+
+		function checkModal(result) {
+			if (result === '') {
 				return;
 			}
-			if(parseInt(result)>0){
-				$(".modal-body").html(parseInt(result)+"번째 관리자가 등록되었습니다.");
+			if (parseInt(result) > 0) {
+				$(".modal-body").html(parseInt(result) + "번째 관리자가 등록되었습니다.");
 			}
 			$("#myModal").modal("show");
 		}
