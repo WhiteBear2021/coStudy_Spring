@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,8 +68,15 @@
 						<div class="form-row">
 							<div class="name">아이디</div>
 							<div class="value">
-								<div class="input-group">
-									<input class="input--style-5" type="text" name="user_id">
+								<div class="row row-space">
+									<div class="col-2">
+										<div class="input-group-desc">
+											<input class="input--style-5" type="text" id="user_id" name="user_id">
+										</div>
+									</div>
+									<div class="col-2">
+										<input type="button" class="btn btn--radius-2 btn--blue" id="checkId" value="ID중복확인">
+									</div>
 								</div>
 							</div>
 						</div>
@@ -104,7 +112,7 @@
 									<div class="col-2">
 										<div class="input-group-desc">
 											<input class="input--style-5" type="text" placeholder="우편번호"
-												name="addr1" id="addr1">
+												name="user_post" id="user_post">
 										</div>
 									</div>
 									<div class="col-2">
@@ -118,7 +126,7 @@
 							<div class="name"></div>
 							<div class="value">
 								<div class="input-group"> 
-									<input class="input--style-5" type="text" name="addr2" id="addr2"
+									<input class="input--style-5" type="text" name="user_address1" id="user_address1"
 										placeholder="주소">
 								</div>
 							</div>
@@ -127,7 +135,7 @@
 							<div class="name"></div>
 							<div class="value">
 								<div class="input-group">
-									<input class="input--style-5"  type="text" name="addr3" id="addr3"
+									<input class="input--style-5"  type="text" name="user_address2" id="user_address2"
 										placeholder="상세주소">
 								</div>
 							</div>
@@ -180,6 +188,11 @@
 
 	<!-- Main JS-->
 	<script src="../resources/js/global.js"></script>
-
+<c:if test="${!empty mesg }">
+	<script>
+		alert('${mesg}');
+	</script>
+</c:if>
+	<script src="/resources/js/user.js"></script>
 </body>
 </html>

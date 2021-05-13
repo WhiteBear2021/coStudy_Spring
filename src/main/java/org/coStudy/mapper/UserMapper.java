@@ -12,4 +12,5 @@ public interface UserMapper {
 	List<UserVO> userInfo();
 	List<UserVO> newUserInfo(String dateString);
 	UserVO login(LoginVO login);
+	int idCheck(String user_id);
 }

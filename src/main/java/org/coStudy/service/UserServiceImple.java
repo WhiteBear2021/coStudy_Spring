@@ -20,4 +20,10 @@ public class UserServiceImple implements UserService{
 	
 		return mapper.login(login);
 	}
+
+	@Override
+	public int idCheck(String user_id) {
+		// TODO Auto-generated method stub
+		return mapper.idCheck(user_id);
+	}
 }

@@ -4,6 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.coStudy.mapper.UserMapper">
 	<cache />
+	<select id="idCheck" resultType="int">
+		select count(*) from user_info where user_id=#{user_id}
+	</select>
+	
+	
 	<select id="userInfo" resultType="org.coStudy.domain.UserVO">
 		select * from User_Info
 	</select>

@@ -6,4 +6,5 @@ import org.coStudy.domain.UserVO;
 public interface UserService {
 	int insertUser(UserVO user);
 	UserVO login(LoginVO login);
+	int idCheck(String user_id);
 }
