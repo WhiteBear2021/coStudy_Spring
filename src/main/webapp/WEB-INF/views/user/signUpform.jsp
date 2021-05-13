@@ -12,7 +12,7 @@
 
 <title>회원가입</title>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script src="../resources/js/signUp/addressapi.js"></script>
+<script src="../resources/js/addressapi.js"></script>
 <!-- Icons font CSS-->
 <link
 	href="../resources/vendor/mdi-font/css/material-design-iconic-font.min.css"
@@ -109,7 +109,7 @@
 									</div>
 									<div class="col-2">
 										<input type="button" class="btn btn--radius-2 btn--blue"
-											onclick="execPostCode();" value="우편번호 찾기"><br>
+											onclick="execPostCode();" value="우편번호 찾기">
 									</div>
 								</div>
 							</div>
@@ -179,7 +179,7 @@
 	<script src="../resources/vendor/datepicker/daterangepicker.js"></script>
 
 	<!-- Main JS-->
-	<script src="../resources/js/signUp/global.js"></script>
+	<script src="../resources/js/global.js"></script>
 
 </body>
 </html>
