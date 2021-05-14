@@ -3,40 +3,62 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.coStudy.mapper.NoticeMapper">
-	<cache />
-	<select id="noticeInfo" resultType="org.coStudy.domain.NoticeVO">
-		select * from notice
-		order by notice_no desc
+	
+	<select id="list" resultType="org.coStudy.domain.NoticeVO">
+		<![CDATA[
+			select 
+				notice_no,notice_title,notice_content,notice_date,manager_no
+			from
+				(
+				select
+					rownum rn,notice_no,notice_title,notice_content,notice_date,manager_no
+				from 
+					notice
+				where rownum<=#{pageNum} * #{amount} 
+				)
+			where rn > (#{pageNum} -1) * #{amount}
+		]]>
 	</select>
-	<insert id="noticeCreate" parameterType="org.coStudy.domain.NoticeVO">
+
+	
+	
+	<insert id="insert" parameterType="org.coStudy.domain.NoticeVO">
+		<selectKey keyProperty="notice_no" order="BEFORE"
+			resultType="int">
+			select seq_notice.nextval from dual
+		</selectKey>
+
 		insert into notice (
 		notice_no,notice_title,notice_content,notice_date,manager_no
 		)
 		values(
-		seq_notice.nextval,
+		#{notice_no},
 		#{notice_title},
 		#{notice_content},
 		SYSDATE,
-		#{manager_no}
+		1<!--#{manager_no} 
+			임의로 1로 해두기 -->
 		)
 	</insert>
-	<select id="countNotice" resultType="int">
-		select count(*) from notice
+
+	<select id="detail" resultType="org.coStudy.domain.NoticeVO"
+		parameterType="int">
+		select *
+		from notice
+		where notice_no=#{notice_no}
 	</select>
-	<select id="noticeDetail" parameterType="int"
-		resultType="org.coStudy.domain.NoticeVO">
-		select * from notice where notice_no=#{notice_no}
-	</select>
-	<update id="noticeUpdate" parameterType="org.coStudy.domain.NoticeVO">
-		update notice set
-		notice_title=#{notice_title},
-		notice_content=#{notice_content}
-		where
-		notice_no=#{notice_no}
-	</update>
-	<delete id="noticeDelete" parameterType="int">
+
+	<delete id="delete" parameterType="int">
 		delete from notice
 		where
 		notice_no=#{notice_no}
 	</delete>
+
+	<update id="update" parameterType="org.coStudy.domain.NoticeVO"> 
+		update notice set
+		notice_title=#{notice_title},
+		notice_content=#{notice_content} 
+		where notice_no=#{notice_no}
+	</update>
+
 </mapper>

@@ -1,0 +1,191 @@
+#sidebar-wrapper{
+  z-index:1;
+  position: absolute;
+  width:0;
+  height:100%;
+  overflow-y:hidden;
+  background:#3D5A5B;
+  opacity:0.9;
+	transition:all .5s;
+	display:flex;
+	align-items:center;
+	margin-top: 40px;
+	border-radius: 15px;
+
+}
+
+#menu-toggle{
+	transition:all .3s;
+	font-size:18px;
+	color: #3D5A5B;
+	
+}
+
+#menu-toggle:hover {
+	
+}
+/* Change the width of the sidebar to display it*/
+#wrapper.menuDisplayed #sidebar-wrapper{
+  width:300px;
+  height: 800px;
+  border: 3px solid #E8E8DB;
+}
+
+#wrapper.menuDisplayed #page-content-wrapper{
+  
+}
+
+/* Sidebar styling */
+.sidebar-nav{
+  padding:0;
+  list-style:none; 
+	transition:all .5s;
+	width:100%;
+	text-align:center;
+	
+	
+}
+
+.sidebar-nav li{
+  line-height:40px;  
+	width:92%;
+	transition:all .3s;
+	padding:10px;
+	background-color:#f1f3f5;
+	margin: 10px;
+	border-radius: 15px;
+	border: 3px solid #E8E8DB;
+}
+
+.sidebar-nav li > #side-userbox {
+	
+}
+.sidebar-nav li > #side-timer {
+	
+	height:90px;
+}
+.sidebar-nav li > #side-todo {
+	
+	height:150px;
+}
+.sidebar-nav li > #side-groupschedule {
+	
+	height:230px;
+}
+
+
+#group-Main-body {
+	border: 1px;
+	width: 1500px;
+	height: 850px;
+	padding: 20px;
+	position: relative;
+}
+
+#setting {
+	width: 1000px;
+	height: 800px;
+	margin-left: 140px;
+	position: absolute;
+	padding-right: 40px;
+
+}
+
+#text-box {
+	border-radius: 10px;
+}
+
+#button {
+	border-radius: 10px;
+}
+
+#button:hover {
+	background-color:#3D5A5B;
+	color: white;
+	border-radius: 10px;
+}
+
+#group-Main-right {
+	position: absolute;
+}
+
+#group-Main-right-top {
+	width: 350px;
+	height: 200px;
+	padding: 20px;
+	margin-top: 40px;
+	margin-left: 20px;
+	background-color: white;
+	box-shadow: 2px 2px 2px 2px;
+}
+
+#group-Main-right-bottom {
+	
+	width: 350px;
+	height: 470px;
+	padding: 20px;
+	margin-top: 20px;
+	margin-left: 20px;
+	background-color: white;
+	box-shadow: 2px 2px 2px 2px;
+	
+}
+
+#userlist{
+	margin-top: 50px;
+}
+
+#write {
+	border: 1px;
+	position: absolute;
+	bottom: 20px;
+	left: 400px;
+}
+
+body{
+	background-color: #f1f3f5;
+}
+
+#group-board-writing {
+	position: absolute;
+	left: 20%;
+}
+
+#group-board-font {
+	font-weight: bold !important;
+	color:  black !important;
+}
+
+#settingBoard {
+	position: absolute;
+	left: 250px;
+	top: 50px;
+}
+
+#group-accept {
+	width: 750px; 
+	height: 650px;
+}
+
+#acceptTable {
+	border:solid 2px #3D5A5B;
+	background-color: white;  
+	position: relative;
+	overflow: scroll;
+	padding: 10px;
+}
+
+
+body{ -ms-overflow-style: none; } 
+::-webkit-scrollbar { display: none; }
+
+
+
+#reply-text {
+	
+}
+
+#accept-list {
+	margin-top: 20px;
+}
+

@@ -7,6 +7,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width", initial-scale="1">
+<jsp:include page="../common/head.jsp"></jsp:include>
+
+
 <jsp:include page="../common/header.jsp"></jsp:include>
 <link rel="stylesheet" href="/resources/css/myPage/myPage.css">
 <link rel="stylesheet" href="/resources/vendor/bootstrap-icons/font/bootstrap-icons.css">
@@ -87,4 +90,5 @@
 
 	<jsp:include page="../common/footer.jsp"></jsp:include> 
 </body>
+<jsp:include page="../common/scri.jsp"></jsp:include><hr>
 </html>

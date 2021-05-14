@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 
 <nav class="pcoded-navbar menu-light ">
@@ -54,8 +56,8 @@
 							class="feather icon-layout"></i></span><span class="pcoded-mtext">공지사항
 							관리</span></a>
 					<ul class="pcoded-submenu">
-						<li><a href="/CoStudy/Notice/noticeInfoAction.do" >공지사항 리스트</a></li>
-						<li><a href="/CoStudy/Notice/noticeAction.do" >공지사항 등록</a></li>
+						<li><a href="/notice/list" >공지사항 리스트</a></li>
+						<li><a href="/notice/insert" >공지사항 등록</a></li>
 
 					</ul></li>
 				<li class="nav-item pcoded-hasmenu"><a href="#!"
