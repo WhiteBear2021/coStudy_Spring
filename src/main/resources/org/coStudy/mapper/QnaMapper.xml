@@ -2,22 +2,66 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.coStudy.mapper.QnaMapper">
-	<cache />
-	<select id="QnaInfo" resultType="org.coStudy.domain.QnaVO">
+	<!-- <select id="QnaInfo" resultType="org.coStudy.domain.QnaVO">
 		select *
 		from manager_qna
 		where
 		levels=1
-	</select>
+	</select> -->
+	
+	
 	<!--처음 글을 쓸때 -->
-	<insert id="QnaUserInsert" parameterType="org.coStudy.domain.QnaVO">
-		INSERT INTO MANAGER_QNA
+	<insert id="UserInsert" parameterType="org.coStudy.domain.QnaVO">
+		INSERT INTO question
 		(qna_no,qna_title,qna_content,regdate,parentNo,ISREAD,levels,USER_NO)
 		values
 		(seq_m_qna_no.nextval,#{qna_title},
-		#{qna_content},SYSDATE,0,0,1,1)
+		#{qna_content},SYSDATE,0,0,1,#{user_no})
 	</insert>
+	
+	<select id="UserList" resultType="org.coStudy.domain.QnaVO" parameterType="int">
+		select *
+		from QUESTION
+		where
+		levels=1
+		and
+		user_no=#{user_no}
+	</select>
+	
+	
+	<!-- 
+		<insert id="UserInsert" parameterType="org.coStudy.domain.QnaVO">
+		
+		<selectKey keyProperty="qna_no" order="BEFORE"
+			resultType="int">
+			select seq_m_qna_no.nextval from dual
+		</selectKey>
 
+		INSERT INTO question
+		(qna_no,qna_title,
+		qna_content,
+		regdate,
+		parentNo,
+		ISREAD,
+		levels,
+		USER_NO)
+		values(
+		#{qna_no},
+		#{qna_title},
+		#{qna_content},
+		SYSDATE,
+		0,0,1,
+		#{user_no})
+		USER_NO 임의로 1로 해주기 
+	</insert>
+	 -->
+	
+	
+	
+	
+	
+	
+<!-- 
 	<select id="QnaDetail" parameterType="int" resultType="org.coStudy.domain.QnaVO">
 		select *
 		from MANAGER_QNA
@@ -43,5 +87,5 @@
 	</insert>
 	<select id="countQna" resultType="int">
 		select count(*) from MANAGER_QNA
-	</select>
+	</select> -->
 </mapper>
