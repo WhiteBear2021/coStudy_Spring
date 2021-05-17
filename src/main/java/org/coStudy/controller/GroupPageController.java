@@ -37,12 +37,12 @@ public class GroupPageController {
 
 	}
 	
-	@GetMapping("chatting")
+	@GetMapping("/chatting")
 	public void chatting(){
 		
 	}
 	
-	@GetMapping("chattingForm")
+	@GetMapping("/chattingForm")
 	public void chattingForm(){
 		
 	}
