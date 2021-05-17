@@ -24,16 +24,18 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="org.coStudy.controller" />
-	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
 	
 	</beans:bean>
 	
-	<websocket:handlers >
+	<websocket:handlers allowed-origins="*">
 		<websocket:mapping handler="echoHandler" path="/echo"/>
+		<websocket:handshake-interceptors>
+			<beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"></beans:bean>
+		</websocket:handshake-interceptors>
 		<websocket:sockjs></websocket:sockjs>
 	</websocket:handlers>
 	
-	<beans:bean id="echoHandler" class="org.coStudy.controller.EchoHandler"></beans:bean>
+	<beans:bean id="echoHandler" class="org.coStudy.handler.EchoHandler"></beans:bean>
 	
 </beans:beans>
