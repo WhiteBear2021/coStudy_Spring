@@ -1,4 +1,4 @@
-import {timerService} from './modules.js';
+/*import {timerService} from './modules.js';
 
 let isrunning = false;
 let time = 0;
@@ -57,3 +57,4 @@ function output(){
     $('#time_output').text(hours + ":" + mins + ":" + secs);
 }
 
+*/
