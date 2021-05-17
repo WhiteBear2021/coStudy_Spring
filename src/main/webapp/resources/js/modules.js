@@ -1,4 +1,4 @@
-
+/*
 const timerService = (()=>{
 
 	function add(param, callback, error) {
@@ -37,3 +37,4 @@ const timerService = (()=>{
 
 })();
 export {timerService};
+*/

@@ -23,9 +23,9 @@ public class UserMapperTests {
 		log.info("mapper받아옴:"+mapper);
 	}
 	
-	@Test
-	public void categoryListTest(){
-		List<CategoryVO> list=mapper.categoryAllList();
-		log.info(list);
-	}
+//	@Test
+//	public void categoryListTest(){
+//		List<CategoryVO> list=mapper.categoryAllList();
+//		log.info(list);
+//	}
 }
