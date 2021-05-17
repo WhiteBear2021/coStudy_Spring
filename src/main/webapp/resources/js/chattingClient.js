@@ -21,7 +21,8 @@ sock.onclose = function() {
 
 $("form").submit(function (e) {
 	  e.preventDefault();
-	  sock.send($("#msg").val());
+	  console.log(JSON.stringify({chatRoomId :$("#roomNo").val(), type:'CHAT', writer:$("#myName").val(), message: $("#msg").val()}));
+	  sock.send(JSON.stringify({chatRoomId :$("#roomNo").val(), type:'CHAT', writer:$("#myName").val(), message: $("#msg").val()}));
 	  $("#msg").val("");
 });
 

@@ -26,13 +26,13 @@ public class ChatRoomVO {
         return chatRoom;
     }
 
-    public void handleMessage(WebSocketSession session, ChatMessageVO chatMessage,
+    public void handleMessage(ChatMessageVO chatMessage,
                               ObjectMapper objectMapper) throws IOException {
        
         chatMessage.setMessage(chatMessage.getWriter() + " : " + chatMessage.getMessage());
         
         TextMessage textMessage = new TextMessage(objectMapper.
-                writeValueAsString(chatMessage.getMessage()));
+                writeValueAsString(chatMessage.getMessage()));//객체 -> string타입 json
         
 		for(WebSocketSession sess : sessions){
 			sess.sendMessage(textMessage);

@@ -22,8 +22,8 @@ import lombok.extern.log4j.Log4j;
 
 public class EchoHandler extends TextWebSocketHandler {
 	private List<WebSocketSession> sessionList=new ArrayList<WebSocketSession>();//웹소켓 세션 저장 리스트
-    private  ChatRoomRepository chatRoomRepository;
-    private  ObjectMapper objectMapper;
+    private ChatRoomRepository chatRoomRepository;
+    private ObjectMapper objectMapper;
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		//클라이언트와 연결 후
@@ -40,13 +40,11 @@ public class EchoHandler extends TextWebSocketHandler {
 		
 		String msg = message.getPayload();
         ChatMessageVO chatMessage = objectMapper.readValue(msg, ChatMessageVO.class);
+        System.out.println(chatMessage);
+        
         ChatRoomVO chatRoom = chatRoomRepository.findRoomById(chatMessage.getChatRoomId());
-        chatRoom.handleMessage(session,chatMessage,objectMapper);
+        chatRoom.handleMessage(chatMessage, objectMapper);
 		
-		
-		for(WebSocketSession sess : sessionList){//접속해있는 모든 클라이언트에 메시지 전송
-			sess.sendMessage(new TextMessage(message.getPayload()));
-		}
 		
 	}
 

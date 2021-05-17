@@ -33,6 +33,7 @@
 		<websocket:handshake-interceptors>
 			<beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"></beans:bean>
 		</websocket:handshake-interceptors>
+		
 		<websocket:sockjs></websocket:sockjs>
 	</websocket:handlers>
 	
