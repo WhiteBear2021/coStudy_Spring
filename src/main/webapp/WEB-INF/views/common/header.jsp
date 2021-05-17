@@ -14,9 +14,9 @@
                             <div class="header-cart-menu d-flex align-items-center ml-auto">
                                 <!-- Cart Area -->
                                 <div class="cart">
-                                    <a href="#" id="header-cart-btn" target="_blank"> Sign Up &nbsp;&nbsp;|&nbsp;&nbsp; </a>
-                                    <a href="#" id="header-cart-btn" target="_blank"> Login &nbsp;&nbsp; |&nbsp;&nbsp; </a>
-                                    <a href="#" id="header-cart-btn" target="_blank"> My Page&nbsp;&nbsp;&nbsp;&nbsp; </a>
+                                    <a href="/qna/list" id="header-cart-btn" target="blank"> Sign Up &nbsp;&nbsp;|&nbsp;&nbsp; </a>
+                                    <a href="/user/login" id="header-cart-btn" target="_blank"> Login &nbsp;&nbsp; |&nbsp;&nbsp; </a>
+                                    <a href="/qna/user_insert" id="header-cart-btn" target="_blank"> My Page&nbsp;&nbsp;&nbsp;&nbsp; </a>
 
 
                                 </div>

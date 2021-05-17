@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.coStudy.domain.Jamong;
 import org.coStudy.domain.QnaVO;
 import org.coStudy.service.QnaService;
 import org.json.simple.JSONArray;

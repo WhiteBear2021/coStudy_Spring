@@ -78,7 +78,7 @@ public class UserController {
 			log.info("로그인 결과:"+user);
 			if(user!=null) {
 				session.setAttribute("user", user);
-				return "home";
+				return "/qna/user_insert";
 			}else {
 				return "user/loginForm";
 			}
