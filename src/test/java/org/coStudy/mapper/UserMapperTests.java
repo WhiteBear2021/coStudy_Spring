@@ -1,4 +1,5 @@
 package org.coStudy.mapper;
+import java.util.HashMap;
 import java.util.List;
 
 import org.coStudy.domain.CategoryVO;
@@ -28,4 +29,16 @@ public class UserMapperTests {
 //		List<CategoryVO> list=mapper.categoryAllList();
 //		log.info(list);
 //	}
+	
+	@Test
+	public void searchIdTest(){
+		log.info("searchId test");
+		HashMap<String, String> map=new HashMap<>();
+		map.put("user_firstName", "sta");
+		map.put("user_lastName", "Ko");
+		map.put("user_phoneNo", "010-1234-5676");
+		
+		String user_id=mapper.searchId(map);
+		log.info(user_id);
+	}
 }

@@ -1,4 +1,5 @@
 package org.coStudy.mapper;
+import java.util.HashMap;
 import java.util.List;
 
 import org.coStudy.domain.CategoryVO;
@@ -14,5 +15,6 @@ public interface UserMapper {
 	List<UserVO> newUserInfo(String dateString);
 	UserVO login(LoginVO login);
 	int idCheck(String user_id);
+	String searchId(HashMap<String, String> map);
 	List<CategoryVO> categoryAllList();
 }

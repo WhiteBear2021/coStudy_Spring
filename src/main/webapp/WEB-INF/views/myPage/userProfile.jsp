@@ -40,7 +40,7 @@
 						<div class="bg-white col-4 border border-primary my-auto text-center">
 								<h4>CoStudy Profile</h4>
 								<i class="bi bi-person-square fs-1"></i><br>
-								<b>NickName : CoStudy</b>
+								<b>NickName : </b><strong class="m-0 p-1 text-success">${sessionScope.user.user_nickName}</strong>
 						</div>
 						<div class="bg-white col-6 border border-primary p-0 m-4">
 							<h4>Infomation</h4>

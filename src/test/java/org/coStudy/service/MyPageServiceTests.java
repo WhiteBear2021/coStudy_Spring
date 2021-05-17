@@ -34,13 +34,13 @@ public class MyPageServiceTests {
 //		int re=service.updateUser(user);
 //		log.info("update User 횟수:"+re);
 //	}
-	
-	@Test
-	public void writeStudyDiaryTest(){
-		StudyNoteVO studyNote=new StudyNoteVO(0, "공부", "팀프로젝트 잘 할 수 있을까?", null, null, 1);
-		int re=service.writeStudyDiary(studyNote);
-		log.info("작성한 다이어리 결과:"+re);
-	}
+//	
+//	@Test
+//	public void writeStudyDiaryTest(){
+//		StudyNoteVO studyNote=new StudyNoteVO(0, "공부", "팀프로젝트 잘 할 수 있을까?", null, null, 1);
+//		int re=service.writeStudyDiary(studyNote);
+//		log.info("작성한 다이어리 결과:"+re);
+//	}
 	
 	@Test
 	public void  studyDiaryListTest(){

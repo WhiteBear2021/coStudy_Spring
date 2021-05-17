@@ -9,6 +9,7 @@ import org.coStudy.domain.StudyGroupVO;
 import org.coStudy.domain.StudyNoteVO;
 import org.coStudy.domain.UserVO;
 import org.coStudy.service.MyPageService;
+import org.coStudy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,11 +27,11 @@ import lombok.extern.log4j.Log4j;
 public class MyPageController {
 	@Autowired
 	MyPageService service;
-	
+	@Autowired
+	UserService user_service;
 	@GetMapping("/userProfile")
 	public void userProfile(Model model){
-		log.info("*********************");
-		log.info("userProfile 페이지로 이동!!");
+		
 	}
 	
 	@GetMapping("/userUpdate")
@@ -42,14 +43,21 @@ public class MyPageController {
 	
 	//Update 된 후에 어떤 페이지로 갈 지 정하기.
 	@PostMapping("/userUpdate")
-	public void userUpdate(HttpSession session,UserVO user){
+	public String userUpdate(HttpSession session,UserVO user,Model model){
 		log.info("*********************");
 		log.info("userUdpate Post");
 		log.info("update할 user 정보:"+user);
 		int re=service.updateUser(user);
 		if(re>0) {
+			log.info("*********************");
+			log.info("userProfile 페이지로 이동!!");
+			log.info("수정한 회원정보:"+user);
 			session.setAttribute("user", user);
+			model.addAttribute("mesg", "회원정보가 수정 되었습니다.");
+		}else{
+			model.addAttribute("mesg", "회원정보가 수정이 실패하였습니다.");
 		}
+		return "redirect:/myPage/userProfile";
 	}
 	
 	@GetMapping("/categoryUpdate")
@@ -118,11 +126,12 @@ public class MyPageController {
 	}
 	
 	@PostMapping("/studyDiary")
-	public void studyDiary(StudyNoteVO studyNote){
+	public String studyDiary(StudyNoteVO studyNote){
 		log.info("*********************");
 		log.info("studyDiary Post");
 		log.info("작성할 studyNote 내용:"+studyNote);
 		int re=service.writeStudyDiary(studyNote);
+		return "redirect:/myPage/studyDiaryList";
 	}
 	
 	@GetMapping("/applyQuitUser")

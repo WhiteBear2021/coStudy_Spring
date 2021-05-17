@@ -18,6 +18,8 @@ public class UserVO implements Serializable{
 	private String user_address2;			
 	private String user_birth;				
 	private String user_email;				
-	private String user_register_date;		
+	private String user_register_date;
+	private String user_nickName;
+	private String user_photo;
 	
 }
