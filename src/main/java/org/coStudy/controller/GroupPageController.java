@@ -1,16 +1,19 @@
 package org.coStudy.controller;
 
+import org.coStudy.domain.ChatRoomVO;
 import org.coStudy.domain.TimerVO;
 import org.coStudy.service.TimerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -42,14 +45,21 @@ public class GroupPageController {
 		
 	}
 	
-	@GetMapping("/chattingForm")
-	public void chattingForm(){
+
+	@GetMapping("/chattingForm/{roomNo}/{myName}")
+	public String chattingForm(Model model ,@PathVariable("roomNo") String roomNo, @PathVariable("myName") String myName){
 		
+		ChatRoomVO room = new ChatRoomVO();
+		room.setRoomNo(roomNo);
+		room.setMyName(myName);
+		model.addAttribute("room", room);
+	
+		return "groupPage/chattingForm";
 	}
 	
-	@GetMapping("chatting/{roomNo}")
+	/*@GetMapping("chatting/{roomNo}")
 	public String chatting(@PathVariable("roomNo") int roomNo){
 		String myName = "주원";
 		return "redirect:http://192.168.0.163:3000?room="+roomNo+"&myName="+myName;
-	}
+	}*///node.js
 }

@@ -1,4 +1,4 @@
-/*import {timerService} from './modules.js';
+import {timerService} from './modules.js';
 
 let isrunning = false;
 let time = 0;
@@ -56,5 +56,3 @@ function output(){
     let secs = (sec >= 10) ? sec : "0" + sec;
     $('#time_output').text(hours + ":" + mins + ":" + secs);
 }
-
-*/
