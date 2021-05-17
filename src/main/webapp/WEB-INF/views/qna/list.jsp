@@ -342,8 +342,8 @@
 								
 								<textarea name="" class="form-control type_msg" placeholder="Type your message..."></textarea>
 								<br>
-								<textarea name="" class="form-control type_msg" placeholder="Type your message..."></textarea>
 								</form>
+								<textarea name="" class="form-control type_msg" placeholder="Type your message..."></textarea>
 								
 								<div class="input-group-append">
 									<span class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>

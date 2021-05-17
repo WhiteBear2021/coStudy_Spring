@@ -14,10 +14,10 @@
                             <div class="header-cart-menu d-flex align-items-center ml-auto">
                                 <!-- Cart Area -->
                                 <div class="cart">
+
                                     <a href="/user/signUp" id="header-cart-btn" > Sign Up &nbsp;&nbsp;|&nbsp;&nbsp; </a>
                                     <a href="/user/login" id="header-cart-btn" > Login &nbsp;&nbsp; |&nbsp;&nbsp; </a>
                                     <a href="/myPage/userProfile" id="header-cart-btn" > My Page&nbsp;&nbsp;&nbsp;&nbsp; </a>
-
 
                                 </div>
 

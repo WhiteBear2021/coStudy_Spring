@@ -80,7 +80,8 @@ public class UserController {
 			log.info("로그인 결과:"+user);
 			if(user!=null) {
 				session.setAttribute("user", user);
-				return "redirect:/main";
+				return "/main";
+
 			}else {
 				return "user/loginForm";
 			}
