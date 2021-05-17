@@ -11,12 +11,11 @@ public interface GroupPageMapper {
 
 	
 	int insertGroupBoard(GroupPageBoardVO groupPageBoardVO);
-	List<GroupPageBoardVO> selectGroupBoard(int studyGroup_no);
-	List<GroupPageBoardVO> groupBoardList();
+	List<GroupPageBoardVO> groupBoardList(int page_board_no);
 	List<ApplyGroupMemberVO> selectApplyList(int studyGroup_no);
 	int acceptMember(ApplyGroupMemberVO vo);
 	int insertAcceptMember(ApplyGroupMemberVO vo);
-	int refuseMember(int user_no);
+	int deleteRefuseMember(int user_no);
 }
 
 
