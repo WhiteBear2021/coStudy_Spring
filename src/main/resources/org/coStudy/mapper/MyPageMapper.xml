@@ -6,12 +6,13 @@
 	<cache />
 
 	<update id="updateUser" parameterType="org.coStudy.domain.UserVO">
-		update user_info set user_phoneNo=#{user_phoneNo}, user_post=#{user_post}, user_address1=#{user_address1}, user_address2=#{user_address2}, user_email=#{user_email}
+		update user_info set user_phoneNo=#{user_phoneNo}, user_post=#{user_post}, user_address1=#{user_address1}, user_address2=#{user_address2}, 
+		user_email=#{user_email}, user_nickName=#{user_nickName}
 		where user_no=#{user_no}
 	</update>
 	
 	<insert id="writeStudyDiary" parameterType="org.coStudy.domain.StudyNoteVO">
-		insert into STUDYNOTE values(seq_studyNote.nextval,#{studyNote_keyword},#{studyNote_content},null,SYSDATE,#{user_no})
+		insert into STUDYNOTE values(seq_studyNote.nextval,#{studyNote_keyword},#{studyNote_content},null,SYSDATE,#{user_no},#{studyNote_title})
 	</insert>
 	
 	<select id="studyDiaryList" parameterType="int" resultType="org.coStudy.domain.StudyNoteVO">

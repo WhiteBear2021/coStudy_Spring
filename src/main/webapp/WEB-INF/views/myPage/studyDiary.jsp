@@ -33,10 +33,13 @@
 					<hr style="width:800px;" class="text-primary">
 					<div class="row">
 						<div class="form-group">
-							<form action="studyDiaryAction.do">
+							<form action="studyDiary" method="post">
 								<input type="hidden" name="user_no" class="form-control mt-4 mb-2" value="${sessionScope.user.user_no}">
 								<label>
-								키워드 : <input type="text" name="studyNote_keyword" style="width:300%;" placeholder="키워드 및 제목을 입력해주세요.">
+								제목 : <input type="text" name="studyNote_title" style="width:300%;" placeholder="제목">
+								</label><br><br>
+								<label>
+								키워드 : <input type="text" name="studyNote_keyword" style="width:300%;" placeholder="키워드를 입력해주세요.">
 								</label><br><br>
 								<label>
 								글내용 :

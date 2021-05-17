@@ -1,5 +1,6 @@
 package org.coStudy.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -78,7 +80,7 @@ public class UserController {
 			log.info("로그인 결과:"+user);
 			if(user!=null) {
 				session.setAttribute("user", user);
-				return "home";
+				return "redirect:/main";
 			}else {
 				return "user/loginForm";
 			}
@@ -95,15 +97,38 @@ public class UserController {
 		return "home"; //이것도 임시로 설정해놓은 것!!
 	}
 	
-	@GetMapping("/searchId")
-	public void searchId(){
-	
+	@GetMapping("/searchUser")
+	public String searchUser(Model model,String key){
+		if(key.equals("id")){
+			model.addAttribute("key","아이디 찾기");
+		}else if(key.equals("pw")){
+			model.addAttribute("key","비밀번호 찾기");
+		}
+		return "user/searchUser";
 	}
 	
-	@GetMapping("/searchPassword")
-	public void searchPassword(){
-		log.info("*********************");
-		log.info("searchPassword 페이지로 이동!!");	
+	@PostMapping(value="/searchId" ,produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String searchId(@RequestParam("user_firstName")String user_firstName,
+			@RequestParam("user_lastName")String user_lastName,@RequestParam("user_phoneNo")String user_phoneNo){
+		log.info("user_firstName:"+user_firstName);
+		log.info("user_lastName:"+user_lastName);
+		log.info("user_phoneNo:"+user_phoneNo);
+		HashMap<String, String> map=new HashMap<>();
+		map.put("user_firstName",user_firstName);
+		map.put("user_lastName",user_lastName);
+		map.put("user_phoneNo",user_phoneNo);
+		String result=service.searchId(map);
+		log.info("찾은 결과 user_id==>"+result);
+		if(result==null){
+			result="해당하는 회원님의 id가 존재하지않습니다.";
+		}
+		return result;
+	}
+	
+	@PostMapping("/searchPw")
+	public void searchPw(){
+		
 	}
 	
 	@GetMapping("/logout")

@@ -48,8 +48,15 @@
 									value="로그인">
 							</div>
 							<div id="register-link" class="text-right">
-								<a href="signUp" class="text-info">회원가입 하기</a>
+								<br>
+								<a href="signUp" class="text-info">회원가입</a>
+								<br>
+								<a href="searchUser?key=id" class="text-info">아이디 찾기</a>&nbsp;|&nbsp;
+								<a href="searchUser?key=pw" class="text-info">비밀번호 찾기</a>
 							</div>
+					
+								
+					
 						</form>
 					</div>
 				</div>

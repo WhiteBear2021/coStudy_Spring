@@ -1,5 +1,6 @@
 package org.coStudy.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.coStudy.domain.CategoryVO;
@@ -34,5 +35,11 @@ public class UserServiceImple implements UserService{
 	public List<CategoryVO> categoryAllList() {
 		// TODO Auto-generated method stub
 		return mapper.categoryAllList();
+	}
+
+	@Override
+	public String searchId(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return mapper.searchId(map);
 	}
 }

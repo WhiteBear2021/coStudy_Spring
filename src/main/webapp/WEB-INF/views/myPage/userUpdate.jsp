@@ -37,6 +37,9 @@
 					<form action="userUpdate" method="post">
 					        <input type="hidden" name="user_no" value="${user.user_no}">
 					        <input type="hidden" name="user_id" value="${user.user_id}">
+					        <input type="hidden" name="category_no" value="${user.category_no}">
+					        <input type="hidden" name="user_birth" value="${user.user_birth}">
+					        <input type="hidden" name="user_register_date" value="${user.user_register_date}">
 					        <label>
 					        	<p><b>아이디 :</b> ${sessionScope.user.user_id}
 					        </label>
@@ -50,6 +53,9 @@
 					        </label>
 					        <label>
 					        	 <p> <b>성 :</b> <input type="text" name="user_lastName" value="${sessionScope.user.user_lastName}"> <b>이름 :</b> <input type="text" name="user_firstName" value="${sessionScope.user.user_firstName}"></p>
+					        </label>
+					        <label>
+					        	 <p> <b>별명 :</b> <input type="text" name="user_nickName" value="${sessionScope.user.user_nickName}"> </p>
 					        </label>
 					        <label>
 					        	<p> <b>휴대전화 번호 :</b> <input type="text" name="user_phoneNo" value="${sessionScope.user.user_phoneNo}"></p>

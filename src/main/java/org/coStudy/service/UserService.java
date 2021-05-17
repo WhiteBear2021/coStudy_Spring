@@ -1,5 +1,6 @@
 package org.coStudy.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.coStudy.domain.CategoryVO;
@@ -11,4 +12,5 @@ public interface UserService {
 	UserVO login(LoginVO login);
 	int idCheck(String user_id);
 	List<CategoryVO> categoryAllList();
+	String searchId(HashMap<String, String> map);
 }
