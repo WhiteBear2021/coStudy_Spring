@@ -165,8 +165,7 @@ public class UserController {
                     "<br><br>" + 
                     "인증 번호는 " + checkNum + "입니다." + 
                     "<br>" + 
-                    "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
-            
+                    "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";          
             try {
                 
                 MimeMessage message = mailSender.createMimeMessage();
@@ -209,7 +208,7 @@ public class UserController {
 		System.out.println(user);
 	    session.removeAttribute("user");
 		
-	    return "user/login";
+	    return "user/loginForm";
 	}
 	
 	@GetMapping(value="/checkId",produces = "application/text; charset=utf8")
