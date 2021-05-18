@@ -66,8 +66,18 @@ public class QnaController {
 
    }
    
+   @GetMapping(value="/list3")
+   public void list3() {
+
+   }
+   
    @GetMapping(value="/list")
    public void list() {
+
+   }
+   
+   @GetMapping(value="/list2")
+   public void list2() {
 
    }
    
@@ -76,7 +86,8 @@ public class QnaController {
     @ResponseBody
     public String ajax_addComment(@ModelAttribute("qnaVO") QnaVO qnaVO) throws Exception{
         QnaVO qna=new QnaVO();
-      
+      log.info("=============================");
+      log.info("들어옴");
         
         try{
            qna.setQna_content(qnaVO.getQna_content());
@@ -90,6 +101,27 @@ public class QnaController {
         
         return "success";
     }
+   
+   
+   @PostMapping(value="/list")
+   @ResponseBody
+   public String ajax_addComment2(@ModelAttribute("qnaVO") QnaVO qnaVO) throws Exception{
+       QnaVO qna=new QnaVO();
+     log.info("=============================");
+     log.info("들어옴");
+       
+       try{
+          qna.setQna_content(qnaVO.getQna_content());
+          qna.setQna_title(qnaVO.getQna_title());
+          qna.setUser_no(qnaVO.getUser_no());
+          service.Userinsert(qna);
+           
+       } catch (Exception e){
+           e.printStackTrace();
+       }
+       
+       return "success";
+   }
    
     @RequestMapping(value="/commentList", 
           produces="application/json; charset=utf8")
@@ -109,6 +141,8 @@ public class QnaController {
                for(int i=0; i<commentVO.size(); i++){
      
                    HashMap hm = new HashMap();
+                   hm.put("regdate", commentVO.get(i).getRegdate());
+                   hm.put("qna_no", commentVO.get(i).getQna_no());
                    hm.put("qna_title", commentVO.get(i).getQna_title());
                    hm.put("qna_content", commentVO.get(i).getQna_content());
                    
@@ -121,4 +155,7 @@ public class QnaController {
            return hmlist;
            
        }
+    
+    
+    
 }

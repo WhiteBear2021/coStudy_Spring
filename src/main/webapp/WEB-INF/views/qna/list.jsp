@@ -1,371 +1,492 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+	crossorigin="anonymous">
 <jsp:include page="../common/head.jsp"></jsp:include>
 
 
 <jsp:include page="../common/header.jsp"></jsp:include>
+<style type="text/css">
+body, button, input {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	letter-spacing: 1.4px;
+}
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
-	
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-<style>
-        	body,html{
-/* 			height: 100%;
-			margin: 0;
-			background: #7F7FD5;
-	       background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
-	        background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); */
-		}
+.background {
+	display: flex;
+	min-height: 100vh;
+}
 
-		.chat{
-			margin-top: auto;
-			margin-bottom: auto;
-		}
-		.card{
-			height: 500px;
-			border-radius: 15px !important;
-			background-color: rgba(0,0,0,0.4) !important;
-		}
-		.contacts_body{
-			padding:  0.75rem 0 !important;
-			overflow-y: auto;
-			white-space: nowrap;
-		}
-		.msg_card_body{
-			overflow-y: auto;
-		}
-		.card-header{
-			border-radius: 15px 15px 0 0 !important;
-			border-bottom: 0 !important;
-		}
-	 .card-footer{
-		border-radius: 0 0 15px 15px !important;
-			border-top: 0 !important;
+.container {
+	flex: 0 1 700px;
+	margin: auto;
+	padding: 10px;
+}
+
+.screen {
+	position: relative;
+	background: #3e3e3e;
+	border-radius: 15px;
+}
+
+.screen:after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 20px;
+	right: 20px;
+	bottom: 0;
+	border-radius: 15px;
+	box-shadow: 0 20px 40px rgba(0, 0, 0, .4);
+	z-index: -1;
+}
+
+.screen-header {
+	display: flex;
+	align-items: center;
+	padding: 10px 20px;
+	background: #4d4d4f;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+.screen-header-left {
+	margin-right: auto;
+}
+
+.screen-header-button {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	margin-right: 3px;
+	border-radius: 8px;
+	background: white;
+}
+
+.screen-header-button.close {
+	background: #ed1c6f;
+}
+
+.screen-header-button.maximize {
+	background: #e8e925;
+}
+
+.screen-header-button.minimize {
+	background: #74c54f;
+}
+
+.screen-header-right {
+	display: flex;
+}
+
+.screen-header-ellipsis {
+	width: 3px;
+	height: 3px;
+	margin-left: 2px;
+	border-radius: 8px;
+	background: #999;
+}
+
+.screen-body {
+	display: flex;
+}
+
+.screen-body-item {
+	width: 35%;
+	padding: 50px;
+}
+
+.screen-body-item-2 {
+	width: 65%;
+	padding: 50px;
+}
+
+.screen-body-item.left {
+	display: flex;
+	flex-direction: column;
+}
+
+.app-title {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	color: #ea1d6f;
+	font-size: 26px;
+}
+
+.app-title:after {
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: -10px;
+	width: 25px;
+	height: 4px;
+	background: #ea1d6f;
+}
+
+.app-contact {
+	margin-top: auto;
+	font-size: 8px;
+	color: #888;
+}
+
+.app-form-group {
+	margin-bottom: 15px;
+}
+
+.app-form-group.message {
+	margin-top: 40px;
+}
+
+.app-form-group.buttons {
+	margin-bottom: 0;
+	text-align: right;
+}
+
+.app-form-control {
+	width: 100%;
+	padding: 10px 0;
+	background: none;
+	border: none;
+	border-bottom: 1px solid #666;
+	color: #ddd;
+	font-size: 14px;
+	text-transform: uppercase;
+	outline: none;
+	transition: border-color .2s;
+}
+
+.app-form-control::-moz-placeholder {
+	color: #666;
+}
+
+.app-form-control:-ms-input-placeholder {
+	color: #666;
+}
+
+.app-form-control::placeholder {
+	color: #666;
+}
+
+.app-form-control:focus {
+	border-bottom-color: #ddd;
+}
+
+.app-form-button {
+	background: none;
+	border: none;
+	color: #ea1d6f;
+	font-size: 21px;
+	cursor: pointer;
+	outline: none;
+}
+
+.app-form-button:hover {
+	color: #b9134f;
+}
+
+.credits {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+	color: #ffa4bd;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+.credits-link {
+	display: flex;
+	align-items: center;
+	color: #fff;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.dribbble {
+	width: 20px;
+	height: 20px;
+	margin: 0 5px;
+}
+
+@media screen and (max-width: 520px) {
+	.screen-body {
+		flex-direction: column;
 	}
-		.container{
-			align-content: center;
-		}
-		.search{
-			border-radius: 15px 0 0 15px !important;
-			background-color: rgba(0,0,0,0.3) !important;
-			border:0 !important;
-			color:white !important;
-		}
-		.search:focus{
-		     box-shadow:none !important;
-           outline:0px !important;
-		}
-		.type_msg{
-			background-color: rgba(0,0,0,0.3) !important;
-			border:0 !important;
-			color:white !important;
-			height: 60px !important;
-			overflow-y: auto;
-		}
-			.type_msg:focus{
-		     box-shadow:none !important;
-           outline:0px !important;
-		}
-		.attach_btn{
-	border-radius: 15px 0 0 15px !important;
-	background-color: rgba(0,0,0,0.3) !important;
-			border:0 !important;
-			color: white !important;
-			cursor: pointer;
-		}
-		.send_btn{
-	border-radius: 0 15px 15px 0 !important;
-	background-color: rgba(0,0,0,0.3) !important;
-			border:0 !important;
-			color: white !important;
-			cursor: pointer;
-		}
-		.search_btn{
-			border-radius: 0 15px 15px 0 !important;
-			background-color: rgba(0,0,0,0.3) !important;
-			border:0 !important;
-			color: white !important;
-			cursor: pointer;
-		}
-		.contacts{
-			list-style: none;
-			padding: 0;
-		}
-		.contacts li{
-			width: 100% !important;
-			padding: 5px 10px;
-			margin-bottom: 15px !important;
-		}
-	.active_li{
-			background-color: rgba(0,0,0,0.3);
+	.screen-body-item.left {
+		margin-bottom: 30px;
 	}
-		.user_img{
-			height: 70px;
-			width: 70px;
-			border:1.5px solid #f5f6fa;
-		
-		}
-		.user_img_msg{
-			height: 40px;
-			width: 40px;
-			border:1.5px solid #f5f6fa;
-		
-		}
-	.img_cont{
-			position: relative;
-			height: 70px;
-			width: 20px;
+	.app-title {
+		flex-direction: row;
 	}
-	.img_cont_msg{
-			height: 40px;
-			width: 40px;
+	.app-title span {
+		margin-right: 12px;
 	}
-	.online_icon{
-		position: absolute;
-		height: 15px;
-		width:15px;
-		background-color: #4cd137;
-		border-radius: 50%;
-		bottom: 0.2em;
-		right: 0.4em;
-		border:1.5px solid white;
-	}
-	.offline{
-		background-color: #c23616 !important;
-	}
-	.user_info{
-		margin-top: auto;
-		margin-bottom: auto;
-		margin-left: 15px;
-	}
-	.user_info span{
-		font-size: 20px;
-		color: white;
-	}
-	.user_info p{
-	font-size: 10px;
-	color: rgba(255,255,255,0.6);
-	}
-	.video_cam{
-		margin-left: 50px;
-		margin-top: 5px;
-	}
-	.video_cam span{
-		color: white;
-		font-size: 20px;
-		cursor: pointer;
-		margin-right: 20px;
-	}
-	.msg_cotainer{
-		margin-top: auto;
-		margin-bottom: auto;
-		margin-left: 10px;
-		border-radius: 25px;
-		background-color: #82ccdd;
-		padding: 10px;
-		position: relative;
-		max-width: 70%;
-	}
-	.msg_cotainer_send{
-		margin-top: auto;
-		margin-bottom: auto;
-		margin-right: 10px;
-		border-radius: 25px;
-		background-color: #78e08f;
-		padding: 10px;
-		position: relative;
-		max-width: 70%;
-	}
-	.msg_time{
-		position: absolute;
-		left: 0;
-		bottom: -15px;
-		color: rgba(255,255,255,0.5);
-		font-size: 10px;
-	}
-	.msg_time_send{
-		position: absolute;
-		right:0;
-		bottom: -15px;
-		color: rgba(255,255,255,0.5);
-		font-size: 10px;
-	}
-	.msg_head{
-		position: relative;
-	}
-	#action_menu_btn{
-		position: absolute;
-		right: 10px;
-		top: 10px;
-		color: white;
-		cursor: pointer;
-		font-size: 20px;
-	}
-	.action_menu{
-		z-index: 1;
-		position: absolute;
-		padding: 15px 0;
-		background-color: rgba(0,0,0,0.5);
-		color: white;
-		border-radius: 15px;
-		top: 30px;
-		right: 15px;
+	.app-title:after {
 		display: none;
 	}
-	.action_menu ul{
-		list-style: none;
+}
+
+@media screen and (max-width: 600px) {
+	.screen-body {
+		padding: 40px;
+	}
+	.screen-body-item {
 		padding: 0;
-	margin: 0;
 	}
-	.action_menu ul li{
-		width: 100%;
-		padding: 10px 15px;
-		margin-bottom: 5px;
-	}
-	.action_menu ul li i{
-		padding-right: 10px;
-	
-	}
-	.action_menu ul li:hover{
-		cursor: pointer;
-		background-color: rgba(0,0,0,0.2);
-	}
-	@media(max-width: 576px){
-	.contacts_card{
-		margin-bottom: 15px !important;
-	}
-	}
-	
-	.form-control{
-		display: block;
-	}
-	
-        </style>
+}
+</style>
+<style>
+.modal-content {
+	background-color: transparent !important;
+	border: 0 !important;
+}
 
-
+@media screen and (min-width: 576px) {
+	.modal-dialog {
+		max-width: 800px !important;
+	}
+}
+</style>
 <body>
-	<div class="container-fluid h-100">
-			<div class="row justify-content-center h-100">
-				<div class="col-md-4 col-xl-3 chat">
-					<div class="card mb-sm-3 mb-md-0 contacts_card">
-					<div class="card-header">
-						<div class="input-group">
-							
+
+	<div class="container">
+	<a href="#" class="primary-btn"
+		data-toggle="modal" data-target="#myModal" style="float: right;margin-bottom: 30px;">NEW QnA</a>
+		
+		<br><br>
+		
+		<table class="table">
+			<thead class="thead-dark">
+				<tr style="text-align: center;">
+
+					<th style="width: 15%;">글번호</th>
+					<th style="width: 55%;">제목</th>
+					<th style="width: 20%;">날짜</th>
+					<th style="width: 10%;">확인여부</th>
+
+				</tr>
+			</thead>
+			<tbody class="tb">
+				<tr>
+					<th scope="row">1</th>
+					<td>글제목</td>
+					<td>날짜</td>
+					<td><i class="fa fa-close"></i></td>
+				</tr>
+				<tr>
+					<th scope="row">1</th>
+					<td>글제목</td>
+					<td>날짜</td>
+					<td><i class="fa fa-close"></i></td>
+				</tr>
+
+			</tbody>
+		</table>
+
+
+	</div>
+
+	<br>
+	<br>
+<!-- 	<button type="button" class="btn btn-secondary btn-lg"
+		data-toggle="modal" data-target="#myModal">1대1문의 등록
+	</button> -->
+ <!-- <a href="#" class="primary-btn"
+		data-toggle="modal" data-target="#myModal">NEW QnA</a> -->
+	<br>
+	<br>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+
+				<div class="background">
+					<div class="container">
+						<div class="screen">
+							<div class="screen-header">
+								<div class="screen-header-left">
+									<div class="screen-header-button maximize"></div>
+									<div class="screen-header-button maximize"></div>
+									<div class="screen-header-button minimize"></div>
+								</div>
+								<div class="screen-header-right">
+									<div class="screen-header-ellipsis"></div>
+									<div class="screen-header-ellipsis"></div>
+									<div class="screen-header-ellipsis"></div>
+								</div>
+							</div>
+							<div class="screen-body">
+								<div class="screen-body-item left">
+									<div class="app-title">
+										<span>1:1</span> <span>문의하기</span>
+									</div>
+
+								</div>
+								<div class="screen-body-item-2">
+									<div class="app-form">
+										<form id="commentForm" name="commentForm" method="post">
+											<div class="app-form-group">
+												<input class="app-form-control" placeholder="제목을 입력하세요"
+													id="qna_title" name="qna_title">
+											</div>
+											<div class="app-form-group">
+												<input class="app-form-control" placeholder="내용을 입력하세요"
+													id="qna_content" name="qna_content">
+											</div>
+
+											<input type="hidden" name="user_no"
+												value="${sessionScope.user.user_no }">
+
+
+											<div class="app-form-group buttons">
+												<a href='#' onClick="fn_comment('${result.code }')"
+													class="app-form-button">등록</a>&nbsp;&nbsp;|&nbsp;&nbsp; <a
+													href='#' class="app-form-button">취소</a>
+											</div>
+
+
+											<%-- 	<div class="app-form-group buttons">
+                                          
+                                            <button class="app-form-button" onClick="fn_comment('${result.code }')">등록</button>
+                                            <button class="app-form-button">cancel</button>
+                                        </div> --%>
+
+										</form>
+
+
+									</div>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="card-body contacts_body">
-						<ui class="contacts">
-						<li class="active_li">
-							<div class="d-flex bd-highlight">
-								<div class="img_cont">
-									
-									<span class="online_icon"></span>
-								</div>
-								<div class="user_info">
-									<span>title</span>
-									<p>content</p>
-								</div>
-							</div>
-						</li>
-						
-						
-						
-						</ui>
-					</div>
-					<div class="card-footer"></div>
-				</div></div>
-				<div class="col-md-8 col-xl-6 chat">
-					<div class="card">
-						<div class="card-header msg_head">
-							<div class="d-flex bd-highlight">
-								<div class="img_cont">
-								
-									<span class="online_icon"></span>
-								</div>
-								<div class="user_info">
-									<span>~번째 문의</span>
-									<p>total count해보기</p>
-								</div>
-								<div class="video_cam">
-									<span><i class="fas fa-video"></i></span>
-									<span><i class="fas fa-phone"></i></span>
-								</div>
-							</div>
-							<span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
-							<div class="action_menu">
-								<ul>
-									<li><i class="fas fa-user-circle"></i> View profile</li>
-									<li><i class="fas fa-users"></i> Add to close friends</li>
-									<li><i class="fas fa-plus"></i> Add to group</li>
-									<li><i class="fas fa-ban"></i> Block</li>
-								</ul>
-							</div>
-						</div>
-						<div class="card-body msg_card_body">
-						<!--관리자  -->
-							<div class="d-flex justify-content-start mb-4">
-								<div class="img_cont_msg">
-									<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
-								</div>
-								<div class="msg_cotainer">
-									<b>관리자 title 부분관리자 title 부분관리자 title 부분관리자 title 부분관리자 title 부분관리자 title 부분관리자 title 부분관리자 title 부분</b>
-									관리자 content 부분관리자 content 부분관리자 content 부분관리자 content 부분관리자 content 부분관리자 content 부분관리자 content 부분관리자 content 부분관리자 content 부분관리자 content 부분관리자 content 부분
-									<span class="msg_time">8:40 AM, Today</span>
-								</div>
-							</div>
-							<!-- user -->
-							<div class="d-flex justify-content-end mb-4">
-								<div class="msg_cotainer_send">
-									<b>user title 부분user title 부분user title 부분</b><br>
-									user content 부분user content 부분user content 부분user content 부분user content 부분user content 부분user content 부분
-									<span class="msg_time_send">8:55 AM, Today</span>
-								</div>
-								<div class="img_cont_msg">
-					
-								</div>
-							</div>
-							
-							
-							
-							
-							
-						</div>
-						<div class="card-footer">
-							<div class="input-group">
-								<div class="input-group-append">
-									<span class="input-group-text attach_btn"></span>
-								</div>
-								<form>
-								
-								<textarea name="" class="form-control type_msg" placeholder="Type your message..."></textarea>
-								<br>
-								</form>
-								<textarea name="" class="form-control type_msg" placeholder="Type your message..."></textarea>
-								
-								<div class="input-group-append">
-									<span class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>
-								</div>
-							</div>
-						</div>
+
 					</div>
 				</div>
+
+
 			</div>
 		</div>
+	</div>
 
-
-
-<jsp:include page="../common/footer.jsp"></jsp:include><hr>
+	<jsp:include page="../common/footer.jsp"></jsp:include><hr>
 </body>
+<script src="/resources/js/jquery.js"></script>
 
-<jsp:include page="../common/scri.jsp"></jsp:include><hr>
-	<script>
-    	$(document).ready(function(){
-$('#action_menu_btn').click(function(){
-	$('.action_menu').toggle();
-});
+<jsp:include page="../common/scri.jsp"></jsp:include>
+<script>
+	$(document).ready(function() {
+		$('#action_menu_btn').click(function() {
+			$('.action_menu').toggle();
+		});
+
+		$('.mo').click(function() {
+			$('#modal').modal("show");
+		});
 	});
-    </script>
+</script>
+<script type="text/javascript">
+	$('#myModal').on('shown.bs.modal', function() {
+		$('#myInput').focus()
+	})
+</script>
+<script type="text/javascript">
+	function fn_comment(code) {
+
+		$.ajax({
+			type : 'POST',
+			url : "<c:url value='/qna/user_insert'/>",
+			data : $("#commentForm").serialize(),
+			success : function(data) {
+				if (data == "success") {
+					getCommentList();
+
+					$('.modal').modal("hide"); //모달창닫기 
+				}
+			},
+			error : function(request, status, error) {
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n" + "error:" + error);
+			}
+
+		});
+	}
+
+	$(function() {
+
+		getCommentList();
+
+	});
+
+	function getCommentList() {
+
+		$
+				.ajax({
+					type : 'GET',
+					url : "<c:url value='/qna/commentList'/>",
+					dataType : "json",
+					data : $("#commentForm").serialize(),
+					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+					success : function(data) {
+
+						var html = "";
+						var cCnt = data.length;
+						console.log(data);
+						if (data.length > 0) {
+							for (i = 0; i < data.length; i++) {
+
+								html += '<tr style="text-align: center;">';
+								html += '<th>' + data[i].qna_no + '</th>';
+								html += '<td>' + data[i].qna_title + '</td>';
+								html += '<td>' + data[i].regdate + '</td>';
+								html += '<td><i class="fa fa-close"></i></td>';
+								html += '</tr>';
+
+							}
+
+						} else {
+
+							html += "<div>";
+							html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
+							html += "</table></div>";
+							html += "</div>";
+
+						}
+
+						/* $("#cCnt").html(cCnt); */
+						$(".tb").html(html);
+
+					},
+					error : function(request, status, error) {
+
+					}
+
+				});
+	}
+</script>
+<script type="text/javascript">
+	$('#myModal').on('shown.bs.modal', function() {
+		$('#myInput').focus()
+	})
+</script>
+
 </html>

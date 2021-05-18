@@ -5,9 +5,9 @@
 <!DOCTYPE html>
 <html>
 <jsp:include page="../managerModule/head.jsp"></jsp:include><hr>
+	<jsp:include page="../managerModule/header.jsp"></jsp:include><hr>
 <body class="">
 
-	<jsp:include page="../managerModule/header.jsp"></jsp:include><hr>
 
 	<div class="pcoded-main-container">
 		<div class="pcoded-content">

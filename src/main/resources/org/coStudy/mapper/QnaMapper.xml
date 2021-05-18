@@ -26,6 +26,7 @@
 		levels=1
 		and
 		user_no=#{user_no}
+		order by qna_no desc
 	</select>
 	
 	
