@@ -32,4 +32,9 @@ public class MyPageServiceImple implements MyPageService{
 	public List<StudyGroupVO> joinGroupList(int user_no){
 		return mapper.joinGroupList(user_no);
 	}
+	@Override
+	public StudyNoteVO studyDiaryDetail(int studyNote_no) {
+		// TODO Auto-generated method stub
+		return mapper.studyDiaryDetail(studyNote_no);
+	}
 }

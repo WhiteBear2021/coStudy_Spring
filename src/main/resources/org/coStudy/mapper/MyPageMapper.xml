@@ -23,5 +23,8 @@
 		select * from STUDYGROUP WHERE studygroup_no in (select studygroup_no
                                             			 from groupuser where user_no = #{user_no})
 	</select>
-
+	
+	<select id="studyDiaryDetail" resultType="org.coStudy.domain.StudyNoteVO">
+		select * from studynote where studynote_no=#{studyNote_no}
+	</select>
 </mapper>

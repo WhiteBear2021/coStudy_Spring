@@ -96,12 +96,19 @@ public class MyPageController {
 	}
 	
 	@GetMapping("/studyDiaryUpdate")
-	public void studyDiaryUpdate(Model model){
+	public void studyDiaryUpdate(@RequestParam("studyNote_no") int studyNote_no,Model model){
 		log.info("*********************");
 		log.info("studyDiaryUpdate 페이지로 이동!!");
+		//update query문 작성하기
 		
 	}
-	
+	//글 세부 내용 보기
+	@GetMapping("/studyDiaryDetail")
+	public void studyDiaryDetail(@RequestParam("studyNote_no") int studyNote_no,Model model){
+		StudyNoteVO diary=service.studyDiaryDetail(studyNote_no);
+		model.addAttribute("diary", diary);
+		
+	}
 	//study list 로 return
 	@PostMapping("/studyDiaryUpdate")
 	public String studyDiaryUpdate(StudyNoteVO studyNote){
@@ -133,6 +140,8 @@ public class MyPageController {
 		int re=service.writeStudyDiary(studyNote);
 		return "redirect:/myPage/studyDiaryList";
 	}
+	
+	
 	
 	@GetMapping("/applyQuitUser")
 	public void applyQuitUser(){

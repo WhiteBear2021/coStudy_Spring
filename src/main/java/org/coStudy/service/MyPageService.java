@@ -11,4 +11,5 @@ public interface MyPageService {
 	 int writeStudyDiary(StudyNoteVO studyNote);
 	 List<StudyNoteVO> studyDiaryList(int user_no);
 	 List<StudyGroupVO> joinGroupList(int user_no);
+	 StudyNoteVO studyDiaryDetail(int studyNote_no);
 }

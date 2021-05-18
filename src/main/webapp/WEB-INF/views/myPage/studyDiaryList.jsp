@@ -45,14 +45,14 @@
 									<th id="no">글번호</th>
 									<th id="title">제목/키워드</th>
 									<th id="fileName">파일</th>
-									<th id="regDate">작성날짜</th>
+									<th id="regDate">최종수정일</th>
 
 								</tr>
 							</thead>	
                             <c:forEach var="diary" items="${studyNoteList}">
                                 <tr>
-                                    <td>${diary.studyNote_no}</td>
-                                    <td>${diary.studyNote_keyword}</td>
+                                    <td><a href="studyDiaryDetail?studyNote_no=${diary.studyNote_no}">${diary.studyNote_no}</a></td>
+                                    <td>[${diary.studyNote_keyword}]${diary.studyNote_title}</td>
                                     <td>${diary.studyNote_file}</td>
                                     <td>${diary.studyNote_date}</td>
     
