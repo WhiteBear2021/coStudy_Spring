@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="container">
-<h3><a href="makeGroupFormAction.do">방 만들기</a></h3>
+<h3><a href="/studyGroup/insert">방 만들기</a></h3>
 	<table border="1">
 		<tr>
 			<td>번호</td>
@@ -22,9 +22,9 @@
 			<td>현재인원</td>
 			<td>최대인원</td>
 		</tr>
-		<c:forEach var="studyGroup" items="${listPage.list }">
+		<c:forEach var="studyGroup" items="${list }">
 			<tr>
-				<td><a href="studyGroupDetailAction.do?studygroup_no=${studyGroup.studygroup_no }">${studyGroup.studygroup_no }</a></td>
+				<td><a href="${studyGroup.studygroup_no }">${studyGroup.studygroup_no }</a></td>
 				<td>${studyGroup.studygroup_name }</td>
 				<td>${studyGroup.made_date }</td>
 				<td>${studyGroup.category_no }</td>
@@ -34,6 +34,23 @@
 			</tr>
 		</c:forEach>
 	</table>
+	
+	<select class="form-control form-control-sm" name="searchType" id="searchType">
+
+		<option value="">카테고리</option>
+		<option value="">내용</option>
+		<option value="">작성자</option>
+		
+	</select>
+	
+	<div>
+		
+		<button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch"> 검색 </button>
+		
+	</div>
+	
+
+
 		        <br>
 	        
 	        <br>
@@ -60,9 +77,9 @@
 	
 	<nav aria-label="..." >
 	<ul class="pagination">
-	<c:if test="${listPage.startPage > 3 }">
+	<c:if test="${listPage.startPage > 5 }">
 	<li class="page-item"><a class="page-link"
-		 href="studyGroupListInfoAction.do?pageNum=${listPage.startPage -1 }">[이전]</a></li>
+		 href="${listPage.startPage -1 }">[이전]</a></li>
 	</c:if>
 	
 	<!-- 페이지 목록 -->
@@ -75,7 +92,7 @@
 		</c:if>
 		<c:if test="${listPage.requestPage != pageNo }">
 			<li class="page-item"><a class="page-link"
-		 href="studyGroupListInfoAction.do?pageNum=${pageNo }">${pageNo }</a></li>
+		 href="${pageNo }">${pageNo }</a></li>
 		 </c:if>
 	</c:forEach>
 
@@ -83,7 +100,7 @@
 	<c:if
 	 test="${listPage.endPage < listPage.totalPageCount }">
 	 <li class="page-item"><a class="page-link"
-		 href="studyGroupListInfoAction.do?pageNum=${listPage.endPage +1 }">[이후]</a></li>
+		 href="${listPage.endPage +1 }">[이후]</a></li>
 	</c:if>
 	</ul>
 	</nav>
@@ -96,4 +113,17 @@
 	
 </body>
 <jsp:include page="../common/footer.jsp"></jsp:include> 
+
+	<script>
+	
+		$(document).on('click', '#btnSearch', function(e){
+		e.preventDefault();
+		var url = "${pageContext.request.contextPath}/studyGroup/getStudyGroupList";
+		url = url + "?searchType=" +$('#searchType').val();
+		url = url + "&keyword=" + $('#keyword').val();
+		location.href = url;
+		console.log(url);
+		});	
+	
+	</script>
 </html>
