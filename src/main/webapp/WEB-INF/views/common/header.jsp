@@ -14,10 +14,13 @@
                             <div class="header-cart-menu d-flex align-items-center ml-auto">
                                 <!-- Cart Area -->
                                 <div class="cart">
-                                    <a href="#" id="header-cart-btn" target="_blank"> Sign Up &nbsp;&nbsp;|&nbsp;&nbsp; </a>
-                                    <a href="#" id="header-cart-btn" target="_blank"> Login &nbsp;&nbsp; |&nbsp;&nbsp; </a>
-                                    <a href="#" id="header-cart-btn" target="_blank"> My Page&nbsp;&nbsp;&nbsp;&nbsp; </a>
-
+                                <%if (session.getAttribute("user")!=null) { %>
+                                	<a href="#" id="header-cart-btn" target="_blank"> My Page &nbsp;&nbsp; |&nbsp;&nbsp; </a>
+                                    <a href="#" id="header-cart-btn" target="_blank"> Logout &nbsp;&nbsp;&nbsp;&nbsp; </a>
+                                    <% } else { %>
+                                    <a href="#" id="header-cart-btn" target="_blank"> Login &nbsp;&nbsp;|&nbsp;&nbsp; </a>
+                                    <a href="#" id="header-cart-btn" target="_blank"> Sign Up &nbsp;&nbsp; &nbsp;&nbsp; </a>
+                                    <% } %>
 
                                 </div>
 
@@ -50,7 +53,7 @@
 
 
 
-                                        <li class="nav-item"><a class="nav-link" href="#">Study Group List</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/studyGroup/list">Study Group List</a></li>
 
                                         <li class="nav-item"><a class="nav-link" href="#">Contact1</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#">Contact2</a></li>
@@ -61,9 +64,11 @@
                         </div>
                         <!-- Help Line -->
                         <div class="help-line ">
+                        <% if (session.getAttribute("user")!=null) { %>
                             <a href="#">
                                 Make Study Group
                             </a>
+                        <% } %>
                         </div>
                     </div>
                 </div>
