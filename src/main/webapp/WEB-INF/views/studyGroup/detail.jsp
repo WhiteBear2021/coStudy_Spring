@@ -80,8 +80,8 @@
 								</div>
 								<br>
 								<div style="text-align: center;">
-									<a href="applyStudyGroupAction.do"><button type="button" class="button type1">신청하기</button></a>
-									<a href=""><button type="button" class="button type1">취소</button></a>
+									<a href=""><button type="button" class="button type1">신청하기</button></a>
+									<a href="/studyGroup/list"><button type="button" class="button type1">취소</button></a>
 								</div> 
 							</form>
 						</div>

@@ -9,7 +9,7 @@
    	<div class="container">	
 	    <div class="form-group studygroupUpdate">
 	        <h3>StudyGroup 만들기</h3>
-	        <form action="/CoStudy/studyGroup/makeGroupAction.do">
+	        <form action="/studyGroup/insert">
 	        	<label>
 	        	그룹 이름 : 
 	        	<input type="text" name="studygroup_name">
