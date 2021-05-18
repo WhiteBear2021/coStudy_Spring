@@ -9,36 +9,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GroupPageServiceImple implements GroupPageService{
+public class GroupPageServiceImple implements GroupPageService {
 
-@Autowired
+	@Autowired
 	GroupPageMapper mapper;
 
-@Override
-public int insertGroupBoard(GroupPageBoardVO board) {
-	return mapper.insertGroupBoard(board);
-}
+	@Override
+	public int insertGroupBoard(GroupPageBoardVO board) {
+		return mapper.insertGroupBoard(board);
+	}
 
-@Override
-public List<GroupPageBoardVO> groupBoardList(int page_board_no) {
-	return mapper.groupBoardList(page_board_no);
-}
+	@Override
+	public List<GroupPageBoardVO> groupBoardList(int page_board_no) {
+		return mapper.groupBoardList(page_board_no);
+	}
 
-@Override
-public List<ApplyGroupMemberVO> selectApplyList(int studyGroup_no) {
-	return mapper.selectApplyList(studyGroup_no);
-}
+	@Override
+	public List<ApplyGroupMemberVO> selectApplyList(int studyGroup_no) {
+		return mapper.selectApplyList(studyGroup_no);
+	}
 
-@Override
-public int acceptMember(ApplyGroupMemberVO applyMember) {
-	return mapper.acceptMember(applyMember);
-}
+	@Override
+	public int acceptMember(ApplyGroupMemberVO applyMember) {
+		return mapper.acceptMember(applyMember);
+	}
 
-@Override
-public int insertAcceptMember(ApplyGroupMemberVO insertMember) {
-	return mapper.acceptMember(insertMember);
-}
-
-
+	@Override
+	public int insertAcceptMember(ApplyGroupMemberVO insertMember) {
+		return mapper.acceptMember(insertMember);
+	}
 
 }
