@@ -29,16 +29,28 @@ public class UserMapperTests {
 //		List<CategoryVO> list=mapper.categoryAllList();
 //		log.info(list);
 //	}
-	
+//	
+//	@Test
+//	public void searchIdTest(){
+//		log.info("searchId test");
+//		HashMap<String, String> map=new HashMap<>();
+//		map.put("user_firstName", "sta");
+//		map.put("user_lastName", "Ko");
+//		map.put("user_phoneNo", "010-1234-5676");
+//		
+//		String user_id=mapper.searchId(map);
+//		log.info(user_id);
+//	}
+//
+	//비민번호 찾기 테스트
 	@Test
-	public void searchIdTest(){
-		log.info("searchId test");
+	public void searchPwTest(){
+		log.info("searchPw test");
 		HashMap<String, String> map=new HashMap<>();
-		map.put("user_firstName", "sta");
-		map.put("user_lastName", "Ko");
-		map.put("user_phoneNo", "010-1234-5676");
+		map.put("user_id", "phyw1129");
+		map.put("user_email", "phyw1129@naver.com");
 		
-		String user_id=mapper.searchId(map);
-		log.info(user_id);
+		String user_pw=mapper.searchPw(map);
+		log.info(user_pw);
 	}
 }

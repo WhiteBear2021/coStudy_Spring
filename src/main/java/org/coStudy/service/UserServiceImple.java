@@ -42,4 +42,16 @@ public class UserServiceImple implements UserService{
 		// TODO Auto-generated method stub
 		return mapper.searchId(map);
 	}
+
+	@Override
+	public String searchPw(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return mapper.searchPw(map);
+	}
+
+	@Override
+	public int checkIdEmail(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return mapper.checkIdEmail(map);
+	}
 }

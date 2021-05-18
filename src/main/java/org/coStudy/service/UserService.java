@@ -13,4 +13,6 @@ public interface UserService {
 	int idCheck(String user_id);
 	List<CategoryVO> categoryAllList();
 	String searchId(HashMap<String, String> map);
+	String searchPw(HashMap<String, String> map);
+	int checkIdEmail(HashMap<String, String> map);
 }

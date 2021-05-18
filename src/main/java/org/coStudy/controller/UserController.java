@@ -2,7 +2,9 @@ package org.coStudy.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,8 +17,11 @@ import org.coStudy.domain.UserVO;
 import org.coStudy.service.ManagerService;
 import org.coStudy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,6 +29,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,10 +41,12 @@ import lombok.extern.log4j.Log4j;
 public class UserController {
 	
 	@Autowired
-	UserService service;
+	private UserService service;
 	@Autowired
-	ManagerService m_service;
-	
+	private ManagerService m_service;
+    @Autowired
+    private JavaMailSender mailSender;
+    
 	@GetMapping("/signUp")
 	public String signUp(Model model){
 		log.info("*********************");
@@ -108,28 +116,89 @@ public class UserController {
 		return "user/searchUser";
 	}
 	
-	@PostMapping(value="/searchId" ,produces = "application/text; charset=utf8")
+	@RequestMapping(value="/searchId" ,method=RequestMethod.POST, produces = "application/text; charset=utf8")
 	@ResponseBody
-	public String searchId(@RequestParam("user_firstName")String user_firstName,
-			@RequestParam("user_lastName")String user_lastName,@RequestParam("user_phoneNo")String user_phoneNo){
-		log.info("user_firstName:"+user_firstName);
-		log.info("user_lastName:"+user_lastName);
-		log.info("user_phoneNo:"+user_phoneNo);
-		HashMap<String, String> map=new HashMap<>();
-		map.put("user_firstName",user_firstName);
-		map.put("user_lastName",user_lastName);
-		map.put("user_phoneNo",user_phoneNo);
-		String result=service.searchId(map);
+	public String searchId(@RequestBody HashMap<String, String> map2){
+//		log.info("user_firstName:"+user_firstName);
+//		log.info("user_lastName:"+user_lastName);
+//		log.info("user_phoneNo:"+user_phoneNo);
+//		HashMap<String, String> map=new HashMap<>();
+//		map.put("user_firstName",user_firstName);
+//		map.put("user_lastName",user_lastName);
+//		map.put("user_phoneNo",user_phoneNo);
+		String result=service.searchId(map2);
 		log.info("찾은 결과 user_id==>"+result);
+		log.info(map2);
 		if(result==null){
 			result="해당하는 회원님의 id가 존재하지않습니다.";
 		}
 		return result;
 	}
 	
-	@PostMapping("/searchPw")
-	public void searchPw(){
-		
+	 /* 이메일 인증 */
+    @RequestMapping(value="/mailCheck", method=RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<String> mailCheckGET(String email,String user_id) throws Exception{
+        
+        /* 뷰(View)로부터 넘어온 데이터 확인 */
+        log.info("이메일 데이터 전송 확인");
+        log.info("user_id 확인:"+user_id);
+        log.info("이메일 확인 : " + email);
+        HashMap<String, String> map=new HashMap<>();
+        map.put("user_email", email);
+        map.put("user_id", user_id);
+        // id, email 일치 여부 check
+        int count=service.checkIdEmail(map);
+        log.info("id, email 확인 결과:"+count);
+        if(count==1){
+        	 /* 인증번호(난수) 생성 */
+            Random random = new Random();
+            int checkNum = random.nextInt(888888) + 111111;
+            log.info(checkNum);
+            
+            /* 이메일 보내기 */
+            String setFrom = "babywhitebear21@gmail.com";
+            String toMail = email;
+            String title = "COSTUDY 회원가입 인증 이메일 입니다.";
+            String content = 
+                    "홈페이지를 방문해주셔서 감사합니다." +
+                    "<br><br>" + 
+                    "인증 번호는 " + checkNum + "입니다." + 
+                    "<br>" + 
+                    "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+            
+            try {
+                
+                MimeMessage message = mailSender.createMimeMessage();
+                MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+                helper.setFrom(setFrom);
+                helper.setTo(toMail);
+                helper.setSubject(title);
+                helper.setText(content,true);
+                mailSender.send(message);
+                
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+            return new ResponseEntity<>(""+checkNum,HttpStatus.OK);
+        }else{
+        	return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
+       
+    }
+	
+	
+    @RequestMapping(value="/searchPw" ,method=RequestMethod.POST, produces = "application/text; charset=utf8")
+	@ResponseBody
+	public ResponseEntity<String> searchPw(@RequestBody HashMap<String, String> map){
+		log.info(map);
+		String result=service.searchPw(map);
+		if(result!=null){
+			return new ResponseEntity<>(result,HttpStatus.OK);
+		}else{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	@GetMapping("/logout")
