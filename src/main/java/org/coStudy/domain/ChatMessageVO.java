@@ -4,9 +4,8 @@ import lombok.Data;
 
 @Data
 public class ChatMessageVO {
-	private String chatRoomId;
-	private String message;
-	private String writer;
+	private int roomNo;
+	private int userNo;
 	private MessageType type;
 	
 	public enum MessageType{

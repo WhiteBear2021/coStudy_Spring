@@ -9,13 +9,20 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 
 import org.coStudy.domain.ChatRoomVO;
+import org.coStudy.service.ChattingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import lombok.Setter;
 
 
 @Repository
 public class ChatRoomRepository {
-
-	    private Map<String, ChatRoomVO> chatRoomMap;
+	
+	@Setter(onMethod_ = @Autowired)
+	private ChattingService service;
+	
+	  /*  private Map<String, ChatRoomVO> chatRoomMap;
 	    
 	    @PostConstruct
 	    private void init(){
@@ -36,5 +43,5 @@ public class ChatRoomRepository {
 	        ChatRoomVO chatRoom = ChatRoomVO.create(name);
 	        chatRoomMap.put(chatRoom.getRoomNo(), chatRoom);
 	        return chatRoom;
-	    }
+	    }*/
 }

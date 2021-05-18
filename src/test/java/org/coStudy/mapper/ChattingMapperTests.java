@@ -19,20 +19,21 @@ public class ChattingMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private ChattingMapper mapper;
 	
+
 //	@Test
 //	public void testInsert(){
 //		MessageVO vo = new MessageVO();
-//		vo.setGroup_msg_log("test입니다.");
-//		vo.setGroup_chatting_no(1);
-//		
+//		vo.setGroup_msg_log("test3 입니다.");
+//		vo.setStudygroup_no(101);
+//		vo.setUser_no(42);
 //		log.info("=========insert========");
 //		log.info("결과: "+mapper.insert(vo));
 //	}
-	
+
 	@Test
 	public void testList(){
 		log.info("=========List========");
-		List<MessageVO> vo = mapper.list(1);
+		List<MessageVO> vo = mapper.list(101);
 		vo.forEach(chat -> log.info(chat));
 		log.info("=================");
 	}

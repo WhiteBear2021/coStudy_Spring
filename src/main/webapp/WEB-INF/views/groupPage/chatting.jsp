@@ -12,7 +12,7 @@
 			<div>
 			<h1>chatting</h1>
 				<a href="/groupPage/chatting/1" onclick="window.open(this.href, '_blank', 'width=800, height=1000'); return false;">chatting</a>
-				<a href="/groupPage/chattingForm/1/주원" onclick="window.open(this.href, '_blank', 'width=800, height=1000'); return false;">chattingForm</a>
+				<a href="/groupPage/chattingForm/101/42" onclick="window.open(this.href, '_blank', 'width=800, height=1000'); return false;">chattingForm</a>
 				
 			</div>
 	</section>
