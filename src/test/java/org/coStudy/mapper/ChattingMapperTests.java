@@ -23,9 +23,9 @@ public class ChattingMapperTests {
 //	@Test
 //	public void testInsert(){
 //		MessageVO vo = new MessageVO();
-//		vo.setGroup_msg_log("test3 입니다.");
-//		vo.setStudygroup_no(101);
-//		vo.setUser_no(42);
+//		vo.setGroup_msg_log("1번 입니다.");
+//		vo.setStudygroup_no(102);
+//		vo.setUser_no(1);
 //		log.info("=========insert========");
 //		log.info("결과: "+mapper.insert(vo));
 //	}
@@ -33,7 +33,7 @@ public class ChattingMapperTests {
 	@Test
 	public void testList(){
 		log.info("=========List========");
-		List<MessageVO> vo = mapper.list(101);
+		List<MessageVO> vo = mapper.list(102);
 		vo.forEach(chat -> log.info(chat));
 		log.info("=================");
 	}
