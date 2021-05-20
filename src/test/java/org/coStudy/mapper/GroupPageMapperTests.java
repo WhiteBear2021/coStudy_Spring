@@ -1,5 +1,7 @@
 package org.coStudy.mapper;
 
+import java.util.List;
+
 import org.coStudy.domain.GroupPageBoardVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,21 +16,19 @@ import lombok.extern.log4j.Log4j;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
 public class GroupPageMapperTests {
-	@Setter(onMethod_=@Autowired)
-	private  GroupPageMapper mapper;
-	
-//	@Test
-//	public void setup(){
-//		log.info("mapper받아옴:"+mapper);
-//	}
-	
+	@Setter(onMethod_ = @Autowired)
+	private GroupPageMapper mapper;
+
+	// @Test
+	// public void setup(){
+	// log.info("mapper받아옴:"+mapper);
+	// }
+
 	@Test
-	public void insertTest(){
-		GroupPageBoardVO vo = new GroupPageBoardVO();
-		vo.setPage_board_content("아아");
-		vo.setPage_board_title("아아아");
-		vo.setPage_board_writer("앙아");
-		vo.setStudyGroup_no(1);
-		log.info("======="+mapper.insertGroupBoard(vo)+"======");
-	}
+	public void groupBoardList() {
+		List<GroupPageBoardVO> list = mapper.groupBoardList(1);
+		log.info(list);
+		
+		}
+
 }

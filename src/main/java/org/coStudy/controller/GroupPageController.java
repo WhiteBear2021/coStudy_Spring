@@ -62,4 +62,20 @@ public class GroupPageController {
 		String myName = "주원";
 		return "redirect:http://192.168.0.163:3000?room="+roomNo+"&myName="+myName;
 	}*///node.js
+	
+	@GetMapping("/groupMain")
+	public void groupMain(){
+		
+	}
+	
+	@GetMapping("groupBoardList")
+	public String groupBoardList(){
+		return "groupPage/groupMain";
+		
+	}
+	@GetMapping("groupBoardWrite")
+	public String groupBoardWrite(){
+		return "groupPage/groupMain";
+	}
+	
 }
