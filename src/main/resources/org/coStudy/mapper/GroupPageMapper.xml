@@ -11,7 +11,7 @@
 		sysdate ,null,#{studyGroup_no})
 	</insert>
 
-	<select id="selectGroupBoard" resultType="org.coStudy.domain.GroupPageBoardVO"
+	<select id="groupBoardList" resultType="org.coStudy.domain.GroupPageBoardVO"
 		parameterType="int">
 		<!-- SELECT page_board_content FROM group_page_board -->
 		SELECT *

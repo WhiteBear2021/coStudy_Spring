@@ -20,8 +20,8 @@ public class GroupPageServiceImple implements GroupPageService {
 	}
 
 	@Override
-	public List<GroupPageBoardVO> groupBoardList(int page_board_no) {
-		return mapper.groupBoardList(page_board_no);
+	public List<GroupPageBoardVO> groupBoardList(int studyGroup_no) {
+		return mapper.groupBoardList(studyGroup_no);
 	}
 
 	@Override

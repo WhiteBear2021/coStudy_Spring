@@ -1,6 +1,8 @@
 package org.coStudy.controller;
 
 
+import java.util.List;
+
 import org.coStudy.domain.ChatRoomVO;
 import org.coStudy.domain.GroupPageBoardVO;
 import org.coStudy.domain.TimerVO;
@@ -12,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,9 +34,7 @@ import lombok.extern.log4j.Log4j;
 public class GroupPageController {
 
 	private TimerService timerService;
-
-	@Autowired
-	GroupPageService groupPage_service;
+	private GroupPageService groupPage_service;
 
 	@ResponseBody
 	@PostMapping("/timer")
@@ -72,29 +73,26 @@ public class GroupPageController {
 	 * "redirect:http://192.168.0.163:3000?room="+roomNo+"&myName="+myName; }
 	 */// node.js
 
-	@GetMapping("/main")
-	public String main() {
-		log.info("main");
-		return "groupPage/groupMain";
-
-	}
-
-	@GetMapping("boardList")
-	public String boardList(@RequestParam("groupBoardList") int page_board_no) throws Exception {
-		log.info("***********");
-		log.info("그룹피드로 이동");
-
-		return "groupPage/groupMain";
-
-	}
-
-	@GetMapping("/insertGroupBoard")
-	@ResponseBody
-	public String insertGroupBoard(@RequestParam("board") GroupPageBoardVO board) {
-		log.info("insertBoard");
-		//int groupPage = groupPage_service.insertGroupBoard(board);
-
-		return "groupPage/groupMain";
-
+	@PostMapping(value="groupBoardMain")
+		@ResponseBody
+		public String groupBoardList(@ModelAttribute("groupPageBoardVO") GroupPageBoardVO groupPageBoardVO) throws Exception{
+			GroupPageBoardVO board = new GroupPageBoardVO();
+			int studyGroup_no = groupPageBoardVO.getStudyGroup_no();
+			log.info("==============");
+			log.info("boardList");
+			
+			try {
+				board.setPage_board_content(groupPageBoardVO.getPage_board_content());
+				board.setPage_board_title(groupPageBoardVO.getPage_board_title());
+				board.setPage_board_writer(groupPageBoardVO.getPage_board_writer());
+				groupPage_service.groupBoardList(studyGroup_no);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+		return "success";
+		
 	}
 }
+
+
