@@ -46,16 +46,17 @@
 									<th id="title">제목/키워드</th>
 									<th id="fileName">파일</th>
 									<th id="regDate">최종수정일</th>
+									<th></th>
 
 								</tr>
 							</thead>	
                             <c:forEach var="diary" items="${studyNoteList}">
                                 <tr>
                                     <td><a href="studyDiaryDetail?studyNote_no=${diary.studyNote_no}">${diary.studyNote_no}</a></td>
-                                    <td>[${diary.studyNote_keyword}]${diary.studyNote_title}</td>
+                                    <td><a href="studyDiaryDetail?studyNote_no=${diary.studyNote_no}">[${diary.studyNote_keyword}]${diary.studyNote_title}</td>
                                     <td>${diary.studyNote_file}</td>
                                     <td>${diary.studyNote_date}</td>
-    
+    								<td><a href="studyDiaryDelete?studyNote_no=${diary.studyNote_no}"><button>Delete</button></a></td>
                                 </tr>
                             </c:forEach>
                         </table>

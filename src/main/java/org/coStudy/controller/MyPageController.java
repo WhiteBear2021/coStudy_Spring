@@ -99,6 +99,9 @@ public class MyPageController {
 	public void studyDiaryUpdate(@RequestParam("studyNote_no") int studyNote_no,Model model){
 		log.info("*********************");
 		log.info("studyDiaryUpdate 페이지로 이동!!");
+		log.info("수정할 studyNote_no:"+studyNote_no);
+		StudyNoteVO diary=service.studyDiaryDetail(studyNote_no);
+		model.addAttribute("diary", diary);
 		//update query문 작성하기
 		
 	}
@@ -109,21 +112,26 @@ public class MyPageController {
 		model.addAttribute("diary", diary);
 		
 	}
+
 	//study list 로 return
 	@PostMapping("/studyDiaryUpdate")
 	public String studyDiaryUpdate(StudyNoteVO studyNote){
 		log.info("*********************");
 		log.info("studyDiaryUpdate post");
 		log.info("수정할 studyNote:"+studyNote);
-		
-		return "myPage/studyDiaryList";
+		int re=service.updateStudyDiary(studyNote);
+		log.info("수정결과:"+re);
+		return "redirect:studyDiaryList";
 	}
 	
-	@DeleteMapping("/studyDiaryUpdate")
-	public String studyDiaryUpdate(@RequestParam("studyNote_no")int studyNote_no){
+	@GetMapping("/studyDiaryDelete")
+	public String studyDiaryDelete(@RequestParam("studyNote_no")int studyNote_no){
 		log.info("*********************");
 		log.info("studyDiary Delete");
-		return "myPage/studyDiaryList";
+		log.info("삭제할 studyNote_no:"+studyNote_no);
+		int re=service.deleteStudyDiary(studyNote_no);
+		log.info("삭제 횟수:"+re);
+		return "redirect:studyDiaryList";
 	}
 	
 	@GetMapping("/studyDiary")

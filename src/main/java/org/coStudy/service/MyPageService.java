@@ -9,6 +9,8 @@ import org.coStudy.domain.UserVO;
 public interface MyPageService {
 	 int updateUser(UserVO user);
 	 int writeStudyDiary(StudyNoteVO studyNote);
+	 int updateStudyDiary(StudyNoteVO diary);
+	 int deleteStudyDiary(int studyNote_no);	
 	 List<StudyNoteVO> studyDiaryList(int user_no);
 	 List<StudyGroupVO> joinGroupList(int user_no);
 	 StudyNoteVO studyDiaryDetail(int studyNote_no);
