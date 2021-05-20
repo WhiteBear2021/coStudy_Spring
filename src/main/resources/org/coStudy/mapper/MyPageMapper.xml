@@ -23,5 +23,17 @@
 		select * from STUDYGROUP WHERE studygroup_no in (select studygroup_no
                                             			 from groupuser where user_no = #{user_no})
 	</select>
-
+	
+	<select id="studyDiaryDetail" resultType="org.coStudy.domain.StudyNoteVO">
+		select * from studynote where studynote_no=#{studyNote_no}
+	</select>
+	
+	<update id="updateStudyDiary">
+		update studyNote set studyNote_title=#{studyNote_title},studyNote_keyword=#{studyNote_keyword}, studyNote_content=#{studyNote_content}, studynote_date=sysdate
+			where studynote_no=#{studyNote_no}
+	</update>
+	
+	<delete id="deleteStudyDiary">
+		delete from studyNote where studyNote_no=#{studyNote_no}
+	</delete>
 </mapper>

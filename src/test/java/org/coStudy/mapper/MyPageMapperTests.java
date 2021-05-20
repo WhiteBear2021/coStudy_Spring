@@ -51,4 +51,10 @@ public class MyPageMapperTests {
 //		List<StudyGroupVO> list=mapper.joinGroupList(1);
 //		log.info(list);
 //	}
+	//세부 목록 보기
+	@Test
+	public void studyDiaryDetail(){
+		StudyNoteVO diary=mapper.studyDiaryDetail(62);
+		log.info(diary);
+	}
 }
