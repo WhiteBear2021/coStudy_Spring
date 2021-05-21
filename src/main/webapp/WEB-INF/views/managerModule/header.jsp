@@ -10,7 +10,7 @@
 
 			<div class="">
 				<div class="main-menu-header">
-					<img class="img-radius" src="" alt="User-Profile-Image">
+					<img class="img-radius" src="/resources/img/manager.png" alt="User-Profile-Image">
 					<div class="user-details">
 						<div id="more-details">
 							관리자 <i class="fa fa-caret-down"></i>
@@ -30,16 +30,7 @@
 
 			<ul class="nav pcoded-inner-navbar ">
 
-				<li class="nav-item pcoded-hasmenu"><a href="#!"
-					class="nav-link "><span class="pcoded-micon"><i
-							class="feather icon-layout"></i></span><span class="pcoded-mtext">디자인
-							관리</span></a>
-					<ul class="pcoded-submenu">
-						<li><a href="#" >배너 이미지
-								변경</a></li>
-						<li><a href="#" >이미지
-								편집</a></li>
-					</ul></li>
+
 				<li class="nav-item pcoded-hasmenu"><a href="#"
 					class="nav-link "><span class="pcoded-micon"><i
 							class="feather icon-layout"></i></span><span class="pcoded-mtext">사용자
@@ -51,6 +42,8 @@
 						<li><a href="../manageUser/newUser.do">새로운
 								회원</a></li>
 					</ul></li>
+					
+					
 				<li class="nav-item pcoded-hasmenu"><a href="#"
 					class="nav-link "><span class="pcoded-micon"><i
 							class="feather icon-layout"></i></span><span class="pcoded-mtext">공지사항
@@ -60,19 +53,12 @@
 						<li><a href="/notice/insert" >공지사항 등록</a></li>
 
 					</ul></li>
-				<li class="nav-item pcoded-hasmenu"><a href="#!"
-					class="nav-link "><span class="pcoded-micon"><i
-							class="feather icon-layout"></i></span><span class="pcoded-mtext">자주묻는질문
-							관리</span></a>
-					<ul class="pcoded-submenu">
-						<li><a href="#" >자주묻는질문 리스트</a></li>
-						<li><a href="#" >자주묻는질문 등록</a></li>
+					
 
-					</ul></li>
-
-				<li class="nav-item"><a href="/CoStudy/Qna/QnaInfoAction.do" class="nav-link "><span
+				<li class="nav-item"><a href="/qna/manager_list" class="nav-link "><span
 						class="pcoded-micon"><i class="feather icon-home"></i></span><span
-						class="pcoded-mtext">1:1 문의 관리</span></a></li>
+						class="pcoded-mtext">1:1 문의 관리</span></a>
+				</li>
 						
 						
 				<li class="nav-item pcoded-hasmenu"><a href="#!"
@@ -86,9 +72,6 @@
 
 					</ul></li>
 
-				<li class="nav-item"><a href="#" class="nav-link "><span
-						class="pcoded-micon"><i class="feather icon-home"></i></span><span
-						class="pcoded-mtext">신고 관리</span></a></li>
 			</ul>
 
 

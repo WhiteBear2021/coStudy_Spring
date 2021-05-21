@@ -166,7 +166,6 @@ body, button, input {
 	background: none;
 	border: none;
 	border-bottom: 1px solid #666;
-	color: #ddd;
 	font-size: 14px;
 	text-transform: uppercase;
 	outline: none;
@@ -266,14 +265,140 @@ body, button, input {
 	}
 }
 </style>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+
+@import
+	url('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css')
+	;
+
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+.chat .chat-history {
+	padding: 30px 30px 20px;
+	border-bottom: 2px solid white;
+}
+
+.chat .chat-history .message-data {
+	margin-bottom: 15px;
+}
+
+.chat .chat-history .message-data-time {
+	color: #a8aab1;
+	padding-left: 6px;
+}
+
+.chat .chat-history .message {
+	color: white;
+	padding: 18px 20px;
+	line-height: 26px;
+	font-size: 16px;
+	border-radius: 5px;
+	margin-bottom: 30px;
+	width: 90%;
+	position: relative;
+}
+
+.chat .chat-history .message:after {
+	content: "";
+	position: absolute;
+	top: -15px;
+	left: 20px;
+	border-width: 0 15px 15px;
+	border-style: solid;
+	border-color: #CCDBDC transparent;
+	display: block;
+	width: 0;
+}
+
+.chat .chat-history .you-message {
+	background: #CCDBDC;
+	color: #003366;
+}
+
+.chat .chat-history .me-message {
+	background: #E9724C;
+}
+
+.chat .chat-history .me-message:after {
+	border-color: #E9724C transparent;
+	right: 20px;
+	top: -15px;
+	left: auto;
+	bottom: auto;
+}
+
+.chat .chat-message {
+	padding: 30px;
+}
+
+.chat .chat-message .fa-file-o, .chat .chat-message .fa-file-image-o {
+	font-size: 16px;
+	color: gray;
+	cursor: pointer;
+}
+
+.chat-ul li {
+	list-style-type: none;
+}
+
+.align-left {
+	text-align: left;
+}
+
+.align-right {
+	text-align: right;
+}
+
+.float-right {
+	float: right;
+}
+
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+.you {
+	color: #CCDBDC;
+}
+
+.me {
+	color: #E9724C;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Raleway", sans-serif;
+	color: #003366;
+}
+</style>
+<style>
+/* .modal-content {
+	background-color: #fff !important;
+	border: 0 !important;
+} */
+@media screen and (min-width: 576px) {
+	.modal-dialog {
+		max-width: 800px !important;
+	}
+}
+</style>
 <body>
 
 	<div class="container">
-	<a href="#" class="primary-btn"
-		data-toggle="modal" data-target="#myModal" style="float: right;margin-bottom: 30px;">NEW QnA</a>
-		
-		<br><br>
-		
+		<a href="#" class="primary-btn" data-toggle="modal"
+			data-target="#myModal" style="float: right; margin-bottom: 30px;">NEW
+			QnA</a>
+		<!-- 	<button type="button" class="btn btn-secondary btn-lg"
+		data-toggle="modal" data-target="#myModal">1대1문의 등록 -->
+		<!-- 	</button> -->
+		<br> <br>
 		<table class="table">
 			<thead class="thead-dark">
 				<tr style="text-align: center;">
@@ -286,18 +411,7 @@ body, button, input {
 				</tr>
 			</thead>
 			<tbody class="tb">
-				<tr>
-					<th scope="row">1</th>
-					<td>글제목</td>
-					<td>날짜</td>
-					<td><i class="fa fa-close"></i></td>
-				</tr>
-				<tr>
-					<th scope="row">1</th>
-					<td>글제목</td>
-					<td>날짜</td>
-					<td><i class="fa fa-close"></i></td>
-				</tr>
+
 
 			</tbody>
 		</table>
@@ -307,10 +421,10 @@ body, button, input {
 
 	<br>
 	<br>
-<!-- 	<button type="button" class="btn btn-secondary btn-lg"
+	<!-- 	<button type="button" class="btn btn-secondary btn-lg"
 		data-toggle="modal" data-target="#myModal">1대1문의 등록
 	</button> -->
- <!-- <a href="#" class="primary-btn"
+	<!-- <a href="#" class="primary-btn"
 		data-toggle="modal" data-target="#myModal">NEW QnA</a> -->
 	<br>
 	<br>
@@ -388,6 +502,102 @@ body, button, input {
 		</div>
 	</div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+	<a data-toggle="modal" href="#exampleModal">Open Modal</a>
+
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="background-color: #fff;">
+				<div class="modal-header">
+
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" style="background-color: #fff">
+					<div class="container clearfix">
+						<div class="chat">
+							<div class="chat-history">
+								<ul class="chat-ul">
+
+									<li>
+										<div class="message-data">
+											<span class="message-data-name"><i
+												class="fa fa-circle you"></i>ADMIN</span>
+										</div>
+										<div class="message you-message">A new client?!?! I
+											would love to help them, but where are we going to find the
+											time?</div>
+									</li>
+									<li class="clearfix">
+										<div class="message-data align-right">
+											<span class="message-data-name">YOU</span> <i
+												class="fa fa-circle me"></i>
+										</div>
+										<div class="message me-message float-right">We should
+											take a look at your onboarding and service delivery
+											workflows, for most businesess there are many ways to save
+											time and not compromise quality.</div>
+									</li>
+
+
+
+								</ul>
+
+
+						<form id="adds" name="adds" method="post">
+
+									<div class="app-form-group">
+										<input type="text" class="app-form-control"
+											placeholder="내용을 입력하세요" id="qna_contents" name="qna_content">
+									</div>
+
+									<div class="app-form-group buttons">
+ 
+ 										<a href='#' class="app-form-button sub">등록</a>
+ 
+ 									
+									</div>
+
+<!-- 값넘길때 ? 해서 넘기고 value는 .text해서 값 찾아서 넘기기 
+									
+ -->
+								</form> 
+
+
+
+
+
+							</div>
+							<!-- end chat-history -->
+
+						</div>
+						<!-- end chat -->
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
 	<jsp:include page="../common/footer.jsp"></jsp:include><hr>
 </body>
 <script src="/resources/js/jquery.js"></script>
@@ -402,6 +612,8 @@ body, button, input {
 		$('.mo').click(function() {
 			$('#modal').modal("show");
 		});
+	
+
 	});
 </script>
 <script type="text/javascript">
@@ -410,7 +622,7 @@ body, button, input {
 	})
 </script>
 <script type="text/javascript">
-	function fn_comment(code) {
+	function fn_comment() {
 
 		$.ajax({
 			type : 'POST',
@@ -430,7 +642,12 @@ body, button, input {
 
 		});
 	}
+	
 
+	
+	
+
+	
 	$(function() {
 
 		getCommentList();
@@ -451,17 +668,29 @@ body, button, input {
 						var html = "";
 						var cCnt = data.length;
 						console.log(data);
+
 						if (data.length > 0) {
 							for (i = 0; i < data.length; i++) {
 
 								html += '<tr style="text-align: center;">';
-								html += '<th>' + data[i].qna_no + '</th>';
-								html += '<td>' + data[i].qna_title + '</td>';
+								html += '<td>' + data[i].qna_no + '</td>';
+								html += '<td><a data-toggle="modal" href="#exampleModal" onclick="OK(\''
+										+ data[i].qna_no
+										+ '\')">'
+										+ data[i].qna_title + '</a></td>';
 								html += '<td>' + data[i].regdate + '</td>';
 								html += '<td><i class="fa fa-close"></i></td>';
 								html += '</tr>';
 
+								
+								
+								/* onclick="OK(data[i].qna_no)" */
+								/* 						
+														var tag = '<li><a href="#!'+item+'" onclick="fetchPage(\''+item+'\')">'+item+'</a></li>'; */
 							}
+
+							/*  var tag = '<li><a href="#" onclick="OK()">'+item+'</a></li>'; */
+							/* 	<a data-toggle="modal" href="#exampleModal">Open Modal</a> */
 
 						} else {
 
@@ -475,6 +704,8 @@ body, button, input {
 						/* $("#cCnt").html(cCnt); */
 						$(".tb").html(html);
 
+						/* 	$(".chat-ul").html(html); */
+
 					},
 					error : function(request, status, error) {
 
@@ -484,8 +715,205 @@ body, button, input {
 	}
 </script>
 <script type="text/javascript">
+	/* 	$('#myModal').on('shown.bs.modal', function() {
+	 $('#myInput').focus()
+	 }) */
+
+	function OK(qna_no) {
+		/* alert(qna_no); */
+		$
+				.ajax({
+					type : 'GET',
+					url : "detail?qna_no=" + qna_no,
+					dataType : "json",
+					data : $("#commentForm").serialize(),
+					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+					success : function(data) {
+
+						var html = "";
+						var cCnt = data.length;
+						console.log(data);
+
+						if (data.length > 0) {
+							for (i = 0; i < data.length; i++) {
+								if (data[i].user_no==0) {
+									html += '<li>';
+									html += '<div class="message-data">';
+									html += '<span class="message-data-name">';
+									html += '<i class="fa fa-circle you"></i></span>';
+									html += '</div>';
+
+									html += '<div class="message you-message qt">'
+											+ data[i].qna_content + '</div>';
+									html+='<div id="qn">'+data[i].qna_no+'</div>'
+									html += '</li>';
+									
+									
+								} else{
+									html += '<li class="clearfix">';
+									html += '<div class="message-data align-right">';
+									html += '<span class="message-data-name">';
+									html += '<i class="fa fa-circle you"></i></span>';
+									html += '</div>';
+
+									html += '<div class="message me-message float-right qt">'
+											+ data[i].qna_content + '</div>';
+									html+='<div id="qn">'+data[i].qna_no+'</div>'
+									html += '</li>';
+									
+	/* 								html+='<form id="commentForms" name="commentForms" method="post">';
+									html+='<input type="hidden" class="app-form-control"  id="qna_title" name="qna_title" value="'+data[i].qna_title+'">';
+									html+='<input type="hidden" class="app-form-control"  id="qna_no" name="qna_no" value="'+data[i].qna_no+'">';
+									html+='<input class="app-form-control" placeholder="내용을 입력하세요" id="qna_content" name="qna_content">';
+									
+									html+='<div class="app-form-group buttons">';
+									html+='<button type="submit"onClick="fn_comments() value="전송"></button>'
+									html+='</div>';
+									
+									html+='</form>'; */
+								}
+								
+								
+		/* 						var tag = '<li><a href="#!'+item+'" onclick="fetchPage(\''+item+'\')">'+item+'</a></li>'; */
+
+								
+				/* 				<div class="app-form-group buttons">
+								<a href='#' onClick="fn_comments('${result.code }')"
+									class="app-form-button">등록</a>
+							</div> */ 
+								
+								
+								
+							/* 	var tag = '<li><a href="#!'+item+'" onclick="fetchPage(\''+item+'\')">'+item+'</a></li>'; */
+		/* 						
+								<form id="commentForms" name="commentForms" method="post">
+								<div class="app-form-group">
++									<input class="app-form-control" placeholder="제목을 입력하세요"
+										id="qna_title" name="qna_title">
+								</div>
+								<div class="app-form-group">
+									<input type="hidden" class="app-form-control"
+										placeholder="내용을 입력하세요" id="qna_content" name="qna_content"
+										value="testtesttest">
+								</div>
+
+								<input type="hidden" name="user_no"
+									value="${sessionScope.user.user_no }">
+
+
+								<div class="app-form-group buttons">
+									<a href='#' onClick="fn_comments('${result.code }')"
+										class="app-form-button">등록</a>&nbsp;&nbsp;|&nbsp;&nbsp; <a
+										href='#' class="app-form-button">취소</a>
+								</div>
+
+
+								
+
+							</form>  */
+								
+								
+								
+								
+								
+								
+								
+								
+								
+
+								/* 		html += '<tr style="text-align: center;">';
+										html += '<th>' + data[i].qna_no + '</th>';
+										html += '<td>' + data[i].regdate + '</a></td>';
+											html += '<td>' + data[i].qna_title + '</td>';
+										html += '<td><i class="fa fa-close"></i></td>';
+										html += '</tr>'; */
+							}
+
+						} else {
+
+							html += "<div>";
+							html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
+							html += "</table></div>";
+							html += "</div>";
+
+						}
+						
+						$(".chat-ul").html(html);
+					
+
+					},
+					error : function(request, status, error) {
+
+					}
+
+				});
+	}
+</script>
+
+<script type="text/javascript">
+
+
+ 	    $(document).on("click", ".sub", function(e) {
+ 	    	e.preventDefault();
+	    	var qna_no=$('#qn').text();
+			var qna_content=$('#qna_contents').val();
+			var user_no=${sessionScope.user.user_no };
+	      	/* alert(qna_no);  */
+	        /*  alert(user_no); */
+	        		
+	        	
+	        
+	        
+	 		$.ajax({
+				type : 'POST',
+				url : 'UserReplyInsert?qna_no='+qna_no+'&&qna_content='+qna_content+'&&user_no='+user_no,
+				data : $("#adds").serialize(),
+				success : function(data) {
+					if (data == "success") {
+						//$('.modal').modal("hide");
+						
+						OK(qna_no);
+						
+						
+					}
+				},
+				error : function(request, status, error) {
+					alert("code:" + request.status + "\n" + "message:"
+							+ request.responseText + "\n" + "error:" + error);
+				}
+
+			});
+	 		
+	 		
+
+	    }); 
+
+
+/* 
+function add_forms() {
+	var qn=('.qn').text();
+	alert(qn);
+	
+		$.ajax({
+			type : 'POST',
+			url : "<c:url value='/qna/user_insert'/>",
+			data : $("#adds").serialize(),
+			success : function(data) {
+				if (data == "success") {
+					$('.modal').modal("hide");
+				}
+			},
+			error : function(request, status, error) {
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n" + "error:" + error);
+			}
+
+		});
+	} */
+
+	$("#titlediv").text()
 	$('#myModal').on('shown.bs.modal', function() {
-		$('#myInput').focus()
+		$('#myInput').trigger('focus')
 	})
 </script>
 

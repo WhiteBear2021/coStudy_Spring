@@ -54,21 +54,20 @@
 															<tr>
 																<td>글번호</td>
 																<td>글제목</td>
-																<td>글내용</td>
+																
 																<td>작성일자</td>
-
 																<td>회원번호</td>
 
 															</tr>
 														</thead>
 														<tbody>
 
-															<c:forEach var="qna" items="${qnaPage.list }">
+															<c:forEach var="qna" items="${list }">
 																<tr>
 																	<th>${qna.qna_no }</th>
 																	<th><a
-																		href="QnaDetailAction.do?qna_no=${qna.qna_no }">${qna.qna_title }</a></th>
-																	<th>${qna.qna_content }</th>
+																		href="/qna/manager_detail?qna_no=${qna.qna_no }">${qna.qna_title }</a></th>
+																	
 																	<th>${qna.regdate }</th>
 																	<th>${qna.user_no }</th>
 																</tr>
@@ -80,36 +79,7 @@
 														</tbody>
 													</table>
 
-													<nav aria-label="...">
-														<ul class="pagination">
-															<c:if test="${qnaPage.startPage > 3 }">
-																<li class="page-item"><a class="page-link"
-																	href="QnaInfoAction.do?pageNum=${qnaPage.startPage -1 }">Previous</a></li>
-															</c:if>
-
-															<!-- 페이지목록 -->
-															<c:forEach var="pageNo" begin="${qnaPage.startPage }"
-																end="${qnaPage.endPage }">
-																<c:if test="${qnaPage.requestPage == pageNo }">
-																	<li class="page-item active"><span
-																		class="page-link">${pageNo }<span
-																			class="sr-only">(current)</span></span></li>
-																</c:if>
-																<c:if test="${qnaPage.requestPage != pageNo }">
-																	<li class="page-item"><a class="page-link"
-																		href="QnaInfoAction.do?pageNum=${pageNo }">${pageNo }</a></li>
-
-																</c:if>
-															</c:forEach>
-
-															<!-- 이후 영역 -->
-															<c:if test="${qnaPage.endPage < qnaPage.totalPageCount}">
-
-																<li class="page-item"><a class="page-link"
-																	href="QnaInfoAction.do?pageNum=${qnaPage.endPage +1 }">Next</a></li>
-															</c:if>
-														</ul>
-													</nav>
+								
 
 												</div>
 											</div>

@@ -8,7 +8,7 @@
 <body class="">
 
 	<jsp:include page="../managerModule/header.jsp"></jsp:include><hr>
-<%-- 	<p>${qna_number }</p> --%>
+	<%-- 	<p>${qna_number }</p> --%>
 	<div class="pcoded-main-container">
 		<div class="pcoded-content">
 
@@ -34,7 +34,7 @@
 				<div class="col-lg-12 col-md-12">
 					<div class="card chat-card">
 						<div class="card-header">
-							<h5>${qna_number }번글 1:1문의</h5>
+							<h5>${qna_number }번글1:1문의</h5>
 							<div class="card-header-right">
 								<div class="btn-group card-option">
 									<button type="button" class="btn dropdown-toggle"
@@ -63,12 +63,12 @@
 						<div class="card-body">
 							<!--회원쪽  -->
 
-							<c:forEach var="qna" items="${qnalist }">
+							<c:forEach var="qna" items="${detail }">
 
 								<c:if test="${qna.user_no>0}">
 									<div class="row m-b-20 received-chat">
 										<div class="col-auto p-r-0">
-											<img src="../img/user.png" alt="user image"
+											<img src="/resources/img/manager.png" alt="user image"
 												class="img-radius wid-40">
 										</div>
 										<div class="col">
@@ -90,14 +90,14 @@
 											<div class="msg">
 												<h5 style="color: white;">${qna.qna_title }</h5>
 												<p class="m-b-0">${qna.qna_content }</p>
-												
+
 											</div>
 											<p class="text-muted m-b-0">
 												<i class="fa fa-clock-o m-r-10"></i>${qna.regdate }
 											</p>
 										</div>
 										<div class="col-auto p-l-0">
-											<img src="../img/manager.png" alt="user image"
+											<img src="/resources/img/manager.png" alt="user image"
 												class="img-radius wid-40">
 										</div>
 									</div>
@@ -106,20 +106,15 @@
 
 
 							<div class="form-group m-t-15">
-								<form action="QnaInsertManagerReplyAction.do" method="post">
-							
-								<!-- <label class="floating-label" for="Project">답글 등록하기 </label>  -->
-								<h5>답글 등록하기</h5>
-								<input
-									type="hidden" name="qna_no" value="${qna_number }" ><br>
+								<form action="ManagerReplyInsert" method="post">
 
-								<input type="text" name="qna_title" class="form-control"
-									id="Project" placeholder="글제목 입력"> 
-									
-								<input type="text" name="qna_content"
-									class="form-control" id="Project" placeholder="글 내용 입력">
-									
-								<div class="form-icon">
+									<h5>답글 등록하기</h5>
+									<input type="hidden" name="qna_no" value="${qna_number }"><br>
+
+									<input type="text" name="qna_content" class="form-control"
+										id="Project" placeholder="글 내용 입력">
+
+									<div class="form-icon">
 										<button class="btn btn-primary btn-icon" type="submit">
 											<i class="feather icon-message-circle"></i>
 										</button>
