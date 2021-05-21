@@ -1,6 +1,20 @@
-const sock = new SockJS('http://localhost:8081/echo');
+const sock = new SockJS('/echo');
 const myName = $("#myName").val();
 const roomNo = $("#roomNo").val();
+/*const socket = new SockJS('/chat');
+const stompClient = Stomp.over(socket);
+const header = { userId : "testId"};
+stompClient.connect(header, function(frame){
+	console.log('connected: '+frame);
+	
+	stompClient.subscribe('/topic/a', function(response){
+		console.log(response);
+		console.log(response.body);
+		console.log("222");
+	});
+	console.log(stompClient.send("/app/users", {}, "asdfasdf")); 
+	console.log("1111");
+});*/
 
 sock.onopen = function() {
 	sock.send(JSON.stringify({"roomNo": roomNo, "userNo": myName, type:'ENTER'}));
@@ -34,21 +48,11 @@ $(function(){
 	$("form").submit(function (e) {
 		  e.preventDefault();
 
-		  //sock.send(JSON.stringify({chatRoomId :$("#roomNo").val(), type:'CHAT', writer:$("#myName").val(), message: $("#msg").val()}));
+		  sock.send(JSON.stringify({roomNo :$("#roomNo").val(), type:'CHAT', userNo:$("#myName").val(), message: $("#msg").val()}));
 		  
-		  sock.send('/app/user', {}, JSON.stringify({'roomNo' : roomNo, type : 'CHAT', userNo : myName, message : $("#msg").val()}));
+		  //stompClient.send("/app/users", {}, JSON.stringify({name : "name"}));
 		  $("#msg").val("");
 	});
 	  
-	function connect(){
-		stompClient = Stomp.over(socket);
-		stompClient.connect({}, function(frame){
-			console.log('connected: '+frame);
-			stompClient.subscribe(`/topic/${roomNo}`, function(response){
-				console.log(response);
-				console.log(JSON.parse(response.body));
-			});
-		});
-	}
 });
     

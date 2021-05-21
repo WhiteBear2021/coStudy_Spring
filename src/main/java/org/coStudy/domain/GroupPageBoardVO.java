@@ -1,11 +1,9 @@
 package org.coStudy.domain;
 
-import java.io.Serializable;
-
 import lombok.Data;
 
 @Data
-public class GroupPageBoardVO implements Serializable {
+public class GroupPageBoardVO{
 	private int page_board_no;
 	private String page_board_title;
 	private String page_board_content;

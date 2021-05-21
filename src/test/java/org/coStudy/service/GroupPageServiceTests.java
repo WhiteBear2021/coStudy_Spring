@@ -1,4 +1,4 @@
-package org.coStudy.mapper;
+package org.coStudy.service;
 
 import java.util.List;
 
@@ -13,29 +13,30 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class ChattingMapperTests {
-	@Setter(onMethod_ = @Autowired)
-	private ChattingMapper mapper;
+@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
+public class GroupPageServiceTests {
 	
-
+	@Setter(onMethod_ = @Autowired)
+	private GroupPageService service;
+	
 //	@Test
 //	public void testInsert(){
 //		MessageVO vo = new MessageVO();
-//		vo.setGroup_msg_log("1번 입니다.");
-//		vo.setStudygroup_no(102);
-//		vo.setUser_no(1);
+//		vo.setGroup_msg_log("service test입니다.");
+//		vo.setGroup_chatting_no(1);
+//		
 //		log.info("=========insert========");
-//		log.info("결과: "+mapper.insert(vo));
+//		log.info(service.insert(vo));
 //	}
-
-	@Test
-	public void testList(){
-		log.info("=========List========");
-		List<MessageVO> vo = mapper.list(102);
-		vo.forEach(chat -> log.info(chat));
-		log.info("=================");
-	}
+	
+	
+//	@Test
+//	public void (){
+//		log.info("=========List========");
+//		List<> vo = service.list(1);
+//		vo.forEach(chat -> log.info(chat));
+//		log.info("=================");
+//	}
 
 }
