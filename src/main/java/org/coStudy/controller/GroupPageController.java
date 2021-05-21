@@ -27,7 +27,6 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequestMapping("/groupPage/*")
 @AllArgsConstructor
-
 public class GroupPageController {
 
 	private TimerService timerService;
@@ -37,8 +36,10 @@ public class GroupPageController {
 	@PostMapping("/timer")
 	public ResponseEntity<String> timer(@RequestBody TimerVO vo){
 
+
 		return timerService.insert(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) 
 				  : new ResponseEntity<>("success", HttpStatus.INTERNAL_SERVER_ERROR) ;
+
 	}
 	
 	@GetMapping("/timer")
@@ -52,12 +53,14 @@ public class GroupPageController {
 	}
 	
 
-	@GetMapping("/chattingForm/{roomNo}/{myName}")
-	public String chattingForm(Model model ,@PathVariable("roomNo") String roomNo, @PathVariable("myName") String myName){
-		
+
+	@GetMapping("/chattingForm/{roomNo}/{userNo}")
+	public String chattingForm(Model model, @PathVariable("roomNo") String roomNo,
+			@PathVariable("userNo") String userNo) {
+
 		ChatRoomVO room = new ChatRoomVO();
 		room.setRoomNo(roomNo);
-		room.setMyName(myName);
+		room.setUserNo(userNo);
 		model.addAttribute("room", room);
 	
 		return "groupPage/chattingForm";

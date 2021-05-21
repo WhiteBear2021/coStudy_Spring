@@ -37,7 +37,7 @@
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-	<script src="/resources/js/chattingClient.js"></script>
+	<script type="module" src="/resources/js/chattingClient.js"></script>
 
 </body>
 </html>
