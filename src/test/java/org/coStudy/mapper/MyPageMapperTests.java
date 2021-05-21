@@ -82,4 +82,13 @@ public class MyPageMapperTests {
 		List<StudyNoteVO> list=mapper.studyDiaryListWithPaging(cri);
 		list.forEach(diary->log.info(diary));
 	}
+	
+	//페이징 테스트3 전체 글갯수 가져오는 쿼리문
+	@Test
+	public void pagingTest3(){
+		log.info("페이징 테스트3****************");
+		
+		int total=mapper.totalStudyDiaryList(1);
+		log.info("전체 글 갯수:"+total);
+	}
 }

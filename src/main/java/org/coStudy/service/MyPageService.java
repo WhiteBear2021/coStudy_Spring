@@ -12,6 +12,7 @@ public interface MyPageService {
 	 int writeStudyDiary(StudyNoteVO studyNote);
 	 int updateStudyDiary(StudyNoteVO diary);
 	 int deleteStudyDiary(int studyNote_no);	
+	 int totalStudyDiaryList(int user_no);
 	 List<StudyNoteVO> studyDiaryList(int user_no);
 	 List<StudyNoteVO> studyDiaryListWithPaging(Criteria cri);
 	 List<StudyGroupVO> joinGroupList(int user_no);

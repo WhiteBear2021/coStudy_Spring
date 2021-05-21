@@ -28,6 +28,10 @@
 		]]>
 	</select>
 	
+	<select id="totalStudyDiaryList" resultType="int">
+		select count(*) from studyNote where user_no=#{user_no}
+	</select>
+	
 	<select id="joinGroupList" parameterType="int" resultType="org.coStudy.domain.StudyGroupVO">
 		select * from STUDYGROUP WHERE studygroup_no in (select studygroup_no
                                             			 from groupuser where user_no = #{user_no})

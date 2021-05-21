@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.coStudy.domain.Criteria;
 import org.coStudy.domain.LoginVO;
+import org.coStudy.domain.PageDTO;
 import org.coStudy.domain.StudyGroupVO;
 import org.coStudy.domain.StudyNoteVO;
 import org.coStudy.domain.UserVO;
@@ -101,8 +102,11 @@ public class MyPageController {
 		log.info("studyDiaryListWithPaging 보기");
 		UserVO user=(UserVO) session.getAttribute("user");
 		cri.setUser_no(user.getUser_no());
+		int total=service.totalStudyDiaryList(user.getUser_no());
+		PageDTO pageDTO=new PageDTO(cri, total);
 		List<StudyNoteVO> studyNoteList=service.studyDiaryListWithPaging(cri);
 		model.addAttribute("studyNoteList",studyNoteList);
+		model.addAttribute("pageMaker", pageDTO);
 	}
 	
 	@GetMapping("/studyDiaryUpdate")

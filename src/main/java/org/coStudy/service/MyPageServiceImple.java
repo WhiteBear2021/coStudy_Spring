@@ -53,4 +53,9 @@ public class MyPageServiceImple implements MyPageService{
 		// TODO Auto-generated method stub
 		return mapper.studyDiaryListWithPaging(cri);
 	}
+	@Override
+	public int totalStudyDiaryList(int user_no) {
+		// TODO Auto-generated method stub
+		return mapper.totalStudyDiaryList(user_no);
+	}
 }
