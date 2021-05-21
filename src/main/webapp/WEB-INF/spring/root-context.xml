@@ -14,6 +14,7 @@
 	<context:annotation-config/>
 	<context:component-scan base-package="org.coStudy.service"/>
 	<context:component-scan base-package="org.coStudy.aop"/>
+	<context:component-scan base-package="org.coStudy.utils"/>
 
 	
 		 <!-- Connection poll을 만드는 과정, driver, url, userid, password 등등 값 가진것을 connection poll 이라고 하나?  -->

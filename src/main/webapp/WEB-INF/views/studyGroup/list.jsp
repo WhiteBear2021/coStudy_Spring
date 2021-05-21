@@ -32,7 +32,10 @@
 				<td>${studyGroup.category_no }</td>
 				<td>${studyGroup.studygroup_location }</td>
 				<td>${studyGroup.current_user_number }</td>
-				<td>${studyGroup.max_user_number }</td>				
+				<td>${studyGroup.max_user_number }</td>	
+				<td><img src="${studyGroup.img}" class="img"/></td>
+				<td><img src="${studyGroup.thumbimg}" class="thumbimg"/></td>
+							
 			</tr>
 		</c:forEach>
 	</table>
@@ -82,60 +85,91 @@
 	       
 	        <br>
 	</div>
-	<!-- 페이지 영역 -->
-	
-	<!-- 이전 영역 -->
-	
-	<nav aria-label="..." >
-	<ul class="pagination">
-	<c:if test="${listPage.startPage > 5 }">
-	<li class="page-item"><a class="page-link"
-		 href="${listPage.startPage -1 }">[이전]</a></li>
-	</c:if>
-	
-	<!-- 페이지 목록 -->
-	<c:forEach var="pageNo" begin="${listPage.startPage }"
-	 end="${listPage.endPage }">
-		<c:if test="${listPage.requestPage == pageNo }">
-		<li class="page-item active"><span
-		class="page-link">${pageNo }<span
-		class="sr-only">(current)</span></span></li>
-		</c:if>
-		<c:if test="${listPage.requestPage != pageNo }">
-			<li class="page-item"><a class="page-link"
-		 href="${pageNo }">${pageNo }</a></li>
-		 </c:if>
-	</c:forEach>
+<!-- 페이지 영역 -->
+   
+<!-- 이전 영역 -->
+   
+   <nav aria-label="...">
+      <ul class="pagination">
+<!--이전  -->
+   <c:if test="${pageMaker.prev}">
+      <li class="page-item"><a class="page-link"
+      href="${pageMaker.startPage -1}">Previous</a></li>
+   </c:if>
 
-	<!-- 이후 영역 -->
-	<c:if
-	 test="${listPage.endPage < listPage.totalPageCount }">
-	 <li class="page-item"><a class="page-link"
-		 href="${listPage.endPage +1 }">[이후]</a></li>
-	</c:if>
-	</ul>
-	</nav>
-	
-	
-	
-	
-	
+<!-- 페이지목록 -->
+   <c:forEach var="num" begin="${pageMaker.startPage }"
+   end="${pageMaker.endPage }">
+
+      <li class="page-item ${pageMaker.cri.pageNum == num ? "active":""}">
+         <a class="page-link" href="${num }">${num }</a>
+      </li>
+
+
+   </c:forEach>
+
+<!-- 이후 영역 -->
+   <c:if test="${pageMaker.next}">
+
+      <li class="page-item"><a class="page-link"
+      href="${pageMaker.endPage +1 }">Next</a></li>
+   </c:if>                                          
+   </ul>
+</nav>
+   
+
+<form id='actionForm' action="/studyGroup/list" method='get'>
+   <input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+   <input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+</form>
 	
 <jsp:include page="../common/footer.jsp"></jsp:include><hr>
 </body>
 <jsp:include page="../common/scri.jsp"></jsp:include><hr>
-	
-	  <c:url var="listURL" value="/studyGroup/list"></c:url>
-	  <script>
-	
-		$(document).on('click', '#btnSearch', function(e){
-		e.preventDefault();
-		var url = "${listURL}";
-		url = url + "?searchType=" +$('#searchType').val();
-		url = url + "&keyword=" + $('#keyword').val();
-		location.href = url;
-		console.log(url);
-		});	
-	
-	</script>
+ <c:url var="listURL" value="/studyGroup/list"></c:url>
+     <script type="text/javascript">
+     $(function() {
+      var success_no = '<c:out value="${success.success_no }"></c:out>';
+      var page = '<c:out value="${success.page }"></c:out>';
+      
+      studygroupInsertModal(success_no);
+      
+      history.replaceState({}, null, null);
+      
+      function studygroupInsertModal(success_no) {
+         if (success_no === '' || history.state) {
+            return;
+         }
+
+         if (parseInt(success_no) > 0) {
+            $modal = $('.modal-frame');
+            $overlay = $('.modal-overlay');
+
+            $modal
+                  .bind(
+                        'webkitAnimationEnd oanimationend msAnimationEnd animationend',
+                        function(e) {
+                           if ($modal.hasClass('state-leave')) {
+                              $modal.removeClass('state-leave');
+                           }
+                        });
+            $overlay.addClass('state-show');
+            $modal.removeClass('state-leave').addClass('state-appear');
+         }
+      
+         $('.close').on('click', function() {
+            $overlay.removeClass('state-show');
+            $modal.removeClass('state-appear').addClass('state-leave');
+         });
+
+         
+         var actionForm = $("#actionForm");
+
+         $(".page-item a").on("click", function(e) {
+            e.preventDefault();
+            actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+            actionForm.submit();
+         });
+        
+</script>
 </html>

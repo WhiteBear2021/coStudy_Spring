@@ -16,6 +16,9 @@ public class StudyGroupVO {
 	private String isface;
 	private int category_no;
 	private int user_no;
+	
+	private String img;
+	private String thumbimg;
 
 
 	
