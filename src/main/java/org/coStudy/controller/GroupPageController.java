@@ -40,7 +40,7 @@ public class GroupPageController {
 	public ResponseEntity<String> timer(@RequestBody TimerVO vo) {
 
 		return timerService.insert(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
-				: new ResponseEntity<>("success", HttpStatus.INTERNAL_SERVER_ERROR);
+				: new ResponseEntity<>("success", HttpStatus.INTERNAL_SERVER_ERROR);	
 	}
 
 	@GetMapping("/timer")
@@ -53,13 +53,13 @@ public class GroupPageController {
 
 	}
 
-	@GetMapping("/chattingForm/{roomNo}/{myName}")
+	@GetMapping("/chattingForm/{roomNo}/{userNo}")
 	public String chattingForm(Model model, @PathVariable("roomNo") String roomNo,
-			@PathVariable("myName") String myName) {
+			@PathVariable("userNo") String userNo) {
 
 		ChatRoomVO room = new ChatRoomVO();
 		room.setRoomNo(roomNo);
-		room.setMyName(myName);
+		room.setUserNo(userNo);
 		model.addAttribute("room", room);
 
 		return "groupPage/chattingForm";

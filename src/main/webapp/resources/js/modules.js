@@ -35,4 +35,7 @@ const timerService = (()=>{
 	};
 
 })();
+
+
+
 export {timerService};
