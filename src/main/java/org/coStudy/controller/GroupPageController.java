@@ -1,6 +1,5 @@
 package org.coStudy.controller;
 
-import java.util.List;
 
 import org.coStudy.domain.ChatRoomVO;
 import org.coStudy.domain.GroupPageBoardVO;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -70,8 +69,15 @@ public class GroupPageController {
 	 * return
 	 * "redirect:http://192.168.0.163:3000?room="+roomNo+"&myName="+myName; }
 	 */// node.js
+	
+	@GetMapping("/groupMain")
+		public void groupBoardMain() throws Exception{
+		log.info("groupMain");
+		
+		
+	}
 
-	@PostMapping(value="groupBoardMain")
+	@PostMapping(value="groupBoardList")
 		@ResponseBody
 		public String groupBoardList(@ModelAttribute("groupPageBoardVO") GroupPageBoardVO groupPageBoardVO) throws Exception{
 			GroupPageBoardVO board = new GroupPageBoardVO();
