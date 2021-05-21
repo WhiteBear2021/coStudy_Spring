@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.RowBounds;
 import org.coStudy.domain.ApplyGroupMemberVO;
+import org.coStudy.domain.Criteria;
 import org.coStudy.domain.Search;
 import org.coStudy.domain.StudyGroupVO;
 import org.coStudy.mapper.StudyGroupMapper;
@@ -21,8 +22,8 @@ public class StudyGroupServiceImple implements StudyGroupService{
 	private StudyGroupMapper mapper;
 	
 	@Override
-	public List<StudyGroupVO> list(Search search) throws Exception {
-		return mapper.list(search);
+	public List<StudyGroupVO> list(Criteria cri) throws Exception {
+		return mapper.list(cri);
 	}
 	
 	@Override
@@ -34,6 +35,11 @@ public class StudyGroupServiceImple implements StudyGroupService{
 	public StudyGroupVO detail(int studygroup_no) {
 		return mapper.detail(studygroup_no);
 	}
+
+	@Override
+	   public int getTotal(Criteria cri) {
+	      return mapper.getTotalCount(cri);
+	   }
 
 	/*@Override
 	public int countstudyGroupList() {

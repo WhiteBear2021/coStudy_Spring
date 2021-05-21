@@ -8,7 +8,7 @@
 		select * from studygroup
 		order by studygroup_no desc
 		
-		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		<!-- <trim prefix="WHERE" prefixOverrides="AND|OR">
 			<if test="searchType=='category_no' and keyword != null and keyword != '' ">
 				AND CATEGORY_NO like CONCAT('%', #{keyword}, '%')
 			</if>
@@ -18,9 +18,14 @@
 			<if test="searchType=='user_no' and keyword != null and keyword != '' ">
 				AND USER_NO like CONCAT('%', #{keyword}, '%')
 			</if>	
-		</trim>
+		</trim> -->
 
 	</select> 
+	
+	<select id="getTotalCount" resultType="int">
+      select count(*) from studygroup where studygroup_no > 0
+   </select>
+	
 	
 	<insert id="insert" parameterType="org.coStudy.domain.StudyGroupVO">
 		insert into studygroup values(
@@ -34,7 +39,9 @@
 		'N',
 		#{isface},
 		#{category_no},
-		#{user_no}
+		#{user_no},
+		#{img},
+		#{thumbimg}
 		)
 	</insert>
 	

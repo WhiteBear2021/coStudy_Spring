@@ -2,14 +2,19 @@ package org.coStudy.controller;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 
+import org.coStudy.domain.Criteria;
+import org.coStudy.domain.PageDTO;
 import org.coStudy.domain.Search;
 import org.coStudy.domain.StudyGroupVO;
 import org.coStudy.service.StudyGroupService;
+import org.coStudy.utils.UploadFileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
@@ -30,24 +36,42 @@ public class StudyGroupController {
 	
 	private StudyGroupService service;
 
-	@RequestMapping(value = "/list" , method = RequestMethod.GET)
-	public String list(Model model
-			,@RequestParam(required = false, defaultValue = "category_no")String searchType
-			,@RequestParam(required = false)String keyword
-	) throws Exception {
-		
-		Search search = new Search();
-		search.setSearchType(searchType);
-		search.setKeyword(keyword);
-		
-		
-		model.addAttribute("list", service.list(search));
-		return "studyGroup/list";
-	}
+	@Resource(name="uploadPath")
+	private String uploadPath;
+	
+	
+	
+	@GetMapping(value = "/list")
+	   public void list(Criteria cri ,Model model) throws Exception {
+	      
+	      model.addAttribute("list", service.list(cri));
+	      
+	      
+	      int total = service.getTotal(cri);
+	      model.addAttribute("pageMaker", new PageDTO(cri, total));
+	   }
 
 	@PostMapping("/insert")
-	public String insert(StudyGroupVO studygroup, RedirectAttributes rttr) throws Exception {
+	public String insert(StudyGroupVO studygroup, RedirectAttributes rttr,MultipartFile file) throws Exception {
 		log.info("========================================");
+		
+		
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		String fileName = null;
+
+		if(file != null) {
+		 fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+		} else {
+		 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+		}
+
+		studygroup.setThumbimg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+		studygroup.setImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		
+	/*	vo.setGdsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		vo.setGdsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);*/
+		
 		service.insert(studygroup);
 		
 		Map<Object, Object> map=new HashMap<>();
