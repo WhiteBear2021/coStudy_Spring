@@ -1,24 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
 <mapper namespace="org.coStudy.mapper.StudyGroupMapper">
-	<insert id="insertApplyGroupStudy" parameterType="org.coStudy.domain.ApplyGroupMemberVO">
-		insert into apply_group_member values('O',#{user_no},#{studyGroup_no})
-	</insert>
 
-	<insert id="insertStudyGroup" parameterType="org.coStudy.domain.StudyGroupVO">
-		insert into studygroup values(seq_studygroup.nextval,#{studygroup_name},#{studygroup_info},#{studygroup_location},0,#{max_user_number},#{current_user_number},sysdate,'N',#{isface},#{category_no},#{user_no})
-	</insert>
-	
-	<select id="studyGroupDetail" parameterType="int" resultType="org.coStudy.domain.StudyGroupVO">
-		select * from studygroup where studygroup_no=#{studygroup_no}
-	</select>
-	
- 	 <select id="studyGroupListInfo" resultType="org.coStudy.domain.StudyGroupVO">
+ 	<select id="list" resultType="org.coStudy.domain.StudyGroupVO">
 		select * from studygroup
 		order by studygroup_no desc
-	</select>  
+		
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='category_no' and keyword != null and keyword != '' ">
+				AND CATEGORY_NO like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='studygroup_info' and keyword != null and keyword != '' ">
+				AND STUDYGROUP_INFO like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='user_no' and keyword != null and keyword != '' ">
+				AND USER_NO like CONCAT('%', #{keyword}, '%')
+			</if>	
+		</trim>
+
+	</select> 
+	
+	<insert id="insert" parameterType="org.coStudy.domain.StudyGroupVO">
+		insert into studygroup values(
+		seq_studygroup.nextval,
+		#{studygroup_name},
+		#{studygroup_info},
+		#{studygroup_location},
+		#{max_user_number},
+		1,
+		SYSDATE,
+		'N',
+		#{isface},
+		#{category_no},
+		#{user_no}
+		)
+	</insert>
+	
+	<select id="detail" resultType="org.coStudy.domain.StudyGroupVO"
+		parameterType="int">
+		select * 
+		from studygroup 
+		where studygroup_no=#{studygroup_no}
+	</select>
+
+	<!-- <insert id="insertApplyGroupStudy" parameterType="org.coStudy.domain.ApplyGroupMemberVO">
+		insert into apply_group_member values('O',#{user_no},#{studyGroup_no})
+	</insert>
 	
 	<select id="countstudyGroupList" resultType="int">
 		select count(*) from studygroup
@@ -26,5 +55,5 @@
 	
 	<select id="getGroupNo" parameterType="String" resultType="int">
 		select * from studygroup where studygroup_name=#{studygroup_name}
-	</select>
+	</select> -->
 </mapper>

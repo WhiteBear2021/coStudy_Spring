@@ -66,7 +66,7 @@
                         <!-- Help Line -->
                         <div class="help-line ">
                         <% if (session.getAttribute("user")!=null) { %>
-                            <a href="#">
+                            <a href="/studyGroup/insert">
                                 Make Study Group
                             </a>
                         <% } %>

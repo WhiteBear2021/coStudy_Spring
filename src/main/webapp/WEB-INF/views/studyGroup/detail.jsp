@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<jsp:include page="../common/header.jsp"></jsp:include><hr>
+<jsp:include page="../common/head.jsp"></jsp:include>
+
+<jsp:include page="../common/header.jsp"></jsp:include>
 <body>
 
 
@@ -32,48 +34,44 @@
 								<div class="form-row">
 									<div class="form-group col-md-1">
 										<label style="font-weight: bold;">그룹 번호</label> 
-										<input type="text" disabled class="form-control" name="studygroup_no" value="${studyGroupDetail.studygroup_no }">
+										<input type="text" disabled class="form-control" name="studygroup_no" value="${studygroup.studygroup_no }">
 									</div>
 								</div>
 								<div class="form-group col-md-3">
 									<label style="font-weight: bold;">그룹 이름</label> 
-									<input type="text" disabled class="form-control" name="studygroup_name" value="${studyGroupDetail.studygroup_name }">
+									<input type="text" disabled class="form-control" name="studygroup_name" value="${studygroup.studygroup_name }">
 								</div>
 								<div class="form-group col-md-2">
 									<label style="font-weight: bold;">그룹 방장</label> 
-									<input type="text" disabled class="form-control" name="user_no" value="${studyGroupDetail.user_no }">
+									<input type="text" disabled class="form-control" name="user_no" value="${studygroup.user_no }">
 								</div>
 								<div class="form-group col-md-9">
 									<label style="font-weight: bold;">그룹 정보</label> 
-									<input type="text" disabled class="form-control" name="studygroup_info" value="${studyGroupDetail.studygroup_info }">
+									<input type="text" disabled class="form-control" name="studygroup_info" value="${studygroup.studygroup_info }">
 								</div>
 								<div class="form-group col-md-3">
 									<label style="font-weight: bold;">그룹 관심 카테고리</label> 
-									<input type="text" disabled class="form-control" name="category_no" value="${studyGroupDetail.category_no }">
+									<input type="text" disabled class="form-control" name="category_no" value="${studygroup.category_no }">
 								</div>
 								<div class="form-group col-md-2">
 									<label style="font-weight: bold;">그룹 위치</label> 
-									<input type="text" disabled class="form-control" name="studygroup_location" value="${studyGroupDetail.studygroup_location }">
+									<input type="text" disabled class="form-control" name="studygroup_location" value="${studygroup.studygroup_location }">
 								</div>
 								<div class="form-group col-md-1">
 									<label style="font-weight: bold;">그룹 대면 여부</label> 
-									<input type="text" disabled class="form-control" name="isface" value="${studyGroupDetail.isface }">
+									<input type="text" disabled class="form-control" name="isface" value="${studygroup.isface }">
 								</div>
 								<div class="form-group col-md-1">
 									<label style="font-weight: bold;">그룹 최대 인원</label> 
-									<input type="text" disabled class="form-control" name="max_user_number" value="${studyGroupDetail.max_user_number }">
+									<input type="text" disabled class="form-control" name="max_user_number" value="${studygroup.max_user_number }">
 								</div>
 								<div class="form-group col-md-1">
 									<label style="font-weight: bold;">그룹 현재 인원</label> 
-									<input type="text" disabled class="form-control" name="current_user_number" value="${studyGroupDetail.current_user_number }">
+									<input type="text" disabled class="form-control" name="current_user_number" value="${studygroup.current_user_number }">
 								</div>
 								<div class="form-group col-md-3">
 									<label style="font-weight: bold;">그룹 만든 날짜</label> 
-									<input type="text" disabled class="form-control" name="made_date" value="${studyGroupDetail.made_date }">
-								</div>
-								<div class="form-group col-md-1">
-									<label style="font-weight: bold;">그룹 누적 신고 횟수</label> 
-									<input type="text" disabled class="form-control" name="report_number" value="${studyGroupDetail.report_number }">
+									<input type="text" disabled class="form-control" name="made_date" value="${studygroup.made_date }">
 								</div>
 								<div style="text-align: center;">
 									<a href=""><button type="button" class="button type1">방장과 1:1 채팅하기</button></a>
@@ -92,6 +90,7 @@
 	</div>
 
 
-</body>
 <jsp:include page="../common/footer.jsp"></jsp:include><hr>
+</body>
+<jsp:include page="../common/scri.jsp"></jsp:include><hr>
 </html>

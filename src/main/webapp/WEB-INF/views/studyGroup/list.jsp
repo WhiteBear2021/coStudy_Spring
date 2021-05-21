@@ -5,7 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../common/header.jsp"></jsp:include><hr>
+<jsp:include page="../common/head.jsp"></jsp:include>
+
+<jsp:include page="../common/header.jsp"></jsp:include>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -24,7 +26,7 @@
 		</tr>
 		<c:forEach var="studyGroup" items="${list }">
 			<tr>
-				<td><a href="${studyGroup.studygroup_no }">${studyGroup.studygroup_no }</a></td>
+				<td><a href="/studyGroup/detail?studygroup_no=${studyGroup.studygroup_no }">${studyGroup.studygroup_no }</a></td>
 				<td>${studyGroup.studygroup_name }</td>
 				<td>${studyGroup.made_date }</td>
 				<td>${studyGroup.category_no }</td>
@@ -34,21 +36,30 @@
 			</tr>
 		</c:forEach>
 	</table>
-	
+	<!-- search -->
+	<div class="form-group row justify-content-center">
+	<div class="w100" style="padding-right:10px">
 	<select class="form-control form-control-sm" name="searchType" id="searchType">
 
-		<option value="">카테고리</option>
-		<option value="">내용</option>
-		<option value="">작성자</option>
+		<option value="category_no">카테고리</option>
+		<option value="studygroup_info">내용</option>
+		<option value="user_no">작성자</option>
 		
 	</select>
-	
+	</div>
+	<div class="w300" style="padding-right:10px">
+
+		<input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
+
+	</div>
 	<div>
 		
 		<button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch"> 검색 </button>
 		
 	</div>
+	</div>
 	
+	<!-- search(e) -->
 
 
 		        <br>
@@ -110,15 +121,16 @@
 	
 	
 	
-	
+<jsp:include page="../common/footer.jsp"></jsp:include><hr>
 </body>
-<jsp:include page="../common/footer.jsp"></jsp:include> 
-
-	<script>
+<jsp:include page="../common/scri.jsp"></jsp:include><hr>
+	
+	  <c:url var="listURL" value="/studyGroup/list"></c:url>
+	  <script>
 	
 		$(document).on('click', '#btnSearch', function(e){
 		e.preventDefault();
-		var url = "${pageContext.request.contextPath}/studyGroup/getStudyGroupList";
+		var url = "${listURL}";
 		url = url + "?searchType=" +$('#searchType').val();
 		url = url + "&keyword=" + $('#keyword').val();
 		location.href = url;

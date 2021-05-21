@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//src/main/java/org/coStudy/controller/MyPageController.java=UTF-8
+encoding//src/main/java/org/coStudy/controller/NoticeController.java=UTF-8
+encoding//src/main/java/org/coStudy/controller/StudyGroupController.java=UTF-8
+encoding//src/main/java/org/coStudy/controller/UserController.java=UTF-8
+encoding//src/main/java/org/coStudy/handler/EchoHandler.java=UTF-8
+encoding//src/main/java/org/coStudy/mapper/ChattingMapper.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/common/footer.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/main.jsp=UTF-8
+encoding//src/test/java/org/coStudy/service/MyPageServiceTests.java=UTF-8
