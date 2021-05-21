@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.coStudy.domain.Criteria;
 import org.coStudy.domain.LoginVO;
 import org.coStudy.domain.StudyGroupVO;
 import org.coStudy.domain.StudyNoteVO;
@@ -85,13 +86,22 @@ public class MyPageController {
 		model.addAttribute("joinGroupList",joinGroupList);
 	}
 	
+//	@GetMapping("/studyDiaryList")
+//	public void studyDiaryList(HttpSession session,Model model){
+//		log.info("*********************");
+//		log.info("studyDiaryList 보기");
+//		UserVO user=(UserVO) session.getAttribute("user");
+//		int user_no=user.getUser_no();
+//		List<StudyNoteVO> studyNoteList=service.studyDiaryList(user_no);
+//		model.addAttribute("studyNoteList",studyNoteList);
+//	}
 	@GetMapping("/studyDiaryList")
-	public void studyDiaryList(HttpSession session,Model model){
+	public void studyDiaryListWithPaging(HttpSession session,Model model,Criteria cri){
 		log.info("*********************");
-		log.info("studyDiaryList 보기");
+		log.info("studyDiaryListWithPaging 보기");
 		UserVO user=(UserVO) session.getAttribute("user");
-		int user_no=user.getUser_no();
-		List<StudyNoteVO> studyNoteList=service.studyDiaryList(user_no);
+		cri.setUser_no(user.getUser_no());
+		List<StudyNoteVO> studyNoteList=service.studyDiaryListWithPaging(cri);
 		model.addAttribute("studyNoteList",studyNoteList);
 	}
 	

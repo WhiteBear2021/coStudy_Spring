@@ -2,6 +2,7 @@ package org.coStudy.mapper;
 
 import java.util.List;
 
+import org.coStudy.domain.Criteria;
 import org.coStudy.domain.StudyGroupVO;
 import org.coStudy.domain.StudyNoteVO;
 import org.coStudy.domain.UserVO;
@@ -15,6 +16,7 @@ public interface MyPageMapper {
 	int updateStudyDiary(StudyNoteVO diary);
 	int deleteStudyDiary(int studyNote_no);	
 	List<StudyNoteVO> studyDiaryList(int user_no);
+	List<StudyNoteVO> studyDiaryListWithPaging(Criteria cri);
 	List<StudyGroupVO> joinGroupList(int user_no);
 	StudyNoteVO studyDiaryDetail(int studyNote_no);
 }

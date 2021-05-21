@@ -11,6 +11,8 @@ public class Criteria {
 	private int pageNum;
 	private int amount;
 	
+	private int user_no;
+	
 	public Criteria() {
 		this(1,10);
 	}
