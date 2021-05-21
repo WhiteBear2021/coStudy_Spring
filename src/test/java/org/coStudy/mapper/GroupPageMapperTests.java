@@ -16,6 +16,7 @@ import lombok.extern.log4j.Log4j;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
 public class GroupPageMapperTests {
+
 	@Setter(onMethod_=@Autowired)
 	private  GroupPageMapper mapper;
 	
@@ -33,6 +34,14 @@ public class GroupPageMapperTests {
 //		vo.setStudyGroup_no(1);
 //		log.info("======="+mapper.insertGroupBoard(vo)+"======");
 //	}
+
+
+	// @Test
+	// public void setup(){
+	// log.info("mapper받아옴:"+mapper);
+	// }
+
+
 	@Test
 	public void groupBoardList() {
 		List<GroupPageBoardVO> list = mapper.groupBoardList(1);

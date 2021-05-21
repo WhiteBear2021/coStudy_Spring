@@ -40,3 +40,4 @@ public class GroupPageServiceImple implements GroupPageService {
 	}
 
 }
+
