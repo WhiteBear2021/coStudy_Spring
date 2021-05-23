@@ -24,7 +24,6 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequestMapping("/groupPage/*")
 @AllArgsConstructor
-
 public class GroupPageController {
 
 	private TimerService timerService;
@@ -99,7 +98,7 @@ public class GroupPageController {
 	@GetMapping("/voiceChatting")
 	public String voiceChatting() {
 		log.info("voice chatting~~");
-		return "groupPage/voiceChatting";
+		return "groupPage/voiceChatting2";
 	}
 
 
