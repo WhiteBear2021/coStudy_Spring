@@ -24,8 +24,7 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 		<!-- Sidebar -->
-		<ul
-			class="navbar-nav sidebar" style="background-color:#3D5A5B;"
+		<ul class="navbar-nav sidebar" style="background-color: #3D5A5B;"
 			id="accordionSidebar"></ul>
 		<!-- End of Sidebar -->
 
@@ -57,7 +56,7 @@
 								<!-- Card Header - Dropdown -->
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="font-weight-bold" style="color:#3D5A5B;">나</h6>
+									<h6 class="font-weight-bold" style="color: #3D5A5B;">나</h6>
 								</div>
 								<!-- Card Body -->
 								<div class="card-body">
@@ -71,11 +70,10 @@
 									<!-- 음성만 사용시 video가 아닌 audio로 설정. remote audio에 대하여 모두 개별적인 audio를 사용해야함.
                       localAudio는 muted로 처리해야함. 안그러면 하울링 남-->
 									<audio id="myVideo" class="remote-video center w-300 h-300"
-										autoplay muted controls playsinline
-										style="display:none;"></audio>
+										autoplay muted controls playsinline style="display:none;"></audio>
 
 									<h6 id="waitingTv" class="m-0 font-weight-bold"
-										style="z-index: 3; position: absolute; bottom: 25px; left: 45px; visibility: hidden; color:#3D5A5B;">
+										style="z-index: 3; position: absolute; bottom: 25px; left: 45px; visibility: hidden; color: #3D5A5B;">
 										입장하는중</h6>
 									<div class="row">
 										<!--Audio Input-->
@@ -94,8 +92,10 @@
 											<span class="mr-2"> <input id="channelNameInput"
 												class="text-center" type="text" placeholder="channel name"
 												autofocus value="" />
-											</span> <span class="text-center"> <a id="channelBtn" href="#"
-												class="btn btn-user text-center" style="background-color:#3D5A5B; color:white;"> 채팅 시작 </a>
+											</span> <span class="text-center"> <a id="channelBtn"
+												href="#" class="btn btn-user text-center"
+												style="background-color: #3D5A5B; color: white;"> 채팅 시작
+											</a>
 											</span>
 										</div>
 									</div>
@@ -108,7 +108,8 @@
 								<!-- Card Header - Dropdown -->
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold" style="color:#3D5A5B;">스터디 참여자 목록</h6>
+									<h6 class="m-0 font-weight-bold" style="color: #3D5A5B;">스터디
+										참여자 목록</h6>
 								</div>
 								<!-- Card Body -->
 								<div class="card-body">
@@ -353,10 +354,15 @@
                 var searchResult = await dummyRemon.fetchRooms(channelNameInput.value);
                 Object.keys(viewerMap).forEach(videoId=>{
                   if(!searchResult.map(x=>x.id).includes(videoId.replace("-",":"))) {
-                    viewerMap[videoId].remon && viewerMap[videoId].remon.close()
-                    document.getElementById(videoId).remove()
-                    document.getElementById("btn-"+videoId).remove()
-                    delete viewerMap[videoId]
+                    viewerMap[videoId].remon && viewerMap[videoId].remon.close();
+                    document.getElementById(videoId).remove();
+                    document.getElementById("btn-"+videoId).remove();
+                   /* 내가 추가한 코드 */
+                   var child = document.getElementById(videoId);
+					child.parentNode.removeChild(child);
+
+                    //document.getElementById(videoId).removeChild("img");
+                    delete viewerMap[videoId];
                   }
                 })
                 searchResult.forEach(({id}, i) => {
@@ -378,10 +384,11 @@
                     viewerMap[newAudio.id] = newAudio;
                     lvChannel.appendChild(newAudio);
                     
-                    let profile = document.createElement("img");
+                    var profile = document.createElement("img");
+                    profile.id= id;
                     profile.alt ="프로필사진 없음";
                     profile.src="/resources/img/profile.jpg";
-                    channelList.appendChild(profile);
+                    lvChannel.appendChild(profile);
 
                     let btn = document.createElement("input");
                     btn.type = "button";
