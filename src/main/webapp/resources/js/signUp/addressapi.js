@@ -31,12 +31,12 @@ function execPostCode() {
                 console.log(fullRoadAddr);
                 
                 
-                $("[name=addr1]").val(data.zonecode);
-                $("[name=addr2]").val(fullRoadAddr);
+                $("[name=user_post]").val(data.zonecode);
+                $("[name=user_address1]").val(fullRoadAddr);
                 
-                document.getElementById('addr1').value = data.zonecode; //5자리 새우편번호 사용
-                document.getElementById('addr2').value = fullRoadAddr;
-                document.getElementById('addr3').focus();
+                document.getElementById('user_post').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('user_address1').value = fullRoadAddr;
+                document.getElementById('user_address2').focus();
             }
          }).open();
      }
