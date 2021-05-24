@@ -1,32 +1,70 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="org.coStudy.mapper.StudyGroupMapper">
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'W'.toString()">
+							category_no like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'T'.toString()">
+							studygroup_info like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							user_no like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
 
- 	<select id="list" resultType="org.coStudy.domain.StudyGroupVO">
-		select * from studygroup
-		order by studygroup_no desc
-		
-		<!-- <trim prefix="WHERE" prefixOverrides="AND|OR">
-			<if test="searchType=='category_no' and keyword != null and keyword != '' ">
-				AND CATEGORY_NO like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType=='studygroup_info' and keyword != null and keyword != '' ">
-				AND STUDYGROUP_INFO like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType=='user_no' and keyword != null and keyword != '' ">
-				AND USER_NO like CONCAT('%', #{keyword}, '%')
-			</if>	
-		</trim> -->
+	<select id="list" resultType="org.coStudy.domain.StudyGroupVO">
+       <![CDATA[
+         select 
+            * 
+         from   (
+               select
+                   rownum rn,studygroup_no,
+                      studygroup_name,
+                      studygroup_info,
+                      studygroup_location,
+                      max_user_number,
+                      current_user_number,
+                      made_date,
+                      isdelete,
+                      isface,
+                      category_no,
+                      user_no,
+                      thumbimg,
+                      img
+               from studygroup
+               where
+         ]]>
+               
+         <include refid="criteria"></include>
+               
+         <![CDATA[
+                rownum <= #{pageNum} * #{amount} 
+               )
+            where rn > (#{pageNum} -1) * #{amount}
+         ]]>
 
-	</select> 
-	
+   </select> 
+
+
 	<select id="getTotalCount" resultType="int">
-      select count(*) from studygroup where studygroup_no > 0
-   </select>
-	
-	
+		select count(*) from studygroup where 
+		<include refid="criteria"></include>
+		studygroup_no > 0
+				
+	</select>
+
+
 	<insert id="insert" parameterType="org.coStudy.domain.StudyGroupVO">
 		insert into studygroup values(
 		seq_studygroup.nextval,
@@ -44,23 +82,13 @@
 		#{thumbimg}
 		)
 	</insert>
-	
+
 	<select id="detail" resultType="org.coStudy.domain.StudyGroupVO"
 		parameterType="int">
-		select * 
-		from studygroup 
-		where studygroup_no=#{studygroup_no}
+		select *
+		from studygroup
+		where
+		studygroup_no=#{studygroup_no}
 	</select>
 
-	<!-- <insert id="insertApplyGroupStudy" parameterType="org.coStudy.domain.ApplyGroupMemberVO">
-		insert into apply_group_member values('O',#{user_no},#{studyGroup_no})
-	</insert>
-	
-	<select id="countstudyGroupList" resultType="int">
-		select count(*) from studygroup
-	</select>
-	
-	<select id="getGroupNo" parameterType="String" resultType="int">
-		select * from studygroup where studygroup_name=#{studygroup_name}
-	</select> -->
 </mapper>

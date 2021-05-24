@@ -16,9 +16,6 @@ public interface QnaMapper {
 	List<QnaVO> ManagerDetail(int qna_no);
 	int ManagerReplyInsert(QnaVO qna);
 	
-/*	List<QnaVO> QnaInfo(RowBounds row);
-	List<QnaVO> QnaDetail(int qna_no);*/
-/*	int QnaInsertManagerReply(QnaVO qna);
-	int QnaInsertUserReply(QnaVO qna);
-	int countQna();*/
+	List<Integer> charts();
+	int charts2();
 }

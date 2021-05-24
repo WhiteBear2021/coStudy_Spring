@@ -5,6 +5,20 @@
 	<!-- <select id="QnaInfo" resultType="org.coStudy.domain.QnaVO"> select 
 		* from manager_qna where levels=1 </select> -->
 
+	<select id="charts" resultType="int">
+		select
+		count(*)
+		from QUESTION
+		group by LEVELS
+	</select>
+	
+	<select id="charts2" resultType="int">
+		select
+		count(*)
+		from QUESTION
+	</select>
+
+
 
 	<!--처음 글을 쓸때 -->
 	<insert id="UserInsert" parameterType="org.coStudy.domain.QnaVO">
@@ -34,12 +48,12 @@
 		QNA_NO=#{qna_no}
 		or
 		PARENTNO=#{parentno}
-		
-			
+
+
 	</select>
 	<insert id="UserReplyInsert" parameterType="org.coStudy.domain.QnaVO">
-		INSERT 
-		INTO 
+		INSERT
+		INTO
 		question
 		(qna_no,qna_title,qna_content,regdate,parentno,ISREAD,levels,USER_NO)
 		values
@@ -52,24 +66,26 @@
 		2,
 		#{user_no}
 		)
-	
+
 	</insert>
 	<select id="ManagerList" resultType="org.coStudy.domain.QnaVO">
 		select *
 		from QUESTION
-		order by qna_no desc
+		order
+		by qna_no desc
 	</select>
-	<select id="ManagerDetail" parameterType="int" resultType="org.coStudy.domain.QnaVO"> 
-		select * 
+	<select id="ManagerDetail" parameterType="int"
+		resultType="org.coStudy.domain.QnaVO">
+		select *
 		from QUESTION
-		where QNA_NO=#{qna_no} 
-		OR 
-		PARENTNO=#{qna_no} 
-	</select> 
+		where QNA_NO=#{qna_no}
+		OR
+		PARENTNO=#{qna_no}
+	</select>
 
 	<insert id="ManagerReplyInsert" parameterType="org.coStudy.domain.QnaVO">
-		INSERT 
-		INTO 
+		INSERT
+		INTO
 		question
 		(qna_no,qna_title,qna_content,regdate,parentno,ISREAD,levels,manager_no)
 		values
@@ -80,12 +96,12 @@
 		#{parentno},
 		0,
 		2,
-		1<!--임시  -->
+		1<!--임시 -->
 		)
-	
+
 	</insert>
-	
-	
+
+
 	<!-- <insert id="UserInsert" parameterType="org.coStudy.domain.QnaVO"> <selectKey 
 		keyProperty="qna_no" order="BEFORE" resultType="int"> select seq_m_qna_no.nextval 
 		from dual </selectKey> INSERT INTO question (qna_no,qna_title, qna_content, 

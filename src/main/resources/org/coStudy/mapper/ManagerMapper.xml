@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.coStudy.mapper.ManagerMapper">
-	
+
 	<insert id="insert" parameterType="org.coStudy.domain.ManagerVO">
 		insert into manager
 		values(
@@ -14,13 +14,42 @@
 	<select id="list" resultType="org.coStudy.domain.ManagerVO">
 		select * from manager
 	</select>
-	
+
 	<delete id="delete" parameterType="int">
-		delete from manager where manager_no = #{manager_no}
+		delete from manager where
+		manager_no = #{manager_no}
 	</delete>
-	
-	<select id="login" parameterType="org.coStudy.domain.LoginVO" resultType="org.coStudy.domain.ManagerVO">
+
+	<select id="login" parameterType="org.coStudy.domain.LoginVO"
+		resultType="org.coStudy.domain.ManagerVO">
 		select *
-		from manager where manager_id=#{userId} and manager_pw = #{userPw}
+		from manager where manager_id=#{userId} and
+		manager_pw = #{userPw}
 	</select>
+
+	<!--통계 부분 -->
+	<select id="user_category_sta" resultType="int">
+		select
+		count(*)
+		from
+		user_info
+		group by CATEGORY_NO
+	</select>
+	<select id="studygroup_Category_Sta" resultType="int">
+		select count(*)
+		from STUDYGROUP
+		GROUP BY CATEGORY_NO
+	</select>
+	<select id="user_New_Sta" resultType="org.coStudy.domain.UserNewSta">
+		<![CDATA[
+			SELECT 
+		    TO_CHAR(USER_REGISTER_DATE, 'yyyy-mm-dd') as user_register_date,
+		    COUNT(*) as cnt
+			FROM User_Info
+			GROUP BY 
+			TO_CHAR(USER_REGISTER_DATE, 'yyyy-mm-dd') 
+			ORDER BY USER_REGISTER_DATE
+		]]>
+	</select>
+
 </mapper>
