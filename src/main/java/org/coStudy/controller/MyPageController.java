@@ -104,6 +104,7 @@ public class MyPageController {
 		cri.setUser_no(user.getUser_no());
 		int total=service.totalStudyDiaryList(user.getUser_no());
 		PageDTO pageDTO=new PageDTO(cri, total);
+		log.info(pageDTO);
 		List<StudyNoteVO> studyNoteList=service.studyDiaryListWithPaging(cri);
 		model.addAttribute("studyNoteList",studyNoteList);
 		model.addAttribute("pageMaker", pageDTO);
