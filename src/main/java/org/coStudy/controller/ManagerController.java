@@ -30,7 +30,7 @@ public class ManagerController {
 	
 	@GetMapping("/list")
 	public String list(Model model){
-		log.info("list");
+		log.info("managerlist");
 		model.addAttribute("list", service.list());
 		return "manager/ManagerList";
 	}
