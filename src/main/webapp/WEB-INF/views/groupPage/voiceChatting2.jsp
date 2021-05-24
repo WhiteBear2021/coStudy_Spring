@@ -3,14 +3,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
-    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <meta name="description" content="RemoteMonster live media service demo" />
-    <meta name="author" content="Lucas Choi" />
 
     <title>Audio Config for Cast</title>
 
@@ -26,7 +23,7 @@
     />
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="/resources/css/sb-admin-2.min.css" rel="stylesheet" />
   </head>
 
   <body id="page-top">
@@ -60,24 +57,7 @@
 
           <!-- Begin Page Content -->
           <div class="container-fluid">
-            <!-- Page Heading -->
-            <h4 class="font-weight-bold">How to use</h4>
-            <li>
-              audio기반 conference call을 위한 테스트페이지. AAA라는 room id를 만들고 그 안에 여러 사람이 들어가면 방안에 있는 member들이 검색되어 그 멤버를 클릭하면 하나씩 볼 수 있음.
-            </li>
-            <li>
-              Open the same
-              <a href="./conferenceAudio.html" target="_blank">site</a> on
-              other tab or browser. Then click on channel you created in the
-              channel list.
-            </li>
-            <li>
-              Source code:
-              <a
-                href="https://github.com/RemoteMonster/web-sdk/blob/master/examples/full/conferenceAudio.html"
-                target="_blank"
-                >github page</a>
-            </li>
+            
             <br />
 
             <!-- Content Row -->
