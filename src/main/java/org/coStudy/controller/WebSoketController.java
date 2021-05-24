@@ -28,7 +28,7 @@ import lombok.Setter;
 
 @Component
 public class WebSoketController extends TextWebSocketHandler {
-	private static final Map<Integer, ArrayList<WebSocketSession>> sessionMap = new HashMap<>();//웹소켓 세션 저장 
+	private static Map<Integer, ArrayList<WebSocketSession>> sessionMap = new HashMap<>();//웹소켓 세션 저장 
 	private static final Logger logger = LoggerFactory.getLogger(WebSoketController.class);
     private ObjectMapper objectMapper;
     
@@ -68,11 +68,17 @@ public class WebSoketController extends TextWebSocketHandler {
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		// 연결이 끊어진 경우
 		logger.info("{}와 연결 끊김", session.getId());
-		sessionMap.forEach((key, list) -> {//map을 순회하여 session 제거
+		/*sessionMap.forEach((key, list) -> {//map을 순회하여 session 제거
 			if(list.contains(session)){
 				list.remove(session);
 			}
-		});
+		});*/
+		
+		for(int key : sessionMap.keySet()){
+			if(sessionMap.get(key).remove(session)){
+				break;
+			}
+		}
 
 	}
 	
@@ -93,7 +99,8 @@ public class WebSoketController extends TextWebSocketHandler {
 	
 	private void loadChattingFromDB(int roomNo, WebSocketSession session) throws IOException{
     	//채팅내역 불러오기
-    	List<MessageVO> chattingLog = service.list(roomNo);//내가 들어간 방의 모든 채팅
+		logger.info("{}",service);
+		List<MessageVO> chattingLog = service.list(roomNo);//내가 들어간 방의 모든 채팅
     	for(MessageVO log : chattingLog){
     		TextMessage textMessage = new TextMessage(objectMapper.writeValueAsString(log));// MessageVO -> json 
     		session.sendMessage(textMessage);
@@ -106,14 +113,14 @@ public class WebSoketController extends TextWebSocketHandler {
 		message.setStudygroup_no(roomNo);
 		message.setUser_no(chatMessage.getUserNo());
 		message.setGroup_msg_log(chatMessage.getMessage());
-		
 		TextMessage textMessage = new TextMessage(objectMapper.writeValueAsString(message));
-		ArrayList<WebSocketSession> sessionList = sessionMap.get(roomNo);
+		
+		ArrayList<WebSocketSession> sessionList = sessionMap.get(roomNo);//roomNo로 탐색
     	for(WebSocketSession targetSession : sessionList){
     		logger.info("{} 로 전달", targetSession.getId());
     		targetSession.sendMessage(textMessage);
     	}
     	service.insert(message);
-    	}
+    }
 
 }
