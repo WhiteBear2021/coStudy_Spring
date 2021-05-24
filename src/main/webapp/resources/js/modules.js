@@ -18,7 +18,6 @@ const timerService = (()=>{
 		        xhr.setRequestHeader(header, token);
 		    },*/
 			success : function(result, status, xhr) {
-				console.log("??!!!!!!!!!!!!??");
 				if (callback) {
 					callback(result);
 				}
@@ -44,9 +43,10 @@ const timerService = (()=>{
 	    
 	}
 	
+
 	return {
 		add : add,
-		output: output
+		output: output,
 	};
 
 })();

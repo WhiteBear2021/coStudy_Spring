@@ -22,8 +22,8 @@
 	</section>
 
 	<section id="cTimer">
-		<h2>공통 타이머</h2>
-		<span id="commonTimer">00:00:00</span><br>
+		<h1>시간표</h1>
+		<h2 id="clock">00:00:00</h2><br>
 		<div id="setting_form">
 		</div>
 		<button id="start" type="button" class="btn btn-success" >시작</button>
@@ -101,6 +101,7 @@
 	<script src="/resources/vendor/jquery/jquery.js"></script>
 	<script src="/resources/vendor/bootstrap/js/bootstrap.js"></script>
 	<script type="module" src="/resources/js/timer.js"></script>
+	<script type="module" src="/resources/js/class_timer.js"></script>
 
 </body>
 </html>
