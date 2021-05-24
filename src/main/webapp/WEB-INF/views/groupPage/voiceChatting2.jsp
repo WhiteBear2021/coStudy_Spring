@@ -200,30 +200,30 @@
 
             const listener = {
               onConnect(chid) {
-                console.log(`remon.listener.onConnect ${chid} at listener`);
+                console.log("remon.listener.onConnect ${chid} at listener");
               },
               onComplete() {
                 myRoomChId = remon.getChannelId();
                 console.log("remon.listener.onComplete " + remon.getChannelId());
-                setViewsViaParameters(false, "hidden", "CLOSE", "hidden");
+                setViewsViaParameters(false, "hidden", "끝내기", "hidden");
               },
               onDisconnectChannel() {
                 // is called when other peer hang up.
-                console.log(`remon.listener.onDisconnectChannel ${remon.getChannelId()}`)
+                console.log("remon.listener.onDisconnectChannel ${remon.getChannelId()}")
                 remon.close();
                 isConnected = false;
-                setViewsViaParameters(false, "hidden", "CREATE", "visible");
+                setViewsViaParameters(false, "hidden", "채팅 시작", "visible");
               },
               onClose() {
                 // is called when remon.close() method is called.
-                console.log(`remon.listener.onClose: ${remon.getChannelId()}`);
+                console.log("remon.listener.onClose: ${remon.getChannelId()}");
                 remon.close();
 
                 isConnected = false;
-                setViewsViaParameters(false, "hidden", "CREATE", "visible");
+                setViewsViaParameters(false, "hidden", "채팅 시작", "visible");
               },
               onError(error) {
-                console.log(`remon.listener.onError: ${remon.getChannelId()} ${error}`);
+                console.log("remon.listener.onError: ${remon.getChannelId()} ${error}");
               },
               onStat(result) {
                 // console.log(`EVENT FIRED: onStat: ${result}`);
@@ -231,8 +231,8 @@
             };
             let viewerConfig = {
               credential: {
-                key: key,
-                serviceId: serviceId,
+            	  key: "ca804846fa2f723da39769e566573a7452b7dce2a769befcd933a5530934f9cf",
+                  serviceId: "5122057a-631a-4ba4-8111-7b3457480d7d",
                 wsurl : "wss://signal.remotemonster.com/ws",
                 resturl : "https://signal.remotemonster.com/rest",
 
@@ -259,25 +259,25 @@
                   // console.log(`EVENT FIRED:VIEWER onConnect: ${chid}`);
                 },
                   onComplete() {
-                    console.log(`getViewerListener.onComplete: ${viewerMap[id].remon.getChannelId()}`);
+                    console.log("getViewerListener.onComplete: ${viewerMap[id].remon.getChannelId()}");
                   // console.log("EVENT FIRED:VIEWER onComplete");
                 },
                   onDisconnectChannel() {
                   // is called when other peer hang up.
-                  console.log(`getViewerListener.onDisconnectChannel: ${viewerMap[id].remon.getChannelId()}`);
+                  console.log("getViewerListener.onDisconnectChannel: ${viewerMap[id].remon.getChannelId()}");
                   //viewerMap[id].remon.close()
                   isConnected = false;
                   // console.log("EVENT FIRED:VIEWER onDisconnectChannel");
                 },
                   onClose() {
-                    console.log(`getViewerListener.onClose: ${viewerMap[id].remon.getChannelId()}`);
+                    console.log("getViewerListener.onClose: ${viewerMap[id].remon.getChannelId()}");
                   // is called when remon.close() method is called.
                   //viewerMap[id].remon.close()
                   // console.log("EVENT FIRED:VIEWER onClose");
                 },
                   onError(error) {
-                    console.log(`getViewerListener.onError: ${viewerMap[id].remon.getChannelId()}`);
-                  // console.log(`EVENT FIRED:VIEWER onError: ${error}`);
+                    console.log("getViewerListener.onError: ${viewerMap[id].remon.getChannelId()}");
+                  // console.log('EVENT FIRED:VIEWER onError: ${error}');
                 },
                   onStat(result) {
                   // console.log(`EVENT FIRED:VIEWER onStat: ${result}`);
@@ -310,7 +310,7 @@
                 })
                 remon.close();
                 myChannelId = "";
-                setViewsViaParameters(false, "hidden", "CREATE", "visible");
+                setViewsViaParameters(false, "hidden", "채팅 다시시작", "visible");
               } else {
                 isConnected = true;
                 isCaster = true;
@@ -320,7 +320,7 @@
                   ? channelNameInput.value
                   : getRandomId();
                 remon.createRoom(myChannelId)
-                setViewsViaParameters(true, "visible", "CLOSE", "hidden");
+                setViewsViaParameters(true, "visible", "끝내기", "hidden");
               }
             }
 
@@ -400,7 +400,7 @@
                       playsinline: true,
                       style :"z-index:1;background: rgba(0, 0, 0, 0.5); width: 220px;"
                     }
-                    let newAudio = document.createElement('audio')
+                    let newAudio = document.createElement("audio")
                     Object.keys(audioAttrs).forEach(key => newAudio.setAttribute(key, audioAttrs[key]))
                     viewerMap[newAudio.id] = newAudio
                     otherAudios.appendChild(newAudio)
@@ -414,7 +414,7 @@
                     btn.addEventListener(
                       "click",
                       evt => {
-                        console.log('new remote audio id = ${newAudio.id}');
+                        console.log("new remote audio id = ${newAudio.id}");
                         viewerConfig.view.remote = '#${newAudio.id}'
                         newAudio.remon = new Remon({ config: viewerConfig, listener:getViewerlistener(newAudio.id) })
                         newAudio.remon.joinCast(newAudio.id.replace("-",":"))
@@ -459,10 +459,7 @@
 		<!-- End of Content Wrapper -->
 	</div>
 	<!-- End of Page Wrapper -->
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
+
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
