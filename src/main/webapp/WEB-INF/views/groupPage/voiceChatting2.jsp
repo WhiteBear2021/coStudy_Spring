@@ -2,185 +2,148 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <title>Audio Config for Cast</title>
+<title>KOSTA</title>
 
-    <!-- Custom fonts for this template-->
-    <link
-      href="/resources/vendor/fontawesome-free/css/all.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-      rel="stylesheet"
-    />
+<!-- Custom fonts for this template-->
+<link href="/resources/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet" />
 
-    <!-- Custom styles for this template-->
-    <link href="/resources/css/sb-admin-2.min.css" rel="stylesheet" />
-  </head>
+<!-- Custom styles for this template-->
+<link href="/resources/css/sb-admin-2.min.css" rel="stylesheet" />
+</head>
 
-  <body id="page-top">
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-      <!-- Sidebar -->
-      <ul
-        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-        id="accordionSidebar"
-      ></ul>
-      <!-- End of Sidebar -->
+<body id="page-top">
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+		<!-- Sidebar -->
+		<ul
+			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+			id="accordionSidebar"></ul>
+		<!-- End of Sidebar -->
 
-      <!-- Content Wrapper -->
-      <div id="content-wrapper" class="d-flex flex-column">
-        <!-- Main Content -->
-        <div id="content">
-          <!-- Topbar -->
-          <nav
-            class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
-          >
-            <!-- Sidebar Toggle (Topbar) -->
-            <button
-              id="sidebarToggleTop"
-              class="btn btn-link d-md-none rounded-circle mr-3"
-            >
-              <i class="fa fa-bars"></i>
-            </button>
-            <h3 class="h3 mb-4 text-gray-800">ConferenceCall(Audio) Test</h3>
-          </nav>
-          <!-- End of Topbar -->
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+			<!-- Main Content -->
+			<div id="content">
+				<!-- Topbar -->
+				<nav
+					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+				<!-- Sidebar Toggle (Topbar) -->
+				<button id="sidebarToggleTop"
+					class="btn btn-link d-md-none rounded-circle mr-3">
+					<i class="fa fa-bars"></i>
+				</button>
+				<h3 class="h3 mb-4 text-gray-800">스터디 음성채팅방</h3>
+				</nav>
+				<!-- End of Topbar -->
 
-          <!-- Begin Page Content -->
-          <div class="container-fluid">
-            
-            <br />
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
 
-            <!-- Content Row -->
-            <div class="row">
-              <div class="col-xl-4 col-lg-5">
-                <div class="card shadow mb-4">
-                  <!-- Card Header - Dropdown -->
-                  <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
-                  >
-                    <h6 class="m-0 font-weight-bold text-primary">Channels</h6>
-                  </div>
-                  <!-- Card Body -->
-                  <div class="card-body">
-                    <main id="lvChannel" class="text-center"></main>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-4 col-lg-5">
-                <div class="card shadow mb-4">
-                  <!-- Card Header - Dropdown -->
-                  <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
-                  >
-                    <h6 class="m-0 font-weight-bold text-primary">
-                      Other Audios
-                    </h6>
-                  </div>
-                  <!-- Card Body -->
-                  <div class="card-body">
-                    <main class="text-center">
-                      <div class="row" id="otherAudios">
-                      </div>
-                    </main>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-8 col-lg-7">
-                <div class="card shadow mb-4">
-                  <!-- Card Header - Dropdown -->
-                  <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
-                  >
-                    <h6 class="m-0 font-weight-bold text-primary">
-                      Local Audio
-                    </h6>
-                  </div>
-                  <!-- Card Body -->
-                  <div class="card-body">
-                    <main class="text-center">
-                      <!-- 음성만 사용시 video가 아닌 audio로 설정. remote audio에 대하여 모두 개별적인 audio를 사용해야함.
-                      localAudio는 muted로 처리해야함. 안그러면 하울링 남-->
-                      <audio
-                        id="myVideo"
-                        class="remote-video center w-300 h-300"
-                        autoplay
-                        muted
-                        controls
-                        playsinline
-                        style="z-index:1;background: rgba(0, 0, 0, 0.5); width: 100%;"
-                      ></audio>
+					<br />
 
-                      <h6
-                        id="waitingTv"
-                        class="m-0 font-weight-bold text-primary"
-                        style="z-index:3; position: absolute;bottom: 55px;right:45px; visibility: hidden;"
-                      >
-                        waiting
-                      </h6>
-                      <div class="row">
-                        <!--Audio Input-->
-                        <span class="col-lg-2 mg-2">
-                          <div class="small mb-1">Audio Input</div>
-                          <select
-                            id="audioInputSelect"
-                            onchange="changeAudioInputDevice()"
-                            class="custom-select custom-select-sm form-control form-control-sm"
-                          ></select>
-                        </span>
+					<!-- Content Row -->
+					<div class="row">
+						<div class="col-xl-4 col-lg-5">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">그룹원들</h6>
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+									<main id="lvChannel" class="text-center"></main>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-lg-5">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">Other Audios
+									</h6>
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+									<main class="text-center">
+
+									<div class="row" id="otherAudios"></div>
+									</main>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-8 col-lg-7">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">나</h6>
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+									<main class="text-center">
+									<div class="thumnail-wrapper">
+										<div class="thumnail">
+											<div class="centered">
+												<img alt="프로필사진 없음" src="/resources/img/profile.jpg">
+											</div>
+										</div>
+									</div>
+									<!-- 음성만 사용시 video가 아닌 audio로 설정. remote audio에 대하여 모두 개별적인 audio를 사용해야함.
+                      localAudio는 muted로 처리해야함. 안그러면 하울링 남--> <audio
+										id="myVideo" class="remote-video center w-300 h-300" autoplay
+										muted controls playsinline
+										style="z-index:1;background: rgba(0, 0, 0, 0.5); width: 100%;"></audio>
+
+									<h6 id="waitingTv" class="m-0 font-weight-bold text-primary"
+										style="z-index: 3; position: absolute; bottom: 55px; right: 45px; visibility: hidden;">
+										waiting</h6>
+									<div class="row">
+										<!--Audio Input-->
+										<span class="col-lg-2 mg-2">
+											<div class="small mb-1">Audio Input</div> <select
+											id="audioInputSelect" onchange="changeAudioInputDevice()"
+											class="custom-select custom-select-sm form-control form-control-sm"></select>
+										</span>
 
 
-                      </div>
-                      <div class="row">
-                        <div class="mt-12 text-center">
-                          <span class="mr-2">
-                            <input
-                              id="channelNameInput"
-                              class="text-center"
-                              type="text"
-                              placeholder="channel name"
-                              autofocus
-                              value=""
-                            />
-                          </span>
-                          <span class="mr-2">
-                            <a
-                              id="channelBtn"
-                              href="#"
-                              class="btn btn-primary btn-user text-center"
-                            >
-                              CREATE
-                            </a>
-                          </span>
-                        </div>
-                      </div>
-                    </main>
-                  </div>
-                </div>
-              </div>
+									</div>
+									<div class="row">
+										<div class="mt-12 text-center">
+											<span class="mr-2"> <input id="channelNameInput"
+												class="text-center" type="text" placeholder="channel name"
+												autofocus value="" />
+											</span> <span class="mr-2"> <a id="channelBtn" href="#"
+												class="btn btn-primary btn-user text-center"> 채팅 시작 </a>
+											</span>
+										</div>
+									</div>
+									</main>
+								</div>
+							</div>
+						</div>
 
-            </div>
-          </div>
-          <!-- /.container-fluid -->
+					</div>
+				</div>
+				<!-- /.container-fluid -->
 
-          <link
-            rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-          />
-          <!-- The webrtc adapter is required for browser compatibility -->
-          <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/@remotemonster/sdk"></script>
+				<link rel="stylesheet"
+					href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
+				<!-- The webrtc adapter is required for browser compatibility -->
+				<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+				<script src="https://cdn.jsdelivr.net/npm/@remotemonster/sdk"></script>
 
-          <script>
+				<script>
             const channelButton = document.querySelector("#channelBtn");
             const channelList = document.getElementById("lvChannel");
             const channelNameInput = document.getElementById(
@@ -451,8 +414,8 @@
                     btn.addEventListener(
                       "click",
                       evt => {
-                        console.log(`new remote audio id = ${newAudio.id}`);
-                        viewerConfig.view.remote = `#${newAudio.id}`
+                        console.log('new remote audio id = ${newAudio.id}');
+                        viewerConfig.view.remote = '#${newAudio.id}'
                         newAudio.remon = new Remon({ config: viewerConfig, listener:getViewerlistener(newAudio.id) })
                         newAudio.remon.joinCast(newAudio.id.replace("-",":"))
 
@@ -490,44 +453,26 @@
             }
             getDevices();
           </script>
-        </div>
-        <!-- End of Main Content -->
+			</div>
+			<!-- End of Main Content -->
+		</div>
+		<!-- End of Content Wrapper -->
+	</div>
+	<!-- End of Page Wrapper -->
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
+	</a>
 
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span
-                >Copyright &copy;
-                <a href="https://remotemonster.com">RemoteMonster</a> 2020</span
-              >
-            </div>
-          </div>
-        </footer>
-        <!-- End of Footer -->
-      </div>
-      <!-- End of Content Wrapper -->
-    </div>
-    <!-- End of Page Wrapper -->
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
-    </a>
+	<!-- Bootstrap core JavaScript-->
+	<script src="/resources/vendor/jquery/jquery.min.js"></script>
+	<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="/resources/vendor/jquery/jquery.min.js"></script>
-    <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Custom scripts for all pages-->
+	<script src="/resources/js/sb-admin-2.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="/resources/js/sb-admin-2.min.js"></script>
-
-    <script>
-      $(document).ready(function() {
-        $("#accordionSidebar").load("nav.html");
-      });
-    </script>
-  </body>
+</body>
 </html>
