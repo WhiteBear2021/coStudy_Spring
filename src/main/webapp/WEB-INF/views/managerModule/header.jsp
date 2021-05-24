@@ -36,10 +36,10 @@
 							class="feather icon-layout"></i></span><span class="pcoded-mtext">사용자
 							관리</span></a>
 					<ul class="pcoded-submenu">
-						<li><a href="../manageUser/userInfo.do" >전체 회원
+						<li><a href="/manageUser/list" >전체 회원
 								리스트</a></li>
 						<li><a href="#" >통계_회원</a></li>
-						<li><a href="../manageUser/newUser.do">새로운
+						<li><a href="/manageUser/newList">새로운
 								회원</a></li>
 					</ul></li>
 					

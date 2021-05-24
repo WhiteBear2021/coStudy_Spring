@@ -8,5 +8,8 @@
 <script src="/resources/js/plugins/apexcharts.min.js"></script>
 
 <script src="/resources/js/pages/dashboard-main.js"></script>
+<script src="/resources/js/pages/chart-apex.js"></script>
+
+
 <script src="/resources/js/pages/button.js"></script>
 
