@@ -23,7 +23,7 @@
 				<form>
 					<input type="textarea" id="msg" placeholder="Message">
 					<input type="hidden" id="roomNo" value="${room.roomNo}">
-					<input type="hidden" id="myName" value="${room.myName}">
+					<input type="hidden" id="myName" value="${room.userNo}">
 					<button type="submit">SEND</button>
 				</form>
 			</footer> 

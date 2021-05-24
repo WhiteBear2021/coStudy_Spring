@@ -31,10 +31,10 @@ public class GroupPageController {
 
 	@ResponseBody
 	@PostMapping("/timer")
-	public ResponseEntity<String> timer(@RequestBody TimerVO vo) {
-
-		return timerService.insert(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
-				: new ResponseEntity<>("success", HttpStatus.INTERNAL_SERVER_ERROR);
+	public ResponseEntity<String> timer(@RequestBody TimerVO vo){
+		log.info("1234");
+		return timerService.insert(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) 
+				  : new ResponseEntity<>("success", HttpStatus.INTERNAL_SERVER_ERROR) ;
 	}
 
 	@GetMapping("/timer")
@@ -66,12 +66,13 @@ public class GroupPageController {
 	 * "redirect:http://192.168.0.163:3000?room="+roomNo+"&myName="+myName; }
 	 */// node.js
 
+
 	@GetMapping("/groupMain")
 	public String groupBoardMain() throws Exception {
 		log.info("groupMain");
 		return "groupPage/groupMain";
-
 	}
+	
 
 	@PostMapping(value = "groupBoardList")
 	@ResponseBody

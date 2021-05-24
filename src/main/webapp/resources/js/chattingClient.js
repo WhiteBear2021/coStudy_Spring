@@ -1,8 +1,8 @@
-const sock = new SockJS('/echo');
+const sock = new SockJS('/websocket');
+//const sock = new SockJS('/echo');
 const myName = $("#myName").val();
 const roomNo = $("#roomNo").val();
 
-const socketService = (()=>{
 
 	function onopen() {
 		sock.send(JSON.stringify({"roomNo": roomNo, "userNo": myName, type:'ENTER'}));
@@ -35,13 +35,6 @@ const socketService = (()=>{
 		 sock.send(JSON.stringify({roomNo :$("#roomNo").val(), type:'CHAT', userNo:$("#myName").val(), message: $("#msg").val()}));
 	}
 	
-	return{
-		onopen: onopen,
-		onmessage: onmessage,
-		oncolse: onclose,
-		send: send
-	};
-})();
 /*const socket = new SockJS('/chat');
 const stompClient = Stomp.over(socket);
 const header = { userId : "testId"};
@@ -61,17 +54,13 @@ sock.onopen = socketService.onopen;
 sock.onmessage = socketService.onmessage;
 sock.onclose = socketService.onclose;
 
-
-$("form").submit(function (e) {
-	  e.preventDefault();
-	  socketService.send();
-	  //stompClient.send("/app/users", {}, JSON.stringify({name : "name"}));
-	  $("#msg").val("");
-});
-
 $(function(){
-	
-	  
+	$("form").submit(function (e) {
+		  e.preventDefault();
+		  socketService.send();
+		  //stompClient.send("/app/users", {}, JSON.stringify({name : "name"}));
+		  $("#msg").val("");
+	});
 });
 
     
