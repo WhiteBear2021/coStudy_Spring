@@ -25,7 +25,7 @@
 	<div id="wrapper">
 		<!-- Sidebar -->
 		<ul
-			class="navbar-nav sidebar" style="background-color:#3D5A5B"
+			class="navbar-nav sidebar" style="background-color:#3D5A5B;"
 			id="accordionSidebar"></ul>
 		<!-- End of Sidebar -->
 
@@ -57,7 +57,7 @@
 								<!-- Card Header - Dropdown -->
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="font-weight-bold" style="color:#3D5A5B">나</h6>
+									<h6 class="font-weight-bold" style="color:#3D5A5B;">나</h6>
 								</div>
 								<!-- Card Body -->
 								<div class="card-body">
@@ -74,8 +74,8 @@
 										autoplay muted controls playsinline
 										style="display:none;"></audio>
 
-									<h6 id="waitingTv" class="m-0 font-weight-bold text-primary"
-										style="z-index: 3; position: absolute; bottom: 25px; left: 45px; visibility: hidden;">
+									<h6 id="waitingTv" class="m-0 font-weight-bold"
+										style="z-index: 3; position: absolute; bottom: 25px; left: 45px; visibility: hidden; color:#3D5A5B;">
 										입장하는중</h6>
 									<div class="row">
 										<!--Audio Input-->
@@ -95,7 +95,7 @@
 												class="text-center" type="text" placeholder="channel name"
 												autofocus value="" />
 											</span> <span class="text-center"> <a id="channelBtn" href="#"
-												class="btn btn-user text-center" style="background-color:#3D5A5B; color:white"> 채팅 시작 </a>
+												class="btn btn-user text-center" style="background-color:#3D5A5B; color:white;"> 채팅 시작 </a>
 											</span>
 										</div>
 									</div>
@@ -108,7 +108,7 @@
 								<!-- Card Header - Dropdown -->
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold" style="color:#3D5A5B">스터디 참여자 목록</h6>
+									<h6 class="m-0 font-weight-bold" style="color:#3D5A5B;">스터디 참여자 목록</h6>
 								</div>
 								<!-- Card Body -->
 								<div class="card-body">
@@ -191,14 +191,12 @@
                 setViewsViaParameters(false, "hidden", "끝내기", "hidden");
               },
               onDisconnectChannel() {
-                // is called when other peer hang up.
                 console.log("remon.listener.onDisconnectChannel ${remon.getChannelId()}")
                 remon.close();
                 isConnected = false;
                 setViewsViaParameters(false, "hidden", "채팅 시작", "visible");
               },
               onClose() {
-                // is called when remon.close() method is called.
                 console.log("remon.listener.onClose: ${remon.getChannelId()}");
                 remon.close();
 
@@ -209,7 +207,6 @@
                 console.log("remon.listener.onError: ${remon.getChannelId()} ${error}");
               },
               onStat(result) {
-                // console.log(`EVENT FIRED: onStat: ${result}`);
               }
             };
             let viewerConfig = {
@@ -376,24 +373,29 @@
                       playsinline: true,
                       style :"display: none;"
                     }
-                    let newAudio = document.createElement("audio")
-                    Object.keys(audioAttrs).forEach(key => newAudio.setAttribute(key, audioAttrs[key]))
-                    viewerMap[newAudio.id] = newAudio
-                    lvChannel.appendChild(newAudio)
+                    let newAudio = document.createElement("audio");
+                    Object.keys(audioAttrs).forEach(key => newAudio.setAttribute(key, audioAttrs[key]));
+                    viewerMap[newAudio.id] = newAudio;
+                    lvChannel.appendChild(newAudio);
+                    
+                    let profile = document.createElement("img");
+                    profile.alt ="프로필사진 없음";
+                    profile.src="/resources/img/profile.jpg";
+                    channelList.appendChild(profile);
 
                     let btn = document.createElement("input");
                     btn.type = "button";
-                    btn.id = "btn-"+id
+                    btn.id = "btn-"+id;
                     btn.name = id;
                     btn.value = id;
-                    btn.className = "btn btn-primary btn-user btn-block text-center";
+                    btn.className = "btn btn-user btn-block text-center";
                     btn.addEventListener(
                       "click",
                       evt => {
                         console.log("new remote audio id = ${newAudio.id}");
-                        viewerConfig.view.remote = "#${newAudio.id}"
-                        newAudio.remon = new Remon({ config: viewerConfig, listener:getViewerlistener(newAudio.id) })
-                        newAudio.remon.joinCast(newAudio.id.replace("-",":"))
+                        viewerConfig.view.remote = "#${newAudio.id}";
+                        newAudio.remon = new Remon({ config: viewerConfig, listener:getViewerlistener(newAudio.id) });
+                        newAudio.remon.joinCast(newAudio.id.replace("-",":"));
 
                       },
                       false
