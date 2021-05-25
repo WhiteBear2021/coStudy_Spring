@@ -107,7 +107,7 @@ public class GroupPageController {
    public String voiceChatting(Model model, @RequestParam("studygroup_no") int studygroup_no, HttpSession session) {
       log.info("voice chatting~~");
       VChatRoomVO room = new VChatRoomVO();
-      room.setStudygroup_no(studygroup_no);;
+      room.setStudygroup_no(studygroup_no);
       UserVO user = (UserVO) session.getAttribute("user");
       session.setAttribute("user_nick",user.getUser_nickName());
       room.setUserId(user.getUser_id());
