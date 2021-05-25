@@ -91,7 +91,7 @@
 										<div class="mt-12 ml-auto">
 											<span class="mr-2"> <input id="channelNameInput"
 												class="text-center" type="text" placeholder="channel name"
-												autofocus value="" />
+												autofocus value="kosta_${room.studygroup_no}" />
 											</span> <span class="text-center"> <a id="channelBtn"
 												href="#" class="btn btn-user text-center"
 												style="background-color: #3D5A5B; color: white;"> 채팅 시작

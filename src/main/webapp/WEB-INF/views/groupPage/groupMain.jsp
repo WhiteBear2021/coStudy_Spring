@@ -96,7 +96,6 @@
 
          </div>
       </div>
-
    <div class="container" id="group-Main-body">
    
       <input type="hidden" name="studyGroup_no" value="1"> <input
@@ -127,6 +126,7 @@
                            <p>${lists.page_board_content }</p>
 
                         </div>
+                      
                         <!--댓글  -->
                         <div class="post-footer">
                            <div class="input-group">
