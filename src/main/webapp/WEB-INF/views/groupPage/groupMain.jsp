@@ -4,13 +4,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<jsp:include page="../common/head.jsp"></jsp:include>
 <jsp:include page="../common/header.jsp"></jsp:include>
 <meta charset="UTF-8">
 <link rel='stylesheet'
    href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
-<link rel="stylesheet" href="../css/groupMain_style.css">
-<link type="text/css" rel="stylesheet" href="../css/timer.css">
-<link type="text/css" rel="stylesheet" href="../css/groupSidebar_list.css">
+<link type="text/css" rel="stylesheet" href="/resources/css/groupMain_style.css">
+<link type="text/css" rel="stylesheet" href="/resources/css/timer.css">
+<link type="text/css" rel="stylesheet" href="/resources/css/groupSidebar_list.css">
 
 
 
@@ -226,6 +227,7 @@
 
       </div>
       </div>
+      <jsp:include page="../common/scri.jsp"></jsp:include>
    <jsp:include page="../common/footer.jsp"></jsp:include> 
 </body> 
 <!-- partial -->
@@ -233,12 +235,12 @@
    src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script
    src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
-<script src="../js/side.js"></script>
+<script src="/resources/js/side.js"></script>
 <script
    src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 
-<script type="text/javascript" src="../js/jquery.js"></script>
-<script type="text/javascript" src="../js/timer.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.js"></script>
+<script type="text/javascript" src="/resources/js/timer.js"></script>
 
 
 
