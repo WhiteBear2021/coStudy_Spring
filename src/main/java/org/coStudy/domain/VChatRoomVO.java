@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class VChatRoomVO {
-	private String roomNo;
-	private String userNo;
+	private int studygroup_no;
+	private String userId;
 }
 

@@ -101,13 +101,14 @@ public class GroupPageController {
    }
 
    @GetMapping("/voiceChatting")
-   public String voiceChatting(Model model, @PathVariable("roomNo") String roomNo, HttpSession session) {
+   public String voiceChatting(Model model, @RequestParam("studygroup_no") int studygroup_no, HttpSession session) {
       log.info("voice chatting~~");
       VChatRoomVO room = new VChatRoomVO();
-      room.setRoomNo(roomNo);
+      room.setStudygroup_no(studygroup_no);;
       UserVO user = (UserVO) session.getAttribute("user");
       //room.setUserNo(userNo);
-      room.setUserNo(user.getUser_id());
+      room.setUserId(user.getUser_id());
+      log.info(room);
       model.addAttribute("room", room);
 
       return "groupPage/voiceChatting2";
