@@ -87,37 +87,7 @@
             </div>
             
             <div class="row product__filter">
-               
-                
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot">
-                    <div class="product__item sale">
-                        <div class="product__item__pic set-bg">
-                         <img src="/resources/img/r2.jpg" alt="">
-                            <span class="label">hot</span>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>studygroup name</h6>
-                            <a href="#" class="add-cart">See more</a>
-
-                            <h5>category</h5>
-                        </div>
-                    </div>
-                </div>
-
-                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix recommend">
-                    <div class="product__item sale">
-                        <div class="product__item__pic set-bg">
-                         <img src="/resources/img/r2.jpg" alt="">
-                            <span class="label">recommend</span>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>studygroup name</h6>
-                            <a href="#" class="add-cart">See more</a>
-
-                            <h5>category</h5>
-                        </div>
-                    </div>
-                </div>
+            
             </div>
         </div>
     </section>
