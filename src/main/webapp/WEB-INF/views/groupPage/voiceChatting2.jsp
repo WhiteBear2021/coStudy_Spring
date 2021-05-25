@@ -1,3 +1,4 @@
+<%@page import="org.coStudy.domain.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -70,7 +71,7 @@
 									<!-- 음성만 사용시 video가 아닌 audio로 설정. remote audio에 대하여 모두 개별적인 audio를 사용해야함.
                       localAudio는 muted로 처리해야함. 안그러면 하울링 남-->
 									<audio id="myVideo" class="remote-video center w-300 h-300"
-										autoplay muted controls playsinline style="display:none;"></audio>
+										autoplay controls playsinline style="display:none;"></audio>
 
 									<h6 id="waitingTv" class="m-0 font-weight-bold"
 										style="z-index: 3; position: absolute; bottom: 25px; left: 45px; visibility: hidden; color: #3D5A5B;">
@@ -158,7 +159,7 @@
             const serviceId = "5122057a-631a-4ba4-8111-7b3457480d7d";
             var myRoomChId;
             var waitingLoop;
-            let cameraList = [];
+           //let cameraList = [];
             let micList = [];
             createDummyRemonForSearchLoop();
             startSearchLoop();
@@ -200,7 +201,6 @@
               onClose() {
                 console.log("remon.listener.onClose: ${remon.getChannelId()}");
                 remon.close();
-
                 isConnected = false;
                 setViewsViaParameters(false, "hidden", "채팅 시작", "visible");
               },
@@ -223,13 +223,6 @@
                 local: null
               },
               media: {
-                video: {
-                  width: "320",
-                  height: "240",
-                  codec: "h264",
-                  maxBandwidth: 100,
-                  frameRate: { max: 25, min: 25 }
-                },
                 audio: true
               }
             };
@@ -290,15 +283,13 @@
                 isCaster = true;
 
                 remon = new Remon({ config, listener });
-                myChannelId = channelNameInput.value
-                  ? channelNameInput.value
-                  : getRandomId();
-                remon.createRoom(myChannelId)
+                myChannelId = channelNameInput.value;
+                remon.createRoom(myChannelId);
                 setViewsViaParameters(true, "visible", "끝내기", "hidden");
               }
             }
 
-            function getRandomId() {
+            /* function getRandomId() {
               var text = "";
               var possible =
                 "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -307,7 +298,7 @@
                   Math.floor(Math.random() * possible.length)
                 );
               return text;
-            }
+            } */
 
             channelButton.addEventListener(
               "click",
@@ -360,8 +351,6 @@
                    /* 내가 추가한 코드 */
                    var child = document.getElementById(videoId);
 					child.parentNode.removeChild(child);
-
-                    //document.getElementById(videoId).removeChild("img");
                     delete viewerMap[videoId];
                   }
                 })
@@ -370,6 +359,7 @@
                   id = id.replace(":","-");
                   //console.log(id)
                   //TODO:
+                	
                   if ( chid !== myRoomChId && document.getElementById(id) == null) {
                     const audioAttrs = {
                       id :id,
@@ -390,11 +380,13 @@
                     profile.src="/resources/img/profile.jpg";
                     lvChannel.appendChild(profile);
 
+                    let user = '<%=(String)session.getAttribute("user_nick")%>';
+                    console.log(user);
                     let btn = document.createElement("input");
                     btn.type = "button";
                     btn.id = "btn-"+id;
                     btn.name = id;
-                    btn.value = id;
+                    btn.value = user;
                     btn.className = "btn btn-user btn-block text-center";
                     btn.addEventListener(
                       "click",
