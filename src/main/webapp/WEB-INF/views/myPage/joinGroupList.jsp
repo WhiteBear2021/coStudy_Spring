@@ -39,14 +39,14 @@
 										<table class="table table-striped table-hover">
 											<thead>
 													<tr>
-														<th><a href="/CoStudy/groupPage/groupBoardList.do?studygroup_no=${studyGroup.studygroup_no }">${studyGroup.studygroup_no }</a></th>
+														<th><a href="/groupPage/groupMain?studygroup_no=${studyGroup.studygroup_no }">${studyGroup.studygroup_no }</a></th>
 													</tr>
 											</thead>
 											<tbody>
 													<tr>
 														<td>
 															<figure><img src="group1.jpg" alt="그룹사진없음">
-																<figcaption><a href="/CoStudy/groupPage/groupBoardList.do?studygroup_no=${studyGroup.studygroup_no }">${studyGroup.studygroup_name }</a></figcaption>
+																<figcaption><a href="/CoStudy/groupPage/groupMain?studygroup_no=${studyGroup.studygroup_no }">${studyGroup.studygroup_name }</a></figcaption>
 															</figure>
 														</td>
 													</tr>

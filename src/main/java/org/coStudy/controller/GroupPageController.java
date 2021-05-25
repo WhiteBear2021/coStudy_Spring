@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.AllArgsConstructor;
@@ -71,19 +72,18 @@ public class GroupPageController {
 	 */// node.js
 
 
-	@GetMapping("/groupMain")
+/*	@GetMapping("/groupMain")
 	public String groupBoardMain() throws Exception {
 		log.info("groupMain");
 		return "groupPage/groupMain";
 	}
-	
+	*/
 
-	@PostMapping(value = "groupBoardList")
-	@ResponseBody
-	public String groupBoardList(@ModelAttribute("groupPageBoardVO") GroupPageBoardVO groupPageBoardVO)
+	@GetMapping("/groupMain")
+	public String groupBoardList(@ModelAttribute("groupPageBoardVO") GroupPageBoardVO groupPageBoardVO,@RequestParam("studygroup_no") int studygroup_no)
 			throws Exception {
 		GroupPageBoardVO board = new GroupPageBoardVO();
-		int studyGroup_no = groupPageBoardVO.getStudyGroup_no();
+		/*int studyGroup_no = groupPageBoardVO.getStudyGroup_no();*/
 		log.info("==============");
 		log.info("boardList");
 
@@ -91,12 +91,12 @@ public class GroupPageController {
 			board.setPage_board_content(groupPageBoardVO.getPage_board_content());
 			board.setPage_board_title(groupPageBoardVO.getPage_board_title());
 			board.setPage_board_writer(groupPageBoardVO.getPage_board_writer());
-			groupPage_service.groupBoardList(studyGroup_no);
+			groupPage_service.groupBoardList(studygroup_no);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "success";
+		return "groupPage/groupMain";
 
 	}
 
