@@ -184,6 +184,9 @@
                   <div id="right-sidebar-fileBox"></div>
                   <a href="../chatting/chattingRoom.do?roomNo=${roomNo}"
                      onclick="window.open(this.href, '_blank', 'width=800, height=1000'); return false;">그룹
+                     채팅</a></br></br>
+                     <a href="/groupPage/voiceChatting?studygroup_no=${studygroup_no}"
+                     onclick="window.open(this.href, '_blank', 'width=2000, height=1000'); return false;">음성
                      채팅</a>
                </div>
                <div id="group-Main-right-bottom"  class="panel panel-white post panel-shadow" class="col-md-5" >
