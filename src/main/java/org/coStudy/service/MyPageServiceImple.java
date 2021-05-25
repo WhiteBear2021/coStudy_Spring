@@ -3,6 +3,7 @@ package org.coStudy.service;
 import java.util.List;
 
 import org.coStudy.domain.Criteria;
+import org.coStudy.domain.ScheduleVO;
 import org.coStudy.domain.StudyGroupVO;
 import org.coStudy.domain.StudyNoteVO;
 import org.coStudy.domain.UserVO;
@@ -57,5 +58,15 @@ public class MyPageServiceImple implements MyPageService{
 	public int totalStudyDiaryList(int user_no) {
 		// TODO Auto-generated method stub
 		return mapper.totalStudyDiaryList(user_no);
+	}
+	@Override
+	public int scheduleRegister(ScheduleVO scheduel) {
+		// TODO Auto-generated method stub
+		return mapper.scheduleRegister(scheduel);
+	}
+	@Override
+	public List<ScheduleVO> scheduleList(int user_no) {
+		// TODO Auto-generated method stub
+		return mapper.scheduleList(user_no);
 	}
 }

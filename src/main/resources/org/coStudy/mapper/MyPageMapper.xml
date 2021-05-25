@@ -49,4 +49,13 @@
 	<delete id="deleteStudyDiary">
 		delete from studyNote where studyNote_no=#{studyNote_no}
 	</delete>
+	
+	<insert id="scheduleRegister">
+		insert into schedule_test values(#{user_no},test_seq.nextVal,#{title},#{allday},#{start},#{end})
+	</insert>
+	
+	<select id="scheduleList" resultType="org.coStudy.domain.ScheduleVO">
+		select schedule_no,schedule_title title, all_day allday, schedule_start, schedule_end
+		from schedule_test where user_no=#{user_no}
+	</select>
 </mapper>

@@ -3,6 +3,7 @@ package org.coStudy.mapper;
 import java.util.List;
 
 import org.coStudy.domain.Criteria;
+import org.coStudy.domain.ScheduleVO;
 import org.coStudy.domain.StudyGroupVO;
 import org.coStudy.domain.StudyNoteVO;
 import org.coStudy.domain.UserVO;
@@ -20,4 +21,6 @@ public interface MyPageMapper {
 	List<StudyNoteVO> studyDiaryListWithPaging(Criteria cri);
 	List<StudyGroupVO> joinGroupList(int user_no);
 	StudyNoteVO studyDiaryDetail(int studyNote_no);
+	int scheduleRegister(ScheduleVO scheduel);
+	List<ScheduleVO> scheduleList(int user_no);
 }
