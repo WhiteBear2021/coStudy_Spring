@@ -1,12 +1,12 @@
 package org.coStudy.controller;
 
+import javax.servlet.http.HttpSession;
 
-
-
-import org.coStudy.domain.ApplyGroupMemberVO;
 import org.coStudy.domain.ChatRoomVO;
 import org.coStudy.domain.GroupPageBoardVO;
 import org.coStudy.domain.TimerVO;
+import org.coStudy.domain.UserVO;
+import org.coStudy.domain.VChatRoomVO;
 import org.coStudy.service.GroupPageService;
 import org.coStudy.service.TimerService;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -30,105 +29,90 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequestMapping("/groupPage/*")
 @AllArgsConstructor
-
 public class GroupPageController {
 
-	private TimerService timerService;
-	private GroupPageService groupPage_service;
+   private TimerService timerService;
+   private GroupPageService groupPage_service;
 
-	@ResponseBody
-	@PostMapping("/timer")
-	public ResponseEntity<String> timer(@RequestBody TimerVO vo){
+   @ResponseBody
+   @PostMapping("/timer")
+   public ResponseEntity<String> timer(@RequestBody TimerVO vo){
+      log.info("1234");
+      return timerService.insert(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) 
+              : new ResponseEntity<>("success", HttpStatus.INTERNAL_SERVER_ERROR) ;
+   }
 
-		return timerService.insert(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) 
-				  : new ResponseEntity<>("success", HttpStatus.INTERNAL_SERVER_ERROR) ;
-	}
-	
-	@GetMapping("/timer")
-	public void timer(){
+   @GetMapping("/timer")
+   public void timer() {
 
-	}
-	
-	@GetMapping("/chatting")
-	public void chatting(){
-		
-	}
-	
+   }
 
-	@GetMapping("/chattingForm/{roomNo}/{myName}")
-	public String chattingForm(Model model ,@PathVariable("roomNo") String roomNo, @PathVariable("myName") String myName){
-		
-		ChatRoomVO room = new ChatRoomVO();
-		room.setRoomNo(roomNo);
-		room.setMyName(myName);
-		model.addAttribute("room", room);
-	
-		return "groupPage/chattingForm";
-	}
+   @GetMapping("/chatting")
+   public void chatting() {
+
+   }
+
+   @GetMapping("/chattingForm/{roomNo}/{myName}")
+   public String chattingForm(Model model, @PathVariable("roomNo") String roomNo,
+         @PathVariable("myName") String myName) {
+
+      ChatRoomVO room = new ChatRoomVO();
+      room.setRoomNo(roomNo);
+      room.setUserNo(myName);
+      model.addAttribute("room", room);
+
+      return "groupPage/chattingForm";
+   }
+
+   /*
+    * @GetMapping("chatting/{roomNo}") public String
+    * chatting(@PathVariable("roomNo") int roomNo){ String myName = " ֿ ";
+    * return
+    * "redirect:http://192.168.0.163:3000?room="+roomNo+"&myName="+myName; }
+    */// node.js
 
 
-	/*
-	 * @GetMapping("chatting/{roomNo}") public String
-	 * chatting(@PathVariable("roomNo") int roomNo){ String myName = "주원";
-	 * return
-	 * "redirect:http://192.168.0.163:3000?room="+roomNo+"&myName="+myName; }
-	 */// node.js
-	
-	@GetMapping("/groupMain")
-	public void groupBoardMain() throws Exception{
-		log.info("groupMain");
-		
-		
-	}
-	
-	@GetMapping("/groupBoardInsert")
-	public void groupBoardInsert(){
-		
-	}
-	
-	@PostMapping("/groupBoardInsert")
-	public String groupBoardInsert(GroupPageBoardVO groupBoard, RedirectAttributes rttr){
-		return null;
-		
-	}
-	
-	@GetMapping("/groupBoardDelete")
-	public String grouopBoardDelete(@RequestParam("page_board_no") int page_board_no, RedirectAttributes rttr){
-		return null;
-		
-	}
-	
+/*   @GetMapping("/groupMain")
+   public String groupBoardMain() throws Exception {
+      log.info("groupMain");
+      return "groupPage/groupMain";
+   }
+   */
 
-	@PostMapping(value="groupBoardList")
-		@ResponseBody
-		public String groupBoardList(@ModelAttribute("groupPageBoardVO") GroupPageBoardVO groupPageBoardVO) throws Exception{
-			GroupPageBoardVO board = new GroupPageBoardVO();
-			int studyGroup_no = groupPageBoardVO.getStudyGroup_no();
-			log.info("==============");
-			log.info("boardList");
-			
-			try {
-				board.setPage_board_content(groupPageBoardVO.getPage_board_content());
-				board.setPage_board_title(groupPageBoardVO.getPage_board_title());
-				board.setPage_board_writer(groupPageBoardVO.getPage_board_writer());
-				groupPage_service.groupBoardList(studyGroup_no);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		
-		return "success";
-		
-	}
-	
-	@GetMapping("/selectApplyList")
-	public String selectApplyList(@RequestParam("user_no") int user_no, RedirectAttributes rttr){
-		
-		return null;
-		
-//	}
-//	@PostMapping("/selectApplyList")
-//	public String selectApplyList()
-//	
+   @GetMapping("/groupMain")
+   public String groupBoardList(@ModelAttribute("groupPageBoardVO") GroupPageBoardVO groupPageBoardVO,@RequestParam("studygroup_no") int studygroup_no)
+         throws Exception {
+      GroupPageBoardVO board = new GroupPageBoardVO();
+      /*int studyGroup_no = groupPageBoardVO.getStudyGroup_no();*/
+      log.info("==============");
+      log.info("boardList");
+
+      try {
+         board.setPage_board_content(groupPageBoardVO.getPage_board_content());
+         board.setPage_board_title(groupPageBoardVO.getPage_board_title());
+         board.setPage_board_writer(groupPageBoardVO.getPage_board_writer());
+         groupPage_service.groupBoardList(studygroup_no);
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+
+      return "groupPage/groupMain";
+
+   }
+
+   @GetMapping("/voiceChatting")
+   public String voiceChatting(Model model, @PathVariable("roomNo") String roomNo, HttpSession session) {
+      log.info("voice chatting~~");
+      VChatRoomVO room = new VChatRoomVO();
+      room.setRoomNo(roomNo);
+      UserVO user = (UserVO) session.getAttribute("user");
+      //room.setUserNo(userNo);
+      room.setUserNo(user.getUser_id());
+      model.addAttribute("room", room);
+
+      return "groupPage/voiceChatting2";
+   }
+
+
+
 }
-}
-
