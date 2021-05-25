@@ -1,8 +1,12 @@
 package org.coStudy.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.coStudy.domain.ChatRoomVO;
 import org.coStudy.domain.GroupPageBoardVO;
 import org.coStudy.domain.TimerVO;
+import org.coStudy.domain.UserVO;
+import org.coStudy.domain.VChatRoomVO;
 import org.coStudy.service.GroupPageService;
 import org.coStudy.service.TimerService;
 import org.springframework.http.HttpStatus;
@@ -96,8 +100,15 @@ public class GroupPageController {
 	}
 
 	@GetMapping("/voiceChatting")
-	public String voiceChatting() {
+	public String voiceChatting(Model model, @PathVariable("roomNo") String roomNo, HttpSession session) {
 		log.info("voice chatting~~");
+		VChatRoomVO room = new VChatRoomVO();
+		room.setRoomNo(roomNo);
+		UserVO user = (UserVO) session.getAttribute("user");
+		//room.setUserNo(userNo);
+		room.setUserNo(user.getUser_id());
+		model.addAttribute("room", room);
+
 		return "groupPage/voiceChatting2";
 	}
 

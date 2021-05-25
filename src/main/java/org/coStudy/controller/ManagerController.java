@@ -1,8 +1,12 @@
 package org.coStudy.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.coStudy.domain.ManagerVO;
+import org.coStudy.domain.UserVO;
 import org.coStudy.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +27,9 @@ public class ManagerController {
 	private ManagerService service;
 	
 	@GetMapping("/main")
-	public String main(){
+	public String main(HttpSession session, ManagerVO manager){
 		log.info("main");
+		log.info(session.getAttribute("manager"));
 		return "manager_main/manager_index";
 	}
 	

@@ -1,10 +1,11 @@
 package org.coStudy.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import lombok.Data;
 @Data
-public class StudyGroupVO {
+public class StudyGroupVO implements Serializable{
 	private int studygroup_no;
 	private String studygroup_name;
 	private String studygroup_info;
