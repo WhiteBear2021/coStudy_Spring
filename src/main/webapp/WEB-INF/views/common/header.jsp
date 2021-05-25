@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
  <header class="header_area">
         <!-- Top Header Area Start -->
         <div class="top_header_area">
@@ -50,15 +53,13 @@
 
                                 <div class="collapse navbar-collapse align-items-start collapse" id="karl-navbar">
                                     <ul class="navbar-nav animated" id="nav">
-                                        <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                                        <li class="nav-item active"><a class="nav-link" href="/main">Home</a></li>
 
 
 
                                         <li class="nav-item"><a class="nav-link" href="/studyGroup/list">Study Group List</a></li>
-
-                                        <li class="nav-item"><a class="nav-link" href="#">Contact1</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#">Contact2</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#">Contact3</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#">1:1문의</a></li>
                                     </ul>
                                 </div>
                             </nav>

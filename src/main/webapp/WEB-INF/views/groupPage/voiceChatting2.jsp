@@ -2,205 +2,132 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content="RemoteMonster live media service demo" />
-    <meta name="author" content="Lucas Choi" />
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <title>Audio Config for Cast</title>
+<title>KOSTA</title>
 
-    <!-- Custom fonts for this template-->
-    <link
-      href="/resources/vendor/fontawesome-free/css/all.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-      rel="stylesheet"
-    />
+<!-- Custom fonts for this template-->
+<link href="/resources/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet" />
 
-    <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet" />
-  </head>
+<!-- Custom styles for this template-->
+<link href="/resources/css/sb-admin-2.min.css" rel="stylesheet" />
+</head>
 
-  <body id="page-top">
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-      <!-- Sidebar -->
-      <ul
-        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-        id="accordionSidebar"
-      ></ul>
-      <!-- End of Sidebar -->
+<body id="page-top">
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+		<!-- Sidebar -->
+		<ul class="navbar-nav sidebar" style="background-color: #3D5A5B;"
+			id="accordionSidebar"></ul>
+		<!-- End of Sidebar -->
 
-      <!-- Content Wrapper -->
-      <div id="content-wrapper" class="d-flex flex-column">
-        <!-- Main Content -->
-        <div id="content">
-          <!-- Topbar -->
-          <nav
-            class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
-          >
-            <!-- Sidebar Toggle (Topbar) -->
-            <button
-              id="sidebarToggleTop"
-              class="btn btn-link d-md-none rounded-circle mr-3"
-            >
-              <i class="fa fa-bars"></i>
-            </button>
-            <h3 class="h3 mb-4 text-gray-800">ConferenceCall(Audio) Test</h3>
-          </nav>
-          <!-- End of Topbar -->
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+			<!-- Main Content -->
+			<div id="content">
+				<!-- Topbar -->
+				<nav
+					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+				<!-- Sidebar Toggle (Topbar) -->
+				<button id="sidebarToggleTop"
+					class="btn btn-link d-md-none rounded-circle mr-3">
+					<i class="fa fa-bars"></i>
+				</button>
+				<h3 class="h3 mb-4 text-gray-800">스터디 음성채팅방</h3>
+				</nav>
+				<!-- End of Topbar -->
 
-          <!-- Begin Page Content -->
-          <div class="container-fluid">
-            <!-- Page Heading -->
-            <h4 class="font-weight-bold">How to use</h4>
-            <li>
-              audio기반 conference call을 위한 테스트페이지. AAA라는 room id를 만들고 그 안에 여러 사람이 들어가면 방안에 있는 member들이 검색되어 그 멤버를 클릭하면 하나씩 볼 수 있음.
-            </li>
-            <li>
-              Open the same
-              <a href="./conferenceAudio.html" target="_blank">site</a> on
-              other tab or browser. Then click on channel you created in the
-              channel list.
-            </li>
-            <li>
-              Source code:
-              <a
-                href="https://github.com/RemoteMonster/web-sdk/blob/master/examples/full/conferenceAudio.html"
-                target="_blank"
-                >github page</a>
-            </li>
-            <br />
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
 
-            <!-- Content Row -->
-            <div class="row">
-              <div class="col-xl-4 col-lg-5">
-                <div class="card shadow mb-4">
-                  <!-- Card Header - Dropdown -->
-                  <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
-                  >
-                    <h6 class="m-0 font-weight-bold text-primary">Channels</h6>
-                  </div>
-                  <!-- Card Body -->
-                  <div class="card-body">
-                    <main id="lvChannel" class="text-center"></main>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-4 col-lg-5">
-                <div class="card shadow mb-4">
-                  <!-- Card Header - Dropdown -->
-                  <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
-                  >
-                    <h6 class="m-0 font-weight-bold text-primary">
-                      Other Audios
-                    </h6>
-                  </div>
-                  <!-- Card Body -->
-                  <div class="card-body">
-                    <main class="text-center">
-                      <div class="row" id="otherAudios">
-                      </div>
-                    </main>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-8 col-lg-7">
-                <div class="card shadow mb-4">
-                  <!-- Card Header - Dropdown -->
-                  <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
-                  >
-                    <h6 class="m-0 font-weight-bold text-primary">
-                      Local Audio
-                    </h6>
-                  </div>
-                  <!-- Card Body -->
-                  <div class="card-body">
-                    <main class="text-center">
-                      <!-- 음성만 사용시 video가 아닌 audio로 설정. remote audio에 대하여 모두 개별적인 audio를 사용해야함.
+					<br />
+
+					<!-- Content Row -->
+					<div class="row">
+						<div class="col-xl-6 col-lg-6">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="font-weight-bold" style="color: #3D5A5B;">나</h6>
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+									<div class="thumnail-wrapper">
+										<div class="thumnail">
+											<div class="centered text-center">
+												<img alt="프로필사진 없음" src="/resources/img/profile.jpg">
+											</div>
+										</div>
+									</div>
+									<!-- 음성만 사용시 video가 아닌 audio로 설정. remote audio에 대하여 모두 개별적인 audio를 사용해야함.
                       localAudio는 muted로 처리해야함. 안그러면 하울링 남-->
-                      <audio
-                        id="myVideo"
-                        class="remote-video center w-300 h-300"
-                        autoplay
-                        muted
-                        controls
-                        playsinline
-                        style="z-index:1;background: rgba(0, 0, 0, 0.5); width: 100%;"
-                      ></audio>
+									<audio id="myVideo" class="remote-video center w-300 h-300"
+										autoplay muted controls playsinline style="display:none;"></audio>
 
-                      <h6
-                        id="waitingTv"
-                        class="m-0 font-weight-bold text-primary"
-                        style="z-index:3; position: absolute;bottom: 55px;right:45px; visibility: hidden;"
-                      >
-                        waiting
-                      </h6>
-                      <div class="row">
-                        <!--Audio Input-->
-                        <span class="col-lg-2 mg-2">
-                          <div class="small mb-1">Audio Input</div>
-                          <select
-                            id="audioInputSelect"
-                            onchange="changeAudioInputDevice()"
-                            class="custom-select custom-select-sm form-control form-control-sm"
-                          ></select>
-                        </span>
+									<h6 id="waitingTv" class="m-0 font-weight-bold"
+										style="z-index: 3; position: absolute; bottom: 25px; left: 45px; visibility: hidden; color: #3D5A5B;">
+										입장하는중</h6>
+									<div class="row">
+										<!--Audio Input-->
+										<span class="col-lg-4 mg-4">
+											<div class="small mb-1">마이크 선택</div>
+											<div class="small mb-3">
+												<select id="audioInputSelect"
+													onchange="changeAudioInputDevice()"
+													class="custom-select custom-select-sm form-control form-control-sm"></select>
+											</div>
+										</span>
 
+									</div>
+									<div class="row">
+										<div class="mt-12 ml-auto">
+											<span class="mr-2"> <input id="channelNameInput"
+												class="text-center" type="text" placeholder="channel name"
+												autofocus value="" />
+											</span> <span class="text-center"> <a id="channelBtn"
+												href="#" class="btn btn-user text-center"
+												style="background-color: #3D5A5B; color: white;"> 채팅 시작
+											</a>
+											</span>
+										</div>
+									</div>
+									</main>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-6 col-lg-6">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold" style="color: #3D5A5B;">스터디
+										참여자 목록</h6>
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+									<main id="lvChannel" class="text-center"></main>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.container-fluid -->
 
-                      </div>
-                      <div class="row">
-                        <div class="mt-12 text-center">
-                          <span class="mr-2">
-                            <input
-                              id="channelNameInput"
-                              class="text-center"
-                              type="text"
-                              placeholder="channel name"
-                              autofocus
-                              value=""
-                            />
-                          </span>
-                          <span class="mr-2">
-                            <a
-                              id="channelBtn"
-                              href="#"
-                              class="btn btn-primary btn-user text-center"
-                            >
-                              CREATE
-                            </a>
-                          </span>
-                        </div>
-                      </div>
-                    </main>
-                  </div>
-                </div>
-              </div>
+				<link rel="stylesheet"
+					href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
+				<!-- The webrtc adapter is required for browser compatibility -->
+				<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+				<script src="https://cdn.jsdelivr.net/npm/@remotemonster/sdk"></script>
 
-            </div>
-          </div>
-          <!-- /.container-fluid -->
-
-          <link
-            rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-          />
-          <!-- The webrtc adapter is required for browser compatibility -->
-          <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/@remotemonster/sdk"></script>
-
-          <script>
+				<script>
             const channelButton = document.querySelector("#channelBtn");
             const channelList = document.getElementById("lvChannel");
             const channelNameInput = document.getElementById(
@@ -219,7 +146,7 @@
             const resolutionSelect = document.getElementById(
               "resolutionSelect"
             );
-            const otherAudios= document.getElementById('otherAudios');
+            const otherAudios= document.getElementById("otherAudios");
             const videoFPSInput = document.getElementById("videoFPSInput");
             let isConnected = false;
             let isCaster = false;
@@ -227,8 +154,8 @@
             let remon;
             let viewerMap = {}
             let dummyRemon;
-            const key = "1234567890";
-            const serviceId = "SERVICEID1";
+            const key = "ca804846fa2f723da39769e566573a7452b7dce2a769befcd933a5530934f9cf";
+            const serviceId = "5122057a-631a-4ba4-8111-7b3457480d7d";
             var myRoomChId;
             var waitingLoop;
             let cameraList = [];
@@ -239,8 +166,8 @@
             // please register your own service key from remotemonster site.
             let config = {
               credential: {
-                key: key,
-                serviceId: serviceId,
+            	  key: "ca804846fa2f723da39769e566573a7452b7dce2a769befcd933a5530934f9cf",
+                  serviceId: "5122057a-631a-4ba4-8111-7b3457480d7d",
                 wsurl : "wss://signal.remotemonster.com/ws",
                 resturl : "https://signal.remotemonster.com/rest",
 
@@ -257,39 +184,36 @@
 
             const listener = {
               onConnect(chid) {
-                console.log(`remon.listener.onConnect ${chid} at listener`);
+                console.log("remon.listener.onConnect ${chid} at listener");
               },
               onComplete() {
                 myRoomChId = remon.getChannelId();
                 console.log("remon.listener.onComplete " + remon.getChannelId());
-                setViewsViaParameters(false, "hidden", "CLOSE", "hidden");
+                setViewsViaParameters(false, "hidden", "끝내기", "hidden");
               },
               onDisconnectChannel() {
-                // is called when other peer hang up.
-                console.log(`remon.listener.onDisconnectChannel ${remon.getChannelId()}`)
+                console.log("remon.listener.onDisconnectChannel ${remon.getChannelId()}")
                 remon.close();
                 isConnected = false;
-                setViewsViaParameters(false, "hidden", "CREATE", "visible");
+                setViewsViaParameters(false, "hidden", "채팅 시작", "visible");
               },
               onClose() {
-                // is called when remon.close() method is called.
-                console.log(`remon.listener.onClose: ${remon.getChannelId()}`);
+                console.log("remon.listener.onClose: ${remon.getChannelId()}");
                 remon.close();
 
                 isConnected = false;
-                setViewsViaParameters(false, "hidden", "CREATE", "visible");
+                setViewsViaParameters(false, "hidden", "채팅 시작", "visible");
               },
               onError(error) {
-                console.log(`remon.listener.onError: ${remon.getChannelId()} ${error}`);
+                console.log("remon.listener.onError: ${remon.getChannelId()} ${error}");
               },
               onStat(result) {
-                // console.log(`EVENT FIRED: onStat: ${result}`);
               }
             };
             let viewerConfig = {
               credential: {
-                key: key,
-                serviceId: serviceId,
+            	  key: "ca804846fa2f723da39769e566573a7452b7dce2a769befcd933a5530934f9cf",
+                  serviceId: "5122057a-631a-4ba4-8111-7b3457480d7d",
                 wsurl : "wss://signal.remotemonster.com/ws",
                 resturl : "https://signal.remotemonster.com/rest",
 
@@ -313,31 +237,24 @@
 
               return {
                   onConnect(chid) {
-                  // console.log(`EVENT FIRED:VIEWER onConnect: ${chid}`);
                 },
                   onComplete() {
-                    console.log(`getViewerListener.onComplete: ${viewerMap[id].remon.getChannelId()}`);
-                  // console.log("EVENT FIRED:VIEWER onComplete");
+                    console.log("getViewerListener.onComplete: ${viewerMap[id].remon.getChannelId()}");
                 },
                   onDisconnectChannel() {
                   // is called when other peer hang up.
-                  console.log(`getViewerListener.onDisconnectChannel: ${viewerMap[id].remon.getChannelId()}`);
-                  //viewerMap[id].remon.close()
+                  console.log("getViewerListener.onDisconnectChannel: ${viewerMap[id].remon.getChannelId()}");
+                  remon.close();
                   isConnected = false;
-                  // console.log("EVENT FIRED:VIEWER onDisconnectChannel");
                 },
                   onClose() {
-                    console.log(`getViewerListener.onClose: ${viewerMap[id].remon.getChannelId()}`);
-                  // is called when remon.close() method is called.
-                  //viewerMap[id].remon.close()
-                  // console.log("EVENT FIRED:VIEWER onClose");
+                    console.log("getViewerListener.onClose: ${viewerMap[id].remon.getChannelId()}");
+                    remon.close();
                 },
                   onError(error) {
-                    console.log(`getViewerListener.onError: ${viewerMap[id].remon.getChannelId()}`);
-                  // console.log(`EVENT FIRED:VIEWER onError: ${error}`);
+                    console.log("getViewerListener.onError: ${viewerMap[id].remon.getChannelId()}");
                 },
                   onStat(result) {
-                  // console.log(`EVENT FIRED:VIEWER onStat: ${result}`);
                 }
               }
             }
@@ -367,7 +284,7 @@
                 })
                 remon.close();
                 myChannelId = "";
-                setViewsViaParameters(false, "hidden", "CREATE", "visible");
+                setViewsViaParameters(false, "hidden", "채팅 다시시작", "visible");
               } else {
                 isConnected = true;
                 isCaster = true;
@@ -377,7 +294,7 @@
                   ? channelNameInput.value
                   : getRandomId();
                 remon.createRoom(myChannelId)
-                setViewsViaParameters(true, "visible", "CLOSE", "hidden");
+                setViewsViaParameters(true, "visible", "끝내기", "hidden");
               }
             }
 
@@ -437,10 +354,15 @@
                 var searchResult = await dummyRemon.fetchRooms(channelNameInput.value);
                 Object.keys(viewerMap).forEach(videoId=>{
                   if(!searchResult.map(x=>x.id).includes(videoId.replace("-",":"))) {
-                    viewerMap[videoId].remon && viewerMap[videoId].remon.close()
-                    document.getElementById(videoId).remove()
-                    document.getElementById("btn-"+videoId).remove()
-                    delete viewerMap[videoId]
+                    viewerMap[videoId].remon && viewerMap[videoId].remon.close();
+                    document.getElementById(videoId).remove();
+                    document.getElementById("btn-"+videoId).remove();
+                   /* 내가 추가한 코드 */
+                   var child = document.getElementById(videoId);
+					child.parentNode.removeChild(child);
+
+                    //document.getElementById(videoId).removeChild("img");
+                    delete viewerMap[videoId];
                   }
                 })
                 searchResult.forEach(({id}, i) => {
@@ -451,30 +373,36 @@
                   if ( chid !== myRoomChId && document.getElementById(id) == null) {
                     const audioAttrs = {
                       id :id,
-                      class : "remote-video center w-320 h-240",
+                      class : "remote-video",
                       autoplay : true,
                       controls: true,
                       playsinline: true,
-                      style :"z-index:1;background: rgba(0, 0, 0, 0.5); width: 220px;"
+                      style :"display: none;"
                     }
-                    let newAudio = document.createElement('audio')
-                    Object.keys(audioAttrs).forEach(key => newAudio.setAttribute(key, audioAttrs[key]))
-                    viewerMap[newAudio.id] = newAudio
-                    otherAudios.appendChild(newAudio)
+                    let newAudio = document.createElement("audio");
+                    Object.keys(audioAttrs).forEach(key => newAudio.setAttribute(key, audioAttrs[key]));
+                    viewerMap[newAudio.id] = newAudio;
+                    lvChannel.appendChild(newAudio);
+                    
+                    var profile = document.createElement("img");
+                    profile.id= id;
+                    profile.alt ="프로필사진 없음";
+                    profile.src="/resources/img/profile.jpg";
+                    lvChannel.appendChild(profile);
 
                     let btn = document.createElement("input");
                     btn.type = "button";
-                    btn.id = "btn-"+id
+                    btn.id = "btn-"+id;
                     btn.name = id;
                     btn.value = id;
-                    btn.className = "btn btn-primary btn-user btn-block text-center";
+                    btn.className = "btn btn-user btn-block text-center";
                     btn.addEventListener(
                       "click",
                       evt => {
-                        console.log(`new remote audio id = ${newAudio.id}`);
-                        viewerConfig.view.remote = `#${newAudio.id}`
-                        newAudio.remon = new Remon({ config: viewerConfig, listener:getViewerlistener(newAudio.id) })
-                        newAudio.remon.joinCast(newAudio.id.replace("-",":"))
+                        console.log("new remote audio id = ${newAudio.id}");
+                        viewerConfig.view.remote = "#${newAudio.id}";
+                        newAudio.remon = new Remon({ config: viewerConfig, listener:getViewerlistener(newAudio.id) });
+                        newAudio.remon.joinCast(newAudio.id.replace("-",":"));
 
                       },
                       false
@@ -510,44 +438,23 @@
             }
             getDevices();
           </script>
-        </div>
-        <!-- End of Main Content -->
+			</div>
+			<!-- End of Main Content -->
+		</div>
+		<!-- End of Content Wrapper -->
+	</div>
+	<!-- End of Page Wrapper -->
 
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span
-                >Copyright &copy;
-                <a href="https://remotemonster.com">RemoteMonster</a> 2020</span
-              >
-            </div>
-          </div>
-        </footer>
-        <!-- End of Footer -->
-      </div>
-      <!-- End of Content Wrapper -->
-    </div>
-    <!-- End of Page Wrapper -->
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
-    </a>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="/resources/vendor/jquery/jquery.min.js"></script>
-    <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Bootstrap core JavaScript-->
+	<script src="/resources/vendor/jquery/jquery.min.js"></script>
+	<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="/resources/js/sb-admin-2.min.js"></script>
+	<!-- Custom scripts for all pages-->
+	<script src="/resources/js/sb-admin-2.min.js"></script>
 
-    <script>
-      $(document).ready(function() {
-        $("#accordionSidebar").load("nav.html");
-      });
-    </script>
-  </body>
+</body>
 </html>

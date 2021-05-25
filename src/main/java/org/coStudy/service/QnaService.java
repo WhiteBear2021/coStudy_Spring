@@ -13,4 +13,9 @@ public interface QnaService {
 	public List<QnaVO> ManagerList();
 	public List<QnaVO> ManagerDetail(int qna_no);
 	public int ManagerReplyInsert(QnaVO qna);
+	
+	public List<Integer> charts();
+	public int charts2();
+	
+	
 }

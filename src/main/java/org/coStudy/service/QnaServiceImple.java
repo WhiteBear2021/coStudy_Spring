@@ -51,4 +51,16 @@ public class QnaServiceImple implements QnaService{
 		return mapper.ManagerReplyInsert(qna);
 	}
 
+	@Override
+	public List<Integer> charts() {
+		
+		return mapper.charts();
+	}
+
+	@Override
+	public int charts2() {
+		
+		return mapper.charts2();
+	}
+
 }
