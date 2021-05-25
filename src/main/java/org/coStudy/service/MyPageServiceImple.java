@@ -2,6 +2,7 @@ package org.coStudy.service;
 
 import java.util.List;
 
+import org.coStudy.domain.Criteria;
 import org.coStudy.domain.StudyGroupVO;
 import org.coStudy.domain.StudyNoteVO;
 import org.coStudy.domain.UserVO;
@@ -46,5 +47,15 @@ public class MyPageServiceImple implements MyPageService{
 	public int deleteStudyDiary(int studyNote_no) {
 		// TODO Auto-generated method stub
 		return mapper.deleteStudyDiary(studyNote_no);
+	}
+	@Override
+	public List<StudyNoteVO> studyDiaryListWithPaging(Criteria cri) {
+		// TODO Auto-generated method stub
+		return mapper.studyDiaryListWithPaging(cri);
+	}
+	@Override
+	public int totalStudyDiaryList(int user_no) {
+		// TODO Auto-generated method stub
+		return mapper.totalStudyDiaryList(user_no);
 	}
 }

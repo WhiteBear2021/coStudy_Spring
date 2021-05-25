@@ -4,12 +4,15 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.coStudy.domain.Criteria;
 import org.coStudy.domain.LoginVO;
+import org.coStudy.domain.PageDTO;
 import org.coStudy.domain.StudyGroupVO;
 import org.coStudy.domain.StudyNoteVO;
 import org.coStudy.domain.UserVO;
 import org.coStudy.service.MyPageService;
 import org.coStudy.service.UserService;
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.log4j.Log4j;
 
@@ -85,14 +89,27 @@ public class MyPageController {
 		model.addAttribute("joinGroupList",joinGroupList);
 	}
 	
+//	@GetMapping("/studyDiaryList")
+//	public void studyDiaryList(HttpSession session,Model model){
+//		log.info("*********************");
+//		log.info("studyDiaryList 보기");
+//		UserVO user=(UserVO) session.getAttribute("user");
+//		int user_no=user.getUser_no();
+//		List<StudyNoteVO> studyNoteList=service.studyDiaryList(user_no);
+//		model.addAttribute("studyNoteList",studyNoteList);
+//	}
 	@GetMapping("/studyDiaryList")
-	public void studyDiaryList(HttpSession session,Model model){
+	public void studyDiaryListWithPaging(HttpSession session,Model model,Criteria cri){
 		log.info("*********************");
-		log.info("studyDiaryList 보기");
+		log.info("studyDiaryListWithPaging 보기");
 		UserVO user=(UserVO) session.getAttribute("user");
-		int user_no=user.getUser_no();
-		List<StudyNoteVO> studyNoteList=service.studyDiaryList(user_no);
+		cri.setUser_no(user.getUser_no());
+		int total=service.totalStudyDiaryList(user.getUser_no());
+		PageDTO pageDTO=new PageDTO(cri, total);
+		log.info(pageDTO);
+		List<StudyNoteVO> studyNoteList=service.studyDiaryListWithPaging(cri);
 		model.addAttribute("studyNoteList",studyNoteList);
+		model.addAttribute("pageMaker", pageDTO);
 	}
 	
 	@GetMapping("/studyDiaryUpdate")
@@ -182,6 +199,14 @@ public class MyPageController {
 	public void scheduleList(Model model){
 		log.info("*********************");
 		log.info("scheduleList 페이지로 이동");
+	}
+	
+	@PostMapping("/scheduleSave")
+	@ResponseBody
+	public void scheduleLSave(@RequestParam("jsondata") String jsondata){
+		log.info("*********************");
+		log.info("scheduleSave 중");
+		log.info(jsondata);
 	}
 	
 }

@@ -19,6 +19,19 @@
 		select * from STUDYNOTE where user_no=#{user_no}
 	</select>
 	
+	<select id="studyDiaryListWithPaging" resultType="org.coStudy.domain.StudyNoteVO">
+		<![CDATA[
+			select studyNote_no,studyNote_keyword,studyNote_title,studyNote_content,studynote_date
+				from (select rownum rn, studyNote_no,studyNote_keyword,studyNote_title,studyNote_content,studynote_date
+						from studyNote where user_no=#{user_no} and rownum<=#{pageNum}*#{amount})
+				where rn>(#{pageNum}-1)*#{amount}
+		]]>
+	</select>
+	
+	<select id="totalStudyDiaryList" resultType="int">
+		select count(*) from studyNote where user_no=#{user_no}
+	</select>
+	
 	<select id="joinGroupList" parameterType="int" resultType="org.coStudy.domain.StudyGroupVO">
 		select * from STUDYGROUP WHERE studygroup_no in (select studygroup_no
                                             			 from groupuser where user_no = #{user_no})

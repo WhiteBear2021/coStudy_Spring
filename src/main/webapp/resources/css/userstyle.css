@@ -30,7 +30,6 @@
         }
 
         a,
-        a:hover,
         a:focus {
             -webkit-transition: all 500ms ease 0s;
             transition: all 500ms ease 0s;

@@ -64,6 +64,45 @@
 					
 					
 				</div>
+				<!-- 페이지 번호 표시 시작  -->
+				<div class='pull-right'>
+					<ul class="pagination">
+
+									<%--             <c:if test="${pageMaker.prev}">
+			              <li class="paginate_button previous"><a href="#">Previous</a>
+			              </li>
+			            </c:if>
+			
+			            <c:forEach var="num" begin="${pageMaker.startPage}"
+			              end="${pageMaker.endPage}">
+			              <li class="paginate_button"><a href="#">${num}</a></li>
+			            </c:forEach>
+			
+			            <c:if test="${pageMaker.next}">
+			              <li class="paginate_button next"><a href="#">Next</a></li>
+			            </c:if> --%>
+
+						<c:if test="${pageMaker.prev}">
+							<li class="paginate_button previous"><a
+								href="${pageMaker.startPage -1}">Previous</a></li>
+						</c:if>
+
+						<c:forEach var="num" begin="${pageMaker.startPage}"
+							end="${pageMaker.endPage}">
+							<li class="paginate_button  ${pageMaker.cri.pageNum == num ?"active":""} ">
+								<a href="${num}">${num}</a>
+							</li>
+						</c:forEach>
+
+						<c:if test="${pageMaker.next}">
+							<li class="paginate_button next"><a
+								href="${pageMaker.endPage +1}">Next</a></li>
+						</c:if>
+
+
+					</ul>
+				</div>
+				<!--  end Pagination -->
 			</div>
 		</section>		
 		<jsp:include page="../common/footer.jsp"></jsp:include> 

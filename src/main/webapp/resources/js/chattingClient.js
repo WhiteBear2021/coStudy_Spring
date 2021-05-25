@@ -1,6 +1,40 @@
-const sock = new SockJS('/echo');
+const sock = new SockJS('/websocket');
+//const sock = new SockJS('/echo');
 const myName = $("#myName").val();
 const roomNo = $("#roomNo").val();
+
+
+	function onopen() {
+		sock.send(JSON.stringify({"roomNo": roomNo, "userNo": myName, type:'ENTER'}));
+	    //$("#chat").append('<li><strong class="login">'+myName+'님이 입장했습니다</strong><li>');
+	    $("#chat").scrollTop($("#chat")[0].scrollHeight);
+	};
+
+	function onmessage(e) {
+	    let data = JSON.parse(e.data);
+	    console.log(data);
+	    
+	    let html;
+	    if(data.user_no == myName){
+	    	html = '<li class="me"><div class="entete"><h3>시간</h3><h2>'+data.user_no+'</h2></div><div class="triangle"></div><div class="message">'+ data.group_msg_log +'</div></li>';
+	    } else{
+	    	html = '<li class="you"><div class="entete"><h2>'+data.user_no+'</h2><h3>시간</h3></div><div class="triangle"></div><div class="message">'+ data.group_msg_log +'</div></li>';
+	    }
+	    
+	    $("#chat").append(html);
+	    $("#chat").scrollTop($("#chat")[0].scrollHeight);
+	   
+	};
+
+	function onclose() {
+	    //$("#chat").append('<li><strong class="login">'+myName+'님이 퇴장했습니다.</strong><li>');
+	    sock.close();
+	};
+	
+	function send(){
+		 sock.send(JSON.stringify({roomNo :$("#roomNo").val(), type:'CHAT', userNo:$("#myName").val(), message: $("#msg").val()}));
+	}
+	
 /*const socket = new SockJS('/chat');
 const stompClient = Stomp.over(socket);
 const header = { userId : "testId"};
@@ -16,43 +50,17 @@ stompClient.connect(header, function(frame){
 	console.log("1111");
 });*/
 
-sock.onopen = function() {
-	sock.send(JSON.stringify({"roomNo": roomNo, "userNo": myName, type:'ENTER'}));
-    $("#chat").append('<li><strong class="login">'+myName+'님이 입장했습니다</strong><li>');
-    $("#chat").scrollTop($("#chat")[0].scrollHeight);
-};
-
-sock.onmessage = function(e) {
-    let data = JSON.parse(e.data);
-    console.log(data);
-    
-    let html;
-    if(data.user_no == myName){
-    	html = '<li class="me"><div class="entete"><h3>시간??</h3><h2>'+data.user_no+'</h2></div><div class="triangle"></div><div class="message">'+ data.group_msg_log +'</div></li>';
-    } else{
-    	html = '<li class="you"><div class="entete"><h2>'+data.user_no+'</h2><h3>시간??</h3></div><div class="triangle"></div><div class="message">'+ data.group_msg_log +'</div></li>';
-    }
-    
-    $("#chat").append(html);
-    $("#chat").scrollTop($("#chat")[0].scrollHeight);
-   
-};
-
-sock.onclose = function() {
-    $("#chat").append('<li><strong class="login">'+myName+'님이 퇴장했습니다.</strong><li>');
-    sock.close();
-};
-
+sock.onopen = socketService.onopen;
+sock.onmessage = socketService.onmessage;
+sock.onclose = socketService.onclose;
 
 $(function(){
 	$("form").submit(function (e) {
 		  e.preventDefault();
-
-		  sock.send(JSON.stringify({roomNo :$("#roomNo").val(), type:'CHAT', userNo:$("#myName").val(), message: $("#msg").val()}));
-		  
+		  socketService.send();
 		  //stompClient.send("/app/users", {}, JSON.stringify({name : "name"}));
 		  $("#msg").val("");
 	});
-	  
 });
+
     

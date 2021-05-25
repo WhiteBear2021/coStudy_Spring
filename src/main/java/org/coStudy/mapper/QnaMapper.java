@@ -9,10 +9,13 @@ import org.coStudy.domain.QnaVO;
 public interface QnaMapper {
 	int UserInsert(QnaVO qna);
 	List<QnaVO> UserList(int user_no);
+	List<QnaVO> UserDetail(QnaVO qna);
+	int UserReplyInsert(QnaVO qna);
 	
-/*	List<QnaVO> QnaInfo(RowBounds row);
-	List<QnaVO> QnaDetail(int qna_no);*/
-/*	int QnaInsertManagerReply(QnaVO qna);
-	int QnaInsertUserReply(QnaVO qna);
-	int countQna();*/
+	List<QnaVO> ManagerList();
+	List<QnaVO> ManagerDetail(int qna_no);
+	int ManagerReplyInsert(QnaVO qna);
+	
+	List<Integer> charts();
+	int charts2();
 }

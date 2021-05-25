@@ -1,6 +1,7 @@
 package org.coStudy.mapper;
 import java.util.List;
 
+import org.coStudy.domain.Criteria;
 import org.coStudy.domain.StudyGroupVO;
 import org.coStudy.domain.StudyNoteVO;
 import org.coStudy.domain.UserVO;
@@ -51,10 +52,43 @@ public class MyPageMapperTests {
 //		List<StudyGroupVO> list=mapper.joinGroupList(1);
 //		log.info(list);
 //	}
-	//세부 목록 보기
+//	//세부 목록 보기
+//	@Test
+//	public void studyDiaryDetail(){
+//		StudyNoteVO diary=mapper.studyDiaryDetail(62);
+//		log.info(diary);
+//	}
+	
+	//여기서 부터 StudyNote paging을 위한 테스트
+	//페이징 테스트 1
 	@Test
-	public void studyDiaryDetail(){
-		StudyNoteVO diary=mapper.studyDiaryDetail(62);
-		log.info(diary);
+	public void pagingTest1(){
+		log.info("페이징 테스트1****************");
+		Criteria cri=new Criteria(); //기본 객체만 생성하면 자동으로 pageNum 1 amount 10으로 설정하도록 해 놓음
+		cri.setUser_no(1);
+		List<StudyNoteVO> list=mapper.studyDiaryListWithPaging(cri);
+		list.forEach(diary->log.info(diary));
+	}
+	
+	//페이징 테스트2
+	@Test
+	public void pagingTest2(){
+		log.info("페이징 테스트2****************");
+		Criteria cri=new Criteria();
+		cri.setPageNum(3);
+		cri.setAmount(5);
+		cri.setUser_no(1);
+		// 요청페이지번호가 3, 페이지당 글 갯수는 5로 지정하여 테스트
+		List<StudyNoteVO> list=mapper.studyDiaryListWithPaging(cri);
+		list.forEach(diary->log.info(diary));
+	}
+	
+	//페이징 테스트3 전체 글갯수 가져오는 쿼리문
+	@Test
+	public void pagingTest3(){
+		log.info("페이징 테스트3****************");
+		
+		int total=mapper.totalStudyDiaryList(1);
+		log.info("전체 글 갯수:"+total);
 	}
 }

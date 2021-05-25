@@ -23,7 +23,7 @@
 				<form>
 					<input type="textarea" id="msg" placeholder="Message">
 					<input type="hidden" id="roomNo" value="${room.roomNo}">
-					<input type="hidden" id="myName" value="${room.myName}">
+					<input type="hidden" id="myName" value="${room.userNo}">
 					<button type="submit">SEND</button>
 				</form>
 			</footer> 
@@ -37,7 +37,7 @@
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-	<script src="/resources/js/chattingClient.js"></script>
+	<script type="module" src="/resources/js/chattingClient.js"></script>
 
 </body>
 </html>

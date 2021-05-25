@@ -9,7 +9,7 @@ public class QnaVO{
 	private String qna_title;
 	private String qna_content;
 	private Date regdate;
-	private int parentNo;
+	private int parentno;
 	private int isread;
 	private int levels;
 	private int user_no;
