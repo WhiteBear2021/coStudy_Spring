@@ -88,6 +88,7 @@ $(function() {
       },
       editable: true,
       droppable: true, // this allows things to be dropped onto the calendar
+      events:allevents, //json 형태의 데이터 값으로 들어있어야지 일정 목록이 나타난다
       drop: function(info) {
         // is the "remove after drop" checkbox checked?
         if (checkbox.checked) {
