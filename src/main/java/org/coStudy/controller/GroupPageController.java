@@ -32,7 +32,6 @@ public class GroupPageController {
 	@ResponseBody
 	@PostMapping("/timer")
 	public ResponseEntity<String> timer(@RequestBody TimerVO vo){
-		log.info("1234");
 		return timerService.insert(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) 
 				  : new ResponseEntity<>("success", HttpStatus.INTERNAL_SERVER_ERROR) ;
 	}

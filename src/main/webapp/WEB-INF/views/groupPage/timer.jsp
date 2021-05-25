@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<input id="user_no" type="hidden" value="${user.user_no }" >
 	<section id="timer">
 	<h2>개인 타이머</h2>
 	<span id="time_output">00:00:00</span>

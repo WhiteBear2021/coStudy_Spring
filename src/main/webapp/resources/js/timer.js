@@ -23,7 +23,7 @@ $(function(){
     	clearInterval(inerval);
     	const param = {
     			time: $("#time_output").text(),
-    			user_no: "1"
+    			user_no: $("#user_no").val()
     	};
     	timerService.add(param,function(result){
     		alert("공부 시간 저장" + result);

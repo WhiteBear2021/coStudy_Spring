@@ -3,16 +3,11 @@ const timerService = (()=>{
 	function add(param, callback, error) {
 		/*const token = $("meta[name='_csrf']").attr("th:content");
 		const header = $("meta[name='_csrf_header']").attr("th:content");*/
-
-		const timer = {
-				time: "test",
-				user_no: "1"
-		};
 		
 		$.ajax({
 			type : 'post',
 			url : '/groupPage/timer',
-			data: JSON.stringify(timer),
+			data: JSON.stringify(param),
 			contentType : "application/json;charset=utf-8",
 			/*beforeSend: function(xhr){
 		        xhr.setRequestHeader(header, token);
