@@ -46,6 +46,71 @@ const timerService = (()=>{
 
 })();
 
+const mainPageService = (()=>{
 
+	function getNew(callback, error) {
+		
+		$.ajax({
+			type : 'post',
+			url : '/getNew',
+			contentType : "application/json;charset=utf-8",
+			dataType : "json",
+			success : function(result, status, xhr) {
+				callback(result);
+			},
+			error : function(xhr, status, er) {
+				console.log(er);
+				if (error) {
+					error(er);
+				}
+			}//end error
+		});
+	}
+	
+	function getHot(callback, error) {
+		
+		$.ajax({
+			type : 'post',
+			url : '/getHot',
+			contentType : "application/json;charset=utf-8",
+			dataType : "json",
+			success : function(result, status, xhr) {
+				callback(result);
+			},
+			error : function(xhr, status, er) {
+				console.log(er);
+				if (error) {
+					error(er);
+				}
+			}//end error
+		});
+	}
+	
+	function getRecom(callback, error) {
+		
+		$.ajax({
+			type : 'post',
+			url : '/getRecom',
+			contentType : "application/json;charset=utf-8",
+			dataType : "json",
+			success : function(result, status, xhr) {
+				callback(result);
+			},
+			error : function(xhr, status, er) {
+				console.log(er);
+				if (error) {
+					error(er);
+				}
+			}//end error
+		});
+	}
 
-export {timerService};
+	return {
+		getNew : getNew,
+		getHot : getHot,
+		getRecom: getRecom
+	};
+
+})();
+
+export {timerService, mainPageService};

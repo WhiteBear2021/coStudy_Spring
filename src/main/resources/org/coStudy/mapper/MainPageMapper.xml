@@ -4,12 +4,39 @@
   
 <mapper namespace="org.coStudy.mapper.MainPageMapper">
 
- 	<select id="getNew" resultType="String">
-		<![CDATA[select studygroup_name 
-		from studygroup
-        where ROWNUM <= 12
-		order by made_date desc	]]>
+ 	<select id="getNew" resultType="org.coStudy.domain.StudyGroupVO">
+		<![CDATA[
+			select * 
+			from studygroup
+	        where ROWNUM <= 12
+			order by made_date desc	
+		]]>
 	</select> 
+	
+	<select id="getHot" resultType="org.coStudy.domain.StudyGroupVO">
+		<![CDATA[
+			select * 
+			from studygroup
+	        where ROWNUM <= 12
+			order by (max_user_number - current_user_number)
+		]]>
+	</select> 
+	
+	<select id="getRecom" parameterType="int" resultType="org.coStudy.domain.StudyGroupVO">
+		<![CDATA[
+			select * 
+			from studygroup
+	        where category_no = #{category_no} and ROWNUM <= 12
+			order by (max_user_number - current_user_number)
+		]]>
+	</select> 
+	
+	 <select id="list" resultType="org.coStudy.domain.StudyGroupVO">
+		select * 
+		from studygroup
+	</select> 
+	
+	
 	
 
 </mapper>
