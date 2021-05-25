@@ -109,6 +109,7 @@ public class GroupPageController {
       VChatRoomVO room = new VChatRoomVO();
       room.setStudygroup_no(studygroup_no);;
       UserVO user = (UserVO) session.getAttribute("user");
+      session.setAttribute("user_nick",user.getUser_nickName());
       room.setUserId(user.getUser_id());
       log.info(room);
       model.addAttribute("room", room);
