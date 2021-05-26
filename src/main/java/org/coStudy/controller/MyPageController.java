@@ -310,7 +310,7 @@ public class MyPageController {
 			String title=(String)tmp.get("title");
 			Boolean allday=(Boolean)tmp.get("allday");
 			String start=(String)tmp.get("start");
-			String end=(String)tmp.get("start");
+			String end=(String)tmp.get("end");
 			log.info("title==>"+title);
 			log.info("allday==>"+allday);
 			log.info("start==>"+start);

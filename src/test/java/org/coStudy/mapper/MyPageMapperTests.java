@@ -94,11 +94,27 @@ public class MyPageMapperTests {
 //	}
 	
 //	일정관리
+//	@Test
+//	public void scheduleListTest(){
+//		log.info("스케쥴 목록 테스트");
+//		
+//		List<ScheduleVO> list=mapper.scheduleList(1);
+//		log.info(list);
+//	}
+	
+	//일정 등록
 	@Test
-	public void scheduleListTest(){
-		log.info("스케쥴 목록 테스트");
+	public void addSchedule(){
+		log.info("일정 등록");
 		
-		List<ScheduleVO> list=mapper.scheduleList(1);
-		log.info(list);
+		ScheduleVO schedule=new ScheduleVO();
+		schedule.setUser_no(1);
+		schedule.setTitle("my event 연습");
+		schedule.setSchedule_start("2021-05-12T00:00:00.000Z");
+		schedule.setSchedule_end("2021-05-12T00:00:00.000Z");
+		schedule.setAllday(true);
+		
+		int re=mapper.scheduleRegister(schedule);
+		log.info("추가 결과:"+re);
 	}
 }

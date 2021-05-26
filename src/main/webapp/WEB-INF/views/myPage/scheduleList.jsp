@@ -90,7 +90,7 @@ html, body {
 	        return return_value;
 	    }//loaddata function end
 $(function() {
-	let all_events=loadData();
+	var all_events=loadData();
 	console.log("all_events:"+all_events);
     var Calendar= FullCalendar.Calendar;
     var Draggable = FullCalendar.Draggable;

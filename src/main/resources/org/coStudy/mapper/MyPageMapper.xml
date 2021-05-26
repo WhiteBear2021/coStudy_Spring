@@ -68,7 +68,8 @@
 	</update>
 	
 	<insert id="scheduleRegister">
-		insert into schedule_test values(#{user_no},test_seq.nextVal,#{title},#{allday},#{start},#{end})
+		insert into schedule_test values(#{user_no},test_seq.nextVal,#{title},#{allday},#{schedule_start},#{schedule_end})
+		
 	</insert>
 	
 	<select id="scheduleList" resultType="org.coStudy.domain.ScheduleVO">
