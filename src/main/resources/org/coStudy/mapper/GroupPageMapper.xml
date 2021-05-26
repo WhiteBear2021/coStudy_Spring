@@ -65,5 +65,22 @@
 		insert into GROUP_REPLY values(seq_group_reply.nextval,#{group_reply_writer},#{group_reply_content},#{page_board_no})
 	
 	</insert>
+	
+	<insert id="insertFile" parameterType="org.coStudy.domain.GroupFileVO">
+		INSERT INTO
+		group_file values (
+		seq_group_file.NEXTVAL,#{group_file},#{file_size},
+		#{file_title},#{studyGroup_no}, #{user_no})
+	</insert>
+	
+	<select id="fileList" resultType="org.coStudy.domain.GroupFileVO"
+		parameterType="int">
+		<!-- SELECT page_board_content FROM group_page_board -->
+		SELECT *
+		FROM group_file
+		where STUDYGROUP_NO=#{STUDYGROUP_NO}
+		order by
+		GROUP_FILE_NO desc
+	</select>
 
 </mapper>

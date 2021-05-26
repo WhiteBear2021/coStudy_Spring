@@ -3,6 +3,7 @@ package org.coStudy.service;
 import java.util.List;
 
 import org.coStudy.domain.ApplyGroupMemberVO;
+import org.coStudy.domain.GroupFileVO;
 import org.coStudy.domain.GroupPageBoardVO;
 import org.coStudy.domain.GroupReplyVO;
 import org.coStudy.mapper.GroupPageMapper;
@@ -49,6 +50,16 @@ public class GroupPageServiceImple implements GroupPageService {
 	@Override
 	public int insertGroupReply(GroupReplyVO groupReplyVO) {
 		return mapper.insertGroupReply(groupReplyVO);
+	}
+
+	@Override
+	public int insertFile(GroupFileVO groupFile) {
+		return mapper.insertFile(groupFile);
+	}
+
+	@Override
+	public List<GroupFileVO> fileList(int studyGroup_no) {
+		return mapper.fileList(studyGroup_no);
 	}
 
 }

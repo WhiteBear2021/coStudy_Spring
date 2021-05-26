@@ -3,6 +3,7 @@ package org.coStudy.mapper;
 import java.util.List;
 
 import org.coStudy.domain.ApplyGroupMemberVO;
+import org.coStudy.domain.GroupFileVO;
 import org.coStudy.domain.GroupPageBoardVO;
 import org.coStudy.domain.GroupReplyVO;
 
@@ -20,6 +21,9 @@ public interface GroupPageMapper {
 	
 	List<GroupReplyVO> listGroupReply(int page_board_no);
 	int insertGroupReply(GroupReplyVO groupReplyVO);
+	int insertFile(GroupFileVO groupFile);
+	List<GroupFileVO> fileList(int studyGroup_no);
+	
 }
 
 
