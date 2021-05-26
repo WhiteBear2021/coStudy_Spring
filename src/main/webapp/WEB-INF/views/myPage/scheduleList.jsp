@@ -113,6 +113,37 @@ html, body {
 	        console.log("함수 리턴 값:"+return_value);
 	        return return_value;
 	    }//loaddata function end
+	    function date_to_str(format)
+
+	    {
+
+	        var year = format.getFullYear();
+
+	        var month = format.getMonth() + 1;
+
+	        if(month<10) month = '0' + month;
+
+	        var date = format.getDate();
+
+	        if(date<10) date = '0' + date;
+
+	        var hour = format.getHours();
+
+	        if(hour<10) hour = '0' + hour;
+
+	        var min = format.getMinutes();
+
+	        if(min<10) min = '0' + min;
+
+	        var sec = format.getSeconds();
+
+	        if(sec<10) sec = '0' + sec;
+
+	        
+
+	        return year + "-" + month + "-" + date + "T" + hour + ":" + min + ":" + sec+".000Z";
+	    }
+
 $(function() {
 	var all_events=loadData();
 	console.log("all_events:"+all_events);
@@ -266,7 +297,7 @@ $(function() {
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label">종일 여부</label>
-											<input type="checkbox" name="allDay" id="allDay" value="true"><br>
+											<input type="checkbox" name="allDay" id="allDay" ><br>
 											<label class="control-label">시작일</label>
 											<div class='input-group date' id='datepicker1'>
 												<input type='text' class="form-control" id='start'/> <span
@@ -319,20 +350,29 @@ $(function() {
         	  //일정 달력에 등록
         	  $("#addBtn").on("click",function(){
         		 var addObj={};
-        		 
+        		 var allday=false;
+        		 if($("#allDay").is(':checked')) allday=true;
+        		 console.log("allday값:"+allday);
         		 addObj.title=$("#title").val();
-        		 addObj.allday=$("#allDay").val();
-        		 addObj.start=$("#start").val();
-        			
-        		 var a=Date.parse("dd/MM/yyyy HH:mm a",$("#start").val()).format("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        		 addObj.allday=allday;
+        		 
+        		// Date.parse("dd/MM/yyyy HH:mm a",$("#start").val()).format("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+        		 var a=Date.parse($("#start").val());
+        		 var b=Date.parse($("#end").val());
         	  	console.log(a);
-        		 addObj.end=$("#end").val();
+        	  	console.log(b);
+        	  	var a_date=date_to_str(new Date(a));
+        	  	var b_date=date_to_str(new Date(b));
+        	  	console.log(a_date);
+        	  	console.log(b_date);
+        	  	 addObj.start=a_date;
+        		 addObj.end=b_date;
         		
         		console.log(addObj);
         		
         		var strObj=JSON.stringify(addObj);
         		addData(strObj);
-  //      		location.reload()
+        		location.reload();
         	  });
         	//일정 저장 클릭 이벤트
             $("#saveBtn").on("click",function(){
@@ -346,6 +386,7 @@ $(function() {
                     var obj={};
                     obj.title=element._def.title;     //이벤트 명칭
                     obj.allday=element._def.allDay;    //하루종일 여부 true false
+                    console.log(obj.allday);
                     obj.start=element._instance.range.start;
                     obj.end=element._instance.range.end;     
                     

@@ -71,11 +71,11 @@
 	
 	
 	<insert id="scheduleRegister">
-		insert into schedule_test values(#{user_no},test_seq.nextVal,#{title},#{allday},#{schedule_start},#{schedule_end})
+		insert into schedule values(#{user_no},test_seq.nextVal,#{title},#{allday},#{schedule_start},#{schedule_end})
 	</insert>
 	
 	<select id="scheduleList" resultType="org.coStudy.domain.ScheduleVO">
 		select schedule_no,schedule_title title, all_day allday, schedule_start, schedule_end
-		from schedule_test where user_no=#{user_no}
+		from schedule where user_no=#{user_no}
 	</select>
 </mapper>
