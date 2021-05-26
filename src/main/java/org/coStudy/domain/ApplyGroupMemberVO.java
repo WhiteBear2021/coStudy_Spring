@@ -8,6 +8,6 @@ import lombok.Data;
 public class ApplyGroupMemberVO implements Serializable{
 	private char isAccept;
 	private int user_no;
-	private int studyGroup_no;
+	private int studygroup_no;
 	
 }

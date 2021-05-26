@@ -79,14 +79,20 @@
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="filter__controls">
-                        <li class="active" data-filter=".new-arrivals">NEW</li>
-                        <li data-filter=".hot">HOT</li>
-                        <li data-filter=".recommend">RECOMMEND</li>
+                        <li value="new">NEW</li>
+                        <li value="hot">HOT</li>
+                        <li value="recom">RECOMMEND</li>
                     </ul>
                 </div>
             </div>
             
-            <div class="row product__filter">
+            <div class="row product__filter" id="newGroup" >
+            
+            </div>
+            <div class="row product__filter" id="hotGroup" style="display:none;">
+            
+            </div>
+            <div class="row product__filter" id="recomGroup" style="display:none;">
             
             </div>
         </div>

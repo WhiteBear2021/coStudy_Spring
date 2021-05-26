@@ -3,27 +3,27 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.coStudy.mapper.StudyGroupMapper">
-	<sql id="criteria">
-		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
-			<foreach item='type' collection="typeArr">
-				<trim prefix="OR">
-					<choose>
-						<when test="type == 'W'.toString()">
-							category_no like '%'||#{keyword}||'%'
-						</when>
-						<when test="type == 'T'.toString()">
-							studygroup_info like '%'||#{keyword}||'%'
-						</when>
-						<when test="type == 'C'.toString()">
-							user_no like '%'||#{keyword}||'%'
-						</when>
-					</choose>
-				</trim>
-			</foreach>
-		</trim>
-	</sql>
+   <sql id="criteria">
+      <trim prefix="(" suffix=") AND " prefixOverrides="OR">
+         <foreach item='type' collection="typeArr">
+            <trim prefix="OR">
+               <choose>
+                  <when test="type == 'W'.toString()">
+                     category_no like '%'||#{keyword}||'%'
+                  </when>
+                  <when test="type == 'T'.toString()">
+                     studygroup_info like '%'||#{keyword}||'%'
+                  </when>
+                  <when test="type == 'C'.toString()">
+                     user_no like '%'||#{keyword}||'%'
+                  </when>
+               </choose>
+            </trim>
+         </foreach>
+      </trim>
+   </sql>
 
-	<select id="list" resultType="org.coStudy.domain.StudyGroupVO">
+   <select id="list" resultType="org.coStudy.domain.StudyGroupVO">
        <![CDATA[
          select 
             * 
@@ -57,38 +57,43 @@
    </select> 
 
 
-	<select id="getTotalCount" resultType="int">
-		select count(*) from studygroup where 
-		<include refid="criteria"></include>
-		studygroup_no > 0
-				
-	</select>
+   <select id="getTotalCount" resultType="int">
+      select count(*) from studygroup where 
+      <include refid="criteria"></include>
+      studygroup_no > 0
+            
+   </select>
 
 
-	<insert id="insert" parameterType="org.coStudy.domain.StudyGroupVO">
-		insert into studygroup values(
-		seq_studygroup.nextval,
-		#{studygroup_name},
-		#{studygroup_info},
-		#{studygroup_location},
-		#{max_user_number},
-		1,
-		SYSDATE,
-		'N',
-		#{isface},
-		#{category_no},
-		#{user_no},
-		#{img},
-		#{thumbimg}
-		)
-	</insert>
+   <insert id="insert" parameterType="org.coStudy.domain.StudyGroupVO">
+      insert into studygroup values(
+      seq_studygroup.nextval,
+      #{studygroup_name},
+      #{studygroup_info},
+      #{studygroup_location},
+      #{max_user_number},
+      1,
+      SYSDATE,
+      'N',
+      #{isface},
+      #{category_no},
+      #{user_no},
+      #{img},
+      #{thumbimg}
+      )
+   </insert>
 
-	<select id="detail" resultType="org.coStudy.domain.StudyGroupVO"
-		parameterType="int">
-		select *
-		from studygroup
-		where
-		studygroup_no=#{studygroup_no}
-	</select>
+   <select id="detail" resultType="org.coStudy.domain.StudyGroupVO"
+      parameterType="int">
+      select *
+      from studygroup
+      where
+      studygroup_no=#{studygroup_no}
+   </select>
+   
+   <insert id="apply" parameterType="org.coStudy.domain.ApplyGroupMemberVO">
+      insert into apply_group_member values('O', #{user_no}, #{studygroup_no})
+   </insert>
+   
 
 </mapper>

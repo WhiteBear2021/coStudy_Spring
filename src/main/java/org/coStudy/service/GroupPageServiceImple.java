@@ -5,6 +5,8 @@ import java.util.List;
 import org.coStudy.domain.ApplyGroupMemberVO;
 import org.coStudy.domain.GroupPageBoardVO;
 import org.coStudy.domain.GroupReplyVO;
+import org.coStudy.domain.GroupUserVO;
+import org.coStudy.domain.UserVO;
 import org.coStudy.mapper.GroupPageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,15 +42,21 @@ public class GroupPageServiceImple implements GroupPageService {
 		return mapper.acceptMember(insertMember);
 	}
 
-	@Override
-	public List<GroupReplyVO> listGroupReply(int page_board_no) {
-		// TODO Auto-generated method stub
-		return mapper.listGroupReply(page_board_no);
-	}
+
 
 	@Override
 	public int insertGroupReply(GroupReplyVO groupReplyVO) {
 		return mapper.insertGroupReply(groupReplyVO);
+	}
+
+	@Override
+	public List<UserVO> groupUserList(int studygroup_no) {
+		return mapper.groupUserList(studygroup_no);
+	}
+
+	@Override
+	public List<GroupReplyVO> listGroupReply() {
+		return mapper.listGroupReply();
 	}
 
 }

@@ -2,6 +2,7 @@ import {mainPageService} from './modules.js';
 
 $(function(){
 	init();
+	
 });
 
 function init(){
@@ -12,7 +13,7 @@ function init(){
 		for(let i = 0; i < result.length; i++){
 		
 			let html = "";
-			html += '<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">';
+			html += '<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6">';
 			html += '	<div class="product__item">';
 			html += '		<div class="product__item__pic set-bg">';
 			html += ' 			<img src='+result[i].thumbimg+' alt=""  style="width: 262px; height: 262px">';
@@ -24,7 +25,7 @@ function init(){
 			html += ' 			<h5>'+category[result[i].category_no]+'</h5>';
 			html += '		</div></div></div>';
 			
-			$(".product__filter").append(html);
+			$("#newGroup").append(html);
 		}
 	});
 
@@ -32,7 +33,7 @@ function init(){
 		console.log(result);
 		for(let i = 0; i < result.length; i++){
 			let html = "";
-			html += '<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot">';
+			html += '<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6">';
 			html += '	<div class="product__item sale">';
 			html += '		<div class="product__item__pic set-bg">';
 			html += ' 			<img src='+result[i].thumbimg+' alt=""  style="width: 262px; height: 262px">';
@@ -44,17 +45,18 @@ function init(){
 			html += ' 			<h5>'+category[result[i].category_no]+'</h5>';
 			html += '		</div></div></div>';
 			
-			$(".product__filter").append(html);
+			$("#hotGroup").append(html);
 		}
 	});
 	
-	if($('#user_no').val() !==null){
+	if($('#user_no').val() !== ""){
+		
 		mainPageService.getRecom((result)=>{
 			console.log(result);
 			for(let i = 0; i < result.length; i++){
 			
 				let html = "";
-				html += '<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix recomend">';
+				html += '<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6">';
 				html += '	<div class="product__item sale">';
 				html += '		<div class="product__item__pic set-bg">';
 				html += ' 			<img src='+result[i].thumbimg+' alt=""  style="width: 262px; height: 262px">';
@@ -66,7 +68,7 @@ function init(){
 				html += ' 			<h5>'+category[result[i].category_no]+'</h5>';
 				html += '		</div></div></div>';
 				
-				$(".product__filter").append(html);
+				$("#recomGroup").append(html);
 			}
 		});
 	}//end if
