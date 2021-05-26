@@ -43,7 +43,7 @@
 }
 
 .padding {
-	padding: 5rem
+	padding-top: 3rem
 }
 
 .card {
@@ -495,7 +495,7 @@ input[type="radio"], input[type="checkbox"] {
 							<div class="col-md-12">
 								<div class="card px-3">
 									<div class="card-body">
-										<h4 class="card-title">Awesome Todo list</h4>
+										<h4 class="card-title">Today TODO</h4>
 
 										<!--form 부분  -->
 										<form id="commentForm" name="commentForm" method="post">
@@ -638,11 +638,20 @@ input[type="radio"], input[type="checkbox"] {
 									html += '<input class="checkbox" type="checkbox" id="cb" name="cb" value="'+data[i].todo_no+'" checked="checked">'
 											+ data[i].todo_content
 											+ '<i class="input-helper"></i></label> </div>';
-									html+='<div style="display:none;" id="tno">'+data[i].todo_no+'<div>'
+									html+='<div style="display:none;" class="tno">'+data[i].todo_no+'</div>';
 									html += '<i class="remove mdi mdi-close-circle-outline"></i>';
+									html+='</li>';
 								}else{
 						
-			
+					/* 				 <li class="completed">
+	                                    <div class="form-check">
+	                                    <label class="form-check-label">
+	                                    <input class="checkbox" type="checkbox" checked=""> 
+	                                    For what reason would it be advisable for me to think.
+	                                    <i class="input-helper"></i></label> </div> 
+	                                    <i class="remove mdi mdi-close-circle-outline"></i>
+	                                </li> */
+	                                
 									
 									html += '<li>';
 									html += '<div class="form-check">';
@@ -650,8 +659,9 @@ input[type="radio"], input[type="checkbox"] {
 									html += '<input class="checkbox" type="checkbox" id="cb" name="cb" value="'+data[i].todo_no+'">'
 											+ data[i].todo_content
 											+ '<i class="input-helper"></i></label> </div>';
-									html+='<div style="display:none;" id="tno">'+data[i].todo_no+'<div>'
+									html+='<div style="display:none;" class="tno">'+data[i].todo_no+'</div>';
 									html += '<i class="remove mdi mdi-close-circle-outline"></i>';	
+									html+='</li>';
 								}
 									
 								
@@ -707,7 +717,7 @@ input[type="radio"], input[type="checkbox"] {
 							});
 
 			todoListItem.on('change', '.checkbox', function(e) {
-				var t_no=$(this).val()
+				var todo_no=$(this).val()
 				//클릭 풀었을때
 				if ($(this).attr('checked')) {
 					$(this).removeAttr('checked');
@@ -720,10 +730,10 @@ input[type="radio"], input[type="checkbox"] {
 					//console.log($(this));
 					
 					//var t_no=$('#tno').text();
-					console.log("todo번호:"+t_no);
-/* 					$.ajax({
+					console.log("todo번호:"+todo_no);
+ 					$.ajax({
 						type : 'POST',
-						url : "<c:url value='/myPage/toDo'/>",
+						url : "toDoUpdate?todo_no=" + todo_no,
 						data : $("#commentForm").serialize(),
 						success : function(data) {
 							if (data == 'ss') {
@@ -736,7 +746,7 @@ input[type="radio"], input[type="checkbox"] {
 
 						}
 
-					}); */
+					}); 
 				}
 
 				$(this).closest("li").toggleClass('completed');
@@ -745,7 +755,27 @@ input[type="radio"], input[type="checkbox"] {
 
 			todoListItem.on('click', '.remove', function() {
 				$(this).parent().remove();
+				var todo_no=$(this).prev().text();
 				console.log("삭제되나");
+				console.log(todo_no);
+				
+				$.ajax({
+					type : 'POST',
+					url : "toDoDelete?todo_no=" + todo_no,
+					data : $("#commentForm").serialize(),
+					success : function(data) {
+						if (data == 'ss') {
+							console.log(data);
+							getCommentList();
+						}
+
+					},
+					error : function(request, status, error) {
+
+					}
+
+				}); 
+				
 			}); 
 
 		});
