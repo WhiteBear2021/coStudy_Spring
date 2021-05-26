@@ -78,9 +78,18 @@
    </div>
    <div class="col-lg-2" id="sidelist">
          <div class="naccs">
+			<button class="menu" style="margin-right: 50px;">
+				<span>피드</span>				
+			</button>
+			<button class="menu" style="margin-right: 50px;">
+				<span onclick="location.href='/groupPage/groupSetting?studygroup_no=${studygroup_no }'">AcceptMember</span>	
+			</button>
+			<button class="menu" style="margin-right: 50px;">
+				<span>파일 보관함</span>		
+			</button>
+			
 
-
-            <div class="menu" style="margin-right: 50px;">
+           <!-- div class="menu" style="margin-right: 50px;">
                <div class="active">
                   <span class="light"></span><span>피드</span>
                </div>
@@ -91,7 +100,7 @@
                <div>
                   <span class="light"></span><span>list</span>
                </div>
-            </div>
+            </div>-->
 
 
          </div>
@@ -116,7 +125,7 @@
                            <!--작성자 이름  -->
                            <div class="pull-left meta">
                               <div class="title h5">
-                                 <a href="#"><b>user_1</b></a> 작성함
+                                 <a href="#"><b>${board.page_board_writer }</b></a> 작성함
                               </div>
                              <%--  <input type="hidden" value="${board.page_board_no }">
                               <h6 class="text-muted time">${board.page_board_date }</h6>
@@ -161,8 +170,7 @@
                                     </a>
                                        <div class="comment-body">
                                           <div class="comment-heading">
-                                             <h4 class="user">${relist.group_reply_no }</h4>
-                                             <h5 class="time">${relist.page_board_no }</h5>
+                                             <h4 class="user">${relist.group_reply_writer }</h4>
                                           </div>
                                           <p>${relist.group_reply_content }</p>
                                        </div></li>
@@ -189,7 +197,7 @@
                   <div id="right-sidebar-fileBox"></div>
                   <a href="../chatting/chattingRoom.do?roomNo=${roomNo}"
                      onclick="window.open(this.href, '_blank', 'width=800, height=1000'); return false;">그룹
-                     채팅</a></br></br>
+                     채팅</a>
                      <a href="/groupPage/voiceChatting?studygroup_no=${studygroup_no}"
                      onclick="window.open(this.href, '_blank', 'width=2000, height=1000'); return false;">음성
                      채팅</a>
@@ -197,19 +205,13 @@
                <div id="group-Main-right-bottom"  class="panel panel-white post panel-shadow" class="col-md-5" >
                   <div id="right-sidebar-userlist">
                      <table class="table table-hover" id="userlist">
-                        <tr>
-                           <td>...</td>
-
+                      <c:forEach var="userList" items="${userList }">
+                      <tr>
+                           <td>${userList.user_lastName }${userList.user_firstName }</td>
                         </tr>
-                        <tr>
-                           <td>...</td>
-                        </tr>
-                        <tr>
-                           <td>...</td>
-                        </tr>
-                        <tr>
-                           <td>...</td>
-                        </tr>
+                      </c:forEach>
+                        
+                      
                      </table>
                   </div>
                   <div id="right-sidebar-groupchat"></div>

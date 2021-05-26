@@ -55,15 +55,35 @@
 
 	</insert>
 
-	<select id="listGroupReply" resultType="org.coStudy.domain.GroupReplyVO"
-		parameterType="int">
+	<select id="listGroupReply" resultType="org.coStudy.domain.GroupReplyVO">
 		select * from GROUP_REPLY
-		where PAGE_BOARD_NO=#{page_board_no}
 	</select>
 
 	<insert id="insertGroupReply" parameterType="org.coStudy.domain.GroupReplyVO">
-		insert into GROUP_REPLY values(seq_group_reply.nextval,#{group_reply_writer},#{group_reply_content},#{page_board_no})
-	
+		insert into
+		GROUP_REPLY
+		values(seq_group_reply.nextval,#{group_reply_writer},#{group_reply_content},#{page_board_no})
+
 	</insert>
+
+	<select id="groupUserList" resultType="org.coStudy.domain.UserVO"
+		parameterType="int">
+		SELECT u.user_lastname as user_lastName ,
+		u.user_firstname as user_firstName
+		FROM user_info u
+		LEFT OUTER JOIN
+		groupuser g on u.user_no = g.user_no
+		WHERE g.studygroup_no =
+		#{studygroup_no}
+
+	</select>
+
+	<!-- <select id="selectApplyList" resultType="org.coStudy.domain.ApplyGroupMemberVO"
+		parameterType="int">
+		SELECT u.user_lastname as user_lastName , u.user_firstname as user_firstName
+		FROM user_info u
+		LEFT OUTER JOIN Apply_group_member a on a.user_no = u.user_no
+		WHERE a.studygroup_no = #{studygroup_no}
+	</select> -->
 
 </mapper>
