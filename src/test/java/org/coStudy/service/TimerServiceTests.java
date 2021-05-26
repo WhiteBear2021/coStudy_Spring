@@ -17,12 +17,17 @@ public class TimerServiceTests {
 	@Setter(onMethod_ = @Autowired)
 	TimerService service;
 	
+//	@Test
+//	public void testInsert(){
+//		TimerVO vo = new TimerVO();
+//		vo.setTime("01:10:00");
+//		vo.setUser_no(3);
+//		log.info("=======service test=======");
+//		log.info("성공? "+service.insert(vo));
+//	}
+	
 	@Test
 	public void testInsert(){
-		TimerVO vo = new TimerVO();
-		vo.setTime("01:10:00");
-		vo.setUser_no(3);
-		log.info("=======service test=======");
-		log.info("성공? "+service.insert(vo));
+		service.list(1).forEach(action -> log.info(action));
 	}
 }
