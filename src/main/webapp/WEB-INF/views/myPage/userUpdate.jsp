@@ -34,7 +34,7 @@
                 <hr style="width:800px;" class="text-primary">
 		        <div class="row mb-5">
                     <div class="col-lg-8 m-auto bg-white border border-primary p-3">
-					<form action="userUpdate" method="post">
+					<form action="userUpdate" method="post" enctype="multipart/form-data">
 					        <input type="hidden" name="user_no" value="${user.user_no}">
 					        <input type="hidden" name="user_id" value="${user.user_id}">
 					        <input type="hidden" name="category_no" value="${user.category_no}">
@@ -43,6 +43,18 @@
 					        <label>
 					        	<p><b>아이디 :</b> ${sessionScope.user.user_id}
 					        </label>
+					    	<label>
+					        	<p><b>닉네임 :</b> <input type="text" name="user_nickName" value="${sessionScope.user.user_nickName}"></p>
+					        </label>
+					        
+					        <div class="inputArea">
+								<label for="img">이미지</label> 
+								<input type="file" id="img"
+									name="file" />
+								<div class="select_img">
+									<img src="" />
+								</div>	
+							</div>
 					        <label>
 					        	<p><b>비밀번호 :</b> <input type="password" name="user_pw" value="${sessionScope.user.user_pw}"></p>
 					        </label>
@@ -87,6 +99,20 @@
 		        </div>
 	        </div>
 	    </section>
+	    <script>
+						$("#img").change(
+								function() {
+									if (this.files && this.files[0]) {
+										var reader = new FileReader;
+										reader.onload = function(data) {
+											$(".select_img img").attr("src",
+													data.target.result).width(
+													500);
+										}
+										reader.readAsDataURL(this.files[0]);
+									}
+								});
+		</script>
 	    <jsp:include page="../common/footer.jsp"></jsp:include> 
 </body>
 </html>

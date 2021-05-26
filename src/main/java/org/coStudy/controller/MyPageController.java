@@ -1,10 +1,13 @@
 package org.coStudy.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.coStudy.domain.Criteria;
@@ -19,6 +22,7 @@ import org.coStudy.domain.toDoVO;
 import org.coStudy.service.MyPageService;
 import org.coStudy.service.QnaService;
 import org.coStudy.service.UserService;
+import org.coStudy.utils.UploadFileUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -37,6 +41,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -49,7 +55,10 @@ public class MyPageController {
 
 	MyPageService service;
 	UserService user_service;
-
+	
+	@Resource(name="uploadPath")
+	private String uploadPath;
+	
 	@GetMapping("/toDo")
 	public void toDo() {
 
@@ -154,19 +163,31 @@ public class MyPageController {
 
 	// Update 된 후에 어떤 페이지로 갈 지 정하기.
 	@PostMapping("/userUpdate")
-	public String userUpdate(HttpSession session, UserVO user, Model model) {
+	public String userUpdate(HttpSession session, UserVO user, MultipartFile file,RedirectAttributes rttr) throws IOException, Exception {
 		log.info("*********************");
 		log.info("userUdpate Post");
 		log.info("update할 user 정보:" + user);
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+	      String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+	      String fileName = null;
+
+	      if(file != null) {
+	       fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+	      } else {
+	       fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+	      }
+
+	      user.setUser_thumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+	      user.setUser_photo(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 		int re = service.updateUser(user);
 		if (re > 0) {
 			log.info("*********************");
 			log.info("userProfile 페이지로 이동!!");
 			log.info("수정한 회원정보:" + user);
 			session.setAttribute("user", user);
-			model.addAttribute("mesg", "회원정보가 수정 되었습니다.");
+			rttr.addFlashAttribute("mesg", "회원정보가 수정 되었습니다.");
 		} else {
-			model.addAttribute("mesg", "회원정보가 수정이 실패하였습니다.");
+			rttr.addFlashAttribute("mesg", "회원정보가 수정이 실패하였습니다.");
 		}
 		return "redirect:/myPage/userProfile";
 	}

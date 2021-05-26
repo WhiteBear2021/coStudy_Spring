@@ -21,5 +21,6 @@ public class UserVO implements Serializable{
 	private String user_register_date;
 	private String user_nickName;
 	private String user_photo;
+	private String user_thumbImg;
 	
 }
