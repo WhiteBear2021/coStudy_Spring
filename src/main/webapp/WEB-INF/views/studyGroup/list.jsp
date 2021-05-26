@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,22 +105,21 @@
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg">
-                                 	<img src="${studyGroup.thumbimg}" style="width: 262px; height: 262px;">
+                                    <img src="${studyGroup.thumbimg}" style="width: 262px; height: 262px;">
                                 </div>
                                 <div class="product__item__text">
-                                    <a href="#" class="add-cart">+more</a>
+                                    <a href="/studyGroup/detail?studygroup_no=${studyGroup.studygroup_no }" class="add-cart">+more</a>
                                    
                                     <h6>${studyGroup.category_no }</h6>
-                                    <h5>${studyGroup.studygroup_name }</h5>
+                                    
                                     <p>${studyGroup.studygroup_no }</p>
                                    
                                 </div>
+                                <h5><a href="/studyGroup/detail?studygroup_no=${studyGroup.studygroup_no }">${studyGroup.studygroup_name }</a></h5>
                             </div>
                         </div>
                
                </c:forEach>
-          
-              
                       
                   
               
@@ -138,7 +137,7 @@
    <!-- 이전 영역 -->
 
    <nav aria-label="...">
-      <ul class="pagination">
+      <ul class="pagination" style="clear:right;width:500px;margin:auto">
          <!--이전  -->
          <c:if test="${pageMaker.prev}">
             <li class="page-item"><a class="page-link"
@@ -190,9 +189,9 @@
       <input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
       <input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
       <input type="hidden" name="type" value="${pageMaker.cri.type}">
-         <input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
+      <input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
    </form>
-    
+   
     
     
 <jsp:include page="../common/footer.jsp"></jsp:include><hr>

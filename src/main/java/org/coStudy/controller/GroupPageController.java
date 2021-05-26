@@ -3,16 +3,14 @@ package org.coStudy.controller;
 import java.security.Provider.Service;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
 import org.coStudy.domain.ChatRoomVO;
 import org.coStudy.domain.GroupPageBoardVO;
 import org.coStudy.domain.GroupReplyVO;
+import org.coStudy.domain.GroupUserVO;
 import org.coStudy.domain.TimerVO;
 import org.coStudy.domain.UserVO;
 import org.coStudy.domain.VChatRoomVO;
-import org.coStudy.mapper.GroupPageMapper;
 import org.coStudy.service.GroupPageService;
 import org.coStudy.service.TimerService;
 import org.springframework.http.HttpStatus;
@@ -20,15 +18,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -90,7 +85,24 @@ public class GroupPageController {
 	/*
 	 * @GetMapping("/groupMain") public String groupBoardMain() throws Exception
 	 * { log.info("groupMain"); return "groupPage/groupMain"; }
+	 * 
+	 * 
 	 */
+
+	@GetMapping("/groupMain")
+	public String groupBoardList(Model model, @RequestParam("studygroup_no") int studygroup_no) {
+		log.info("groupBoardList(Main)");
+
+		model.addAttribute("boardList", groupPage_service.groupBoardList(studygroup_no));
+		model.addAttribute("studygroup_no", studygroup_no);
+
+		model.addAttribute("userList", groupPage_service.groupUserList(studygroup_no));
+		model.addAttribute("relist", groupPage_service.listGroupReply());
+		
+		return "groupPage/groupMain";
+
+	}
+
 	@PostMapping("/insertGroupReply")
 	public String insertGroupReply(Model model, @RequestParam("studygroup_no") int studygroup_no,
 			@RequestParam("group_reply_content") String group_reply_content,
@@ -108,19 +120,15 @@ public class GroupPageController {
 		vo.setPage_board_no(page_board_no);
 
 		groupPage_service.insertGroupReply(vo);
+		
 
-		model.addAttribute("relist", groupPage_service.listGroupReply(page_board_no));
+		
 		return "redirect:/groupPage/groupMain?studygroup_no=" + studygroup_no;
 
 	}
 
-	@GetMapping("/groupMain")
-	public String groupBoardList(Model model, @RequestParam("studygroup_no") int studygroup_no) {
-		log.info("groupBoardList(Main)");
-		model.addAttribute("boardList", groupPage_service.groupBoardList(studygroup_no));
-		model.addAttribute("studygroup_no", studygroup_no);
-
-		return "groupPage/groupMain";
+	@GetMapping("/insertGroupReply")
+	public void insertGroupReply() {
 
 	}
 
@@ -147,10 +155,18 @@ public class GroupPageController {
 
 	}
 
-	@GetMapping("/groupSetting")
-	public String AcceptMember() {
+	//@GetMapping("/groupSetting")
+	//public String acceptMember(Model model, @RequestParam("studygroup_no") int studygroup_no) {
+	//	model.addAttribute("selectList",groupPage_service.selectApplyList(studygroup_no));
+		
+		
+		//return "groupPage/groupSetting";}
 
-		return "groupPage/groupSetting";
+
+
+	@GetMapping("/groupUserList")
+	public void groupUserList() {
+
 	}
 
 	@GetMapping("/voiceChatting")
