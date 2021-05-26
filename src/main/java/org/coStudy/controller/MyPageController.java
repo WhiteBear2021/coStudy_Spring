@@ -1,6 +1,7 @@
 package org.coStudy.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import org.coStudy.domain.Criteria;
 import org.coStudy.domain.LoginVO;
 import org.coStudy.domain.PageDTO;
 import org.coStudy.domain.QnaVO;
+import org.coStudy.domain.ScheduleVO;
 import org.coStudy.domain.StudyGroupVO;
 import org.coStudy.domain.StudyNoteVO;
 import org.coStudy.domain.UserVO;
@@ -18,6 +20,9 @@ import org.coStudy.service.MyPageService;
 import org.coStudy.service.QnaService;
 import org.coStudy.service.UserService;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +32,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -281,10 +287,56 @@ public class MyPageController {
 
 	@PostMapping("/scheduleSave")
 	@ResponseBody
-	public void scheduleLSave(@RequestParam("jsondata") String jsondata) {
+	public void scheduleLSave(@RequestParam("jsondata") String jsondata,HttpSession session){
 		log.info("*********************");
 		log.info("scheduleSave 중");
 		log.info(jsondata);
+		JSONParser parser=new JSONParser();
+		
+		JSONArray scheduleObj=null;
+		try {
+			scheduleObj = (JSONArray)parser.parse(jsondata);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		UserVO user=(UserVO)session.getAttribute("user");
+		int user_no=user.getUser_no();
+		
+		List<ScheduleVO> list=new ArrayList<ScheduleVO>();
+		for (Object s : scheduleObj) {
+			log.info(s);
+			JSONObject tmp=(JSONObject)s;
+			String title=(String)tmp.get("title");
+			Boolean allday=(Boolean)tmp.get("allday");
+			String start=(String)tmp.get("start");
+			String end=(String)tmp.get("start");
+			log.info("title==>"+title);
+			log.info("allday==>"+allday);
+			log.info("start==>"+start);
+			log.info("end==>"+end);
+			ScheduleVO schedule=new ScheduleVO();
+			schedule.setUser_no(user_no);
+			schedule.setTitle(title);
+			schedule.setSchedule_start(start);
+			schedule.setSchedule_end(end);
+			schedule.setAllday(allday);
+			list.add(schedule);
+			service.scheduleRegister(schedule);
+		}
+		
 	}
-
+	
+		@PostMapping("/scheduleLoad")
+		@ResponseBody
+		public List<ScheduleVO> scheduleLoad(HttpSession session){
+			log.info("스케쥴 list");
+			UserVO user=(UserVO)session.getAttribute("user");
+			int user_no=user.getUser_no();
+			
+			List<ScheduleVO> list=service.scheduleList(user_no);
+			log.info(list);
+			return list;
+		}
+	
 }
