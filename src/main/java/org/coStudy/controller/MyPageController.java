@@ -364,10 +364,11 @@ public class MyPageController {
 		int user_no=user.getUser_no();
 		
 		List<ScheduleVO> list=new ArrayList<ScheduleVO>();
+		service.scheduleDeleteAll(user_no);
 		for (Object s : scheduleObj) {
 			log.info(s);
 			JSONObject tmp=(JSONObject)s;
-			int schedule_no=Integer.parseInt((String)tmp.get("schedule_no"));
+//			int schedule_no=Integer.parseInt((String)tmp.get("schedule_no"));
 			String title=(String)tmp.get("title");
 			Boolean allday=(Boolean)tmp.get("allday");
 			String start=(String)tmp.get("start");
@@ -385,7 +386,7 @@ public class MyPageController {
 			schedule.setAllday(allday);
 			list.add(schedule);
 			
-			service.scheduleDeleteAll(user_no);
+
 			service.scheduleRegister(schedule);
 		}
 		

@@ -79,7 +79,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public String login(LoginVO login,@RequestParam("member")String member,HttpSession session){
+	public String login(LoginVO login,@RequestParam("member")String member,HttpSession session,Model model){
 		log.info("*********************");
 		log.info("login 실시");
 		
@@ -88,9 +88,11 @@ public class UserController {
 			log.info("로그인 결과:"+user);
 			if(user!=null) {
 				session.setAttribute("user", user);
+				model.addAttribute("mesg", user.getUser_firstName()+"님 로그인 성공");
 				return "/main";
 
 			}else {
+				model.addAttribute("mesg", "로그인 실패");
 				return "user/loginForm";
 			}
 		}
