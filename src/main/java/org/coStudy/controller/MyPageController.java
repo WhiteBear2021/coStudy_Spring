@@ -56,8 +56,6 @@ public class MyPageController {
 	MyPageService service;
 	UserService user_service;
 	
-	@Resource(name="uploadPath")
-	private String uploadPath;
 	
 	@GetMapping("/toDo")
 	public void toDo() {
@@ -167,14 +165,20 @@ public class MyPageController {
 		log.info("*********************");
 		log.info("userUdpate Post");
 		log.info("update할 user 정보:" + user);
-		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+	      String root_path = session.getServletContext().getRealPath("/");  
+	      String uploadPath = "resources/";
+	      String filename = file.getOriginalFilename();
+	      log.info("root path:"+root_path);
+	      log.info("upload path:"+uploadPath);
+	      log.info("file name:"+filename);
+		String imgUploadPath = root_path+uploadPath + File.separator + "imgUpload";
 	      String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 	      String fileName = null;
 
 	      if(file != null) {
 	       fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
 	      } else {
-	       fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+	       fileName = root_path+File.separator+uploadPath + File.separator + "images" + File.separator + "none.png";
 	      }
 
 	      user.setUser_thumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
@@ -331,7 +335,7 @@ public class MyPageController {
 
 	@PostMapping("/scheduleSave")
 	@ResponseBody
-	public void scheduleLSave(@RequestParam("jsondata") String jsondata,HttpSession session){
+	public void scheduleSave(@RequestParam("jsondata") String jsondata,HttpSession session){
 		log.info("*********************");
 		log.info("scheduleSave 중");
 		log.info(jsondata);
@@ -368,6 +372,44 @@ public class MyPageController {
 			list.add(schedule);
 			service.scheduleRegister(schedule);
 		}
+		
+	}
+	
+	@PostMapping("/scheduleAdd")
+	@ResponseBody
+	public void scheduleAdd(@RequestParam("jsondata") String jsondata,HttpSession session){
+		log.info("*********************");
+		log.info("scheduleAdd 중");
+		log.info(jsondata);
+		JSONParser parser=new JSONParser();
+		
+		JSONObject scheduleObj=null;
+		try {
+			scheduleObj = (JSONObject)parser.parse(jsondata);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		UserVO user=(UserVO)session.getAttribute("user");
+		int user_no=user.getUser_no();
+					
+			String title=(String)scheduleObj.get("title");
+			Boolean allday=(Boolean)scheduleObj.get("allday");
+			String start=(String)scheduleObj.get("start");
+			String end=(String)scheduleObj.get("end");
+			log.info("title==>"+title);
+			log.info("allday==>"+allday);
+			log.info("start==>"+start);
+			log.info("end==>"+end);
+			ScheduleVO schedule=new ScheduleVO();
+			schedule.setUser_no(user_no);
+			schedule.setTitle(title);
+			schedule.setSchedule_start(start);
+			schedule.setSchedule_end(end);
+			schedule.setAllday(allday);
+		
+			service.scheduleRegister(schedule);
+		
 		
 	}
 	

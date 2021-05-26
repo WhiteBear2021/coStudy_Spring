@@ -7,7 +7,7 @@
 
 	<update id="updateUser" parameterType="org.coStudy.domain.UserVO">
 		update user_info set user_phoneNo=#{user_phoneNo}, user_post=#{user_post}, user_address1=#{user_address1}, user_address2=#{user_address2}, 
-		user_email=#{user_email}, user_nickName=#{user_nickName}
+		user_email=#{user_email}, user_nickName=#{user_nickName}, user_photo=#{user_photo}, user_thumbImg=#{user_thumbImg}
 		where user_no=#{user_no}
 	</update>
 	
@@ -68,7 +68,6 @@
 	
 	<insert id="scheduleRegister">
 		insert into schedule_test values(#{user_no},test_seq.nextVal,#{title},#{allday},#{schedule_start},#{schedule_end})
-		
 	</insert>
 	
 	<select id="scheduleList" resultType="org.coStudy.domain.ScheduleVO">
