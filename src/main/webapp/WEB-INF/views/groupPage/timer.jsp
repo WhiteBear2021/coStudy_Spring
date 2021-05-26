@@ -95,14 +95,18 @@
 				</div>
 			</div>
 		</div>
-
 	</section>
 	
+	
+	
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+	
+	<canvas id="myChart" width="400" height="400"></canvas>
 	
 	<script src="/resources/vendor/jquery/jquery.js"></script>
 	<script src="/resources/vendor/bootstrap/js/bootstrap.js"></script>
 	<script type="module" src="/resources/js/timer.js"></script>
 	<script type="module" src="/resources/js/class_timer.js"></script>
-
 </body>
 </html>
