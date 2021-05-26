@@ -79,13 +79,16 @@ public class GroupPageController {
    */
 
    @GetMapping("/groupMain")
-   public String groupBoardList(@ModelAttribute("groupPageBoardVO") GroupPageBoardVO groupPageBoardVO,@RequestParam("studygroup_no") int studygroup_no)
+   public String groupBoardList(@ModelAttribute("groupPageBoardVO") GroupPageBoardVO groupPageBoardVO,@RequestParam("studygroup_no") int studygroup_no,Model model)
          throws Exception {
       GroupPageBoardVO board = new GroupPageBoardVO();
       /*int studyGroup_no = groupPageBoardVO.getStudyGroup_no();*/
       log.info("==============");
       log.info("boardList");
-
+      
+      model.addAttribute("studygroup_no", studygroup_no);
+      log.info(studygroup_no);
+      
       try {
          board.setPage_board_content(groupPageBoardVO.getPage_board_content());
          board.setPage_board_title(groupPageBoardVO.getPage_board_title());
@@ -103,15 +106,20 @@ public class GroupPageController {
    public String voiceChatting(Model model, @RequestParam("studygroup_no") int studygroup_no, HttpSession session) {
       log.info("voice chatting~~");
       VChatRoomVO room = new VChatRoomVO();
-      room.setStudygroup_no(studygroup_no);;
+      room.setStudygroup_no(studygroup_no);
       UserVO user = (UserVO) session.getAttribute("user");
-      //room.setUserNo(userNo);
+      session.setAttribute("user_nick",user.getUser_nickName());
       room.setUserId(user.getUser_id());
       log.info(room);
       model.addAttribute("room", room);
 
       return "groupPage/voiceChatting2";
    }
+   
+//   @GetMapping("/voiceChatting")
+//   public String voiceChatting(){
+//	   return "groupPage/voiceChatting2";
+//   }
 
 
 
