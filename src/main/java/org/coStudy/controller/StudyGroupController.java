@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+
+import org.coStudy.domain.ApplyGroupMemberVO;
 import org.coStudy.domain.Criteria;
 import org.coStudy.domain.PageDTO;
 import org.coStudy.domain.StudyGroupVO;
@@ -51,7 +53,7 @@ public class StudyGroupController {
    @PostMapping("/insert")
    public String insert(StudyGroupVO studygroup, RedirectAttributes rttr,MultipartFile file) throws Exception {
       log.info("========================================");
-      log.info(studygroup);
+      
       
       String imgUploadPath = uploadPath + File.separator + "imgUpload";
       String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
@@ -88,8 +90,25 @@ public class StudyGroupController {
    public void datail(@RequestParam("studygroup_no") int studygroup_no,@ModelAttribute("cri") Criteria cri, Model model) {
       model.addAttribute("studygroup", service.detail(studygroup_no));
    }
+
    
+   @PostMapping("/apply")
+   public String apply(StudyGroupVO stg,
+         Model model){
+      log.info("===============================================");
+      log.info(stg);
    
+      ApplyGroupMemberVO vo=new ApplyGroupMemberVO();
+     /* vo.setUser_no(user_no);
+      vo.setStudygroup_no(studygroup_no);
+      
+      log.info(user_no);
+      log.info(studygroup_no);
+      */
+      //service.apply(ApplyGroup);
+   
+      return "redirect:/studyGroup/list";
+   }
    
 
 }
