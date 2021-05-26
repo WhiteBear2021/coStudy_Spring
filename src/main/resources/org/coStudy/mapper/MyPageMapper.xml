@@ -63,8 +63,12 @@
 	<update id="toDoUpdate" parameterType="int">
 		update todo
 		set complete=1
-		where todo_no=#{todo_no};
+		where todo_no=#{todo_no}
 	</update>
+	<delete id="toDoDelete" parameterType="int">
+		delete from todo where todo_no=#{todo_no}
+	</delete>
+	
 	
 	<insert id="scheduleRegister">
 		insert into schedule_test values(#{user_no},test_seq.nextVal,#{title},#{allday},#{schedule_start},#{schedule_end})

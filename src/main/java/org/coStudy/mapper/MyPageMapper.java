@@ -25,6 +25,7 @@ public interface MyPageMapper {
 	int toDoInsert(toDoVO todo);
 	List<toDoVO> toDoList(int user_no);
 	int toDoUpdate(int todo_no);
+	int toDoDelete(int todo_no);
 	
 	int scheduleRegister(ScheduleVO scheduel);
 	List<ScheduleVO> scheduleList(int user_no);

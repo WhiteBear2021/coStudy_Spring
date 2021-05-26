@@ -93,19 +93,14 @@ public class MyPageController {
 	
 	@ResponseBody
 	@PostMapping("/toDoUpdate")
-	public ResponseEntity<String> toDoUpdate(@RequestParam("user_no") int user_no, @RequestParam("todo_content") String todo_content)throws Exception{
+	public ResponseEntity<String> toDoUpdate(@RequestParam("todo_no") int todo_no)throws Exception{
 		
-		
-		toDoVO todo = new toDoVO();
-		log.info("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-		log.info("내용" + todo_content);
-		log.info("회원번호" + user_no);
 
+		log.info("-------------------------");
+		
+		
 		try {
-			todo.setUser_no(user_no);
-			todo.setTodo_content(todo_content);
-
-			service.toDoInsert(todo);
+			service.toDoUpdate(todo_no);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -113,7 +108,23 @@ public class MyPageController {
 
 		return new ResponseEntity<>("ss" ,HttpStatus.OK);
 	}
-	
+	@ResponseBody
+	@PostMapping("/toDoDelete")
+	public ResponseEntity<String> toDoDelete(@RequestParam("todo_no") int todo_no)throws Exception{
+		
+
+		log.info("-------------------------");
+		
+		
+		try {
+			service.toDoDelete(todo_no);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return new ResponseEntity<>("ss" ,HttpStatus.OK);
+	}
 	
 	@RequestMapping(value = "/commentList", produces = "application/json; charset=utf8")
 	@ResponseBody
