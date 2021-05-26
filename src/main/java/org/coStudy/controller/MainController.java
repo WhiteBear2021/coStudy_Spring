@@ -33,7 +33,7 @@ public class MainController {
 	@RequestMapping(value = {"/","/main"}, method = RequestMethod.GET)
 	public String main(Model model) {
 		
-//		model.addAttribute("random", service.getRandom());
+		model.addAttribute("random", service.getRandom());
 
 		return "main";
 	}
