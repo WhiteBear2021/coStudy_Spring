@@ -33,5 +33,5 @@ public interface MyPageMapper {
 	List<ScheduleVO> scheduleList(int user_no);
 	int scheduleDelete(int schedule_no);
 	int scheduleDeleteAll(int user_no);
-	int quitUser(Map<String, String> map);
+	int quitUser(Map<String, Object> map);
 }

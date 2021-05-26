@@ -103,7 +103,7 @@ public class MyPageServiceImple implements MyPageService{
 		return mapper.scheduleDeleteAll(user_no);
 	}
 	@Override
-	public int quitUser(Map<String, String> map) {
+	public int quitUser(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return mapper.quitUser(map);
 	}

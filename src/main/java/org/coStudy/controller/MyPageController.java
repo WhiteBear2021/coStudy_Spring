@@ -318,12 +318,7 @@ public class MyPageController {
 		log.info("applyQuitUser페이지로 이동!!");
 	}
 
-	@PostMapping("/applyQuitUser")
-	public void applyQuitUser(@RequestParam("user_no") int user_no, @RequestParam("quit_reason") String quit_reason) {
-		log.info("*********************");
-		log.info("applyQuitUser Post");
-	}
-
+	
 	@GetMapping("/applyQuitUserCheck")
 	public void applyQuitUserCheck(Model model) {
 		log.info("*********************");
@@ -457,11 +452,10 @@ public class MyPageController {
 			return list;
 		}
 		
-		@PostMapping(value="/applyQuitUser",produces = "application/text; charset=utf8")
-		@ResponseBody
-		public String applyQuitUser(String user_no,@RequestParam("withdraw_reason") String withdraw_reason){
+		@PostMapping(value="/applyQuitUser")
+		public String applyQuitUser(RedirectAttributes rttr,String user_no,@RequestParam("withdraw_reason") String withdraw_reason){
 			log.info(user_no);
-			Map<String, String> map=new HashMap<>();
+			Map<String, Object> map=new HashMap<>();
 			map.put("user_no", user_no);
 			map.put("withdraw_reason", withdraw_reason);
 			int re=service.quitUser(map);
@@ -470,7 +464,7 @@ public class MyPageController {
 			if(re==0){
 				mesg="회원탈퇴 신청 실패";
 			}
-			
-			return mesg;
+			rttr.addAttribute("mesg", mesg);
+			return "redirect:/main";
 		}
 }

@@ -43,7 +43,7 @@
           from user_info u left join withdraw w 
           on u.user_no=w.user_no
              where
-          user_id=#{userId} and user_pw =#{userPw} and isWithdraw is null; 
+          user_id=#{userId} and user_pw =#{userPw} and isWithdraw is null
 	</select>
 	
 	<select id="searchId" resultType="String">
