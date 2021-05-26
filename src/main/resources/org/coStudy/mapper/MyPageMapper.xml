@@ -59,9 +59,8 @@
 		select * 
 		from todo 
 		where USER_NO=#{user_no}
-		order by todo_no desc
 	</select>
-	<update id="">
+	<update id="toDoUpdate" parameterType="int">
 		update todo
 		set complete=1
 		where todo_no=#{todo_no};

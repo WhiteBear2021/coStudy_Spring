@@ -80,4 +80,9 @@ public class MyPageServiceImple implements MyPageService{
 		// TODO Auto-generated method stub
 		return mapper.scheduleList(user_no);
 	}
+	@Override
+	public int toDoUpdate(int todo_no) {
+		// TODO Auto-generated method stub
+		return mapper.toDoUpdate(todo_no);
+	}
 }
