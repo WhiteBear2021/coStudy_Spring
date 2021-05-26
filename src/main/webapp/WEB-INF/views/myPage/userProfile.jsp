@@ -25,7 +25,7 @@
 							<ul class="list-unstyled ">
 								<li class="p-1"><a href="/myPage/studyDiaryList">공부일기</span>&nbsp;&nbsp;<i class="bi bi-journal-check fs-1"></i></a></li>
 								<li class="p-1"><a href="/myPage/scheduleList">일정관리&nbsp;&nbsp; <i class="bi bi-calendar-month fs-1"></i></a></li>
-								<li class="p-1"><a href="#">1:1 채팅목록&nbsp;&nbsp;<i class="bi bi-chat-square-quote fs-1"></i></a></li>
+								<li class="p-1"><a href="/myPage/toDo">1:1 채팅목록&nbsp;&nbsp;<i class="bi bi-chat-square-quote fs-1"></i></a></li>
 								<li class="p-1"><a href="/myPage/joinGroupList">참가 그룹 목록&nbsp;&nbsp;<i class="bi bi-chat-quote fs-1"></i></a></li>
 								<li class="p-1"><a href="/myPage/categoryUpdate">관심 분야 수정&nbsp;&nbsp;<i class="bi bi-pencil-fill fs-1"></i></a></li>
 								<li class="p-1"><a href="/myPage/userUpdate">회원 정보 수정&nbsp;&nbsp;<i class="bi bi-tools fs-1"></i></a></li>
@@ -39,7 +39,13 @@
 					<div class="row">
 						<div class="bg-white col-4 border border-primary my-auto text-center">
 								<h4>CoStudy Profile</h4>
-								<i class="bi bi-person-square fs-1"></i><br>
+								<c:if test="${empty sessionScope.user.user_thumbImg}">
+									<i class="bi bi-person-square fs-1"></i><br>
+								</c:if>
+								<c:if test="${!empty sessionScope.user.user_thumbImg}">
+									<img src="${sessionScope.user.user_thumbImg}" style="width: 262px; height: 262px;">
+								</c:if>
+
 								<b>NickName : </b><strong class="m-0 p-1 text-success">${sessionScope.user.user_nickName}</strong>
 						</div>
 						<div class="bg-white col-6 border border-primary p-0 m-4">

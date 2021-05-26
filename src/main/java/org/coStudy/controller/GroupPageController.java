@@ -1,7 +1,9 @@
 package org.coStudy.controller;
 
+import java.security.Provider.Service;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpSession;
-
 import org.coStudy.domain.ChatRoomVO;
 import org.coStudy.domain.GroupPageBoardVO;
 import org.coStudy.domain.GroupReplyVO;
@@ -44,9 +46,18 @@ public class GroupPageController {
 
 	@GetMapping("/timer")
 	public void timer() {
-
 	}
-
+	
+	@ResponseBody
+	@PostMapping("/getTimer")
+	public ResponseEntity<List<TimerVO>> getTimer(HttpSession session) {
+		UserVO user = (UserVO) session.getAttribute("user");
+		if(user != null){
+			List<TimerVO> list = timerService.list(user.getUser_no());
+			return new ResponseEntity<>(list, HttpStatus.OK);
+		}
+		return null;
+	}
 	@GetMapping("/chatting")
 	public void chatting() {
 
@@ -77,6 +88,7 @@ public class GroupPageController {
 	 * 
 	 * 
 	 */
+
 	@GetMapping("/groupMain")
 	public String groupBoardList(Model model, @RequestParam("studygroup_no") int studygroup_no) {
 		log.info("groupBoardList(Main)");

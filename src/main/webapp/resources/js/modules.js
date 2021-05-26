@@ -3,22 +3,16 @@ const timerService = (()=>{
 	function add(param, callback, error) {
 		/*const token = $("meta[name='_csrf']").attr("th:content");
 		const header = $("meta[name='_csrf_header']").attr("th:content");*/
-
-		const timer = {
-				time: "test",
-				user_no: "1"
-		};
 		
 		$.ajax({
 			type : 'post',
 			url : '/groupPage/timer',
-			data: JSON.stringify(timer),
+			data: JSON.stringify(param),
 			contentType : "application/json;charset=utf-8",
 			/*beforeSend: function(xhr){
 		        xhr.setRequestHeader(header, token);
 		    },*/
 			success : function(result, status, xhr) {
-				console.log("??!!!!!!!!!!!!??");
 				if (callback) {
 					callback(result);
 				}
@@ -44,13 +38,79 @@ const timerService = (()=>{
 	    
 	}
 	
+
 	return {
 		add : add,
-		output: output
+		output: output,
 	};
 
 })();
 
+const mainPageService = (()=>{
 
+	function getNew(callback, error) {
+		
+		$.ajax({
+			type : 'post',
+			url : '/getNew',
+			contentType : "application/json;charset=utf-8",
+			dataType : "json",
+			success : function(result, status, xhr) {
+				callback(result);
+			},
+			error : function(xhr, status, er) {
+				console.log(er);
+				if (error) {
+					error(er);
+				}
+			}//end error
+		});
+	}
+	
+	function getHot(callback, error) {
+		
+		$.ajax({
+			type : 'post',
+			url : '/getHot',
+			contentType : "application/json;charset=utf-8",
+			dataType : "json",
+			success : function(result, status, xhr) {
+				callback(result);
+			},
+			error : function(xhr, status, er) {
+				console.log(er);
+				if (error) {
+					error(er);
+				}
+			}//end error
+		});
+	}
+	
+	function getRecom(callback, error) {
+		
+		$.ajax({
+			type : 'post',
+			url : '/getRecom',
+			contentType : "application/json;charset=utf-8",
+			dataType : "json",
+			success : function(result, status, xhr) {
+				callback(result);
+			},
+			error : function(xhr, status, er) {
+				console.log(er);
+				if (error) {
+					error(er);
+				}
+			}//end error
+		});
+	}
 
-export {timerService};
+	return {
+		getNew : getNew,
+		getHot : getHot,
+		getRecom: getRecom
+	};
+
+})();
+
+export {timerService, mainPageService};

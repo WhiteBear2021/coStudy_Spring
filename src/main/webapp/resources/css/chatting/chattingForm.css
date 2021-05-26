@@ -8,7 +8,7 @@ body{
 }
 
 #container{
-	width:750px;
+	width:500px;
 	height:700px;
 	background:#eff3f7;
 	margin:20px auto;
@@ -16,9 +16,50 @@ body{
 	border-radius:5px;
 	overflow:hidden;
 }
-
+/*
+aside{
+	width:250px;
+	height:700px;
+	background-color:#3b3e49;
+	display:inline-block;
+	font-size:15px;
+	vertical-align:top;
+}
+aside ul{
+	padding-left:0;
+	margin:0;
+	list-style-type:none;
+	overflow-y:scroll;
+	height:690px;
+}
+aside li{
+	padding:10px 0;
+}
+aside li:hover{
+	background-color:#5e616a;
+}
+h2,h3{
+	margin:0;
+}
+aside li img{
+	border-radius:50%;
+	margin-left:20px;
+	margin-right:8px;
+}
+aside li div{
+	display:inline-block;
+	vertical-align:top;
+	margin-top:12px;
+}
+aside li h1{
+	font-size:14px;
+	color:#fff;
+	font-weight:normal;
+	margin-bottom:5px;
+}
+*/
 main{
-    width:750px;
+    width:500px;
 	height:700px;
 	display:inline-block;
 	font-size:15px;
@@ -84,7 +125,7 @@ main{
 }
 #chat .me .triangle{
 		border-color: transparent transparent #6fbced transparent;
-		margin-left:650px;
+		margin-left:400px;
 }
 
 main footer{

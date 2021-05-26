@@ -7,7 +7,7 @@
 
 	<update id="updateUser" parameterType="org.coStudy.domain.UserVO">
 		update user_info set user_phoneNo=#{user_phoneNo}, user_post=#{user_post}, user_address1=#{user_address1}, user_address2=#{user_address2}, 
-		user_email=#{user_email}, user_nickName=#{user_nickName}
+		user_email=#{user_email}, user_nickName=#{user_nickName}, user_photo=#{user_photo}, user_thumbImg=#{user_thumbImg}
 		where user_no=#{user_no}
 	</update>
 	
@@ -49,4 +49,33 @@
 	<delete id="deleteStudyDiary">
 		delete from studyNote where studyNote_no=#{studyNote_no}
 	</delete>
+	
+	<insert id="toDoInsert" parameterType="org.coStudy.domain.toDoVO">
+		insert into todo values(
+  		#{user_no},#{todo_content},sysdate,0,seq_todo.nextval
+		)
+	</insert>
+	<select id="toDoList" resultType="org.coStudy.domain.toDoVO" parameterType="int">
+		select * 
+		from todo 
+		where USER_NO=#{user_no}
+	</select>
+	<update id="toDoUpdate" parameterType="int">
+		update todo
+		set complete=1
+		where todo_no=#{todo_no}
+	</update>
+	<delete id="toDoDelete" parameterType="int">
+		delete from todo where todo_no=#{todo_no}
+	</delete>
+	
+	
+	<insert id="scheduleRegister">
+		insert into schedule_test values(#{user_no},test_seq.nextVal,#{title},#{allday},#{schedule_start},#{schedule_end})
+	</insert>
+	
+	<select id="scheduleList" resultType="org.coStudy.domain.ScheduleVO">
+		select schedule_no,schedule_title title, all_day allday, schedule_start, schedule_end
+		from schedule_test where user_no=#{user_no}
+	</select>
 </mapper>

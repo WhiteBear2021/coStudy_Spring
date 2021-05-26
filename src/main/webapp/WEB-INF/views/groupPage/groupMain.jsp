@@ -113,6 +113,7 @@
 	<div class="container" id="group-Main-body">
 
 		<!--       <input type="hidden" name="studyGroup_no" value="1"> <input
+
          type="hidden" name="studyGroup_no" value="1"> -->
 		<div id="background-body">
 			<div class="container bootstrap snippets bootdey">
@@ -141,8 +142,26 @@
 								<div class="post-description">
 									<p>${board.page_board_content }</p>
 
-								</div>
-								<!--댓글  -->
+
+                        </div>
+                      
+                        <!--댓글  -->
+            
+                     <div class="post-footer">
+                           <div class="input-group">
+                           
+                              <form action="insertGroupReply" method="post">
+                                 <input type="hidden" name="studygroup_no"
+                                    value="${board.studyGroup_no }">
+                                     <input
+                                    type="hidden" name="page_board_no"
+                                    value="${board.page_board_no }"> 
+                                    <input
+                                    type="hidden" class="form__field" name="group_reply_writer"
+                                    value="${sessionScope.user.user_id}" /> 
+                                    <input type="text" class="form__field"
+                                    name="group_reply_content" placeholder="내용을 입력해주세요." />
+
 
 								<div class="post-footer">
 									<div class="input-group">

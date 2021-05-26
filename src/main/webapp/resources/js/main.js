@@ -27,13 +27,19 @@
             Gallery filter
         --------------------*/
         $('.filter__controls li').on('click', function () {
-            $('.filter__controls li').removeClass('active');
-            $(this).addClass('active');
+        	
+//            $('.filter__controls li').removeClass('active');
+//            $(this).addClass('active');
+        	
+        	$('.product__filter').css("display","none");
+            $("#"+$(this).attr('value')+"Group").css("display","flex");
+            
+
         });
-        if ($('.product__filter').length > 0) {
-            var containerEl = document.querySelector('.product__filter');
-            var mixer = mixitup(containerEl);
-        }
+//        if ($('.product__filter').length > 0) {
+//            var containerEl = document.querySelector('.product__filter');
+//            var mixer = mixitup(containerEl);
+//        }
     });
 
     /*------------------

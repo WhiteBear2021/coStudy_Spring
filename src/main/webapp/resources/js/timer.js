@@ -1,20 +1,18 @@
 import {timerService} from './modules.js';
 
-let isrunning = false;
-
-
 $(function(){
+	init();
 	let inerval;
 	let time = 0;
 	let isrunning = false;
-    $('#timer_bnt_start').click(function(){
+    $('#timer_bnt_start').click(()=>{
         if(isrunning){//중지
         	isrunning = false;
-        	clearInterval(inerval);
-            $(this).val("시작");
+        	$('#timer_bnt_start').val("시작");
+            clearInterval(inerval);
         }else{//시작
         	isrunning = true;
-            $(this).val("중지");
+        	$('#timer_bnt_start').val("중지");
             inerval =  setInterval(() => {
                     time++;
                     $('#time_output').text(timerService.output(time));
@@ -22,68 +20,73 @@ $(function(){
         }
     });
     
-    $('#timer_bnt_save').click(function(){
-    	
+    $('#timer_bnt_save').click(()=>{
+    	clearInterval(inerval);
     	const param = {
     			time: $("#time_output").text(),
-    			user_no: "1"
+    			user_no: $("#user_no").val()
     	};
-    	
     	timerService.add(param,function(result){
-    		
     		alert("공부 시간 저장" + result);
     		$("#timer_bnt_save").prop("disabled", true);
     		$("#timer_bnt_start").prop("disabled", true);
     	});
-    
     });
     
-    
-    
-    //모달
-    
-    $('#openModalBtn').click(function(){
-    	$('#modalBox').modal('show');
-    });
+});//end ready
 
-    $('#closeModalBtn').click(function(){//취소
-    	$('#modalBox').modal('hide');
-     });
-    
-    $('#setting').click(function(){//확인
-    	
-    	const period_time = timerService.output($('#period_time').val() * 60);
-    	const break_time = $('#break_time').val();
-    	const lesson_num = $('#lesson_num').val();
-    	const extra_break_time = $('#extra_break_time').val();
-    	
-    	let html = `<table>`;
-    	
-    	for(let i = 1; i <= lesson_num; i++){
-    		html += `<tr>`;
-    		html += `<th>${i}교시</th><th>${period_time}</th>`;
-    
-    		html += `</tr>`;
-    	}
-    	html += `</table>`;
-		$('#setting_form').append(html);
-    	
-    	
-    	$('#modalBox').modal('hide');
-     });
-    
-    
-    $('#modalBox').on('show.bs.modal', function (e) {//열릴 때
-    	
-    });
-    
-	$('#modalBox').on('hide.bs.modal', function (e) {//닫힐 때 
-	
+function init(){
+	const ctx = document.getElementById('myChart').getContext('2d');
+	let data = [];
+	let label = [];
+	$.ajax({
+		type : 'post',
+		url : '/groupPage/getTimer',
+		contentType : "application/json;charset=utf-8",
+		dataType : "json",
+		success : function(result, status, xhr) {
+			if(result != null){
+				console.log(result);
+				for(let i = 0; i < result.length; i++ ){
+						data.push(result[i].time);
+						label.push(result[i].timer_date);
+				}
+			}
+			
+		},
+		error : function(xhr, status, er) {
+			console.log(er);
+			alert(er);
+		}//end error
 	});
-
-
-});
-
-
+	
+	
+	var myChart = new Chart(ctx, {
+	    type: 'line',
+	    data: {
+	        labels:label,
+	        datasets: [{
+	        	label:'시간',
+	            data: data, 
+	            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+	            borderColor: 'rgba(54, 162, 235, 1)',
+	            borderWidth: 1,
+	        }]
+	    },
+	    options: {
+	    	title: {
+	            display: true,
+	            text: '누적 공부 시간'
+	        },
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero:true
+	                }
+	            }]
+	        }
+	    }
+	});
+}
 
 

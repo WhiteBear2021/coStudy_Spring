@@ -12,10 +12,10 @@
 			<div>
 			<h1>chatting</h1>
 				<!-- <a href="/groupPage/chatting/1" onclick="window.open(this.href, '_blank', 'width=800, height=1000'); return false;">chatting</a> -->
-				<a href="/groupPage/chattingForm/101/42" onclick="window.open(this.href, '_blank', 'width=800, height=1000'); return false;">room1/user42</a>
-			    <a href="/groupPage/chattingForm/101/1" onclick="window.open(this.href, '_blank', 'width=800, height=1000'); return false;">room1/user1</a>
-				<a href="/groupPage/chattingForm/102/42" onclick="window.open(this.href, '_blank', 'width=800, height=1000'); return false;">room2/user42</a>
-				<a href="/groupPage/chattingForm/102/1" onclick="window.open(this.href, '_blank', 'width=800, height=1000'); return false;">room2/user1</a>
+				<a href="/groupPage/chattingForm/101/42" onclick="window.open(this.href, '_blank', 'width=600, height=800'); return false;">room1/user42</a>
+			    <a href="/groupPage/chattingForm/101/1" onclick="window.open(this.href, '_blank', 'width=600, height=800'); return false;">room1/user1</a>
+				<a href="/groupPage/chattingForm/102/42" onclick="window.open(this.href, '_blank', 'width=600, height=800'); return false;">room2/user42</a>
+				<a href="/groupPage/chattingForm/102/1" onclick="window.open(this.href, '_blank', 'width=600, height=800'); return false;">room2/user1</a>
 			
 			</div>
 	</section>
