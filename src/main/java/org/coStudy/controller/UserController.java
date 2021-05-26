@@ -221,6 +221,7 @@ public class UserController {
 		if(re==0){
 			mesg="사용가능한 ID";
 		}
+		
 		return mesg;
 	}
 	

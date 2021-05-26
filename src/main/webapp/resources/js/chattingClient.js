@@ -50,9 +50,9 @@ stompClient.connect(header, function(frame){
 	console.log("1111");
 });*/
 
-sock.onopen = socketService.onopen;
-sock.onmessage = socketService.onmessage;
-sock.onclose = socketService.onclose;
+sock.onopen = onopen;
+sock.onmessage = onmessage;
+sock.onclose = onclose;
 
 $(function(){
 	$("form").submit(function (e) {

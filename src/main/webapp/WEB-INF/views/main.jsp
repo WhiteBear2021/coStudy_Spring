@@ -7,6 +7,7 @@
 
 <jsp:include page="common/header.jsp"></jsp:include>
 <body>
+	<input type="hidden" id="user_no" value="${user.user_no }">
     <section class="hero">
         <div class="hero__slider owl-carousel">
             <div class="hero__items set-bg" data-setbg="/resources/img/r2.jpg">
@@ -37,10 +38,10 @@
                 <div class="col-lg-7 offset-lg-4">
                     <div class="banner__item">
                         <div class="banner__item__pic">
-                            <img src="/resources/img/r2.jpg" alt="">
+                            <img src=${random[0].thumbimg} alt="" style="width: 400px; height: 400px">
                         </div>
                         <div class="banner__item__text">
-                            <h2>random 1</h2>
+                            <h2>${random[0].studygroup_name}</h2>
                             <a href="#">random 1 link</a>
                         </div>
                     </div>
@@ -48,10 +49,10 @@
                 <div class="col-lg-5">
                     <div class="banner__item banner__item--middle">
                         <div class="banner__item__pic">
-                            <img src="/resources/img/r2.jpg" alt="">
+                            <img src=${random[1].thumbimg} alt="" style="width: 400px; height: 400px">
                         </div>
                         <div class="banner__item__text">
-                            <h2>random 2</h2>
+                            <h2>${random[1].studygroup_name}</h2>
                             <a href="#">ramdom 2 link</a>
                         </div>
                     </div>
@@ -59,10 +60,10 @@
                 <div class="col-lg-7">
                     <div class="banner__item banner__item--last">
                         <div class="banner__item__pic">
-                            <img src="/resources/img/r2.jpg" alt="">
+                            <img src= ${random[2].thumbimg} alt="" style="width: 400px; height: 400px">
                         </div>
                         <div class="banner__item__text">
-                            <h2>random 3</h2>
+                            <h2>${random[2].studygroup_name}</h2>
                             <a href="/user/signUp">ramdom 3 link</a>
                         </div>
                     </div>
@@ -84,138 +85,9 @@
                     </ul>
                 </div>
             </div>
+            
             <div class="row product__filter">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg">
-                             <img src="/resources/img/r2.jpg" alt="">
-                            <span class="label">New</span>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>studygroup name</h6>
-                            <a href="#" class="add-cart">See more</a>
-
-                            <h5>category</h5>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg">
-                            <img src="/resources/img/r2.jpg" alt="">
-                            <span class="label">New</span>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>studygroup name</h6>
-                            <a href="#" class="add-cart">See more</a>
-
-                            <h5>category</h5>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg">
-                             <img src="/resources/img/r2.jpg" alt="">
-                            <span class="label">New</span>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>studygroup name</h6>
-                            <a href="#" class="add-cart">See more</a>
-
-                            <h5>category</h5>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg">
-                         <img src="/resources/img/r2.jpg" alt="">
-                            <span class="label">New</span>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>studygroup name</h6>
-                            <a href="#" class="add-cart">See more</a>
-
-                            <h5>category</h5>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg">
-                         <img src="/resources/img/r2.jpg" alt="">
-                            <span class="label">New</span>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>studygroup name</h6>
-                            <a href="#" class="add-cart">See more</a>
-
-                            <h5>category</h5>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot">
-                    <div class="product__item sale">
-                        <div class="product__item__pic set-bg">
-                         <img src="/resources/img/r2.jpg" alt="">
-                            <span class="label">hot</span>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>studygroup name</h6>
-                            <a href="#" class="add-cart">See more</a>
-
-                            <h5>category</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot">
-                    <div class="product__item sale">
-                        <div class="product__item__pic set-bg">
-                         <img src="/resources/img/r2.jpg" alt="">
-                            <span class="label">hot</span>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>studygroup name</h6>
-                            <a href="#" class="add-cart">See more</a>
-
-                            <h5>category</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot">
-                    <div class="product__item sale">
-                        <div class="product__item__pic set-bg">
-                         <img src="/resources/img/r2.jpg" alt="">
-                            <span class="label">hot</span>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>studygroup name</h6>
-                            <a href="#" class="add-cart">See more</a>
-
-                            <h5>category</h5>
-                        </div>
-                    </div>
-                </div>
-                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix recommend">
-                    <div class="product__item sale">
-                        <div class="product__item__pic set-bg">
-                         <img src="/resources/img/r2.jpg" alt="">
-                            <span class="label">recommend</span>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>studygroup name</h6>
-                            <a href="#" class="add-cart">See more</a>
-
-                            <h5>category</h5>
-                        </div>
-                    </div>
-                </div>
+            
             </div>
         </div>
     </section>
@@ -230,6 +102,8 @@
             </div>
         </div>
     </section>
+    
+  
 
 
 <jsp:include page="common/footer.jsp"></jsp:include><hr>

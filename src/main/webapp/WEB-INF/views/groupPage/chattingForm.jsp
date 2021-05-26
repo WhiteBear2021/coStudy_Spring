@@ -16,6 +16,17 @@
 	</div>
 
 	<div id="container">
+		<!-- <aside>
+		<ul>
+			<li>
+				<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt="">
+				<div>
+					<h1>Prénom Nom</h1>
+				</div>
+			</li>
+		
+		</ul>
+	</aside> -->
 		<main>
 			<ul id="chat">
 			</ul>

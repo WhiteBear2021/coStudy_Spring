@@ -7,3 +7,4 @@ public class VChatRoomVO {
 	private int studygroup_no;
 	private String userId;
 }
+

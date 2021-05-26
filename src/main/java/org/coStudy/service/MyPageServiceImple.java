@@ -3,9 +3,11 @@ package org.coStudy.service;
 import java.util.List;
 
 import org.coStudy.domain.Criteria;
+import org.coStudy.domain.ScheduleVO;
 import org.coStudy.domain.StudyGroupVO;
 import org.coStudy.domain.StudyNoteVO;
 import org.coStudy.domain.UserVO;
+import org.coStudy.domain.toDoVO;
 import org.coStudy.mapper.MyPageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,5 +59,25 @@ public class MyPageServiceImple implements MyPageService{
 	public int totalStudyDiaryList(int user_no) {
 		// TODO Auto-generated method stub
 		return mapper.totalStudyDiaryList(user_no);
+	}
+	@Override
+	public int toDoInsert(toDoVO todo) {
+		// TODO Auto-generated method stub
+		return mapper.toDoInsert(todo);
+	}
+	@Override
+	public List<toDoVO> toDoList(int user_no) {
+		// TODO Auto-generated method stub
+		return mapper.toDoList(user_no);
+	}	
+	@Override	
+	public int scheduleRegister(ScheduleVO scheduel) {
+		// TODO Auto-generated method stub
+		return mapper.scheduleRegister(scheduel);
+	}
+	@Override
+	public List<ScheduleVO> scheduleList(int user_no) {
+		// TODO Auto-generated method stub
+		return mapper.scheduleList(user_no);
 	}
 }
