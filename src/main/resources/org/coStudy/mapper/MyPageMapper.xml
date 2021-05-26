@@ -59,16 +59,16 @@
 		select * 
 		from todo 
 		where USER_NO=#{user_no}
-		order by todo_no desc
 	</select>
-	<update id="">
+	<update id="toDoUpdate" parameterType="int">
 		update todo
 		set complete=1
 		where todo_no=#{todo_no};
 	</update>
 	
 	<insert id="scheduleRegister">
-		insert into schedule_test values(#{user_no},test_seq.nextVal,#{title},#{allday},#{start},#{end})
+		insert into schedule_test values(#{user_no},test_seq.nextVal,#{title},#{allday},#{schedule_start},#{schedule_end})
+		
 	</insert>
 	
 	<select id="scheduleList" resultType="org.coStudy.domain.ScheduleVO">

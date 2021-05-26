@@ -84,6 +84,29 @@ public class MyPageController {
 		return new ResponseEntity<>("ss" ,HttpStatus.OK);
 	}
 	
+	@ResponseBody
+	@PostMapping("/toDoUpdate")
+	public ResponseEntity<String> toDoUpdate(@RequestParam("user_no") int user_no, @RequestParam("todo_content") String todo_content)throws Exception{
+		
+		
+		toDoVO todo = new toDoVO();
+		log.info("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		log.info("내용" + todo_content);
+		log.info("회원번호" + user_no);
+
+		try {
+			todo.setUser_no(user_no);
+			todo.setTodo_content(todo_content);
+
+			service.toDoInsert(todo);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return new ResponseEntity<>("ss" ,HttpStatus.OK);
+	}
+	
 	
 	@RequestMapping(value = "/commentList", produces = "application/json; charset=utf8")
 	@ResponseBody
@@ -310,7 +333,7 @@ public class MyPageController {
 			String title=(String)tmp.get("title");
 			Boolean allday=(Boolean)tmp.get("allday");
 			String start=(String)tmp.get("start");
-			String end=(String)tmp.get("start");
+			String end=(String)tmp.get("end");
 			log.info("title==>"+title);
 			log.info("allday==>"+allday);
 			log.info("start==>"+start);

@@ -32,7 +32,8 @@
 					<option value="6">수험생</option>
 				</select> <br>
 				<div class="inputArea">
-					<label for="img">이미지</label> <input type="file" id="img"
+					<label for="img">이미지</label> 
+					<input type="file" id="img"
 						name="file" />
 					<div class="select_img">
 						<img src="" />
