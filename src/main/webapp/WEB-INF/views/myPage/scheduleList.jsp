@@ -57,10 +57,43 @@ html, body {
 </style>
 <script>
     var calendar =null;
+	function loadData(){
+	  	  var return_value=null;
+	        $.ajax({
+	            type:'POST',
+	            url:'scheduleLoad',
+	            data:{},
+	            async: false,
+	            dataType:'json',
+	        }).done(function(result){
+					console.log(result);
+					var allEvents=[];
+					result.forEach((value,index)=>{
+						obj={id:value.schedule_no,title:value.title,allDay:value.allday,start:value.schedule_start,end:value.schedule_end};
+	/* 						console.log("key값:"+value);
+						console.log("value값:"+value);
+						console.log(value.schedule_no);
+						console.log(value.title);
+						console.log(value.allday);
+						console.log(value.schedule_start);
+						console.log(value.schedule_end); */
+						console.log(obj);
+						allEvents.push(obj);
+					});
+					console.log("스케줄 배열:"+allEvents);
+					return_value=allEvents;
+					console.log(return_value);
+	        }).fail(function(){
+	            alert('에러 발생');
+	        })
+	        console.log("함수 리턴 값:"+return_value);
+	        return return_value;
+	    }//loaddata function end
 $(function() {
+	let all_events=loadData();
+	console.log("all_events:"+all_events);
     var Calendar= FullCalendar.Calendar;
     var Draggable = FullCalendar.Draggable;
-
     var containerEl = document.getElementById('external-events');
     var calendarEl = document.getElementById('calendar');
     var checkbox = document.getElementById('drop-remove');
@@ -88,7 +121,7 @@ $(function() {
       },
       editable: true,
       droppable: true, // this allows things to be dropped onto the calendar
-      events:allevents, //json 형태의 데이터 값으로 들어있어야지 일정 목록이 나타난다
+      events:all_events, //json 형태의 데이터 값으로 들어있어야지 일정 목록이 나타난다
       drop: function(info) {
         // is the "remove after drop" checkbox checked?
         if (checkbox.checked) {
@@ -135,10 +168,7 @@ $(function() {
 				<h3>일정관리</h3>
 				<hr style="width: 800px">
 				<div class='demo-topbar'>
-					<button data-codepen class='codepen-button'>Edit in
-						CodePen</button>
-
-					Drag external events into the calendar with the Draggable API
+					<button class='addScheduleBtn'>일정 등록</button>
 
 				</div>
 
@@ -183,6 +213,7 @@ $(function() {
 		</div>
 		<script>
           $(function(){
+        	//일정 저장 클릭 이벤트
             $("#saveBtn").on("click",function(){
                 //전체 데이터를 추출하여 Ajax로 DB에 저장
                 // calendar.getEvent
@@ -202,10 +233,11 @@ $(function() {
                 var jsondata=JSON.stringify(events);
                 console.log(jsondata);
 
-                savedata(jsondata); //ajax으로 넘기도로 저장할 것이다.
+                saveData(jsondata); //ajax으로 넘기도로 저장할 것이다.
+//                loadData();		//저장된 일정을 불러오는 loadData
             });
-
-            function savedata(jsondata){
+			//일정 저장 동작 함수(ajax)
+            function saveData(jsondata){
                 $.ajax({
                     type:'POST',
                     url:'scheduleSave',
@@ -216,8 +248,15 @@ $(function() {
                 }).fail(function(){
                     alert('에러 발생');
                 })
-            }
+            }//savadata function end
+            
+
+            
+            
           });
+
+          
+          
       </script>
 </body>
 </html>

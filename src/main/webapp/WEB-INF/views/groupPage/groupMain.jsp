@@ -4,13 +4,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<jsp:include page="../common/head.jsp"></jsp:include>
 <jsp:include page="../common/header.jsp"></jsp:include>
 <meta charset="UTF-8">
 <link rel='stylesheet'
    href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
-<link rel="stylesheet" href="../css/groupMain_style.css">
-<link type="text/css" rel="stylesheet" href="../css/timer.css">
-<link type="text/css" rel="stylesheet" href="../css/groupSidebar_list.css">
+<link type="text/css" rel="stylesheet" href="/resources/css/groupMain_style.css">
+<link type="text/css" rel="stylesheet" href="/resources/css/timer.css">
+<link type="text/css" rel="stylesheet" href="/resources/css/groupSidebar_list.css">
 
 
 
@@ -85,7 +86,7 @@
                </div>
                <div>
                   <span class="light"></span><span
-                     onclick="location.href='groupAcceptUser.do?studygroup_no=${studygroup_no }'">list-group</span>
+                     onclick="location.href='/groupPage/groupSetting?studygroup_no=${studygroup_no }'">AcceptMember</span>
                </div>
                <div>
                   <span class="light"></span><span>list</span>
@@ -95,18 +96,17 @@
 
          </div>
       </div>
-
    <div class="container" id="group-Main-body">
    
-      <input type="hidden" name="studyGroup_no" value="1"> <input
-         type="hidden" name="studyGroup_no" value="1">
+<!--       <input type="hidden" name="studyGroup_no" value="1"> <input
+         type="hidden" name="studyGroup_no" value="1"> -->
       <div id="background-body">
          <div class="container bootstrap snippets bootdey">
             <div class="col-lg-8" id="peed">
                <div style="overflow: scroll; width: 800px; height: 700px;">
 
 
-                  <c:forEach var="lists" items="${list }">
+                  <c:forEach var="board" items="${boardList}">
                      <div class="panel panel-white post panel-shadow">
                         <div class="post-heading">
                            <div class="pull-left image">
@@ -118,36 +118,42 @@
                               <div class="title h5">
                                  <a href="#"><b>user_1</b></a> 작성함
                               </div>
-                              <h6 class="text-muted time">${lists.page_board_date }</h6>
+                             <%--  <input type="hidden" value="${board.page_board_no }">
+                              <h6 class="text-muted time">${board.page_board_date }</h6>
+                              <h1>${board.page_board_no }</h1> --%>
                            </div>
                         </div>
                         <!--글목록  -->
                         <div class="post-description">
-                           <p>${lists.page_board_content }</p>
+                           <p>${board.page_board_content }</p>
 
                         </div>
+                      
                         <!--댓글  -->
-                        <div class="post-footer">
+            
+                     <div class="post-footer">
                            <div class="input-group">
-                              <form action="insertGroupReply.do" method="get">
-                                 <input type="hidden" name="studyGroup_no"
-                                    value="${lists.studyGroup_no }"> <input
+                           
+                              <form action="insertGroupReply" method="post">
+                                 <input type="hidden" name="studygroup_no"
+                                    value="${board.studyGroup_no }">
+                                     <input
                                     type="hidden" name="page_board_no"
-                                    value="${lists.page_board_no }"> <input
+                                    value="${board.page_board_no }"> 
+                                    <input
                                     type="hidden" class="form__field" name="group_reply_writer"
-                                    value="test" /> <input type="text" class="form__field"
+                                    value="${sessionScope.user.user_id}" /> 
+                                    <input type="text" class="form__field"
                                     name="group_reply_content" placeholder="내용을 입력해주세요." />
 
                                  <button type="submit"
                                     class="btn btn--primary btn--inside uppercase">댓글달기</button>
                               </form>
+                              
                            </div>
 
-
-
-
                            <c:forEach var="relist" items="${relist }">
-                              <c:if test="${lists.page_board_no==relist.page_board_no }">
+                              <c:if test="${board.page_board_no==relist.page_board_no }">
 
                                  <ul class="comments-list">
                                     <li class="comment"><a class="pull-left" href="#">
@@ -183,6 +189,9 @@
                   <div id="right-sidebar-fileBox"></div>
                   <a href="../chatting/chattingRoom.do?roomNo=${roomNo}"
                      onclick="window.open(this.href, '_blank', 'width=800, height=1000'); return false;">그룹
+                     채팅</a></br></br>
+                     <a href="/groupPage/voiceChatting?studygroup_no=${studygroup_no}"
+                     onclick="window.open(this.href, '_blank', 'width=2000, height=1000'); return false;">음성
                      채팅</a>
                </div>
                <div id="group-Main-right-bottom"  class="panel panel-white post panel-shadow" class="col-md-5" >
@@ -209,23 +218,23 @@
          </div>
 
 
+<!-- 글작성 -->
+			<form action="insert" method="post">
+				<div id="write">
+					<input type="hidden" name="studygroup_no" value="${studygroup_no}">
+					<input id="page_board_content" type="text"
+						name="page_board_content" style="width: 600px; height: 70px;">
+					<button id="button" type="submit"
+						style="width: 70px; height: 70px;">작성</button>
+				</div>
 
-         <form action="groupWriting.do" method="get">
-            <div id="write">
-
-               <input type="hidden" name="studygroup_no" value="${studygroup_no}">
-               <input id="text-box" type="text" name="page_board_content"
-                  style="width: 600px; height: 70px;">
-               <button id="button" type="submit"
-                  style="width: 70px; height: 70px;">작성</button>
-            </div>
-
-         </form>  
-
+			</form>
 
 
+
+		</div>
       </div>
-      </div>
+      <jsp:include page="../common/scri.jsp"></jsp:include>
    <jsp:include page="../common/footer.jsp"></jsp:include> 
 </body> 
 <!-- partial -->
@@ -233,12 +242,12 @@
    src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script
    src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
-<script src="../js/side.js"></script>
+<script src="/resources/js/side.js"></script>
 <script
    src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 
-<script type="text/javascript" src="../js/jquery.js"></script>
-<script type="text/javascript" src="../js/timer.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.js"></script>
+<script type="text/javascript" src="/resources/js/timer.js"></script>
 
 
 

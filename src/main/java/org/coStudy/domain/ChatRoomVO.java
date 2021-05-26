@@ -5,5 +5,6 @@ import lombok.Data;
 @Data
 public class ChatRoomVO {
 	private String roomNo;
-	private String userNo;
+    private String userNo;
+
 }

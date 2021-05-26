@@ -395,9 +395,6 @@ h1, h2, h3, h4, h5, h6 {
 		<a href="#" class="primary-btn" data-toggle="modal"
 			data-target="#myModal" style="float: right; margin-bottom: 30px;">NEW
 			QnA</a>
-		<!-- 	<button type="button" class="btn btn-secondary btn-lg"
-		data-toggle="modal" data-target="#myModal">1대1문의 등록 -->
-		<!-- 	</button> -->
 		<br> <br>
 		<table class="table">
 			<thead class="thead-dark">
@@ -421,11 +418,7 @@ h1, h2, h3, h4, h5, h6 {
 
 	<br>
 	<br>
-	<!-- 	<button type="button" class="btn btn-secondary btn-lg"
-		data-toggle="modal" data-target="#myModal">1대1문의 등록
-	</button> -->
-	<!-- <a href="#" class="primary-btn"
-		data-toggle="modal" data-target="#myModal">NEW QnA</a> -->
+
 	<br>
 	<br>
 	<!-- Modal -->
@@ -681,16 +674,7 @@ h1, h2, h3, h4, h5, h6 {
 								html += '<td>' + data[i].regdate + '</td>';
 								html += '<td><i class="fa fa-close"></i></td>';
 								html += '</tr>';
-
-								
-								
-								/* onclick="OK(data[i].qna_no)" */
-								/* 						
-														var tag = '<li><a href="#!'+item+'" onclick="fetchPage(\''+item+'\')">'+item+'</a></li>'; */
 							}
-
-							/*  var tag = '<li><a href="#" onclick="OK()">'+item+'</a></li>'; */
-							/* 	<a data-toggle="modal" href="#exampleModal">Open Modal</a> */
 
 						} else {
 
@@ -701,11 +685,7 @@ h1, h2, h3, h4, h5, h6 {
 
 						}
 
-						/* $("#cCnt").html(cCnt); */
 						$(".tb").html(html);
-
-						/* 	$(".chat-ul").html(html); */
-
 					},
 					error : function(request, status, error) {
 
@@ -760,73 +740,9 @@ h1, h2, h3, h4, h5, h6 {
 											+ data[i].qna_content + '</div>';
 									html+='<div id="qn">'+data[i].qna_no+'</div>'
 									html += '</li>';
-									
-	/* 								html+='<form id="commentForms" name="commentForms" method="post">';
-									html+='<input type="hidden" class="app-form-control"  id="qna_title" name="qna_title" value="'+data[i].qna_title+'">';
-									html+='<input type="hidden" class="app-form-control"  id="qna_no" name="qna_no" value="'+data[i].qna_no+'">';
-									html+='<input class="app-form-control" placeholder="내용을 입력하세요" id="qna_content" name="qna_content">';
-									
-									html+='<div class="app-form-group buttons">';
-									html+='<button type="submit"onClick="fn_comments() value="전송"></button>'
-									html+='</div>';
-									
-									html+='</form>'; */
+
 								}
-								
-								
-		/* 						var tag = '<li><a href="#!'+item+'" onclick="fetchPage(\''+item+'\')">'+item+'</a></li>'; */
 
-								
-				/* 				<div class="app-form-group buttons">
-								<a href='#' onClick="fn_comments('${result.code }')"
-									class="app-form-button">등록</a>
-							</div> */ 
-								
-								
-								
-							/* 	var tag = '<li><a href="#!'+item+'" onclick="fetchPage(\''+item+'\')">'+item+'</a></li>'; */
-		/* 						
-								<form id="commentForms" name="commentForms" method="post">
-								<div class="app-form-group">
-+									<input class="app-form-control" placeholder="제목을 입력하세요"
-										id="qna_title" name="qna_title">
-								</div>
-								<div class="app-form-group">
-									<input type="hidden" class="app-form-control"
-										placeholder="내용을 입력하세요" id="qna_content" name="qna_content"
-										value="testtesttest">
-								</div>
-
-								<input type="hidden" name="user_no"
-									value="${sessionScope.user.user_no }">
-
-
-								<div class="app-form-group buttons">
-									<a href='#' onClick="fn_comments('${result.code }')"
-										class="app-form-button">등록</a>&nbsp;&nbsp;|&nbsp;&nbsp; <a
-										href='#' class="app-form-button">취소</a>
-								</div>
-
-
-								
-
-							</form>  */
-								
-								
-								
-								
-								
-								
-								
-								
-								
-
-								/* 		html += '<tr style="text-align: center;">';
-										html += '<th>' + data[i].qna_no + '</th>';
-										html += '<td>' + data[i].regdate + '</a></td>';
-											html += '<td>' + data[i].qna_title + '</td>';
-										html += '<td><i class="fa fa-close"></i></td>';
-										html += '</tr>'; */
 							}
 
 						} else {
