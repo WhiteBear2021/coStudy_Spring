@@ -22,16 +22,19 @@
 	</select>
 
 
-	<select id="selectApplyList" resultType="org.coStudy.domain.ApplyGroupMemberVO" parameterType ="int">
+	<select id="selectApplyList" resultType="org.coStudy.domain.ApplyGroupMemberVO"
+		parameterType="int">
 		select * from Apply_Group_Member
 
-		where ISACCEPT ='O' and STUDYGROUP_NO=#{STUDYGROUP_NO}
+		where ISACCEPT ='O' and
+		STUDYGROUP_NO=#{STUDYGROUP_NO}
 
 	</select>
 
 	<update id="acceptMember" parameterType="org.coStudy.domain.ApplyGroupMemberVO">
 
-		update APPLY_GROUP_MEMBER
+		update
+		APPLY_GROUP_MEMBER
 		set ISACCEPT =#{isAccept}
 		where USER_NO =#{user_no}
 		and STUDYGROUP_NO =#{studyGroup_no}
@@ -52,6 +55,15 @@
 
 	</insert>
 
+	<select id="listGroupReply" resultType="org.coStudy.domain.GroupReplyVO"
+		parameterType="int">
+		select * from GROUP_REPLY
+		where PAGE_BOARD_NO=#{page_board_no}
+	</select>
 
+	<insert id="insertGroupReply" parameterType="org.coStudy.domain.GroupReplyVO">
+		insert into GROUP_REPLY values(seq_group_reply.nextval,#{group_reply_writer},#{group_reply_content},#{page_board_no})
+	
+	</insert>
 
 </mapper>
