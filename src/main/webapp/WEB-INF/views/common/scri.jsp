@@ -9,3 +9,4 @@
     <script src="/resources/js/mixitup.min.js"></script>
     <script src="/resources/js/owl.carousel.min.js"></script>
     <script src="/resources/js/main.js"></script>
+	<script type="module" src='/resources/js/mainPage.js'></script>

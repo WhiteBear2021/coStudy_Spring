@@ -34,14 +34,13 @@ public class GroupPageController {
    private TimerService timerService;
    private GroupPageService groupPage_service;
 
-   @ResponseBody
-   @PostMapping("/timer")
-   public ResponseEntity<String> timer(@RequestBody TimerVO vo){
-      log.info("1234");
-      return timerService.insert(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) 
-              : new ResponseEntity<>("success", HttpStatus.INTERNAL_SERVER_ERROR) ;
-   }
 
+	@ResponseBody
+	@PostMapping("/timer")
+	public ResponseEntity<String> timer(@RequestBody TimerVO vo){
+		return timerService.insert(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) 
+				  : new ResponseEntity<>("success", HttpStatus.INTERNAL_SERVER_ERROR) ;
+	}
    @GetMapping("/timer")
    public void timer() {
 
