@@ -84,6 +84,6 @@
 		FROM user_info u
 		LEFT OUTER JOIN Apply_group_member a on a.user_no = u.user_no
 		WHERE a.studygroup_no = #{studygroup_no}
-	</select> -->
+	</select>  -->
 
 </mapper>

@@ -148,8 +148,7 @@ public class GroupPageController {
 	//	model.addAttribute("selectList",groupPage_service.selectApplyList(studygroup_no));
 		
 		
-	//	return "groupPage/groupSetting";
-	//}
+		//return "groupPage/groupSetting";}
 
 
 
