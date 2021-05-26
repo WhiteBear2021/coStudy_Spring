@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -366,6 +367,7 @@ public class MyPageController {
 		for (Object s : scheduleObj) {
 			log.info(s);
 			JSONObject tmp=(JSONObject)s;
+			int schedule_no=Integer.parseInt((String)tmp.get("schedule_no"));
 			String title=(String)tmp.get("title");
 			Boolean allday=(Boolean)tmp.get("allday");
 			String start=(String)tmp.get("start");
@@ -375,12 +377,15 @@ public class MyPageController {
 			log.info("start==>"+start);
 			log.info("end==>"+end);
 			ScheduleVO schedule=new ScheduleVO();
+//			schedule.setSchedule_no(schedule_no);
 			schedule.setUser_no(user_no);
 			schedule.setTitle(title);
 			schedule.setSchedule_start(start);
 			schedule.setSchedule_end(end);
 			schedule.setAllday(allday);
 			list.add(schedule);
+			
+			service.scheduleDeleteAll(user_no);
 			service.scheduleRegister(schedule);
 		}
 		
@@ -403,7 +408,7 @@ public class MyPageController {
 		}
 		UserVO user=(UserVO)session.getAttribute("user");
 		int user_no=user.getUser_no();
-					
+//			int schedule_no=Integer.parseInt((String)scheduleObj.get("schedule_no"));
 			String title=(String)scheduleObj.get("title");
 			Boolean allday=(Boolean)scheduleObj.get("allday");
 			String start=(String)scheduleObj.get("start");
@@ -424,6 +429,21 @@ public class MyPageController {
 		
 	}
 	
+	@RequestMapping(value="/scheduleDelete" ,method=RequestMethod.POST, produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String scheduleDelete(@RequestParam("schedule_no") int schedule_no,HttpSession session){
+		log.info("*********************");
+		log.info("scheduleDelete 중");
+		log.info("삭제할 번호 schedule_no:"+schedule_no);
+		int re=service.scheduleDelete(schedule_no);
+		String mesg="삭제 실패";
+		if(re!=0){
+			mesg="삭제  성공";
+		}
+		return mesg;
+		
+	}
+	
 		@PostMapping("/scheduleLoad")
 		@ResponseBody
 		public List<ScheduleVO> scheduleLoad(HttpSession session){
@@ -435,5 +455,21 @@ public class MyPageController {
 			log.info(list);
 			return list;
 		}
-	
+		
+		@PostMapping(value="/applyQuitUser",produces = "application/text; charset=utf8")
+		@ResponseBody
+		public String applyQuitUser(String user_no,@RequestParam("withdraw_reason") String withdraw_reason){
+			log.info(user_no);
+			Map<String, String> map=new HashMap<>();
+			map.put("user_no", user_no);
+			map.put("withdraw_reason", withdraw_reason);
+			int re=service.quitUser(map);
+			log.info("re 값:"+re);
+			String mesg="회원탈퇴 처리 되었습니다.";
+			if(re==0){
+				mesg="회원탈퇴 신청 실패";
+			}
+			
+			return mesg;
+		}
 }

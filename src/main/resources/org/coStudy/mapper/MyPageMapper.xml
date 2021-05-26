@@ -78,4 +78,16 @@
 		select schedule_no,schedule_title title, all_day allday, schedule_start, schedule_end
 		from schedule where user_no=#{user_no}
 	</select>
+	
+	<delete id="scheduleDelete">
+		delete from schedule where schedule_no=#{schedule_no}
+	</delete>
+	
+	<delete id="scheduleDeleteAll">
+		delete from schedule where user_no=#{user_no}
+	</delete>
+	
+	<insert id="quitUser" parameterType="Map">
+		insert into withdraw values(#{withdraw_reason},#{user_no},'1')
+	</insert>
 </mapper>

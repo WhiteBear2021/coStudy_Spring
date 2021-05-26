@@ -1,6 +1,8 @@
 package org.coStudy.mapper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.coStudy.domain.Criteria;
 import org.coStudy.domain.ScheduleVO;
@@ -27,6 +29,9 @@ public interface MyPageMapper {
 	int toDoUpdate(int todo_no);
 	int toDoDelete(int todo_no);
 	
-	int scheduleRegister(ScheduleVO scheduel);
+	int scheduleRegister(ScheduleVO schedule);
 	List<ScheduleVO> scheduleList(int user_no);
+	int scheduleDelete(int schedule_no);
+	int scheduleDeleteAll(int user_no);
+	int quitUser(Map<String, String> map);
 }

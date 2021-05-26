@@ -1,6 +1,8 @@
 package org.coStudy.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.coStudy.domain.Criteria;
 import org.coStudy.domain.ScheduleVO;
@@ -90,4 +92,20 @@ public class MyPageServiceImple implements MyPageService{
 		// TODO Auto-generated method stub
 		return mapper.toDoDelete(todo_no);
 	}
+	@Override
+	public int scheduleDelete(int schedule_no) {
+		// TODO Auto-generated method stub
+		return mapper.scheduleDelete(schedule_no);
+	}
+	@Override
+	public int scheduleDeleteAll(int user_no) {
+		// TODO Auto-generated method stub
+		return mapper.scheduleDeleteAll(user_no);
+	}
+	@Override
+	public int quitUser(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return mapper.quitUser(map);
+	}
+
 }

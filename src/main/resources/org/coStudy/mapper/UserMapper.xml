@@ -38,8 +38,12 @@
 	</insert>
 
 	<select id="login" parameterType="org.coStudy.domain.LoginVO" resultType="org.coStudy.domain.UserVO">
-		select *
-		from user_info where user_id=#{userId} and user_pw = #{userPw}
+			select u.user_no as "user_no", user_id, user_pw, user_lastName, user_firstName, user_phoneNO, user_post, user_birth, user_email,
+        category_no, user_address1, user_address2, user_register_date, user_register_date, user_photo, user_thumbImg
+		from user_info u where user_id=#{userId} and user_pw = #{userPw}
+<!--           from user_info u, withdraw w 
+          where u.user_no=w.user_no and
+          user_id=#{userId} and user_pw = #{userPw} and isWithdraw='1' -->
 	</select>
 	
 	<select id="searchId" resultType="String">

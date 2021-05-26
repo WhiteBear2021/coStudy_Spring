@@ -101,12 +101,12 @@ html, body {
 						console.log(value.allday);
 						console.log(value.schedule_start);
 						console.log(value.schedule_end); */
-						console.log(obj);
+//						console.log(obj);
 						allEvents.push(obj);
 					});
-					console.log("스케줄 배열:"+allEvents);
+//					console.log("스케줄 배열:"+allEvents);
 					return_value=allEvents;
-					console.log(return_value);
+//					console.log(return_value);
 	        }).fail(function(){
 	            alert('에러 발생');
 	        })
@@ -143,10 +143,24 @@ html, body {
 
 	        return year + "-" + month + "-" + date + "T" + hour + ":" + min + ":" + sec+".000Z";
 	    }
+        //일정 제거 동작 함수(ajax)
+        function deleteData(schedule_no){
+            $.ajax({
+                type:'POST',
+                url:'scheduleDelete',
+                data:{"schedule_no":schedule_no},
+                dataType:'text',
+            }).done(function(result){
+				alert(result);
 
+            }).fail(function(){
+                alert('에러 발생');
+            })
+        }//DeleteData function end 
+        
 $(function() {
 	var all_events=loadData();
-	console.log("all_events:"+all_events);
+	console.log("로드 시 받아오는 all_events:"+all_events);
     var Calendar= FullCalendar.Calendar;
     var Draggable = FullCalendar.Draggable;
     var containerEl = document.getElementById('external-events');
@@ -177,6 +191,15 @@ $(function() {
       editable: true,
       droppable: true, // this allows things to be dropped onto the calendar
       events:all_events, //json 형태의 데이터 값으로 들어있어야지 일정 목록이 나타난다
+      eventClick:function(cal){
+    	  if(!confirm(`일정 ${cal.event._def.title}를 삭제하시겠습니까?`)) return false;
+    	  console.log("이벤트 클릭 시-------");
+    	  console.log(cal);
+    	  console.log("일정 명:"+cal.event._def.title);
+    	  console.log("삭제할 일정 번호:"+cal.event._def.publicId);
+     	  deleteData(cal.event._def.publicId);
+     	  location.reload();
+      },
       drop: function(info) {
         // is the "remove after drop" checkbox checked?
         if (checkbox.checked) {
@@ -389,7 +412,7 @@ $(function() {
                     console.log(obj.allday);
                     obj.start=element._instance.range.start;
                     obj.end=element._instance.range.end;     
-                    
+                    console.log(element._def.defId);
                     events.push(obj);
                 });
                 var jsondata=JSON.stringify(events);
@@ -426,7 +449,7 @@ $(function() {
                 })
             }//addData function end
             
-            
+   
           });
 
           

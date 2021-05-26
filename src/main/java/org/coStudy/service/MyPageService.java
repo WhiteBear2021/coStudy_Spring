@@ -1,6 +1,8 @@
 package org.coStudy.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.coStudy.domain.Criteria;
 import org.coStudy.domain.ScheduleVO;
@@ -27,5 +29,7 @@ public interface MyPageService {
 	 
 	 int scheduleRegister(ScheduleVO scheduel);
 	 List<ScheduleVO> scheduleList(int user_no);
-
+	 int scheduleDelete(int schedule_no);
+	 int scheduleDeleteAll(int user_no);
+	 int quitUser(Map<String, String> map);
 }
