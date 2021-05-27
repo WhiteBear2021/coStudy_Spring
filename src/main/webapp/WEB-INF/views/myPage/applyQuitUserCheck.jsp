@@ -14,9 +14,12 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 </head>
+<jsp:include page="../common/head.jsp"></jsp:include>
+<link rel="stylesheet" href="/resources/css/myPage/myPage.css">
+<link rel="stylesheet" href="/resources/vendor/bootstrap-icons/font/bootstrap-icons.css">
 
 <body>
-
+<jsp:include page="../common/header.jsp"></jsp:include>
 			<div id="login">
 				<h3 class="text-center text-white pt-5"></h3>
 				<div class="container">
