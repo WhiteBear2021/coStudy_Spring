@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="utf-8">
@@ -54,7 +59,26 @@ html, body {
 	max-width: 1100px;
 	margin: 20px auto;
 }
+
+.container {
+	margin-top: 40px;
+}
+
+.btn-primary {
+	width: 100%;
+}
 </style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script>
     var calendar =null;
 	function loadData(){
@@ -90,7 +114,7 @@ html, body {
 	        return return_value;
 	    }//loaddata function end
 $(function() {
-	let all_events=loadData();
+	var all_events=loadData();
 	console.log("all_events:"+all_events);
     var Calendar= FullCalendar.Calendar;
     var Draggable = FullCalendar.Draggable;
@@ -138,81 +162,178 @@ $(function() {
 </head>
 <body>
 	<section class="container col-lg-12">
-		<div class="row">
-			<div class="col-lg-3 bg-secondary m-5 text-center">
-				<nav id="side_left" class="my-auto">
-					<ul class="list-unstyled ">
-						<li class="p-1"><a href="/myPage/studyDiaryList">공부일기</span>&nbsp;&nbsp;<i
-								class="bi bi-journal-check fs-1"></i></a></li>
-						<li class="p-1"><a href="/myPage/scheduleList">일정관리&nbsp;&nbsp;
-								<i class="bi bi-calendar-month fs-1"></i>
-						</a></li>
-						<li class="p-1"><a href="#">1:1 채팅목록&nbsp;&nbsp;<i
-								class="bi bi-chat-square-quote fs-1"></i></a></li>
-						<li class="p-1"><a href="/myPage/joinGroupList">참가 그룹
-								목록&nbsp;&nbsp;<i class="bi bi-chat-quote fs-1"></i>
-						</a></li>
-						<li class="p-1"><a href="/myPage/categoryUpdate">관심 분야
-								수정&nbsp;&nbsp;<i class="bi bi-pencil-fill fs-1"></i>
-						</a></li>
-						<li class="p-1"><a href="/myPage/userUpdate">회원 정보
-								수정&nbsp;&nbsp;<i class="bi bi-tools fs-1"></i>
-						</a></li>
-						<li class="p-1"><a href="/myPage/applyQuitUserCheck">회원
-								탈퇴 신청&nbsp;&nbsp;<i class="bi bi-person-x fs-1"></i>
-						</a></li>
-					</ul>
-				</nav>
+	<div class="row">
+		<div class="col-lg-3 bg-secondary m-5 text-center">
+			<nav id="side_left" class="my-auto">
+			<ul class="list-unstyled ">
+				<li class="p-1"><a href="/myPage/studyDiaryList">공부일기</span>&nbsp;&nbsp;<i
+						class="bi bi-journal-check fs-1"></i></a></li>
+				<li class="p-1"><a href="/myPage/scheduleList">일정관리&nbsp;&nbsp;
+						<i class="bi bi-calendar-month fs-1"></i>
+				</a></li>
+				<li class="p-1"><a href="#">1:1 채팅목록&nbsp;&nbsp;<i
+						class="bi bi-chat-square-quote fs-1"></i></a></li>
+				<li class="p-1"><a href="/myPage/joinGroupList">참가 그룹
+						목록&nbsp;&nbsp;<i class="bi bi-chat-quote fs-1"></i>
+				</a></li>
+				<li class="p-1"><a href="/myPage/categoryUpdate">관심 분야
+						수정&nbsp;&nbsp;<i class="bi bi-pencil-fill fs-1"></i>
+				</a></li>
+				<li class="p-1"><a href="/myPage/userUpdate">회원 정보
+						수정&nbsp;&nbsp;<i class="bi bi-tools fs-1"></i>
+				</a></li>
+				<li class="p-1"><a href="/myPage/applyQuitUserCheck">회원 탈퇴
+						신청&nbsp;&nbsp;<i class="bi bi-person-x fs-1"></i>
+				</a></li>
+			</ul>
+			</nav>
+		</div>
+		<div class="col-8" id="contents">
+			<h3>일정관리</h3>
+			<hr style="width: 800px">
+			<div class='demo-topbar'>
+				<button type="button" class="btn btn-primary btn-lg"
+					data-toggle="modal" data-target="#myModal">일정 등록</button>
+
 			</div>
-			<div class="col-8" id="contents">
-				<h3>일정관리</h3>
-				<hr style="width: 800px">
-				<div class='demo-topbar'>
-					<button class='addScheduleBtn'>일정 등록</button>
+
+
+			<div id='external-events'>
+				<p>
+					<strong>Draggable Events</strong>
+				</p>
+
+				<div
+					class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+					<div class='fc-event-main'>기상</div>
+				</div>
+				<div
+					class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+					<div class='fc-event-main'>약속</div>
+				</div>
+				<div
+					class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+					<div class='fc-event-main'>공부</div>
+				</div>
+				<div
+					class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+					<div class='fc-event-main'>운동</div>
+				</div>
+			
+
+				<p>
+					<input type='checkbox' id='drop-remove' /> 
+					<label for='drop-remove'>remove after drop</label>
+				</p>
+			</div>
+
+			<div id='calendar-container'>
+				<button id="saveBtn">전체 저장</button>
+				<div id='calendar'></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+<!-- 				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel"></h4>
+				</div>
+				 -->
+				
+				<div class="modal-body">
+					
+			
+						<div class="panel panel-primary">
+							<div class="panel-heading">일정 추가</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="control-label">일정 내용</label> 
+											<input type="text" class="form-control" name="title" id="title">
+										</div>
+									</div>
+									
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">종일 여부</label>
+											<input type="checkbox" name="allDay" id="allDay" value="true"><br>
+											<label class="control-label">시작일</label>
+											<div class='input-group date' id='datepicker1'>
+												<input type='text' class="form-control" id='start'/> <span
+													class="input-group-addon"> <span
+													class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class='col-md-6'>
+										<div class="form-group">
+											<label class="control-label"></label><br><br>
+											<label class="control-label">종료일</label>
+											<div class='input-group date' id='datepicker2'>
+												<input type='text' class="form-control" id='end'/> <span
+													class="input-group-addon"> <span
+													class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<input type="button" class="btn btn-primary" id="addBtn" value="Submit">
+							</div>
+							
+						</div>
+					<button type="button" class="btn btn-default" data-dismiss="modal" style="float: right;">Close</button>
 
 				</div>
-
-
-				<div id='external-events'>
-					<p>
-						<strong>Draggable Events</strong>
-					</p>
-
-					<div
-						class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-						<div class='fc-event-main'>My Event 1</div>
-					</div>
-					<div
-						class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-						<div class='fc-event-main'>My Event 2</div>
-					</div>
-					<div
-						class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-						<div class='fc-event-main'>My Event 3</div>
-					</div>
-					<div
-						class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-						<div class='fc-event-main'>My Event 4</div>
-					</div>
-					<div
-						class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-						<div class='fc-event-main'>My Event 5</div>
-					</div>
-
-					<p>
-						<input type='checkbox' id='drop-remove' /> <label
-							for='drop-remove'>remove after drop</label>
-					</p>
-				</div>
-
-				<div id='calendar-container'>
-					<button id="saveBtn">전체 저장</button>
-					<div id='calendar'></div>
+				<div class="modal-footer">
+					
+			
 				</div>
 			</div>
 		</div>
-		<script>
+	</div>
+
+
+	<script>
+	
+		$('#myModal').on('shown.bs.modal', function () {
+		     $('#myInput').focus()
+		   })
+
           $(function(){
+        	  //데이트피커
+        	 $('#datepicker1').datetimepicker();
+        	  
+        	 $('#datepicker2').datetimepicker();
+        	  //일정 달력에 등록
+        	  $("#addBtn").on("click",function(){
+        		 var addObj={};
+        		 
+        		 addObj.title=$("#title").val();
+        		 addObj.allday=$("#allDay").val();
+        		 addObj.start=$("#start").val();
+        			
+        		 var a=Date.parse("dd/MM/yyyy HH:mm a",$("#start").val()).format("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        	  	console.log(a);
+        		 addObj.end=$("#end").val();
+        		
+        		console.log(addObj);
+        		
+        		var strObj=JSON.stringify(addObj);
+        		addData(strObj);
+  //      		location.reload()
+        	  });
         	//일정 저장 클릭 이벤트
             $("#saveBtn").on("click",function(){
                 //전체 데이터를 추출하여 Ajax로 DB에 저장
@@ -236,7 +357,7 @@ $(function() {
                 saveData(jsondata); //ajax으로 넘기도로 저장할 것이다.
 //                loadData();		//저장된 일정을 불러오는 loadData
             });
-			//일정 저장 동작 함수(ajax)
+			//일정 전체 저장 동작 함수(ajax)
             function saveData(jsondata){
                 $.ajax({
                     type:'POST',
@@ -250,7 +371,19 @@ $(function() {
                 })
             }//savadata function end
             
-
+          //일정 추가 동작 함수(ajax)
+            function addData(jsondata){
+                $.ajax({
+                    type:'POST',
+                    url:'scheduleAdd',
+                    data:{"jsondata":jsondata},
+                    dataType:'text',
+                }).done(function(result){
+					console.log(result);
+                }).fail(function(){
+                    alert('에러 발생');
+                })
+            }//addData function end
             
             
           });

@@ -8,6 +8,7 @@ import org.coStudy.domain.StudyGroupVO;
 import org.coStudy.domain.TimerVO;
 import org.coStudy.domain.UserVO;
 import org.coStudy.service.MainPageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @AllArgsConstructor
 public class MainController {
-	
+	@Autowired
 	private MainPageService service;
 	
 	@RequestMapping(value = {"/","/main"}, method = RequestMethod.GET)

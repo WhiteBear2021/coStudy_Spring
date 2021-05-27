@@ -12,8 +12,6 @@ const roomNo = $("#roomNo").val();
 
 	function onmessage(e) {
 	    let data = JSON.parse(e.data);
-	    console.log(data);
-	    
 	    let html;
 	    if(data.user_no == myName){
 	    	html = '<li class="me"><div class="entete"><h3>시간</h3><h2>'+data.user_no+'</h2></div><div class="triangle"></div><div class="message">'+ data.group_msg_log +'</div></li>';
@@ -57,7 +55,7 @@ sock.onclose = onclose;
 $(function(){
 	$("form").submit(function (e) {
 		  e.preventDefault();
-		  socketService.send();
+		  send();
 		  //stompClient.send("/app/users", {}, JSON.stringify({name : "name"}));
 		  $("#msg").val("");
 	});

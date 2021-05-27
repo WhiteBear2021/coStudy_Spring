@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.coStudy.domain.ApplyGroupMemberVO;
 import org.coStudy.domain.Criteria;
 import org.coStudy.domain.StudyGroupVO;
 import org.coStudy.mapper.StudyGroupMapper;
@@ -36,5 +37,11 @@ public class StudyGroupServiceImple implements StudyGroupService{
       public int getTotal(Criteria cri) {
          return mapper.getTotalCount(cri);
       }
+   
+   @Override
+   public void apply(ApplyGroupMemberVO ApplyGroup){
+      mapper.apply(ApplyGroup);
+   }
+   
    
 }

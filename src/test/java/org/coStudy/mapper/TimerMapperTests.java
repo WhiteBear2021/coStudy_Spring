@@ -19,14 +19,17 @@ public class TimerMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private TimerMapper mapper;
 	
+//	@Test
+//	public void insertTest(){
+//		log.info(mapper);
+//		TimerVO vo = new TimerVO();
+//		vo.setTime("01:10:59");
+//		vo.setUser_no(3);
+//		
+//		log.info("타이머 insert"+mapper.insert(vo));
+//	}
 	@Test
-	public void insertTest(){
-		log.info(mapper);
-		TimerVO vo = new TimerVO();
-		vo.setTime("01:10:59");
-		vo.setUser_no(3);
-		
-		log.info("타이머 insert"+mapper.insert(vo));
+	public void listTest(){
+		mapper.list(1).forEach(action -> log.info(action));
 	}
-	
 }

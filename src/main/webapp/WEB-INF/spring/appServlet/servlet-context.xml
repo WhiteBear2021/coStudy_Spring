@@ -42,9 +42,14 @@
 	<beans:bean id="echoHandler" class="org.coStudy.controller.WebSoketController"></beans:bean> -->
 
 	
-	<!-- 업로드 패스 설정 --> 
+<!-- 업로드 패스 설정 --> 
 <beans:bean class="java.lang.String" id="uploadPath">
+<<<<<<< HEAD
  <beans:constructor-arg value="C:\Users\KOSTA\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\coStudy\resources" />
+=======
+ <!-- <beans:constructor-arg value="C:\add\resources" /> -->
+ <beans:constructor-arg value="C:\ko2\spring_work\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\coStudy\resources" />
+>>>>>>> branch 'JW' of https://github.com/WhiteBear2021/coStudy_Spring.git
 </beans:bean>
 
 <!-- 일반 파일 업로드 경로 -->

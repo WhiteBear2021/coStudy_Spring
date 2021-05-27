@@ -113,13 +113,12 @@
 
         .header-right-side-menu>a:focus,
         .header-right-side-menu>a:hover {
-            background-color: #ff084e;
-            color: #fff;
+           
         }
 
         .hero_meta_area .cart:hover .cart_quantity {
-            background-color: #000000;
-            color: #fff;
+          /*   background-color: #000000;
+            color: #fff; */
         }
 
         .hero_meta_area .cart,

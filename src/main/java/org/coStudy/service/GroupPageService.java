@@ -6,6 +6,7 @@ import org.coStudy.domain.ApplyGroupMemberVO;
 import org.coStudy.domain.GroupFileVO;
 import org.coStudy.domain.GroupPageBoardVO;
 import org.coStudy.domain.GroupReplyVO;
+import org.coStudy.domain.UserVO;
 
 public interface GroupPageService {
 
@@ -15,8 +16,11 @@ public interface GroupPageService {
 	int acceptMember(ApplyGroupMemberVO applyMember);
 	int insertAcceptMember(ApplyGroupMemberVO insertMember);
 	
-	List<GroupReplyVO> listGroupReply(int page_board_no);
+	List<GroupReplyVO> listGroupReply();
 	int insertGroupReply(GroupReplyVO groupReplyVO);
+
 	int insertFile(GroupFileVO groupFile);
 	List<GroupFileVO> fileList(int studyGroup_no);
+	List<UserVO> groupUserList(int studygroup_no);
+
 }

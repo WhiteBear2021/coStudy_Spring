@@ -39,7 +39,13 @@
 					<div class="row">
 						<div class="bg-white col-4 border border-primary my-auto text-center">
 								<h4>CoStudy Profile</h4>
-								<i class="bi bi-person-square fs-1"></i><br>
+								<c:if test="${empty sessionScope.user.user_thumbImg}">
+									<i class="bi bi-person-square fs-1"></i><br>
+								</c:if>
+								<c:if test="${!empty sessionScope.user.user_thumbImg}">
+									<img src="${sessionScope.user.user_thumbImg}" style="width: 262px; height: 262px;">
+								</c:if>
+
 								<b>NickName : </b><strong class="m-0 p-1 text-success">${sessionScope.user.user_nickName}</strong>
 						</div>
 						<div class="bg-white col-6 border border-primary p-0 m-4">

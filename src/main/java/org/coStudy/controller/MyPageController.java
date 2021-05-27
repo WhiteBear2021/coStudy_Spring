@@ -1,10 +1,13 @@
 package org.coStudy.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.coStudy.domain.Criteria;
@@ -19,6 +22,7 @@ import org.coStudy.domain.toDoVO;
 import org.coStudy.service.MyPageService;
 import org.coStudy.service.QnaService;
 import org.coStudy.service.UserService;
+import org.coStudy.utils.UploadFileUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -37,6 +41,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -49,7 +55,8 @@ public class MyPageController {
 
 	MyPageService service;
 	UserService user_service;
-
+	
+	
 	@GetMapping("/toDo")
 	public void toDo() {
 
@@ -84,6 +91,40 @@ public class MyPageController {
 		return new ResponseEntity<>("ss" ,HttpStatus.OK);
 	}
 	
+	@ResponseBody
+	@PostMapping("/toDoUpdate")
+	public ResponseEntity<String> toDoUpdate(@RequestParam("todo_no") int todo_no)throws Exception{
+		
+
+		log.info("-------------------------");
+		
+		
+		try {
+			service.toDoUpdate(todo_no);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return new ResponseEntity<>("ss" ,HttpStatus.OK);
+	}
+	@ResponseBody
+	@PostMapping("/toDoDelete")
+	public ResponseEntity<String> toDoDelete(@RequestParam("todo_no") int todo_no)throws Exception{
+		
+
+		log.info("-------------------------");
+		
+		
+		try {
+			service.toDoDelete(todo_no);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return new ResponseEntity<>("ss" ,HttpStatus.OK);
+	}
 	
 	@RequestMapping(value = "/commentList", produces = "application/json; charset=utf8")
 	@ResponseBody
@@ -131,19 +172,37 @@ public class MyPageController {
 
 	// Update 된 후에 어떤 페이지로 갈 지 정하기.
 	@PostMapping("/userUpdate")
-	public String userUpdate(HttpSession session, UserVO user, Model model) {
+	public String userUpdate(HttpSession session, UserVO user, MultipartFile file,RedirectAttributes rttr) throws IOException, Exception {
 		log.info("*********************");
 		log.info("userUdpate Post");
 		log.info("update할 user 정보:" + user);
+	      String root_path = session.getServletContext().getRealPath("/");  
+	      String uploadPath = "resources/";
+	      String filename = file.getOriginalFilename();
+	      log.info("root path:"+root_path);
+	      log.info("upload path:"+uploadPath);
+	      log.info("file name:"+filename);
+		String imgUploadPath = root_path+uploadPath + File.separator + "imgUpload";
+	      String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+	      String fileName = null;
+
+	      if(file != null) {
+	       fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+	      } else {
+	       fileName = root_path+File.separator+uploadPath + File.separator + "images" + File.separator + "none.png";
+	      }
+
+	      user.setUser_thumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+	      user.setUser_photo(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 		int re = service.updateUser(user);
 		if (re > 0) {
 			log.info("*********************");
 			log.info("userProfile 페이지로 이동!!");
 			log.info("수정한 회원정보:" + user);
 			session.setAttribute("user", user);
-			model.addAttribute("mesg", "회원정보가 수정 되었습니다.");
+			rttr.addFlashAttribute("mesg", "회원정보가 수정 되었습니다.");
 		} else {
-			model.addAttribute("mesg", "회원정보가 수정이 실패하였습니다.");
+			rttr.addFlashAttribute("mesg", "회원정보가 수정이 실패하였습니다.");
 		}
 		return "redirect:/myPage/userProfile";
 	}
@@ -287,7 +346,7 @@ public class MyPageController {
 
 	@PostMapping("/scheduleSave")
 	@ResponseBody
-	public void scheduleLSave(@RequestParam("jsondata") String jsondata,HttpSession session){
+	public void scheduleSave(@RequestParam("jsondata") String jsondata,HttpSession session){
 		log.info("*********************");
 		log.info("scheduleSave 중");
 		log.info(jsondata);
@@ -310,7 +369,7 @@ public class MyPageController {
 			String title=(String)tmp.get("title");
 			Boolean allday=(Boolean)tmp.get("allday");
 			String start=(String)tmp.get("start");
-			String end=(String)tmp.get("start");
+			String end=(String)tmp.get("end");
 			log.info("title==>"+title);
 			log.info("allday==>"+allday);
 			log.info("start==>"+start);
@@ -324,6 +383,44 @@ public class MyPageController {
 			list.add(schedule);
 			service.scheduleRegister(schedule);
 		}
+		
+	}
+	
+	@PostMapping("/scheduleAdd")
+	@ResponseBody
+	public void scheduleAdd(@RequestParam("jsondata") String jsondata,HttpSession session){
+		log.info("*********************");
+		log.info("scheduleAdd 중");
+		log.info(jsondata);
+		JSONParser parser=new JSONParser();
+		
+		JSONObject scheduleObj=null;
+		try {
+			scheduleObj = (JSONObject)parser.parse(jsondata);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		UserVO user=(UserVO)session.getAttribute("user");
+		int user_no=user.getUser_no();
+					
+			String title=(String)scheduleObj.get("title");
+			Boolean allday=(Boolean)scheduleObj.get("allday");
+			String start=(String)scheduleObj.get("start");
+			String end=(String)scheduleObj.get("end");
+			log.info("title==>"+title);
+			log.info("allday==>"+allday);
+			log.info("start==>"+start);
+			log.info("end==>"+end);
+			ScheduleVO schedule=new ScheduleVO();
+			schedule.setUser_no(user_no);
+			schedule.setTitle(title);
+			schedule.setSchedule_start(start);
+			schedule.setSchedule_end(end);
+			schedule.setAllday(allday);
+		
+			service.scheduleRegister(schedule);
+		
 		
 	}
 	

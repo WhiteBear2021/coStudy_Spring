@@ -11,6 +11,9 @@
 <jsp:include page="../common/header.jsp"></jsp:include><hr> 
 <link rel="stylesheet" href="/resources/css/myPage/myPage.css">
 <link rel="stylesheet" href="/resources/vendor/bootstrap-icons/font/bootstrap-icons.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -34,15 +37,26 @@
                 <hr style="width:800px;" class="text-primary">
 		        <div class="row mb-5">
                     <div class="col-lg-8 m-auto bg-white border border-primary p-3">
-					<form action="userUpdate" method="post">
+					<form action="userUpdate" method="post" enctype="multipart/form-data">
 					        <input type="hidden" name="user_no" value="${user.user_no}">
 					        <input type="hidden" name="user_id" value="${user.user_id}">
 					        <input type="hidden" name="category_no" value="${user.category_no}">
 					        <input type="hidden" name="user_birth" value="${user.user_birth}">
 					        <input type="hidden" name="user_register_date" value="${user.user_register_date}">
+					        <input type="hidden" name="user_photo" value="${sessionScope.user.user_photo}">
+					        <input type="hidden" name="user_thumbImg" value="${sessionScope.user.user_thumbImg}">
 					        <label>
 					        	<p><b>아이디 :</b> ${sessionScope.user.user_id}
 					        </label>
+					    	<label>
+					        	<p><b>닉네임 :</b> <input type="text" name="user_nickName" value="${sessionScope.user.user_nickName}"/></p>
+					        </label>
+					        
+					        <div class="inputArea">
+								<label for="img">이미지</label> 
+								<input type="file" id="img"	name="file" >
+								<img src="" />
+							</div>
 					        <label>
 					        	<p><b>비밀번호 :</b> <input type="password" name="user_pw" value="${sessionScope.user.user_pw}"></p>
 					        </label>
@@ -53,9 +67,6 @@
 					        </label>
 					        <label>
 					        	 <p> <b>성 :</b> <input type="text" name="user_lastName" value="${sessionScope.user.user_lastName}"> <b>이름 :</b> <input type="text" name="user_firstName" value="${sessionScope.user.user_firstName}"></p>
-					        </label>
-					        <label>
-					        	 <p> <b>별명 :</b> <input type="text" name="user_nickName" value="${sessionScope.user.user_nickName}"> </p>
 					        </label>
 					        <label>
 					        	<p> <b>휴대전화 번호 :</b> <input type="text" name="user_phoneNo" value="${sessionScope.user.user_phoneNo}"></p>
@@ -87,6 +98,20 @@
 		        </div>
 	        </div>
 	    </section>
+	    <script>
+						$("#img").change(
+								function() {
+									if (this.files && this.files[0]) {
+										var reader = new FileReader;
+										reader.onload = function(data) {
+											$("img").attr("src",
+													data.target.result).width(
+													200);
+										}
+										reader.readAsDataURL(this.files[0]);
+									}
+								});
+		</script>
 	    <jsp:include page="../common/footer.jsp"></jsp:include> 
 </body>
 </html>
