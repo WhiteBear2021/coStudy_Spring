@@ -85,7 +85,7 @@
 							<div class="panel panel-white post panel-shadow">
 								<div class="post-heading">
 									<div class="pull-left image">
-										<img src="../img/user.png" class="img-circle avatar"
+										<img src="${user.user_thumbImg}" class="img-circle avatar"
 											alt="user profile image">
 									</div>
 									<!--작성자 이름  -->
