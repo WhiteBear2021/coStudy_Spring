@@ -45,7 +45,7 @@
 											<tbody>
 													<tr>
 														<td>
-															<figure><img src="group1.jpg" alt="그룹사진없음">
+																<figure><img src="${studyGroup.thumbimg}" style="width: 262px; height: 262px;">
 																<figcaption><a href="/CoStudy/groupPage/groupMain?studygroup_no=${studyGroup.studygroup_no }">${studyGroup.studygroup_name }</a></figcaption>
 															</figure>
 														</td>
