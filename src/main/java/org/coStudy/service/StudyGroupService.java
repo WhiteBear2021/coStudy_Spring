@@ -14,9 +14,6 @@ public interface StudyGroupService {
       public void apply(ApplyGroupMemberVO ApplyGroup);
       
       public List<StudyGroupVO> managerList();
-      public List<StudyGroupVO> listIT(int category_no);
-      public List<StudyGroupVO> listF(int category_no);
-      public List<StudyGroupVO> listE(int category_no);
-      public List<StudyGroupVO> listC(int category_no);
-      public List<StudyGroupVO> listM(int category_no);
+      public List<StudyGroupVO> listCategory(int category_no);
+     
 }
