@@ -13,6 +13,7 @@ public interface StudyGroupMapper {
    public void insert(StudyGroupVO studygroup);
    public StudyGroupVO detail(int studygroup_no);
    public int getTotalCount(Criteria cri);
+   public void apply(ApplyGroupMemberVO ApplyGroup);
    
    public List<StudyGroupVO> managerList();
 }

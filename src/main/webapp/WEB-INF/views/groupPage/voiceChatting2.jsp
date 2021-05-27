@@ -289,17 +289,6 @@
               }
             }
 
-            /* function getRandomId() {
-              var text = "";
-              var possible =
-                "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-              for (var i = 0; i < 5; i++)
-                text += possible.charAt(
-                  Math.floor(Math.random() * possible.length)
-                );
-              return text;
-            } */
-
             channelButton.addEventListener(
               "click",
               evt => {
@@ -348,7 +337,7 @@
                     viewerMap[videoId].remon && viewerMap[videoId].remon.close();
                     document.getElementById(videoId).remove();
                     document.getElementById("btn-"+videoId).remove();
-                   /* 내가 추가한 코드 */
+                   /* 스터디그룹나가면 프로필 삭제*/
                    var child = document.getElementById(videoId);
 					child.parentNode.removeChild(child);
                     delete viewerMap[videoId];

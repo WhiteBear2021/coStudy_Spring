@@ -9,6 +9,13 @@
 		values(seq_timer.NEXTVAL, #{time}, #{user_no}, SYSDATE)
 	</insert>
 
+
+	<select id="list" parameterType="int" resultType="org.coStudy.domain.TimerVO">
+		select *
+		from timer
+		where user_no = #{user_no}	
+		order by timer_date
+	</select>
 	
 
 
