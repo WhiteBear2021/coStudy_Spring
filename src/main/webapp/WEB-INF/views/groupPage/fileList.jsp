@@ -211,6 +211,7 @@
 				<form action="fileList" method="post" enctype="multipart/form-data">
 					<div id="write">
 						<input type="hidden" name="studygroup_no" value="${studygroup_no}">
+						<input type = "file" name="groupFile" multiple>
 						<button id="button" type="submit"
 							style="width: 70px; height: 70px;">업로드</button>
 					</div>
