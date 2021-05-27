@@ -10,5 +10,7 @@ public interface StudyGroupService {
       public void insert(StudyGroupVO studygroup);
       public StudyGroupVO detail(int studygroup_no);
       public int getTotal(Criteria cri);
+      
+      public List<StudyGroupVO> managerList();
 
 }

@@ -53,26 +53,29 @@
 														style="text-align: center;">
 														<thead>
 															<tr>
-																<th>공지사항번호</th>
-																<th>제목</th>
-																<th>날짜</th>
-																<th>관리자번호</th>
+																<th>스터디그룹 번호</th>
+																<th>이름</th>
+																<th>위치</th>
+																<th>만든날짜</th>
+															
+																<th>대면/비대면</th>
+																
 															</tr>
 														</thead>
 														<tbody>
 
-															<c:forEach var="notice" items="${list }">
+															<c:forEach var="st" items="${slist }">
 																<tr>
-																	<th>${notice.notice_no }</th>
-																	<%-- <th>${notice.notice_title }</th> --%>
-																	<th><a
-																		href="/notice/detail?notice_no=${notice.notice_no }">
-																			${notice.notice_title } </a></th>
+																	<th>${st.studygroup_no }</th>
+																	<th>${st.studygroup_name }</th>
+																	<th>${st.studygroup_location }</th>
+																	
 
 																	<th><fmt:formatDate pattern="yyyy-MM-dd"
-																			value="${notice.notice_date }" />
+																			value="${st.made_date }" />
 																	</th>
-																	<th>${notice.manager_no }</th>
+															
+																	<th>${st.isface }</th>
 																</tr>
 															</c:forEach>
 

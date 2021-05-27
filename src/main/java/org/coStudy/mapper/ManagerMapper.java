@@ -20,5 +20,5 @@ public interface ManagerMapper {
 	List<Integer> studygroup_Category_Sta();
 	List<UserNewSta> user_New_Sta();
 	
-	List<StudyGroupVO> studygroupList();
+	
 }

@@ -52,12 +52,6 @@ public class ManagerServiceImple implements ManagerService{
 		return mapper.user_New_Sta();
 	}
 
-	@Override
-	public List<StudyGroupVO> studygroupList() {
-		// TODO Auto-generated method stub
-		return mapper.studygroupList();
-	}
-
 
 
 

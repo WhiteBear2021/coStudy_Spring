@@ -65,7 +65,7 @@
 							class="feather icon-layout"></i></span><span class="pcoded-mtext">스터디그룹
 							관리</span></a>
 					<ul class="pcoded-submenu">
-						<li><a href="#" >스터디그룹
+						<li><a href="/studyGroup/manager_list" >스터디그룹
 								리스트</a></li>
 
 					</ul></li>

@@ -13,28 +13,34 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class StudyGroupServiceImple implements StudyGroupService{
-   @Inject
-   private StudyGroupMapper mapper;
-   
-   @Override
-   public List<StudyGroupVO> list(Criteria cri) {
-      return mapper.list(cri);
-   }
-   
-   @Override
-   public void insert(StudyGroupVO studygroup) {
-      mapper.insert(studygroup);
-   }
-   
-   @Override
-   public StudyGroupVO detail(int studygroup_no) {
-      return mapper.detail(studygroup_no);
-   }
+public class StudyGroupServiceImple implements StudyGroupService {
+	@Inject
+	private StudyGroupMapper mapper;
 
-   @Override
-      public int getTotal(Criteria cri) {
-         return mapper.getTotalCount(cri);
-      }
-   
+	@Override
+	public List<StudyGroupVO> list(Criteria cri) {
+		return mapper.list(cri);
+	}
+
+	@Override
+	public void insert(StudyGroupVO studygroup) {
+		mapper.insert(studygroup);
+	}
+
+	@Override
+	public StudyGroupVO detail(int studygroup_no) {
+		return mapper.detail(studygroup_no);
+	}
+
+	@Override
+	public int getTotal(Criteria cri) {
+		return mapper.getTotalCount(cri);
+	}
+
+	@Override
+	public List<StudyGroupVO> managerList() {
+		// TODO Auto-generated method stub
+		return mapper.managerList();
+	}
+
 }

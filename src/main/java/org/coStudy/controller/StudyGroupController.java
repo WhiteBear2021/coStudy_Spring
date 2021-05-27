@@ -49,6 +49,13 @@ public class StudyGroupController {
          int total = service.getTotal(cri);
          model.addAttribute("pageMaker", new PageDTO(cri, total));
       }
+   
+   @GetMapping(value = "/manager_list")
+   public void manager_list(Model model) {
+      model.addAttribute("slist", service.managerList());
+    
+   }
+   
 
    @PostMapping("/insert")
    public String insert(StudyGroupVO studygroup, RedirectAttributes rttr,MultipartFile file) throws Exception {
@@ -92,6 +99,8 @@ public class StudyGroupController {
    public void datail(@RequestParam("studygroup_no") int studygroup_no,@ModelAttribute("cri") Criteria cri, Model model) {
       model.addAttribute("studygroup", service.detail(studygroup_no));
    }
+   
+
 
    
    @PostMapping("/apply")
