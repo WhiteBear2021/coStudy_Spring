@@ -16,4 +16,6 @@ public interface StudyGroupMapper {
    public void apply(ApplyGroupMemberVO ApplyGroup);
    
    public List<StudyGroupVO> managerList();
+   public List<StudyGroupVO> listCategory(int category_no);
+
 }

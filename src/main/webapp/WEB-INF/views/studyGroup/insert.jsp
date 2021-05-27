@@ -48,7 +48,6 @@
                </div>
 
             </div>
-<%=request.getRealPath("/") %>
 
             <input type="hidden" name="user_no"
                value="${sessionScope.user.user_no}"> <input type="submit"

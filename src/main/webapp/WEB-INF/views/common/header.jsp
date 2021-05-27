@@ -7,11 +7,11 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center justify-content-end">
 
-                    <div class="col-12 col-lg-7">
+                    <div class="col-lg-8">
                         <div class="top_single_area d-flex align-items-center">
                             <!-- Logo Area -->
                             <div class="top_logo">
-                                <a href="#"><img src="/resources/img/logo2.PNG" alt="" width="200px" height="100px"></a>
+                                <a href="#"><img src="/resources/img/logo.PNG" alt="" style="width: 320px; height:180px;"></a>
                             </div>
                             <!-- Cart & Menu Area -->
                             <div class="header-cart-menu d-flex align-items-center ml-auto">

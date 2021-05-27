@@ -45,9 +45,11 @@ public class StudyGroupServiceImple implements StudyGroupService{
    
 	@Override
 	public List<StudyGroupVO> managerList() {
-		// TODO Auto-generated method stub
 		return mapper.managerList();
 	}
-   
-   
+
+	@Override
+	public List<StudyGroupVO> listCategory(int category_no) {
+		return mapper.listCategory(category_no);
+	}
 }

@@ -98,4 +98,15 @@
 	<select id="managerList" resultType="org.coStudy.domain.StudyGroupVO">
 		select * from STUDYGROUP
 	</select>
+	
+	<select id = "listCategory" resultType="org.coStudy.domain.StudyGroupVO" parameterType="int">
+		select * from STUDYGROUP where category_no=#{category_no}
+	</select>
+	
+	<!-- <select id = "isFaceList" resultType="org.coStudy.domain.StudyGroupVO" parameterType="string">
+		select * from STUDYGROUP where category_no=#{category_no}
+	</select> -->
+
+	
+	
 </mapper>

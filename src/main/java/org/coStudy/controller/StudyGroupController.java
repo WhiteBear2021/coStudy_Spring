@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -32,81 +33,100 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class StudyGroupController {
 
-   private StudyGroupService service;
+	private StudyGroupService service;
 
-   @Resource(name = "uploadPath")
-   private String uploadPath;
+	@Resource(name = "uploadPath")
+	private String uploadPath;
 
-   @GetMapping(value = "/list")
-   public void list(Criteria cri, Model model) {
-      log.info(cri);
-      model.addAttribute("list", service.list(cri));
-      log.info(service.list(cri));
-      int total = service.getTotal(cri);
-      model.addAttribute("pageMaker", new PageDTO(cri, total));
-      model.addAttribute("total", total);
-   }
+	@GetMapping(value = "/list")
+	public void list(Criteria cri, Model model) {
+		log.info(cri);
+		model.addAttribute("list", service.list(cri));
+		log.info(service.list(cri));
+		int total = service.getTotal(cri);
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		model.addAttribute("total", total);
+		model.addAttribute("total1", service.listCategory(1).size());
+		model.addAttribute("total2", service.listCategory(2).size());
+		model.addAttribute("total3", service.listCategory(3).size());
+		model.addAttribute("total4", service.listCategory(4).size());
+		model.addAttribute("total5", service.listCategory(5).size());
+	}
 
-   @PostMapping("/insert")
-   public String insert(StudyGroupVO studygroup, RedirectAttributes rttr, MultipartFile file) throws Exception {
+	@RequestMapping(value = "/list", method = RequestMethod.GET, params = { "category_no" })
+	public void list(@RequestParam("category_no") int category_no, Model model) {
 
-      String imgUploadPath = uploadPath + File.separator + "imgUpload";
-      String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
-      String fileName = null;
-      UUID uuid = UUID.randomUUID();
-      if (file != null) {
-         fileName = UploadFileUtils.fileUpload(uuid,imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
-      } else {
-         fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
-      }
+		model.addAttribute("total", service.listCategory(category_no).size());
+		model.addAttribute("total1", service.listCategory(1).size());
+		model.addAttribute("total2", service.listCategory(2).size());
+		model.addAttribute("total3", service.listCategory(3).size());
+		model.addAttribute("total4", service.listCategory(4).size());
+		model.addAttribute("total5", service.listCategory(5).size());
+		model.addAttribute("list", service.listCategory(category_no));
 
-      studygroup.setThumbimg(
-            File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
-      studygroup.setImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+	}
 
-      service.insert(studygroup);
+	@PostMapping("/insert")
+	public String insert(StudyGroupVO studygroup, RedirectAttributes rttr, MultipartFile file) throws Exception {
 
-      Map<Object, Object> map = new HashMap<>();
-      map.put("success_no", studygroup.getStudygroup_no());
-      map.put("page", "insert");
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		String fileName = null;
+		UUID uuid = UUID.randomUUID();
+		if (file != null) {
+			fileName = UploadFileUtils.fileUpload(uuid, imgUploadPath, file.getOriginalFilename(), file.getBytes(),
+					ymdPath);
+		} else {
+			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+		}
 
-      rttr.addFlashAttribute("success", map);
+		studygroup.setThumbimg(
+				File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+		studygroup.setImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 
-      return "redirect:/studyGroup/list";
-   }
+		service.insert(studygroup);
 
-   @GetMapping("/insert")
-   public void insert() {
+		Map<Object, Object> map = new HashMap<>();
+		map.put("success_no", studygroup.getStudygroup_no());
+		map.put("page", "insert");
 
-   }
+		rttr.addFlashAttribute("success", map);
 
-   @GetMapping("/detail")
-   public void datail(@RequestParam("studygroup_no") int studygroup_no, @ModelAttribute("cri") Criteria cri,
-         Model model) {
-      model.addAttribute("studygroup", service.detail(studygroup_no));
+		return "redirect:/studyGroup/list";
+	}
 
-   }
+	@GetMapping("/insert")
+	public void insert() {
 
-   @PostMapping("/apply")
-   public String apply(@RequestParam("user_no") int user_no, @RequestParam("studygroup_no") int studygroup_no,
-         Model model) {
-      log.info("===============================================");
-      log.info(user_no);
-      log.info(studygroup_no);
+	}
 
-      ApplyGroupMemberVO vo = new ApplyGroupMemberVO();
-      vo.setUser_no(user_no);
-      vo.setStudygroup_no(studygroup_no);
+	@GetMapping("/detail")
+	public void datail(@RequestParam("studygroup_no") int studygroup_no, @ModelAttribute("cri") Criteria cri,
+			Model model) {
+		model.addAttribute("studygroup", service.detail(studygroup_no));
 
-      service.apply(vo);
+	}
 
-      return "redirect:/studyGroup/list";
-   }
-   
-   @GetMapping(value = "/manager_list")
-   public void manager_list(Model model) {
-      model.addAttribute("slist", service.managerList());
-    
-   }
+	@PostMapping("/apply")
+	public String apply(@RequestParam("user_no") int user_no, @RequestParam("studygroup_no") int studygroup_no,
+			Model model) {
+		log.info("===============================================");
+		log.info(user_no);
+		log.info(studygroup_no);
+
+		ApplyGroupMemberVO vo = new ApplyGroupMemberVO();
+		vo.setUser_no(user_no);
+		vo.setStudygroup_no(studygroup_no);
+
+		service.apply(vo);
+
+		return "redirect:/studyGroup/list";
+	}
+
+	@GetMapping(value = "/manager_list")
+	public void manager_list(Model model) {
+		model.addAttribute("slist", service.managerList());
+
+	}
 
 }
