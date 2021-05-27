@@ -39,7 +39,7 @@
 							</div>
 							<div class="form-group">
 								<label for="password" class="text-info">비밀번호:</label><br> <input
-									type="text" name="userPw" id="userPw" class="form-control">
+									type="password" name="userPw" id="userPw" class="form-control">
 							</div>
 							<div class="form-group">
 								<label for="remember-me" class="text-info"><span>자동로그인</span> <span><input
