@@ -48,9 +48,9 @@ function init(){
 			$("#hotGroup").append(html);
 		}
 	});
+
 	
 	if($('#user_no').val() !== ""){
-		
 		mainPageService.getRecom((result)=>{
 			console.log(result);
 			for(let i = 0; i < result.length; i++){

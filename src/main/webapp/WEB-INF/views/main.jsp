@@ -43,7 +43,7 @@
                         </div>
                         <div class="banner__item__text">
                             <h2>${random[0].studygroup_name}</h2>
-                            <a href="#">random 1 link</a>
+                            <a href="studyGroup/detail?studygroup_no=${random[0].studygroup_no}">random 1 link</a>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="banner__item__text">
                             <h2>${random[1].studygroup_name}</h2>
-                            <a href="#">ramdom 2 link</a>
+                            <a href="studyGroup/detail?studygroup_no=${random[1].studygroup_no}">ramdom 2 link</a>
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="banner__item__text">
                             <h2>${random[2].studygroup_name}</h2>
-                            <a href="/user/signUp">ramdom 3 link</a>
+                            <a href="studyGroup/detail?studygroup_no=${random[2].studygroup_no}">ramdom 3 link</a>
                         </div>
                     </div>
                 </div>
