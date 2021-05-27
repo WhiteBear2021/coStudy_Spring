@@ -5,13 +5,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width" , initial-scale="1">
-<jsp:include page="../common/header.jsp"></jsp:include>
-<link rel="stylesheet" href="/resources/css/myPage/myPage.css">
 <link rel="stylesheet"
 	href="/resources/vendor/bootstrap-icons/font/bootstrap-icons.css">
 <title>Insert title here</title>
 
+<jsp:include page="../common/head.jsp"></jsp:include>
 </head>
+<jsp:include page="../common/header.jsp"></jsp:include>
+<link rel="stylesheet" href="/resources/css/myPage/myPage.css">
+<link rel="stylesheet" href="/resources/vendor/bootstrap-icons/font/bootstrap-icons.css">
+
 <body>
 
 	<section class="container col-lg-12">
@@ -24,7 +27,7 @@
 						<li class="p-1"><a href="/myPage/scheduleList">일정관리&nbsp;&nbsp;
 								<i class="bi bi-calendar-month fs-1"></i>
 						</a></li>
-						<li class="p-1"><a href="#">1:1 채팅목록&nbsp;&nbsp;<i
+						<li class="p-1"><a href="/myPage/toDo">todo&nbsp;&nbsp;<i
 								class="bi bi-chat-square-quote fs-1"></i></a></li>
 						<li class="p-1"><a href="/myPage/joinGroupList">참가 그룹
 								목록&nbsp;&nbsp;<i class="bi bi-chat-quote fs-1"></i>
@@ -80,5 +83,8 @@
 	</section>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<jsp:include page="../common/footer.jsp"></jsp:include><hr>
 </body>
+
+<jsp:include page="../common/scri.jsp"></jsp:include>
 </html>

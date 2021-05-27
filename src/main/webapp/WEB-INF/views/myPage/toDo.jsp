@@ -471,7 +471,7 @@ input[type="radio"], input[type="checkbox"] {
 						<li class="p-1"><a href="/myPage/scheduleList">일정관리&nbsp;&nbsp;
 								<i class="bi bi-calendar-month fs-1"></i>
 						</a></li>
-						<li class="p-1"><a href="#">1:1 채팅목록&nbsp;&nbsp;<i
+						<li class="p-1"><a href="/myPage/toDo">todo&nbsp;&nbsp;<i
 								class="bi bi-chat-square-quote fs-1"></i></a></li>
 						<li class="p-1"><a href="/myPage/joinGroupList">참가 그룹
 								목록&nbsp;&nbsp;<i class="bi bi-chat-quote fs-1"></i>
