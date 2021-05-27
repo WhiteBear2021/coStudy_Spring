@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.coStudy.domain.ApplyGroupMemberVO;
 import org.coStudy.domain.Criteria;
@@ -34,9 +35,6 @@ import lombok.extern.log4j.Log4j;
 public class StudyGroupController {
 
 	private StudyGroupService service;
-
-	@Resource(name = "uploadPath")
-	private String uploadPath;
 
 	@GetMapping(value = "/list")
 	public void list(Criteria cri, Model model) {
@@ -67,17 +65,22 @@ public class StudyGroupController {
 	}
 
 	@PostMapping("/insert")
-	public String insert(StudyGroupVO studygroup, RedirectAttributes rttr, MultipartFile file) throws Exception {
-
+	public String insert(HttpSession session,StudyGroupVO studygroup, RedirectAttributes rttr, MultipartFile file) throws Exception {
+		 String root_path = session.getServletContext().getRealPath("/");  
+	     String uploadPath = "resources/";
+	     String filename = file.getOriginalFilename();
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		String fileName = null;
 		UUID uuid = UUID.randomUUID();
+		 log.info("root path:"+root_path);
+	     log.info("upload path:"+uploadPath);
+	     log.info("file name:"+filename);
 		if (file != null) {
-			fileName = UploadFileUtils.fileUpload(uuid, imgUploadPath, file.getOriginalFilename(), file.getBytes(),
-					ymdPath);
+			fileName = UploadFileUtils.fileUpload(uuid, imgUploadPath, file.getOriginalFilename(), file.getBytes(),	ymdPath);
+			log.info("생성하는 파일이름:"+fileName);
 		} else {
-			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+			fileName = root_path+File.separator+uploadPath + File.separator + "images" + File.separator + "none.png";
 		}
 
 		studygroup.setThumbimg(
