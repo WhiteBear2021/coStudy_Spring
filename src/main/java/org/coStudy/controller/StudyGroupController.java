@@ -41,10 +41,10 @@ public class StudyGroupController {
    public void list(Criteria cri, Model model) {
       log.info(cri);
       model.addAttribute("list", service.list(cri));
-
       log.info(service.list(cri));
       int total = service.getTotal(cri);
       model.addAttribute("pageMaker", new PageDTO(cri, total));
+      model.addAttribute("total", total);
    }
 
    @PostMapping("/insert")
