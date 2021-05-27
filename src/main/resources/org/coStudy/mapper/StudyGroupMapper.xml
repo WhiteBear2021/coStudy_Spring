@@ -98,4 +98,25 @@
 	<select id="managerList" resultType="org.coStudy.domain.StudyGroupVO">
 		select * from STUDYGROUP
 	</select>
+	
+	<select id = "listIT" resultType="org.coStudy.domain.StudyGroupVO" parameterType="int">
+		select * from studygroup where category_no=1;
+	</select>
+	
+	<select id = "listF" resultType="org.coStudy.domain.StudyGroupVO" parameterType="int">
+		select * from studygroup where category_no=2;
+	</select>
+	
+	<select id = "listE" resultType="org.coStudy.domain.StudyGroupVO" parameterType="int">
+		select * from studygroup where category_no=3;
+	</select>
+	
+	<select id = "listC" resultType="org.coStudy.domain.StudyGroupVO" parameterType="int">
+		select * from studygroup where category_no=4;
+	</select>
+	
+	<select id = "listM" resultType="org.coStudy.domain.StudyGroupVO" parameterType="int">
+		select * from studygroup where category_no=5;
+	</select>
+	
 </mapper>

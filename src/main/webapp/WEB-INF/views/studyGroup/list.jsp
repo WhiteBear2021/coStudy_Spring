@@ -85,7 +85,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="shop__product__option__left">
-                                    <p>총갯수</p>
+                                    <p>총갯수 ${total}개</p>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
