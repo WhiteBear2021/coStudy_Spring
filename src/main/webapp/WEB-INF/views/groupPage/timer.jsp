@@ -12,15 +12,6 @@
 </head>
 <body>
 	<input id="user_no" type="hidden" value="${user.user_no }" >
-	<section id="timer">
-	<h2>개인 타이머</h2>
-	<span id="time_output">00:00:00</span>
-	<br>
-	<div class="content_center">
-		<input type="button" id="timer_bnt_save" value="저장"> 
-		<input type="button" id="timer_bnt_start" value="시작">
-	</div>
-	</section>
 
 	<section id="cTimer">
 		<h1>시간표</h1>
@@ -106,7 +97,6 @@
 	
 	<script src="/resources/vendor/jquery/jquery.js"></script>
 	<script src="/resources/vendor/bootstrap/js/bootstrap.js"></script>
-	<script type="module" src="/resources/js/timer.js"></script>
 	<script type="module" src="/resources/js/class_timer.js"></script>
 </body>
 </html>

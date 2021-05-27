@@ -22,7 +22,7 @@
 
 </head>
 <body>
-
+<input id="user_no" type="hidden" value="${user.user_no }" >
 	<div id="wrapper">
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav">
@@ -91,7 +91,9 @@
 				<button class="light" style="margin-right: 50px;">
 					<span>파일 보관함</span>
 				</button>
-
+				<button class="light" id="class_timer" style="margin-right: 50px;">
+					<span >시간표</span>
+				</button>
 
 				<!-- div class="menu" style="margin-right: 50px;">
                <div class="active">
@@ -217,7 +219,7 @@
 						class="panel panel-white post panel-shadow" class="col-md-5">
 						<div id="right-sidebar-gibox"></div>
 						<div id="right-sidebar-fileBox"></div>
-						<a href="../chatting/chattingRoom.do?roomNo=${roomNo}"
+						<a href="/groupPage/chattingForm/${studygroup_no}/${user.user_no}"
 							onclick="window.open(this.href, '_blank', 'width=800, height=1000'); return false;">그룹
 							채팅</a> <a
 							href="/groupPage/voiceChatting?studygroup_no=${studygroup_no}"
@@ -272,7 +274,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 
 <script type="text/javascript" src="/resources/js/jquery.js"></script>
-<script type="text/javascript" src="/resources/js/timer.js"></script>
+<script type="module" src="/resources/js/timer.js"></script>
 
 
 
