@@ -3,7 +3,7 @@
   z-index:1;
   position: absolute;
   width:0;
-  height:100%;
+  height:50%;
   overflow-y:hidden;
   background:#3D5A5B;
   opacity:0.9;
@@ -71,7 +71,7 @@
 }
 .sidebar-nav li > #side-groupschedule {
 	
-	height:230px;
+	
 }
 
 #panel-sideVar {
@@ -83,7 +83,7 @@
 
 #group-Main-body {
 	border: 1px;
-	width: 1500px;
+	width: 800px;
 	height: 850px;
 	position: relative;
 	
@@ -201,5 +201,9 @@ body{ -ms-overflow-style: none; }
 
 #reply-text {
 	
+}
+
+.form__field {
+	width:500px !import
 }
 
