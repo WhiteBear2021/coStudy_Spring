@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.coStudy.domain.LoginVO;
 import org.coStudy.domain.ManagerVO;
+import org.coStudy.domain.StudyGroupVO;
 import org.coStudy.domain.UserNewSta;
 import org.coStudy.domain.UserVO;
 import org.coStudy.mapper.ManagerMapper;
@@ -50,6 +51,13 @@ public class ManagerServiceImple implements ManagerService{
 	public List<UserNewSta> user_New_Sta() {
 		return mapper.user_New_Sta();
 	}
+
+	@Override
+	public List<StudyGroupVO> studygroupList() {
+		// TODO Auto-generated method stub
+		return mapper.studygroupList();
+	}
+
 
 
 

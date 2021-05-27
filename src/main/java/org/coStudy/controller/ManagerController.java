@@ -31,6 +31,7 @@ public class ManagerController {
       
    private ManagerService service;
    
+   
    @GetMapping("/main")
    public String main(Model model){
       log.info("main");

@@ -58,7 +58,7 @@
 
 
                                         <li class="nav-item"><a class="nav-link" href="/studyGroup/list">Study Group List</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/notice/user_list">공지사항</a></li>
                                         <li class="nav-item"><a class="nav-link" href="/qna/list">1:1문의</a></li>
                                     </ul>
                                 </div>

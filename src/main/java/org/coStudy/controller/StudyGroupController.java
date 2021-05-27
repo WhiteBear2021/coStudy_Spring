@@ -52,7 +52,9 @@ public class StudyGroupController {
 
    @PostMapping("/insert")
    public String insert(StudyGroupVO studygroup, RedirectAttributes rttr,MultipartFile file) throws Exception {
-      log.info("========================================");
+      
+	   
+	   log.info("========================================");
       
       
       String imgUploadPath = uploadPath + File.separator + "imgUpload";

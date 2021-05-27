@@ -19,7 +19,7 @@
 				</div>
 				<div class="collapse" id="nav-user-link">
 					<ul class="list-unstyled">
-						<li class="list-group-item"><a href="manager/list"><i
+						<li class="list-group-item"><a href="/manager/list"><i
 								class="feather icon-user m-r-5"></i>관리자 리스트/추가</a></li>
 						<li class="list-group-item"><a
 							href="#"><i
@@ -38,7 +38,6 @@
 					<ul class="pcoded-submenu">
 						<li><a href="/manageUser/list" >전체 회원
 								리스트</a></li>
-						<li><a href="#" >통계_회원</a></li>
 						<li><a href="/manageUser/newList">새로운
 								회원</a></li>
 					</ul></li>
@@ -68,7 +67,6 @@
 					<ul class="pcoded-submenu">
 						<li><a href="#" >스터디그룹
 								리스트</a></li>
-						<li><a href="#" >통계_스터디그룹</a></li>
 
 					</ul></li>
 

@@ -90,5 +90,8 @@
 		where
 		studygroup_no=#{studygroup_no}
 	</select>
-
+	
+	<select id="managerList" resultType="org.coStudy.domain.StudyGroupVO">
+		select * from STUDYGROUP
+	</select>
 </mapper>

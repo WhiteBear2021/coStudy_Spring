@@ -20,6 +20,9 @@
 		]]>
 	</select>
 
+	<select id="userList" resultType="org.coStudy.domain.NoticeVO">
+		select * from notice
+	</select>
 	
 	
 	<insert id="insert" parameterType="org.coStudy.domain.NoticeVO">

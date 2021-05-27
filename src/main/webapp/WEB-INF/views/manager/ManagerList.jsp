@@ -64,7 +64,7 @@
 															</c:forEach>
 														</tbody>
 													</table>
-
+<!-- 
 													<div class="modal fade" id="myModal" tabindex="-1"
 														role="dialog" aria-labelledby="myModalLabel"
 														aria-hidden="true">
@@ -84,11 +84,11 @@
 																		changes</button>
 																</div>
 															</div>
-															<!-- /.modal-content -->
+															/.modal-content
 														</div>
-														<!-- /.modal-dialog -->
+														/.modal-dialog
 													</div>
-													<!-- /.modal -->
+													/.modal -->
 
 												</div>
 											</div>
@@ -117,7 +117,7 @@
 	</div>
 </body>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(document).ready(function() {
 		var result = '<c:out value="${result}"/>';
 		checkModal(result);
@@ -132,6 +132,6 @@
 			$("#myModal").modal("show");
 		}
 	});
-</script>
+</script> -->
 <jsp:include page="../managerModule/footer.jsp"></jsp:include><hr>
 </html>

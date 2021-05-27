@@ -7,10 +7,10 @@
 
 <jsp:include page="common/header.jsp"></jsp:include>
 <body>
-	<input type="hidden" id="user_no" value="${user.user_no }">
+
     <section class="hero">
         <div class="hero__slider owl-carousel">
-            <div class="hero__items set-bg" data-setbg="/resources/img/r2.jpg">
+             <div class="hero__items set-bg" data-setbg="/resources/img/banner1.jpg">
 			<div class="container">
                     <div class="row">
                         <div class="col-xl-5 col-lg-7 col-md-8">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hero__items set-bg" data-setbg="/resources/img/r2.jpg">
+              <div class="hero__items set-bg" data-setbg="/resources/img/banner2.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-5 col-lg-7 col-md-8">
@@ -93,21 +93,11 @@
     </section>
     <!-- Product Section End -->
 
-    <!-- Categories Section Begin -->
-    <section class="categories spad">
-        <div class="container">
-            <div class="row">
-               <p>ìí ì¼ì  apiì¬ì© ìê°ëë©´</p>
-               
-            </div>
-        </div>
-    </section>
-    
   
 
 
 <jsp:include page="common/footer.jsp"></jsp:include><hr>
 </body>
 
-<jsp:include page="common/scri.jsp"></jsp:include><hr>
+<jsp:include page="common/scri.jsp"></jsp:include>
 </html>

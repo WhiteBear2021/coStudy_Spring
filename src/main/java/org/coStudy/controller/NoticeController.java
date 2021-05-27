@@ -31,6 +31,10 @@ public class NoticeController {
 		model.addAttribute("list", service.list(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, 127));//123은 임의의 총 글갯수
 	}
+	@GetMapping("/user_list")
+	public void userlist(Criteria cri,Model model) {
+		model.addAttribute("nlist", service.userList());
+	}
 
 	@PostMapping("/insert")
 	public String insert(NoticeVO notice, RedirectAttributes rttr) {
