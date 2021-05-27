@@ -64,7 +64,7 @@
 									<div class="thumnail-wrapper">
 										<div class="thumnail">
 											<div class="centered text-center">
-												<img alt="프로필사진 없음" src="/resources/img/profile.jpg">
+												<img alt="프로필사진 없음" src=${sessionScope.user.user_thumbImg }>
 											</div>
 										</div>
 									</div>
