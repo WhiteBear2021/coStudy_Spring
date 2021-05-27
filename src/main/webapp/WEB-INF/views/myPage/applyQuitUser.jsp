@@ -5,11 +5,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width", initial-scale="1">
+<jsp:include page="../common/head.jsp"></jsp:include>
+
+
 <jsp:include page="../common/header.jsp"></jsp:include>
 <link rel="stylesheet" href="/resources/css/myPage/myPage.css">
 <link rel="stylesheet" href="/resources/vendor/bootstrap-icons/font/bootstrap-icons.css">
 <title>Insert title here</title>
-<jsp:include page="../common/head.jsp"></jsp:include>
 </head>
 <jsp:include page="../common/header.jsp"></jsp:include>
 <body>

@@ -33,7 +33,7 @@
 		#{user_phoneNo}, #{user_post},
 		#{user_birth}, #{user_email}, #{category_no},
 		#{user_address1}, #{user_address2},
-		SYSDATE,#{user_id},null,null
+		SYSDATE,#{user_id},'\imgUpload\manager.png','\imgUpload\manager.png'
 	)
 	</insert>
 

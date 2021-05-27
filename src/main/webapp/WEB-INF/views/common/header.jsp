@@ -11,7 +11,7 @@
                         <div class="top_single_area d-flex align-items-center">
                             <!-- Logo Area -->
                             <div class="top_logo">
-                                <a href="#"><img src="/resources/img/logo.PNG" alt="" style="width: 320px; height:180px;"></a>
+                                <a href="/main"><img src="/resources/img/logo.PNG" alt="" style="width: 320px; height:180px;"></a>
                             </div>
                             <!-- Cart & Menu Area -->
                             <div class="header-cart-menu d-flex align-items-center ml-auto">
@@ -19,11 +19,11 @@
                                 <div class="cart">
 
                                 <%if (session.getAttribute("user")!=null) { %>
-                                	<a href="/myPage/userProfile" id="header-cart-btn" target="_blank"> My Page &nbsp;&nbsp; |&nbsp;&nbsp; </a>
-                                    <a href="/user/logout" id="header-cart-btn" target="_blank"> Logout &nbsp;&nbsp;&nbsp;&nbsp; </a>
+                                	<a href="/myPage/userProfile" id="header-cart-btn"> My Page &nbsp;&nbsp; |&nbsp;&nbsp; </a>
+                                    <a href="/user/logout" id="header-cart-btn"> Logout &nbsp;&nbsp;&nbsp;&nbsp; </a>
                                     <% } else { %>
-                                    <a href="/user/login" id="header-cart-btn" target="_blank"> Login &nbsp;&nbsp;|&nbsp;&nbsp; </a>
-                                    <a href="/user/signUp" id="header-cart-btn" target="_blank"> Sign Up &nbsp;&nbsp; &nbsp;&nbsp; </a>
+                                    <a href="/user/login" id="header-cart-btn"> Login &nbsp;&nbsp;|&nbsp;&nbsp; </a>
+                                    <a href="/user/signUp" id="header-cart-btn"> Sign Up &nbsp;&nbsp; &nbsp;&nbsp; </a>
                                     <% } %>
 
                                 </div>

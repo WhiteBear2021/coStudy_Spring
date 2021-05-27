@@ -54,8 +54,9 @@
 					        
 					        <div class="inputArea">
 								<label for="img"><b>프로필 사진 : </b></label> 
-								<input type="file" id="img"	name="file" >
-								<img src="" />
+								<input type="file" id="img"	name="file">
+								<img id="profileImg" src="${sessionScope.user.user_thumbImg}" style="width:150px;" />
+								
 							</div>
 					        <label>
 					        	<p><b>비밀번호 :</b> <input type="password" name="user_pw" value="${sessionScope.user.user_pw}"></p>
@@ -87,10 +88,20 @@
 					     		<fmt:parseDate var="dt" value="${sessionScope.user.user_register_date}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:parseDate>
 								
 					        	<p>  <b>가입일 :</b> <input type="text" name="user_register_date" value=<fmt:formatDate value="${dt}" pattern="yyyy-MM-dd"/> readonly="readonly"></p>
-					        </label><br><br>
+					        </label>
+					         <label>
+					        	<p>  <b>관심분야 :</b> 		
+					        			<select name="category_no">
+											<option value="${sessionScope.user.category_no}" selected="selected"></option>
+											<c:forEach var="cl" items="${categoryList}">
+												<option value="${cl.category_no}">${cl.category_name}</option>
+											</c:forEach>
+										</select>
+					        </label>
+					        <br><br>
                             <div class="text-center">
-							<button type="submit" class="btn btn-primary p-1">수정</button>
-							<button type="reset" class="btn btn-primary p-1">취소</button>
+							<button type="submit" class="btn btn-primary p-1" style="margin-left:200px;">수정</button>
+							<button type="reset" class="btn btn-primary p-1" style="margin-left:20px;">취소</button>
                             </div>
 				        </form>
                         </div>
@@ -104,7 +115,7 @@
 									if (this.files && this.files[0]) {
 										var reader = new FileReader;
 										reader.onload = function(data) {
-											$("img").attr("src",
+											$("#profileImg").attr("src",
 													data.target.result).width(
 													200);
 										}

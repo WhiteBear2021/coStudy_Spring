@@ -9,12 +9,12 @@
 <title>Insert title here</title>
 
 </head>
-<jsp:include page="../common/header.jsp"></jsp:include>
+
 <link rel="stylesheet" href="/resources/css/myPage/myPage.css">
 <link rel="stylesheet" href="/resources/vendor/bootstrap-icons/font/bootstrap-icons.css">
 
 <body>
-
+<jsp:include page="../common/header.jsp"></jsp:include>
 	<section class="container col-lg-12">
 		<div class="row">
 			<div class="col-lg-3 bg-secondary m-5 text-center">

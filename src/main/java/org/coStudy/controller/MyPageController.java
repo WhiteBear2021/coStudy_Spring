@@ -432,7 +432,7 @@ public class MyPageController {
 
 	@PostMapping("/scheduleSave")
 	@ResponseBody
-	public void scheduleSave(@RequestParam("jsondata") String jsondata,HttpSession session){
+	public String scheduleSave(@RequestParam("jsondata") String jsondata,HttpSession session){
 		log.info("*********************");
 		log.info("scheduleSave 중");
 		log.info(jsondata);
@@ -474,7 +474,7 @@ public class MyPageController {
 
 			service.scheduleRegister(schedule);
 		}
-		
+		return "일정이 저장되었습니다.";
 	}
 	
 	@PostMapping("/scheduleAdd")

@@ -414,7 +414,7 @@ $(function() {
                     data:{"jsondata":jsondata},
                     dataType:'text',
                 }).done(function(result){
-               console.log(result);
+               alert(result);
                 }).fail(function(){
                     alert('에러 발생');
                 })

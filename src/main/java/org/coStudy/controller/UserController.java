@@ -48,11 +48,11 @@ public class UserController {
     private JavaMailSender mailSender;
     
 	@GetMapping("/signUp")
-	public String signUp(Model model){
+	public String signUp(HttpSession session){
 		log.info("*********************");
 		log.info("signUp 페이지로 이동!!");
 		List<CategoryVO> list=service.categoryAllList();
-		model.addAttribute("categoryList", list);
+		session.setAttribute("categoryList", list);
 		return "user/signUpform";
 	}
 	

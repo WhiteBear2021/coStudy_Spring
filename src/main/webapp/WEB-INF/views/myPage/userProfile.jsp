@@ -43,7 +43,7 @@
 									<i class="bi bi-person-square fs-1"></i><br>
 								</c:if>
 								<c:if test="${!empty sessionScope.user.user_thumbImg}">
-									<img src="${sessionScope.user.user_thumbImg}" style="width: 262px; height: 262px;">
+									<img src="${sessionScope.user.user_thumbImg}" style="width: 222px; height: 222px;">
 								</c:if>
 
 								<b>NickName : </b><strong class="m-0 p-1 text-success">${sessionScope.user.user_nickName}</strong>

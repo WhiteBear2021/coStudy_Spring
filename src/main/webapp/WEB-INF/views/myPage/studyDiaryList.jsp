@@ -6,6 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width", initial-scale="1">
+<jsp:include page="../common/head.jsp"></jsp:include>
 <jsp:include page="../common/header.jsp"></jsp:include>
 <link rel="stylesheet" href="/resources/css/myPage/myPage.css">
 <link rel="stylesheet" href="/resources/vendor/bootstrap-icons/font/bootstrap-icons.css">
@@ -35,12 +36,12 @@
 						</nav>
 				</div>
 				<div class="col-lg-8" id="contents">
-					<div class="text-end">
-						<button class="btn btn-primary p-1"><a href="studyDiary" class="text-white">Study Diary 작성</a></button>
-					</div>
+					
 					
 					<h3>Study Diary 목록</h3>
-					<hr style="width:900px;" class="text-primary">
+					<div class="text-end" style="margin-bottom:10px;">
+						<button class="btn btn-primary p-1 "><a href="studyDiary" class="text-white">Study Diary 작성</a></button>
+					</div>
 					<div class="row">
                         <table class="table table-striped table-hover">
                             <thead>
@@ -57,8 +58,7 @@
                                 <tr>
                                     <td><a href="studyDiaryDetail?studyNote_no=${diary.studyNote_no}">${diary.studyNote_no}</a></td>
                                     <td><a href="studyDiaryDetail?studyNote_no=${diary.studyNote_no}">[${diary.studyNote_keyword}]${diary.studyNote_title}</td>
-                                    <div style="display:none;">${diary.studyNote_file}</div>
-                                    <td class="filedown">${diary.studyNote_file}</td>
+                                    <td class="filedown"><span data-file="${diary.studyNote_file}">${diary.studyNote_fileName}</td>
                                     <td>${diary.studyNote_date}</td>
     								<td><a href="studyDiaryDelete?studyNote_no=${diary.studyNote_no}"><button>Delete</button></a></td>
                                 </tr>
@@ -112,8 +112,8 @@
 		<jsp:include page="../common/footer.jsp"></jsp:include> 
 		<script>
 			$(function(){
-				$(".filedown").on("click",function(){
-					var fileName=$(this).text();
+				$(".filedown").on("click","span",function(){
+					var fileName=$(this).data("file");
 					console.log("파일값:"+fileName);
 					var fileCallPath=encodeURIComponent(fileName);
 					console.log("Encoding한 파일이름:"+fileCallPath);
