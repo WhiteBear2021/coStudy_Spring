@@ -13,10 +13,10 @@ const roomNo = $("#roomNo").val();
 	function onmessage(e) {
 	    let data = JSON.parse(e.data);
 	    let html;
-	    if(data.user_no == myName){
-	    	html = '<li class="me"><div class="entete"><h3>시간</h3><h2>'+data.user_no+'</h2></div><div class="triangle"></div><div class="message">'+ data.group_msg_log +'</div></li>';
+	    if(data.userNo == myName){
+	    	html = '<li class="me"><div class="entete"><h3></h3><h2>'+data.userName+'</h2></div><div class="triangle"></div><div class="message">'+ data.message +'</div></li>';
 	    } else{
-	    	html = '<li class="you"><div class="entete"><h2>'+data.user_no+'</h2><h3>시간</h3></div><div class="triangle"></div><div class="message">'+ data.group_msg_log +'</div></li>';
+	    	html = '<li class="you"><div class="entete"><h2>'+data.userName+'</h2><h3></h3></div><div class="triangle"></div><div class="message">'+ data.message +'</div></li>';
 	    }
 	    
 	    $("#chat").append(html);
