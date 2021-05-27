@@ -97,29 +97,6 @@
 	border-radius: 10px;
 }
 
-#group-Main-right {
-	position: absolute;
-}
-
-#group-Main-right-top {
-	width: 350px;
-	height: 200px;
-	padding: 20px;
-	margin-top: 40px;
-
-
-}
-
-#group-Main-right-bottom {
-	
-	width: 350px;
-	height: 470px;
-	padding: 20px;
-	margin-top: 20px;
-	
-
-	
-}
 
 #userlist{
 	margin-top: 50px;
@@ -160,6 +137,7 @@ body{
 #acceptTable {
 	whide: 700px;
 	height: 650px;
+	left: 200px;
 }
 
 

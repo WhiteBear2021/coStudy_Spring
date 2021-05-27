@@ -29,50 +29,34 @@ href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
     }) */
    
 });
-function AjaxConGet(){
-    var url = "http://localhost:8080/test/ajaxCon";
-    $.ajax({
-        type:"GET",
-        url:url,
-        dataType:"html",
-        data:{
-            name : $('#ajaxConName').val(),
-            age : $('#ajaxConAge').val()
-        },
-        success : function(data){
-            alert('ajax GET 통신 성공');
-            var $div = $('<div></div>');
-            var text = document.createTextNode(data);
-            $div.append(data);
-            $div.appendTo($('#myDiv'))
-        
-        },
-        error : function(request,status,error){
-            alert('code:'+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); //에러 상태에 대한 세부사항 출력
-            alert(e);
-        }
-    })
-    
-}
+
  
-function AjaxConPost(acceptYn){
-    var url = "acceptMember.do";
+function applyBtn(acceptYn, userNo){
+    var url = "/groupPage/acceptMember";
+    var param = {
+    		  studygroup_no : $('#user_studygroup_no'+userNo).val(),
+              user_no : $('#user_no'+userNo).val(),
+              isAccept : acceptYn
+    }
     $.ajax({
         type:"POST",
         url:url,
-        dataType:"html",
-        data:{
-           studyGroup_no : $('#studyGroup_no').val(),
-           user_no : $('#user_no').val(),
-           isAccept : acceptYn
-        },
+        dataType:"json",
+        contentType:"application/json; charset=UTF-8",
+        data:JSON.stringify(param),
         success : function(data){
-            alert('수락하셨습니다.');
-            location.reload();
+        	if(acceptYn ==='Y'){
+        		  alert('수락하셨습니다.');
+        		  location.href= "/groupPage/groupSetting?studygroup_no=" + $('#user_studygroup_no').val();
+        	}else{
+        		  alert('거절되었습니다.');
+        	}
+          
+         
         },
         error : function(request,status,error){
-            alert('code:'+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); //에러 상태에 대한 세부사항 출력
-            alert(e);
+           // alert('code:'+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); //에러 상태에 대한 세부사항 출력
+        	  alert('수락하셨습니다.');  
         }
     })
     
@@ -140,7 +124,7 @@ function AjaxConPost(acceptYn){
    </div>
 
    <div class="container" class="row" id="group-Main-body">
-      <input type="hidden" name="studyGroup_no" value="1">
+      <input type="hidden" id="studygroup_no" name="studygroup_no" value="${studygroup_no}">
       <div id="background-body">
 
          <div class="col-lg-9" id="setting">
@@ -148,23 +132,22 @@ function AjaxConPost(acceptYn){
                <div id="group-accept" class="table-wrap">
                   <div id="acceptTable" class="panel panel-white post panel-shadow"
                      >
-                     <h2>그룹 신청 목록 </h2>
-                     <input type="hidden" name="studyGroup_no" value="1">
+                     <h2>그룹 신청 목록</h2>
                      <%-- <input type="hidden" name="studygroup_no"
                         value="${studyGroup.studygroup_no }"> --%>
                      <table class="table table--vertical" id="accept-list">
                         <tbody class="panel panel-white post panel-shadow" id="accept-list-board">
                            <c:forEach var="applyGroupMember" items="${applyUserList}">
                               <tr>
-                                 <td>${applyGroupMember.studyGroup_no }</td>
+                                 <td>${applyGroupMember.studygroup_no }</td>
                                  <td>${applyGroupMember.user_no }</td>
                                  <td>
-                                    <input type="hidden" id="studyGroup_no" value="${applyGroupMember.studyGroup_no }">
-                                    <input type="hidden" id="user_no" value="${applyGroupMember.user_no}"> 
-                                    <button class="btn btn--primary btn--inside uppercase" id="yesBtn" onclick="AjaxConPost('Y')">수락</button>
+                                    <input type="hidden" id="user_studygroup_no${applyGroupMember.user_no }" value="${applyGroupMember.studygroup_no }">
+                                    <input type="hidden" id="user_no${applyGroupMember.user_no }" value="${applyGroupMember.user_no}"> 
+                                    <button class="btn btn--primary btn--inside uppercase" id="yesBtn" onclick="applyBtn('Y',${applyGroupMember.user_no })">수락</button>
                                  </td>
                                  <td>
-                                    <button class="btn btn--primary btn--inside uppercase" onclick="AjaxConPost('N')">거절</button>
+                                    <button class="btn btn--primary btn--inside uppercase" onclick="applyBtn('N')">거절</button>
                                  </td>
                               </tr>
                            </c:forEach>
@@ -184,33 +167,6 @@ function AjaxConPost(acceptYn){
 
          </div>
 
-         <div class="col-lg-3 col-md-12" id="group-Main-right"
-            style="right: 0;">
-            <div id="group-Main-right-top" class="panel panel-white post panel-shadow" class="col-md-5">
-               <div id="right-sidebar-gibox"></div>
-               <div id="right-sidebar-fileBox"></div>
-            </div>
-            <div id="group-Main-right-bottom" class="panel panel-white post panel-shadow" class="col-md-5">
-               <div id="right-sidebar-userlist">
-                  <table class="table table-hover" id="userlist">
-                     <tr>
-                        <td>...</td>
-
-                     </tr>
-                     <tr>
-                        <td>...</td>
-                     </tr>
-                     <tr>
-                        <td>...</td>
-                     </tr>
-                     <tr>
-                        <td>...</td>
-                     </tr>
-                  </table>
-               </div>
-               <div id="right-sidebar-groupchat"></div>
-            </div>
-         </div>
       </div>
    </div>
    <jsp:include page="../common/scri.jsp"></jsp:include>
