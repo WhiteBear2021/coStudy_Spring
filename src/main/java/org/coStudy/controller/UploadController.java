@@ -12,6 +12,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -38,108 +40,14 @@ import net.coobird.thumbnailator.Thumbnailator;
 @RequestMapping("/files/")
 public class UploadController {
 	
-	@GetMapping("/uploadForm")
-	public void uploadForm(){
-		log.info("upload Form 실행!!");
-	}
-	
-	
-	@GetMapping("/uploadAjax")
-	public void uploadAjax(){
-		log.info("upload Ajax 실행~~");
-	}
-	
-	@PostMapping(value="/uploadAjax", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@ResponseBody
-	public ResponseEntity<List<AttachFileDTO>> uploadAjaxAction(@RequestParam("studyNote_file")MultipartFile[] studyNote_file){
-		log.info("upload ajax post.......");
-		
-		List<AttachFileDTO> list=new ArrayList<>();
-		
-		String uploadFolder ="C:\\uploadFolder";
-		System.out.println("getFolder()함수 호출 값:"+getFolder());
-		//make folder
-		File uploadPath=new File(uploadFolder,getFolder());
-		log.info("upload path:"+uploadPath);
-		
-		if(uploadPath.exists()==false){
-			uploadPath.mkdirs();
-		}// make yyyy/MM/dd folder
-		log.info(studyNote_file[0]);
-		for (MultipartFile multipartFile : studyNote_file) {
-			log.info("------------------------");
-			log.info("Upload File Name:"+multipartFile.getOriginalFilename());
-			log.info("Upload File Size:"+multipartFile.getSize());
-			
-			AttachFileDTO attachDTO=new AttachFileDTO();
-			
-			String uploadFileName=multipartFile.getOriginalFilename();
-			
-			uploadFileName=uploadFileName.substring(uploadFileName.lastIndexOf("\\")+1);
-			log.info("only file name:"+uploadFileName);
-			attachDTO.setFileName(uploadFileName);
-
-			UUID uuid=UUID.randomUUID();
-			
-			uploadFileName=uuid.toString()+"_"+uploadFileName;
-			
-			//File saveFile=new File(uploadFolder,uploadFileName);
-			File saveFile=new File(uploadPath,uploadFileName);			
-			try {
-				multipartFile.transferTo(saveFile);
-				attachDTO.setUuid(uuid.toString());
-				attachDTO.setUploadPath(getFolder());
-				
-				//check image type file
-				if(checkImageType(saveFile)){
-					attachDTO.setImage(true);
-					FileOutputStream thumnail=new FileOutputStream(new File(uploadPath,"s_"+uploadFileName));
-					
-					Thumbnailator.createThumbnail(multipartFile.getInputStream(),thumnail,100,100);
-					
-					thumnail.close();
-				}
-				
-				list.add(attachDTO);
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block 
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return new ResponseEntity<>(list,HttpStatus.OK);
-	}
-	
-	@GetMapping("/display")
-	@ResponseBody
-	public ResponseEntity<byte[]> getFile(String fileName){
-		log.info("fileName:"+fileName);
-		
-		File file=new File("C:\\upload\\"+fileName);
-		
-		log.info("file:"+file);
-		
-		ResponseEntity<byte[]> result=null;
-		try {
-			HttpHeaders header=new HttpHeaders();
-			
-			header.add("Content-Type",Files.probeContentType(file.toPath()));
-			result=new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),header,HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			// TODO: handle exception
-		}
-		return result;
-	}
-	
 	@GetMapping(value="/download", produces=MediaType.APPLICATION_OCTET_STREAM_VALUE)
 	@ResponseBody
-	public ResponseEntity<Resource> downloadFile(@RequestHeader("User-Agent") String userAgent,String fileName){
+	public ResponseEntity<Resource> downloadFile(HttpSession session,@RequestHeader("User-Agent") String userAgent,String fileName){
 		log.info("download file:"+fileName);
-		
-		Resource resource=new FileSystemResource("c:\\upload\\"+fileName);
+	      String root_path = session.getServletContext().getRealPath("/");  
+	      String uploadPath = "resources/";
+	      String imgUploadPath = root_path+uploadPath + File.separator + "imgUpload";
+		Resource resource=new FileSystemResource(imgUploadPath+File.separator+fileName);
 		
 		log.info(resource);
 		String resourceName=resource.getFilename();
@@ -172,33 +80,6 @@ public class UploadController {
 			// TODO: handle exception
 		}
 		return new ResponseEntity<Resource>(resource,headers,HttpStatus.OK);
-	}
-	
-	
-	
-	
-	
-	private boolean checkImageType(File file){
-		try {
-			String contentType=Files.probeContentType(file.toPath());
-			
-			return contentType.startsWith("image");
-		} catch (Exception e) {
-			e.printStackTrace();
-			// TODO: handle exception
-		}
-		return false;
-	}
-	
-	
-	private String getFolder(){
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		
-		Date date=new Date();
-		
-		String str=sdf.format(date);
-		
-		return str.replace("-", File.separator);
 	}
 	
 	

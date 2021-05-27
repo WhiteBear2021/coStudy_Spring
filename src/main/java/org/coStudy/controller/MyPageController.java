@@ -199,7 +199,7 @@ public class MyPageController {
 	      } else {
 	       fileName = root_path+File.separator+uploadPath + File.separator + "images" + File.separator + "none.png";
 	      }
-
+	      
 	      user.setUser_thumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 	      user.setUser_photo(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 		int re = service.updateUser(user);
@@ -212,6 +212,7 @@ public class MyPageController {
 		} else {
 			rttr.addFlashAttribute("mesg", "회원정보가 수정이 실패하였습니다.");
 		}
+		
 		return "redirect:/myPage/userProfile";
 	}
 
@@ -358,12 +359,11 @@ public class MyPageController {
 		      log.info("root path:"+root_path);
 		      log.info("upload path:"+uploadPath);
 		      log.info("file name:"+filename);
+		      AttachFileDTO attachDTO=new AttachFileDTO();
 		      String imgUploadPath = root_path+uploadPath + File.separator + "imgUpload";
 		      String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		      String fileName = null;
 		      UUID uuid = UUID.randomUUID();
-		      AttachFileDTO attachDTO=new AttachFileDTO();
-				
 			String uploadFileName=file.getOriginalFilename();
 			uploadFileName=uploadFileName.substring(uploadFileName.lastIndexOf("\\")+1);
 			log.info("only file name:"+uploadFileName);
@@ -374,8 +374,11 @@ public class MyPageController {
 		    	log.info("파일 받음**********************************");
 		       fileName =  UploadFileUtils.fileUpload(uuid,imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
 		       studyNote.setStudyNote_file(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		       studyNote.setStudyNote_fileName(uploadFileName);
 		      }
 			  int re = service.writeStudyDiary(studyNote);
+			log.info("파일 업로드 AttachDTO 정보들=========================");
+			log.info(attachDTO);
 		return "redirect:/myPage/studyDiaryList";
 	}
 
