@@ -430,7 +430,7 @@ public class MyPageController {
 		}
 	}
 
-	@PostMapping("/scheduleSave")
+	@RequestMapping(value="/scheduleSave" ,method=RequestMethod.POST, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String scheduleSave(@RequestParam("jsondata") String jsondata,HttpSession session){
 		log.info("*********************");
