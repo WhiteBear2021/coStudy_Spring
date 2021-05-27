@@ -1,5 +1,6 @@
 package org.coStudy.controller;
 
+import java.io.File;
 import java.security.Provider.Service;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -181,6 +183,31 @@ public class GroupPageController {
 		model.addAttribute("room", room);
 		return "groupPage/voiceChatting2";
 	}
+	
+	@GetMapping("/fileList")
+	   public void fileList(){
+		   log.info("filel upload");
+		   
+	   }
+	   
+	   @PostMapping("/fileList")
+	   public void fileList(@RequestParam("studygroup_no") int studygroup_no, MultipartFile[] uploadFile, Model model){
+		   String uploadFolder="C:\\upload";
+		   for(MultipartFile multipartFile:uploadFile){
+			  log.info(multipartFile.getOriginalFilename());
+			  
+			  File saveFile=new File(uploadFolder, multipartFile.getOriginalFilename());
+			  
+			  try{
+				  multipartFile.transferTo(saveFile);
+				  
+			  }catch(Exception e){
+				  log.error(e.getMessage());
+			  }
+		   }
+		   //return "redirect:/groupPage/fileList?studygroup_no?"+studygroup_no;
+		   
+	   }
 
 }
 

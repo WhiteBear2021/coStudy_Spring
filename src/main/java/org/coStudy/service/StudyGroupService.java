@@ -12,4 +12,6 @@ public interface StudyGroupService {
       public StudyGroupVO detail(int studygroup_no);
       public int getTotal(Criteria cri);
       public void apply(ApplyGroupMemberVO ApplyGroup);
+      
+      public List<StudyGroupVO> managerList();
 }

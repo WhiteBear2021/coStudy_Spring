@@ -21,7 +21,7 @@ function init(){
 			html += '		</div>';
 			html += ' 		<div class="product__item__text">';
 			html += ' 			<h6>'+result[i].studygroup_name+'</h6>';
-			html += '  			<a href="#" class="add-cart">See more</a>';
+			html += '  			<a href="/studyGroup/detail?studygroup_no='+result[i].studygroup_no+'" class="add-cart">See more</a>';
 			html += ' 			<h5>'+category[result[i].category_no]+'</h5>';
 			html += '		</div></div></div>';
 			
@@ -41,7 +41,7 @@ function init(){
 			html += '		</div>';
 			html += ' 		<div class="product__item__text">';
 			html += ' 			<h6>'+result[i].studygroup_name+'</h6>';
-			html += '  			<a href="#" class="add-cart">See more</a>';
+			html += '  			<a href="/studyGroup/detail?studygroup_no='+result[i].studygroup_no+'" class="add-cart">See more</a>';
 			html += ' 			<h5>'+category[result[i].category_no]+'</h5>';
 			html += '		</div></div></div>';
 			
@@ -64,7 +64,7 @@ function init(){
 				html += '		</div>';
 				html += ' 		<div class="product__item__text">';
 				html += ' 			<h6>'+result[i].studygroup_name+'</h6>';
-				html += '  			<a href="#" class="add-cart">See more</a>';
+				html += '  			<a href="/studyGroup/detail?studygroup_no='+result[i].studygroup_no+'" class="add-cart">See more</a>';
 				html += ' 			<h5>'+category[result[i].category_no]+'</h5>';
 				html += '		</div></div></div>';
 				

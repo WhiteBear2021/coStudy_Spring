@@ -95,5 +95,7 @@
       insert into apply_group_member values('O', #{user_no}, #{studygroup_no})
    </insert>
    
-
+	<select id="managerList" resultType="org.coStudy.domain.StudyGroupVO">
+		select * from STUDYGROUP
+	</select>
 </mapper>

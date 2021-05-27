@@ -32,6 +32,10 @@ $(function(){
     	});
     });
     
+    $('#class_timer').click(()=>{
+    	location.href='/groupPage/timer';
+    });
+    
 });//end ready
 
 

@@ -12,4 +12,6 @@ public interface NoticeService {
 	public NoticeVO detail(int notice_no);
 	public boolean delete(int notice_no);
 	public boolean update(NoticeVO notice);
+	
+	public List<NoticeVO> userList();
 }

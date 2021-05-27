@@ -44,4 +44,11 @@ public class NoticeServiceImple implements NoticeService{
 		return mapper.list(cri);
 	}
 
+
+	@Override
+	public List<NoticeVO> userList() {
+		// TODO Auto-generated method stub
+		return mapper.userList();
+	}
+
 }

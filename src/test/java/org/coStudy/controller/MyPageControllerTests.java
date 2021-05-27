@@ -24,12 +24,12 @@ public class MyPageControllerTests {
 	@Setter(onMethod_=@Autowired)
 	private WebApplicationContext ctx;
 	
-	private MockMvc mockMvc;
+/*	private MockMvc mockMvc;
 	
 	@Before
 	public void setup(){
 		this.mockMvc=MockMvcBuilders.webAppContextSetup(ctx).build();
-	}
+	}*/
 	
 	
 }

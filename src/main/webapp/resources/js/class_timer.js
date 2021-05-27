@@ -73,12 +73,6 @@ $(function(){
     	}, 1);
     });
     	
-    
-    $('#class_timer').click(()=>{
-    	location.href='/groupPage/timer';
-    });
-
-
 });//end ready
 
 

@@ -13,4 +13,6 @@ public interface NoticeMapper {
 	public NoticeVO detail(int notice_no);
 	public int delete(int notice_no);
 	public int update(NoticeVO notice);
+	
+	public List<NoticeVO> userList();
 }

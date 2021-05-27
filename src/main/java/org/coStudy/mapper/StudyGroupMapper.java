@@ -14,4 +14,6 @@ public interface StudyGroupMapper {
    public StudyGroupVO detail(int studygroup_no);
    public int getTotalCount(Criteria cri);
    public void apply(ApplyGroupMemberVO ApplyGroup);
+   
+   public List<StudyGroupVO> managerList();
 }

@@ -22,7 +22,7 @@
 
 </head>
 <body>
-<input id="user_no" type="hidden" value="${user.user_no }" >
+	<input id="user_no" type="hidden" value="${user.user_no }">
 	<div id="wrapper">
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav">
@@ -44,27 +44,12 @@
 					</nav>
 				</li>
 				<li>
-					<nav id="side-todo">
-						<h3 id="todo">TODO</h3>
-						<div id="right-sidebar-userlist">
-							<table class="table table-hover" id="list">
-								<tr>
-									<td><input type="radio">게임하기</td>
-								</tr>
-								<tr>
-									<td><input type="radio">노래듣기</td>
-								</tr>
-								<tr>
-									<td><input type="radio">영어 3시간 공부하기</td>
-								</tr>
-							</table>
-						</div>
-
-					</nav>
+					<nav id="side-groupschedule">Peed</nav>
 				</li>
 				<li>
-					<nav id="side-groupschedule">GroupSchedule</nav>
+					<nav id="class_timer">시간표</nav>
 				</li>
+
 			</ul>
 		</div>
 		<div id="page-content-wrapper">
@@ -78,40 +63,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-2" id="sidelist">
-		<div class="naccs">
-			<div class="menu" style="margin-right: 50px;">
-				<button class="light" style="margin-right: 50px;">
-					<span>피드</span>
-				</button>
-				<button class="light" style="margin-right: 50px;">
-					<span
-						onclick="location.href='/groupPage/groupSetting?studygroup_no=${studygroup_no }'">AcceptMember</span>
-				</button>
-				<button class="light" style="margin-right: 50px;">
-					<span>파일 보관함</span>
-				</button>
-				<button class="light" id="class_timer" style="margin-right: 50px;">
-					<span >시간표</span>
-				</button>
 
-				<!-- div class="menu" style="margin-right: 50px;">
-               <div class="active">
-                  <span class="light"></span><span>피드</span>
-               </div>
-               <div>
-                  <span class="light"></span><span
-                     onclick="location.href='/groupPage/groupSetting?studygroup_no=${studygroup_no }'">AcceptMember</span>
-               </div>
-               <div>
-                  <span class="light"></span><span>list</span>
-               </div>
-            </div>-->
-
-
-			</div>
-		</div>
-	</div>
 	<div class="container" id="group-Main-body">
 
 		<!--       <input type="hidden" name="studyGroup_no" value="1"> <input
@@ -120,7 +72,7 @@
 		<div id="background-body">
 			<div class="container bootstrap snippets bootdey">
 				<div class="col-lg-8" id="peed">
-					<div style="overflow: scroll; width: 800px; height: 700px;">
+					<div style="overflow: scroll; width: 600px; height: 700px;">
 
 
 						<c:forEach var="board" items="${boardList}">
@@ -145,26 +97,9 @@
 									<p>${board.page_board_content }</p>
 
 
-                        </div>
-                      
-                        <!--댓글  -->
-            
-                     <div class="post-footer">
-                           <div class="input-group">
-                           
-                              <form action="insertGroupReply" method="post">
-                                 <input type="hidden" name="studygroup_no"
-                                    value="${board.studyGroup_no }">
-                                     <input
-                                    type="hidden" name="page_board_no"
-                                    value="${board.page_board_no }"> 
-                                    <input
-                                    type="hidden" class="form__field" name="group_reply_writer"
-                                    value="${sessionScope.user.user_id}" /> 
-                                    <input type="text" class="form__field"
-                                    name="group_reply_content" placeholder="내용을 입력해주세요." />
+								</div>
 
-
+								<!--댓글  -->
 								<div class="post-footer">
 									<div class="input-group">
 
