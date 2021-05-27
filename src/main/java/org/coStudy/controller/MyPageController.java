@@ -330,7 +330,7 @@ public class MyPageController {
 		log.info("*********************");
 		log.info("applyQuitUserCheck Post");
 		log.info("회원정보 확인 user 정보:" + login);
-		return "myPage/applyQuitUser";
+		return "redirect:/myPage/applyQuitUser";
 
 	}
 
@@ -453,7 +453,8 @@ public class MyPageController {
 		}
 		
 		@PostMapping(value="/applyQuitUser")
-		public String applyQuitUser(RedirectAttributes rttr,String user_no,@RequestParam("withdraw_reason") String withdraw_reason){
+		public String applyQuitUser(RedirectAttributes rttr,@RequestParam(value="user_no",required=false)int user_no,@RequestParam(value="withdraw_reason", required=false) String withdraw_reason){
+			log.info("applyQuitUser 실행 중 회원탈퇴");
 			log.info(user_no);
 			Map<String, Object> map=new HashMap<>();
 			map.put("user_no", user_no);
