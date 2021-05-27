@@ -3,41 +3,36 @@ package org.coStudy.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.coStudy.domain.AttachFileDTO;
 import org.coStudy.domain.Criteria;
 import org.coStudy.domain.LoginVO;
 import org.coStudy.domain.PageDTO;
-import org.coStudy.domain.QnaVO;
 import org.coStudy.domain.ScheduleVO;
 import org.coStudy.domain.StudyGroupVO;
 import org.coStudy.domain.StudyNoteVO;
 import org.coStudy.domain.UserVO;
 import org.coStudy.domain.toDoVO;
 import org.coStudy.service.MyPageService;
-import org.coStudy.service.QnaService;
 import org.coStudy.service.UserService;
 import org.coStudy.utils.UploadFileUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -195,12 +190,12 @@ public class MyPageController {
 	      log.info("root path:"+root_path);
 	      log.info("upload path:"+uploadPath);
 	      log.info("file name:"+filename);
-		String imgUploadPath = root_path+uploadPath + File.separator + "imgUpload";
+	      String imgUploadPath = root_path+uploadPath + File.separator + "imgUpload";
 	      String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 	      String fileName = null;
-
+	      UUID uuid = UUID.randomUUID();
 	      if(file != null) {
-	       fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+	       fileName =  UploadFileUtils.fileUpload(uuid,imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
 	      } else {
 	       fileName = root_path+File.separator+uploadPath + File.separator + "images" + File.separator + "none.png";
 	      }
@@ -366,10 +361,18 @@ public class MyPageController {
 		      String imgUploadPath = root_path+uploadPath + File.separator + "imgUpload";
 		      String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		      String fileName = null;
-
+		      UUID uuid = UUID.randomUUID();
+		      AttachFileDTO attachDTO=new AttachFileDTO();
+				
+			String uploadFileName=file.getOriginalFilename();
+			uploadFileName=uploadFileName.substring(uploadFileName.lastIndexOf("\\")+1);
+			log.info("only file name:"+uploadFileName);
+			attachDTO.setFileName(uploadFileName);
+			attachDTO.setUuid(uuid.toString());
+			attachDTO.setUploadPath(ymdPath);
 		      if(file != null) {
 		    	log.info("파일 받음**********************************");
-		       fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+		       fileName =  UploadFileUtils.fileUpload(uuid,imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
 		       studyNote.setStudyNote_file(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 		      }
 			  int re = service.writeStudyDiary(studyNote);

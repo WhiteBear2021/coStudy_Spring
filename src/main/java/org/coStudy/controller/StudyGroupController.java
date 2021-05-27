@@ -3,6 +3,7 @@ package org.coStudy.controller;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -52,9 +53,9 @@ public class StudyGroupController {
       String imgUploadPath = uploadPath + File.separator + "imgUpload";
       String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
       String fileName = null;
-
+      UUID uuid = UUID.randomUUID();
       if (file != null) {
-         fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+         fileName = UploadFileUtils.fileUpload(uuid,imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
       } else {
          fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
       }
