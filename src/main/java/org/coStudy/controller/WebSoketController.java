@@ -102,24 +102,33 @@ public class WebSoketController extends TextWebSocketHandler {
 		logger.info("{}",service);
 		List<MessageVO> chattingLog = service.list(roomNo);//내가 들어간 방의 모든 채팅
     	for(MessageVO log : chattingLog){
-    		TextMessage textMessage = new TextMessage(objectMapper.writeValueAsString(log));// MessageVO -> json 
+    		ChatMessageVO chatMessage = new ChatMessageVO();
+    		chatMessage.setUserNo(log.getUser_no());
+    		chatMessage.setMessage(log.getGroup_msg_log());
+    		chatMessage.setRoomNo(log.getStudygroup_no());
+    		chatMessage.setUserName(service.getName(log.getUser_no()));
+    		TextMessage textMessage = new TextMessage(objectMapper.writeValueAsString(chatMessage));// MessageVO -> json 
     		session.sendMessage(textMessage);
     	}
 	}
 	
 	private void sendChatMessage(int roomNo, ChatMessageVO chatMessage) throws IOException{
 		
-		MessageVO message = new MessageVO();
-		message.setStudygroup_no(roomNo);
-		message.setUser_no(chatMessage.getUserNo());
-		message.setGroup_msg_log(chatMessage.getMessage());
-		TextMessage textMessage = new TextMessage(objectMapper.writeValueAsString(message));
+		
+		//TextMessage textMessage = new TextMessage(objectMapper.writeValueAsString(message));
+		chatMessage.setUserName(service.getName(chatMessage.getUserNo()));
+		TextMessage textMessage = new TextMessage(objectMapper.writeValueAsString(chatMessage));
 		
 		ArrayList<WebSocketSession> sessionList = sessionMap.get(roomNo);//roomNo로 탐색
     	for(WebSocketSession targetSession : sessionList){
     		logger.info("{} 로 전달", targetSession.getId());
     		targetSession.sendMessage(textMessage);
     	}
+    	
+    	MessageVO message = new MessageVO();
+		message.setStudygroup_no(roomNo);
+		message.setUser_no(chatMessage.getUserNo());
+		message.setGroup_msg_log(chatMessage.getMessage());
     	service.insert(message);
     }
 
