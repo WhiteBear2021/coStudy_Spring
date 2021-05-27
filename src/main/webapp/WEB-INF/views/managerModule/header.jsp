@@ -20,10 +20,7 @@
 				<div class="collapse" id="nav-user-link">
 					<ul class="list-unstyled">
 						<li class="list-group-item"><a href="/manager/list"><i
-								class="feather icon-user m-r-5"></i>관리자 리스트/추가</a></li>
-						<li class="list-group-item"><a
-							href="#"><i
-								class="feather icon-log-out m-r-5"></i>로그아웃</a></li>
+								class="feather icon-user m-r-5"></i>관리자 추가/삭제</a></li>
 					</ul>
 				</div>
 			</div>
