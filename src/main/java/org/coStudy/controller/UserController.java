@@ -210,7 +210,7 @@ public class UserController {
 		System.out.println(user);
 	    session.removeAttribute("user");
 		
-	    return "user/loginForm";
+	    return "redirect:/user/login";
 	}
 	
 	@GetMapping(value="/checkId",produces = "application/text; charset=utf8")

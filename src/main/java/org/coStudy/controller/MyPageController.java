@@ -59,8 +59,12 @@ public class MyPageController {
 	
 	
 	@GetMapping("/toDo")
-	public void toDo() {
-
+	public String toDo(HttpSession session) {
+		if(session.getAttribute("user")==null){
+			return "redirect:/user/login";
+		}else{
+			return "myPage/toDo";
+		}
 	}
 	/*
 	 * @PostMapping("toDo") public void toDo2(Model model){
@@ -160,15 +164,23 @@ public class MyPageController {
 	}
 
 	@GetMapping("/userProfile")
-	public void userProfile(Model model) {
-
+	public String userProfile(HttpSession session) {
+		if(session.getAttribute("user")==null){
+			return "redirect:/user/login";
+		}else{
+			return "myPage/userProfile";
+		}
 	}
 
 	@GetMapping("/userUpdate")
-	public void userUpdate(Model model) {
+	public String userUpdate(HttpSession session) {
 		log.info("*********************");
 		log.info("userUpdate 페이지로 이동!!");
-
+		if(session.getAttribute("user")==null){
+			return "redirect:/user/login";
+		}else{
+			return "myPage/userUpdate";
+		}
 	}
 
 	// Update 된 후에 어떤 페이지로 갈 지 정하기.
@@ -209,9 +221,14 @@ public class MyPageController {
 	}
 
 	@GetMapping("/categoryUpdate")
-	public void categoryUpdate() {
+	public String categoryUpdate(HttpSession session) {
 		log.info("*********************");
 		log.info("categoryUpdate 페이지로 이동!");
+		if(session.getAttribute("user")==null){
+			return "redirect:/user/login";
+		}else{
+			return "myPage/categoryUpdate";
+		}
 	}
 
 	@PostMapping("/categoryUpdate")
@@ -222,16 +239,22 @@ public class MyPageController {
 		log.info("update할 user_no:" + user_no);
 		log.info("변경할 카테고리 번호:" + category_no);
 		// 기존의 카테고리 정보 삭제하고 카테고리를 변경하는 로직?
+		
 	}
 
 	@GetMapping("/joinGroupList")
-	public void joinGroupList(HttpSession session, Model model) {
+	public String joinGroupList(HttpSession session, Model model) {
 		log.info("*********************");
 		log.info("joinGroupList");
 		UserVO user = (UserVO) session.getAttribute("user");
 		int user_no = user.getUser_no();
 		List<StudyGroupVO> joinGroupList = service.joinGroupList(user_no);
 		model.addAttribute("joinGroupList", joinGroupList);
+		if(session.getAttribute("user")==null){
+			return "redirect:/user/login";
+		}else{
+			return "myPage/joinGroupList";
+		}
 	}
 
 	// @GetMapping("/studyDiaryList")
@@ -244,7 +267,7 @@ public class MyPageController {
 	// model.addAttribute("studyNoteList",studyNoteList);
 	// }
 	@GetMapping("/studyDiaryList")
-	public void studyDiaryListWithPaging(HttpSession session, Model model, Criteria cri) {
+	public String studyDiaryListWithPaging(HttpSession session, Model model, Criteria cri) {
 		log.info("*********************");
 		log.info("studyDiaryListWithPaging 보기");
 		UserVO user = (UserVO) session.getAttribute("user");
@@ -255,24 +278,39 @@ public class MyPageController {
 		List<StudyNoteVO> studyNoteList = service.studyDiaryListWithPaging(cri);
 		model.addAttribute("studyNoteList", studyNoteList);
 		model.addAttribute("pageMaker", pageDTO);
+		if(session.getAttribute("user")==null){
+			return "redirect:/user/login";
+		}else{
+			return "myPage/studyDiaryList";
+		}
 	}
 
 	@GetMapping("/studyDiaryUpdate")
-	public void studyDiaryUpdate(@RequestParam("studyNote_no") int studyNote_no, Model model) {
+	public String studyDiaryUpdate(@RequestParam("studyNote_no") int studyNote_no, Model model,HttpSession session) {
 		log.info("*********************");
 		log.info("studyDiaryUpdate 페이지로 이동!!");
 		log.info("수정할 studyNote_no:" + studyNote_no);
 		StudyNoteVO diary = service.studyDiaryDetail(studyNote_no);
 		model.addAttribute("diary", diary);
 		// update query문 작성하기
+		if(session.getAttribute("user")==null){
+			return "redirect:/user/login";
+		}else{
+			return "myPage/studyDiaryUpdate";
+		}
 
 	}
 
 	// 글 세부 내용 보기
 	@GetMapping("/studyDiaryDetail")
-	public void studyDiaryDetail(@RequestParam("studyNote_no") int studyNote_no, Model model) {
+	public String studyDiaryDetail(@RequestParam("studyNote_no") int studyNote_no, Model model,HttpSession session) {
 		StudyNoteVO diary = service.studyDiaryDetail(studyNote_no);
 		model.addAttribute("diary", diary);
+		if(session.getAttribute("user")==null){
+			return "redirect:/user/login";
+		}else{
+			return "myPage/studyDiaryUpdate";
+		}
 
 	}
 
@@ -288,9 +326,12 @@ public class MyPageController {
 	}
 
 	@GetMapping("/studyDiaryDelete")
-	public String studyDiaryDelete(@RequestParam("studyNote_no") int studyNote_no) {
+	public String studyDiaryDelete(@RequestParam("studyNote_no") int studyNote_no,HttpSession session) {
 		log.info("*********************");
 		log.info("studyDiary Delete");
+		if(session.getAttribute("user")==null){
+			return "redirect:/user/login";
+		}
 		log.info("삭제할 studyNote_no:" + studyNote_no);
 		int re = service.deleteStudyDiary(studyNote_no);
 		log.info("삭제 횟수:" + re);
@@ -298,9 +339,14 @@ public class MyPageController {
 	}
 
 	@GetMapping("/studyDiary")
-	public void studyDiary() {
+	public String studyDiary(HttpSession session) {
 		log.info("*********************");
 		log.info("studyDiary 페이지로 이동!!");
+		if(session.getAttribute("user")==null){
+			return "redirect:/user/login";
+		}else{
+			return "myPage/studyDiary";
+		}
 	}
 
 	
@@ -331,16 +377,27 @@ public class MyPageController {
 	}
 
 	@GetMapping("/applyQuitUser")
-	public void applyQuitUser() {
+	public String applyQuitUser(HttpSession session) {
 		log.info("*********************");
 		log.info("applyQuitUser페이지로 이동!!");
+		log.info("studyDiary 페이지로 이동!!");
+		if(session.getAttribute("user")==null){
+			return "redirect:/user/login";
+		}else{
+			return "myPage/applyQuitUser";
+		}
 	}
 
 	
 	@GetMapping("/applyQuitUserCheck")
-	public void applyQuitUserCheck(Model model) {
+	public String applyQuitUserCheck(HttpSession session) {
 		log.info("*********************");
 		log.info("applyQuitUserCheck 페이지로 이동");
+		if(session.getAttribute("user")==null){
+			return "redirect:/user/login";
+		}else{
+			return "myPage/applyQuitUserCheck";
+		}
 	}
 
 	@PostMapping("applyQuitUserCheck")
@@ -353,9 +410,14 @@ public class MyPageController {
 	}
 
 	@GetMapping("/scheduleList")
-	public void scheduleList(Model model) {
+	public String scheduleList(HttpSession session) {
 		log.info("*********************");
 		log.info("scheduleList 페이지로 이동");
+		if(session.getAttribute("user")==null){
+			return "redirect:/user/login";
+		}else{
+			return "myPage/scheduleList";
+		}
 	}
 
 	@PostMapping("/scheduleSave")
@@ -484,6 +546,6 @@ public class MyPageController {
 				mesg="회원탈퇴 신청 실패";
 			}
 			rttr.addAttribute("mesg", mesg);
-			return "redirect:/main";
+			return "redirect:/user/logout";
 		}
 }

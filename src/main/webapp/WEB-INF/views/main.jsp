@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <jsp:include page="common/head.jsp"></jsp:include>
@@ -8,18 +7,18 @@
 
 <jsp:include page="common/header.jsp"></jsp:include>
 <body>
-	<input type="hidden" id="user_no" value="${user.user_no }">
+   <input type="hidden" id="user_no" value="${user.user_no }">
     <section class="hero">
         <div class="hero__slider owl-carousel">
-            <div class="hero__items set-bg" data-setbg="/resources/img/r2.jpg">
-			<div class="container">
+            <div class="hero__items set-bg" data-setbg="/resources/img/banner1.jpg">
+         <div class="container">
                     <div class="row">
                         <div class="col-xl-5 col-lg-7 col-md-8">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="hero__items set-bg" data-setbg="/resources/img/r2.jpg">
+            <div class="hero__items set-bg" data-setbg="/resources/img/banner2.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-5 col-lg-7 col-md-8">
@@ -100,20 +99,9 @@
     </section>
     <!-- Product Section End -->
 
-    <!-- Categories Section Begin -->
-    <section class="categories spad">
-        <div class="container">
-            <div class="row">
-               <p>ìí ì¼ì  apiì¬ì© ìê°ëë©´</p>
-               
-            </div>
-        </div>
-    </section>
- <c:if test="${!empty mesg }">
-	<script>
-		alert('${mesg}');
-	</script>
-</c:if>
+
+
+
 <jsp:include page="common/footer.jsp"></jsp:include><hr>
 </body>
 
