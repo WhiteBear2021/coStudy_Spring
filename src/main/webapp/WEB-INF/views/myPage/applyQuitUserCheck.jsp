@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="../css/login.css" rel="stylesheet" type="text/css">
+<link href="/resources/css/login.css" rel="stylesheet" type="text/css">
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">

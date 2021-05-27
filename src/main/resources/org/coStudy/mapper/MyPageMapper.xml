@@ -12,7 +12,16 @@
 	</update>
 	
 	<insert id="writeStudyDiary" parameterType="org.coStudy.domain.StudyNoteVO">
-		insert into STUDYNOTE values(seq_studyNote.nextval,#{studyNote_keyword},#{studyNote_content},null,SYSDATE,#{user_no},#{studyNote_title})
+		insert into STUDYNOTE 
+		  <choose>
+	    <when test="studyNote_file != null">
+	      values(seq_studyNote.nextval,#{studyNote_keyword},#{studyNote_content},#{studyNote_file},SYSDATE,#{user_no},#{studyNote_title})
+	    </when>
+	    <when test="studyNote_file == null">
+	      values(seq_studyNote.nextval,#{studyNote_keyword},#{studyNote_content},null,SYSDATE,#{user_no},#{studyNote_title})
+	    </when>
+	    </choose>
+		
 	</insert>
 	
 	<select id="studyDiaryList" parameterType="int" resultType="org.coStudy.domain.StudyNoteVO">

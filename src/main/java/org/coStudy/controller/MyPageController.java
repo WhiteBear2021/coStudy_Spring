@@ -303,12 +303,30 @@ public class MyPageController {
 		log.info("studyDiary 페이지로 이동!!");
 	}
 
+	
+
 	@PostMapping("/studyDiary")
-	public String studyDiary(StudyNoteVO studyNote) {
+	public String studyDiary(HttpSession session,StudyNoteVO studyNote,MultipartFile file,RedirectAttributes rttr)throws IOException, Exception {
 		log.info("*********************");
 		log.info("studyDiary Post");
 		log.info("작성할 studyNote 내용:" + studyNote);
-		int re = service.writeStudyDiary(studyNote);
+		log.info("업로드할 파일:"+file);
+		   	  String root_path = session.getServletContext().getRealPath("/");  
+		      String uploadPath = "resources/";
+		      String filename = file.getOriginalFilename();
+		      log.info("root path:"+root_path);
+		      log.info("upload path:"+uploadPath);
+		      log.info("file name:"+filename);
+		      String imgUploadPath = root_path+uploadPath + File.separator + "imgUpload";
+		      String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		      String fileName = null;
+
+		      if(file != null) {
+		    	log.info("파일 받음**********************************");
+		       fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+		       studyNote.setStudyNote_file(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		      }
+			  int re = service.writeStudyDiary(studyNote);
 		return "redirect:/myPage/studyDiaryList";
 	}
 
@@ -452,7 +470,7 @@ public class MyPageController {
 			return list;
 		}
 		
-		@PostMapping(value="/applyQuitUser")
+		@PostMapping(value="/quitUser")
 		public String applyQuitUser(RedirectAttributes rttr,@RequestParam(value="user_no",required=false)int user_no,@RequestParam(value="withdraw_reason", required=false) String withdraw_reason){
 			log.info("applyQuitUser 실행 중 회원탈퇴");
 			log.info(user_no);

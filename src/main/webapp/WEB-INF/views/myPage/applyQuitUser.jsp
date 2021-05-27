@@ -42,8 +42,8 @@
 				</div>
 				<p class="fs-3"><i class="bi bi-emoji-dizzy-fill fs-1"></i> 탈퇴 사유</p>
 				<p class="fs-10">( 탈퇴 사유를 입력하여주시면 사유를 참고하여 더 나은 서비스를 만드는데 참고하겠습니다. )</p>
-				<form action="applyQuitUser" method="post">
-						<input type="hidden" name="user_no" value=${sessionScope.user.user_no}>
+				<form action="quitUser" method="post">
+						<input type="hidden" name="user_no" value="${sessionScope.user.user_no}">
 						<textarea name="withdraw_reason" cols="105" rows="10"></textarea>
 						<div class="text-center">
 							<button type="submit" class="btn btn-primary p-1">회원탈퇴</button>

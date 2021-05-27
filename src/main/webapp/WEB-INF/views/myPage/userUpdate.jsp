@@ -53,7 +53,7 @@
 					        </label>
 					        
 					        <div class="inputArea">
-								<label for="img"><b>이미지</b></label> 
+								<label for="img"><b>프로필 사진 : </b></label> 
 								<input type="file" id="img"	name="file" >
 								<img src="" />
 							</div>
