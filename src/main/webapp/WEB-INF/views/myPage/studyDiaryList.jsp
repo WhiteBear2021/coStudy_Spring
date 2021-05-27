@@ -9,6 +9,9 @@
 <jsp:include page="../common/header.jsp"></jsp:include>
 <link rel="stylesheet" href="/resources/css/myPage/myPage.css">
 <link rel="stylesheet" href="/resources/vendor/bootstrap-icons/font/bootstrap-icons.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
 <title>Insert title here</title>
 <style>
 
@@ -54,7 +57,8 @@
                                 <tr>
                                     <td><a href="studyDiaryDetail?studyNote_no=${diary.studyNote_no}">${diary.studyNote_no}</a></td>
                                     <td><a href="studyDiaryDetail?studyNote_no=${diary.studyNote_no}">[${diary.studyNote_keyword}]${diary.studyNote_title}</td>
-                                    <td>${diary.studyNote_file}</td>
+                                    <div style="display:none;">${diary.studyNote_file}</div>
+                                    <td class="filedown">${diary.studyNote_file}</td>
                                     <td>${diary.studyNote_date}</td>
     								<td><a href="studyDiaryDelete?studyNote_no=${diary.studyNote_no}"><button>Delete</button></a></td>
                                 </tr>
@@ -106,5 +110,28 @@
 			</div>
 		</section>		
 		<jsp:include page="../common/footer.jsp"></jsp:include> 
+		<script>
+			$(function(){
+				$(".filedown").on("click",function(){
+					var fileName=$(this).text();
+					console.log("파일값:"+fileName);
+					var fileCallPath=encodeURIComponent(fileName);
+					console.log("Encoding한 파일이름:"+fileCallPath);
+					
+					$.ajax({
+						url:"/files/download?fileName="+fileCallPath,
+						type:"get",
+						success:function(data){
+							console.log(data);
+							window.location ="/files/download?fileName="+fileCallPath;
+						},
+						error:function(error){
+							console.log();
+						}
+						
+					});//ajax 끝
+				});
+			});
+		</script>
 </body>
 </html>

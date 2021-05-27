@@ -272,6 +272,8 @@ public class MyPageController {
 		PageDTO pageDTO = new PageDTO(cri, total);
 		log.info(pageDTO);
 		List<StudyNoteVO> studyNoteList = service.studyDiaryListWithPaging(cri);
+		log.info("스터디 다이어리 목록=======================================");
+		log.info(studyNoteList);
 		model.addAttribute("studyNoteList", studyNoteList);
 		model.addAttribute("pageMaker", pageDTO);
 		if(session.getAttribute("user")==null){
@@ -375,6 +377,8 @@ public class MyPageController {
 		       fileName =  UploadFileUtils.fileUpload(uuid,imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
 		       studyNote.setStudyNote_file(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 		       studyNote.setStudyNote_fileName(uploadFileName);
+		       studyNote.setStudyNote_uuid(uuid.toString());
+		       studyNote.setStudyNote_uploadPath("imgUpload"+File.separator+ymdPath);
 		      }
 			  int re = service.writeStudyDiary(studyNote);
 			log.info("파일 업로드 AttachDTO 정보들=========================");

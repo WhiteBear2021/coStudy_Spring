@@ -27,9 +27,9 @@
 	<context:component-scan base-package="org.coStudy.config"/>
 	<context:component-scan base-package="org.coStudy.handler"/>
 	<!--잠시 주석  -->
-<!-- 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+ 	<beans:bean class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
 	
-	</beans:bean> -->
+	</beans:bean>
 	
   <!-- <websocket:handlers allowed-origins="*">
 		<websocket:mapping handler="echoHandler" path="/echo"/>
@@ -44,7 +44,7 @@
 	
 <!-- 업로드 패스 설정 --> 
 <beans:bean class="java.lang.String" id="uploadPath">
- <beans:constructor-arg value="C:\Users\KOSTA\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\coStudy\resources" />
+ <beans:constructor-arg value="C:\Spring\final_workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\coStudy\resources" />
 </beans:bean>
 
 <!-- 일반 파일 업로드 경로 -->

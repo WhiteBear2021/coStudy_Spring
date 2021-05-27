@@ -15,10 +15,10 @@
 		insert into STUDYNOTE 
 		  <choose>
 	    <when test="studyNote_file != null">
-	      values(seq_studyNote.nextval,#{studyNote_keyword},#{studyNote_content},#{studyNote_file},SYSDATE,#{user_no},#{studyNote_title})
+	      values(seq_studyNote.nextval,#{studyNote_keyword},#{studyNote_content},#{studyNote_file},SYSDATE,#{user_no},#{studyNote_title},#{studyNote_fileName},#{studyNote_uploadPath},#{studyNote_uuid})
 	    </when>
 	    <when test="studyNote_file == null">
-	      values(seq_studyNote.nextval,#{studyNote_keyword},#{studyNote_content},null,SYSDATE,#{user_no},#{studyNote_title})
+	      values(seq_studyNote.nextval,#{studyNote_keyword},#{studyNote_content},null,SYSDATE,#{user_no},#{studyNote_title},null,null,null)
 	    </when>
 	    </choose>
 		
@@ -30,8 +30,8 @@
 	
 	<select id="studyDiaryListWithPaging" resultType="org.coStudy.domain.StudyNoteVO">
 		<![CDATA[
-			select studyNote_no,studyNote_keyword,studyNote_title,studyNote_content,studynote_date
-				from (select rownum rn, studyNote_no,studyNote_keyword,studyNote_title,studyNote_content,studynote_date
+			select studyNote_no,studyNote_keyword,studyNote_title,studyNote_content,studynote_date, studyNote_file,studyNote_fileName,studyNote_uploadPath,studyNote_uuid
+				from (select rownum rn, studyNote_no,studyNote_keyword,studyNote_title,studyNote_content,studynote_date, studyNote_file,studyNote_fileName,studyNote_uploadPath,studyNote_uuid
 						from studyNote where user_no=#{user_no} and rownum<=#{pageNum}*#{amount})
 				where rn>(#{pageNum}-1)*#{amount}
 		]]>

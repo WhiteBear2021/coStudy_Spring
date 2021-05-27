@@ -46,10 +46,10 @@ public class UploadController {
 		log.info("download file:"+fileName);
 	      String root_path = session.getServletContext().getRealPath("/");  
 	      String uploadPath = "resources/";
-	      String imgUploadPath = root_path+uploadPath + File.separator + "imgUpload";
+	      String imgUploadPath = root_path+uploadPath;
 		Resource resource=new FileSystemResource(imgUploadPath+File.separator+fileName);
 		
-		log.info(resource);
+		log.info("resource값>?"+resource);
 		String resourceName=resource.getFilename();
 		
 		//다운로드시 uuid뺀 파일이름으로 다운로드 되도록
