@@ -15,18 +15,18 @@ public interface GroupPageMapper {
 
 	
 	int insertGroupBoard(GroupPageBoardVO groupPageBoardVO);
-	List<GroupPageBoardVO> groupBoardList(int studyGroup_no);
+	List<GroupPageBoardVO> groupBoardList(int studygroup_no);
 	
-	List<ApplyGroupMemberVO> selectApplyList(int studyGroup_no);
-	int acceptMember(ApplyGroupMemberVO vo);
-	int insertAcceptMember(ApplyGroupMemberVO vo);
+	List<ApplyGroupMemberVO> selectApplyList(int studygroup_no);
+	int acceptMember(ApplyGroupMemberVO applyMember);
+	int insertAcceptMember(ApplyGroupMemberVO insertMember);
 	int deleteRefuseMember(int user_no);
 	
 	// 댓글
 	List<GroupReplyVO> listGroupReply();
 	int insertGroupReply(GroupReplyVO groupReplyVO);
 	int insertFile(GroupFileVO groupFile);
-	List<GroupFileVO> fileList(int studyGroup_no);
+	List<GroupFileVO> fileList(int studygroup_no);
 	List<UserVO> groupUserList(int studygroup_no);
 }
 

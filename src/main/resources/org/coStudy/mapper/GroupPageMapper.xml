@@ -32,12 +32,12 @@
 	</select>
 
 	<update id="acceptMember" parameterType="org.coStudy.domain.ApplyGroupMemberVO">
-
+	/*업데이트 acceptMember*/
 		update
 		APPLY_GROUP_MEMBER
 		set ISACCEPT =#{isAccept}
 		where USER_NO =#{user_no}
-		and STUDYGROUP_NO =#{studyGroup_no}
+		and STUDYGROUP_NO =#{studygroup_no}
 
 	</update>
 
@@ -50,7 +50,7 @@
 
 		values (
 		#{user_no},
-		#{studyGroup_no}
+		#{studygroup_no}
 		)
 
 	</insert>

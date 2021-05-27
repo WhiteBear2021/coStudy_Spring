@@ -5,6 +5,8 @@ import java.security.Provider.Service;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+
+import org.coStudy.domain.ApplyGroupMemberVO;
 import org.coStudy.domain.ChatRoomVO;
 import org.coStudy.domain.GroupPageBoardVO;
 import org.coStudy.domain.GroupReplyVO;
@@ -14,11 +16,13 @@ import org.coStudy.domain.UserVO;
 import org.coStudy.domain.VChatRoomVO;
 import org.coStudy.service.GroupPageService;
 import org.coStudy.service.TimerService;
+import org.coStudy.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,12 +42,15 @@ public class GroupPageController {
 
 	private TimerService timerService;
 	private GroupPageService groupPage_service;
+	private UserService user_service;
 
 	@ResponseBody
 	@PostMapping("/timer")
 	public ResponseEntity<String> timer(@RequestBody TimerVO vo) {
-		return timerService.insert(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
-				: new ResponseEntity<>("success", HttpStatus.INTERNAL_SERVER_ERROR);
+		int a = timerService.insert(vo);
+	
+		return new ResponseEntity<>("success", HttpStatus.OK);	
+			
 	}
 
 	@GetMapping("/timer")
@@ -154,7 +161,7 @@ public class GroupPageController {
 
 	@GetMapping("/insert")
 	public void insertGroupBoard() {
-
+		
 	}
 
 	//@GetMapping("/groupSetting")
@@ -168,7 +175,7 @@ public class GroupPageController {
 
 	@GetMapping("/groupUserList")
 	public void groupUserList() {
-
+		
 	}
 
 	@GetMapping("/voiceChatting")
@@ -182,6 +189,24 @@ public class GroupPageController {
 		log.info(room);
 		model.addAttribute("room", room);
 		return "groupPage/voiceChatting2";
+	}
+	
+	@GetMapping("/groupSetting")
+	public String groupSetting(Model model, @RequestParam("studygroup_no") int studygroup_no) {
+		model.addAttribute("applyUserList", groupPage_service.selectApplyList(studygroup_no));
+		return "groupPage/groupSetting";
+		
+	}
+
+	
+	@ResponseBody
+	@PostMapping("/acceptMember")
+	public ResponseEntity<String> acceptMember(@RequestBody ApplyGroupMemberVO applyMember){
+		groupPage_service.acceptMember(applyMember);
+		groupPage_service.insertAcceptMember(applyMember);
+		return new ResponseEntity<>("success", HttpStatus.OK);
+		/*return groupPage_service.acceptMember(applyMember) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>("success", HttpStatus.INTERNAL_SERVER_ERROR);*/
 	}
 	
 	@GetMapping("/fileList")

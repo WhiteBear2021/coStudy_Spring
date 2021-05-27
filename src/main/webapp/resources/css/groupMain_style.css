@@ -91,7 +91,7 @@
 
 #peed {
 	position: absolute;
-	left: 80px;
+	left: 20px;
 }
 
 #sidelist{
@@ -103,13 +103,11 @@
 }
 
 #button {
-	border-radius: 10px;
+	margin-right: 0px !import;
 }
 
 #button:hover {
-	background-color:#3D5A5B;
-	color: white;
-	border-radius: 10px;
+
 }
 
 #group-Main-right {
@@ -129,7 +127,7 @@
 #group-Main-right-bottom {
 	
 	width: 350px;
-	height: 470px;
+	height: 400px;
 	padding: 20px;
 	margin-top: 20px;
 	
@@ -144,8 +142,8 @@
 #write {
 	border: 1px;
 	position: absolute;
-	bottom: 20px;
-	left: 200px;
+	bottom: 70px;
+	left: 35px;
 }
 
 body{

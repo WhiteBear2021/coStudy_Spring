@@ -11,8 +11,8 @@ import org.coStudy.domain.UserVO;
 public interface GroupPageService {
 
 	int insertGroupBoard(GroupPageBoardVO board);
-	List<GroupPageBoardVO> groupBoardList(int studyGroup_no);
-	List<ApplyGroupMemberVO> selectApplyList(int studyGroup_no);
+	List<GroupPageBoardVO> groupBoardList(int studygroup_no);
+	List<ApplyGroupMemberVO> selectApplyList(int studygroup_no);
 	int acceptMember(ApplyGroupMemberVO applyMember);
 	int insertAcceptMember(ApplyGroupMemberVO insertMember);
 	
@@ -20,7 +20,7 @@ public interface GroupPageService {
 	int insertGroupReply(GroupReplyVO groupReplyVO);
 
 	int insertFile(GroupFileVO groupFile);
-	List<GroupFileVO> fileList(int studyGroup_no);
+	List<GroupFileVO> fileList(int studygroup_no);
 	List<UserVO> groupUserList(int studygroup_no);
 
 }

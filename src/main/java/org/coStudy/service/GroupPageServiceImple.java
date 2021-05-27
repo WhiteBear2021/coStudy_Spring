@@ -24,13 +24,13 @@ public class GroupPageServiceImple implements GroupPageService {
 	}
 
 	@Override
-	public List<GroupPageBoardVO> groupBoardList(int studyGroup_no) {
-		return mapper.groupBoardList(studyGroup_no);
+	public List<GroupPageBoardVO> groupBoardList(int studygroup_no) {
+		return mapper.groupBoardList(studygroup_no);
 	}
 
 	@Override
-	public List<ApplyGroupMemberVO> selectApplyList(int studyGroup_no) {
-		return mapper.selectApplyList(studyGroup_no);
+	public List<ApplyGroupMemberVO> selectApplyList(int studygroup_no) {
+		return mapper.selectApplyList(studygroup_no);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class GroupPageServiceImple implements GroupPageService {
 
 	@Override
 	public int insertAcceptMember(ApplyGroupMemberVO insertMember) {
-		return mapper.acceptMember(insertMember);
+		return mapper.insertAcceptMember(insertMember);
 	}
 
 
@@ -56,8 +56,8 @@ public class GroupPageServiceImple implements GroupPageService {
 	}
 
 	@Override
-	public List<GroupFileVO> fileList(int studyGroup_no) {
-		return mapper.fileList(studyGroup_no);
+	public List<GroupFileVO> fileList(int studygroup_no) {
+		return mapper.fileList(studygroup_no);
 	}
 	
 	@Override

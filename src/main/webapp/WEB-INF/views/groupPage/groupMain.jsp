@@ -47,6 +47,12 @@
 					<nav id="side-groupschedule">Peed</nav>
 				</li>
 				<li>
+					<nav id="groupSetting"
+						onclick="location.href='/groupPage/groupSetting?studygroup_no=${studygroup_no}'">
+						가입신청()
+					</nav>
+				</li>
+				<li>
 					<nav id="class_timer">시간표</nav>
 				</li>
 
@@ -185,9 +191,9 @@
 				<div id="write">
 					<input type="hidden" name="studygroup_no" value="${studygroup_no}">
 					<input id="page_board_content" type="text"
-						name="page_board_content" style="width: 600px; height: 70px;">
-					<button id="button" type="submit"
-						style="width: 70px; height: 70px;">작성</button>
+						name="page_board_content" style="width: 600px; height: 60px;">
+					<button id="button" class="btn btn--primary btn--inside uppercase"
+						type="submit" style="width: 60px; height: 60px;">작성</button>
 				</div>
 
 			</form>
