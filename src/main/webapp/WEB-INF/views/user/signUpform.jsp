@@ -53,12 +53,12 @@
 									<div class="col-2">
 										<div class="input-group-desc">
 											<input class="input--style-5" type="text"
-												name="user_lastName"> <label class="label--desc">성</label>
+												name="user_lastName" required="required"> <label class="label--desc">성</label>
 										</div>
 									</div>
 									<div class="col-2">
 										<div class="input-group-desc">
-											<input class="input--style-5" type="text" name=user_firstName>
+											<input class="input--style-5" type="text" name=user_firstName required="required">
 											<label class="label--desc">이름</label>
 										</div>
 									</div>
@@ -71,7 +71,7 @@
 								<div class="row row-space">
 									<div class="col-2">
 										<div class="input-group-desc">
-											<input class="input--style-5" type="text" id="user_id" name="user_id">
+											<input class="input--style-5" type="text" id="user_id" name="user_id" required="required">
 										</div>
 									</div>
 									<div class="col-2">
@@ -84,7 +84,7 @@
 							<div class="name">비밀번호</div>
 							<div class="value">
 								<div class="input-group">
-									<input class="input--style-5" type="text" name="user_pw">
+									<input class="input--style-5" type="text" name="user_pw" required="required">
 								</div>
 							</div>
 						</div>
@@ -92,7 +92,7 @@
 							<div class="name">핸드폰번호</div>
 							<div class="value">
 								<div class="input-group">
-									<input class="input--style-5" type="text" name="user_phoneNo">
+									<input class="input--style-5" type="text" name="user_phoneNo" required="required">
 								</div>
 							</div>
 						</div>
@@ -100,7 +100,7 @@
 							<div class="name">이메일</div>
 							<div class="value">
 								<div class="input-group">
-									<input class="input--style-5" type="email" name="user_email">
+									<input class="input--style-5" type="email" name="user_email" required="required">
 								</div>
 							</div>
 						</div>
@@ -112,7 +112,7 @@
 									<div class="col-2">
 										<div class="input-group-desc">
 											<input class="input--style-5" type="text" placeholder="우편번호"
-												name="user_post" id="user_post">
+												name="user_post" id="user_post" required="required">
 										</div>
 									</div>
 									<div class="col-2">
@@ -127,7 +127,7 @@
 							<div class="value">
 								<div class="input-group"> 
 									<input class="input--style-5" type="text" name="user_address1" id="user_address1"
-										placeholder="주소">
+										placeholder="주소" required="required">
 								</div>
 							</div>
 						</div>
@@ -136,7 +136,7 @@
 							<div class="value">
 								<div class="input-group">
 									<input class="input--style-5"  type="text" name="user_address2" id="user_address2"
-										placeholder="상세주소">
+										placeholder="상세주소" required="required">
 								</div>
 							</div>
 						</div>
@@ -144,7 +144,7 @@
 							<div class="name">생년월일</div>
 							<div class="value">
 								<div class="input-group">
-									<input class="input--style-5" type="date" name="user_birth">
+									<input class="input--style-5" type="date" name="user_birth" required="required">
 								</div>
 							</div>
 						</div>
@@ -154,7 +154,7 @@
 							<div class="value">
 								<div class="input-group">
 									<div class="rs-select2 js-select-simple select--no-search">
-										<select name="category_no">
+										<select name="category_no" required="required">
 											<option disabled="disabled" selected="selected">선택하세요.</option>
 											<c:forEach var="cl" items="${categoryList}">
 												<option value="${cl.category_no}">${cl.category_name}</option>

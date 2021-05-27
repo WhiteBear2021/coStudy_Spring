@@ -12,7 +12,9 @@
 
 <link rel="stylesheet" href="/resources/css/myPage/myPage.css">
 <link rel="stylesheet" href="/resources/vendor/bootstrap-icons/font/bootstrap-icons.css">
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
 <body>
 <jsp:include page="../common/header.jsp"></jsp:include>
 	<section class="container col-lg-12">
@@ -66,8 +68,7 @@
 										rows="10" cols="100" name="studyNote_content"
 										readonly="readonly">${diary.studyNote_content}</textarea>
 							</label><br>
-							<br> <label> 파일 : <input type="file"
-									name="studyNote_file" readonly="readonly">
+							<br> <label id="filedown"> 파일 : <span data-file="${diary.studyNote_file}">${diary.studyNote_fileName}
 							</label><br>
 							<br>
 						</form>
@@ -79,10 +80,29 @@
 			</div>
 		</div>
 	</section>
-</body>
-</html>
-
-
+	<script>				
+		$(function(){
+				$("#filedown").on("click","span",function(){
+					var fileName=$(this).data("file");
+					console.log("파일값:"+fileName);
+					var fileCallPath=encodeURIComponent(fileName);
+					console.log("Encoding한 파일이름:"+fileCallPath);
+					
+					$.ajax({
+						url:"/files/download?fileName="+fileCallPath,
+						type:"get",
+						success:function(data){
+							console.log(data);
+							window.location ="/files/download?fileName="+fileCallPath;
+						},
+						error:function(error){
+							console.log();
+						}
+						
+					});//ajax 끝
+				});//click 이벤트 끝
+		});
+	</script>
 
 </body>
 </html>

@@ -27,7 +27,7 @@
 							<ul class="list-unstyled ">
 								<li class="p-1"><a href="/myPage/studyDiaryList">공부일기</span>&nbsp;&nbsp;<i class="bi bi-journal-check fs-1"></i></a></li>
 								<li class="p-1"><a href="/myPage/scheduleList">일정관리&nbsp;&nbsp; <i class="bi bi-calendar-month fs-1"></i></a></li>
-								<li class="p-1"><a href="#">1:1 채팅목록&nbsp;&nbsp;<i class="bi bi-chat-square-quote fs-1"></i></a></li>
+								<li class="p-1"><a href="/myPage/toDo">todo&nbsp;&nbsp;<i class="bi bi-chat-square-quote fs-1"></i></a></li>
 								<li class="p-1"><a href="/myPage/joinGroupList">참가 그룹 목록&nbsp;&nbsp;<i class="bi bi-chat-quote fs-1"></i></a></li>
 								<li class="p-1"><a href="/myPage/categoryUpdate">관심 분야 수정&nbsp;&nbsp;<i class="bi bi-pencil-fill fs-1"></i></a></li>
 								<li class="p-1"><a href="/myPage/userUpdate">회원 정보 수정&nbsp;&nbsp;<i class="bi bi-tools fs-1"></i></a></li>
@@ -39,9 +39,40 @@
 					
 					
 					<h3>Study Diary 목록</h3>
-					<div class="text-end" style="margin-bottom:10px;">
-						<button class="btn btn-primary p-1 "><a href="studyDiary" class="text-white">Study Diary 작성</a></button>
-					</div>
+										<!-- 페이지 번호 표시 시작  -->
+					<div class="row">
+						<nav class="col-lg-8" style="text-align:justify;">
+								<ul class="pagination" >
+									<!--이전  -->
+									<c:if test="${pageMaker.prev}">
+										<li class="page-item"><a class="page-link"
+											href="${pageMaker.startPage -1}">Previous</a></li>
+									</c:if>
+		
+									<!-- 페이지목록 -->
+									<c:forEach var="num" begin="${pageMaker.startPage }"
+										end="${pageMaker.endPage }">
+		
+										<li class="page-item ${pageMaker.cri.pageNum == num ? "active":""}">
+											<a class="page-link" href="${num }">${num }</a>
+										</li>
+		
+		
+									</c:forEach>
+		
+									<!-- 이후 영역 -->
+									<c:if test="${pageMaker.next}">
+		
+										<li class="page-item"><a class="page-link"
+											href="${pageMaker.endPage +1 }">Next</a></li>
+									</c:if>
+								</ul>
+							</nav>
+							<div class="col-lg-4" style="text-align:right">
+							<button class="btn btn-primary p-1" ><a href="studyDiary" class="text-white">Study Diary 작성</a></button>
+							</div>
+						</div>
+					
 					<div class="row">
                         <table class="table table-striped table-hover">
                             <thead>
@@ -68,45 +99,20 @@
 					
 					
 				</div>
-				<!-- 페이지 번호 표시 시작  -->
-				<div class='pull-right'>
-					<ul class="pagination">
-
-									<%--             <c:if test="${pageMaker.prev}">
-			              <li class="paginate_button previous"><a href="#">Previous</a>
-			              </li>
-			            </c:if>
-			
-			            <c:forEach var="num" begin="${pageMaker.startPage}"
-			              end="${pageMaker.endPage}">
-			              <li class="paginate_button"><a href="#">${num}</a></li>
-			            </c:forEach>
-			
-			            <c:if test="${pageMaker.next}">
-			              <li class="paginate_button next"><a href="#">Next</a></li>
-			            </c:if> --%>
-
-						<c:if test="${pageMaker.prev}">
-							<li class="paginate_button previous"><a
-								href="${pageMaker.startPage -1}">Previous</a></li>
-						</c:if>
-
-						<c:forEach var="num" begin="${pageMaker.startPage}"
-							end="${pageMaker.endPage}">
-							<li class="paginate_button  ${pageMaker.cri.pageNum == num ?"active":""} ">
-								<a href="${num}">${num}</a>
-							</li>
-						</c:forEach>
-
-						<c:if test="${pageMaker.next}">
-							<li class="paginate_button next"><a
-								href="${pageMaker.endPage +1}">Next</a></li>
-						</c:if>
 
 
-					</ul>
-				</div>
 				<!--  end Pagination -->
+				<form id='actionForm' action="/myPage/studyDiaryList" method='get'>
+					<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+					<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+	
+					<input type='hidden' name='type'
+						value='<c:out value="${ pageMaker.cri.type }"/>'> <input
+						type='hidden' name='keyword'
+						value='<c:out value="${ pageMaker.cri.keyword }"/>'>
+	
+
+				</form>
 			</div>
 		</section>		
 		<jsp:include page="../common/footer.jsp"></jsp:include> 
@@ -130,6 +136,15 @@
 						}
 						
 					});//ajax 끝
+				});
+				
+				
+				var actionForm = $("#actionForm");
+
+				$(".page-item a").on("click", function(e) {
+					e.preventDefault();
+					actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+					actionForm.submit();
 				});
 			});
 		</script>

@@ -27,7 +27,7 @@
 					<div id="login-box" class="col-md-12">
 						<form id="login-form" class="form" action="login"
 							method="post">
-							<h3 class="text-center text-info">COSTUDY</h3>
+							<a href="/main"><h3 class="text-center text-info">COSTUDY</h3></a>
 							<br> <br>
 							<div class="form-group">
 								<input type='radio' name='member' value='user' checked />회원 <input

@@ -307,7 +307,7 @@ public class MyPageController {
 		if(session.getAttribute("user")==null){
 			return "redirect:/user/login";
 		}else{
-			return "myPage/studyDiaryUpdate";
+			return "myPage/studyDiaryDetail";
 		}
 
 	}
