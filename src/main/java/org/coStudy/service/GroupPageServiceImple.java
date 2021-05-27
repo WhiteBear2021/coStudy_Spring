@@ -38,6 +38,7 @@ public class GroupPageServiceImple implements GroupPageService {
 		return mapper.acceptMember(applyMember);
 	}
 
+	
 	@Override
 	public int insertAcceptMember(ApplyGroupMemberVO insertMember) {
 		return mapper.insertAcceptMember(insertMember);
