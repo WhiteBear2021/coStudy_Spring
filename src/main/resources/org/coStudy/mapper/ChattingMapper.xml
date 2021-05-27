@@ -16,5 +16,11 @@
 		FROM group_msg
 		WHERE studygroup_no = #{studygroup_no}
 	</select>
+	
+	<select id="getName" parameterType="int" resultType="String">
+		SELECT user_nickname
+		FROM user_info
+		WHERE user_no = #{user_no}
+	</select>
 
 </mapper>

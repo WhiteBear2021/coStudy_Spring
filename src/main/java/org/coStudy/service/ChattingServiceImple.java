@@ -24,4 +24,10 @@ public class ChattingServiceImple implements ChattingService{
 		return mapper.list(studygroup_no);
 	}
 
+	@Override
+	public String getName(int user_no) {
+		
+		return mapper.getName(user_no);
+	}
+
 }
