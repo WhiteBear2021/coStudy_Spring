@@ -20,6 +20,13 @@
 	color: #3D5A5B;
 	
 }
+#backback {
+	background-color:#f1f3f5;
+}
+
+#topbar {
+	background-color:#f1f3f5;
+}
 
 #menu-toggle:hover {
 	
@@ -110,7 +117,7 @@
 }
 
 body{
-	background-color: #f1f3f5;
+	background-color: white;
 }
 
 #group-board-writing {

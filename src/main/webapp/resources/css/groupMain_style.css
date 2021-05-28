@@ -83,10 +83,29 @@
 
 #group-Main-body {
 	border: 1px;
-	width: 800px;
+	width: 900px;
 	height: 850px;
 	position: relative;
 	
+	
+}
+.post-footer {
+	
+}
+
+p {
+	left: 20px;
+}
+
+.CCCC {
+	width: 535px;
+	height: 47px;
+	top: 10px;
+	
+}
+
+#topbar {
+	background-color: #f1f3f5;
 }
 
 #peed {
@@ -145,9 +164,12 @@
 	bottom: 70px;
 	left: 35px;
 }
+#backback {
+	background-color: #f1f3f5;
+}
 
 body{
-	background-color: #f1f3f5;
+	
 }
 
 #group-board-writing {
