@@ -8,7 +8,6 @@
 
 <jsp:include page="../managerModule/header.jsp"></jsp:include><hr>
 <body class="">
-<h1>${sessionScope.manager.manager_no}</h1>
 	<div class="pcoded-main-container">
 		<div class="pcoded-content">
 			<!-- [ breadcrumb ] start -->
@@ -17,13 +16,12 @@
 					<div class="row align-items-center">
 						<div class="col-md-12">
 							<div class="page-header-title">
-								<h5 class="m-b-10">Radial Chart</h5>
+								<h5 class="m-b-10">Manager main</h5>
 							</div>
 							<ul class="breadcrumb">
 								<li class="breadcrumb-item"><a href="index.html"><i
 										class="feather icon-home"></i></a></li>
-								<li class="breadcrumb-item"><a href="#!">Chart</a></li>
-								<li class="breadcrumb-item"><a href="#!">Radial Chart</a></li>
+								<li class="breadcrumb-item"><a href="#!">Main</a></li>
 							</ul>
 						</div>
 					</div>
