@@ -89,6 +89,8 @@ public class UserController {
 			if(user!=null) {
 				session.setAttribute("user", user);
 				model.addAttribute("mesg", user.getUser_firstName()+"님 로그인 성공");
+				List<CategoryVO> list=service.categoryAllList();
+				session.setAttribute("categoryList", list);
 				return "/main";
 
 			}else {
