@@ -71,10 +71,9 @@ function applyBtn(acceptYn, userNo){
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav">
 
-				<li>
-					<nav id="side-userbox">
-						<input type="image" name="user_name" value="이름">
-					</nav>
+				<li style="height: 75px;">
+					<img src="${user.user_thumbImg}" style="width: 50px; height: 50px; float: left; border-radius: 50%; border:1px solid #f1f3f5;">
+					<b>${sessionScope.user.user_lastName}${sessionScope.user.user_firstName}</b>
 				</li>
 				<li>
 					<nav id="side-timer">

@@ -27,14 +27,14 @@
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav">
 
-				<li>
-					<nav id="side-userbox">
-						<input type="image" name="user_name" value="이름">
-					</nav>
+				<li style="height: 75px;">
+					<img src="${user.user_thumbImg}" style="width: 50px; height: 50px; float: left; border-radius: 50%; border:1px solid #f1f3f5;">
+					<b>${sessionScope.user.user_lastName}${sessionScope.user.user_firstName}</b>
 				</li>
 				<li>
 					<nav id="side-timer">
 						<section id="timer">
+						
 							<span id="time_output">00:00:00</span><br>
 							<div class="content_center">
 								<input type="button" id="timer_bnt_save" value="저장"> <input
@@ -191,7 +191,7 @@
 						<input type="hidden" name="studygroup_no" value="${studygroup_no}">
 						<input id="page_board_content" type="text"
 							name="page_board_content" style="width: 595px; height: 60px;">
-						<input type="hidden" name="page_board_writer" value="${sessionScope.user.user_firstName}">
+						<input type="hidden" name="page_board_writer" value="${sessionScope.user.user_lastName}${sessionScope.user.user_firstName}">
 						<button id="button" class="btn btn--primary"
 							type="submit" style="width: 100px; height: 60px;">작성</button>
 					</div>
