@@ -143,12 +143,15 @@ public class GroupPageController {
 
 	@PostMapping("/insert")
 	public String insertGroupBoard(@RequestParam("studygroup_no") int studygroup_no,
-			@RequestParam("page_board_content") String page_board_content) {
+			@RequestParam("page_board_content") String page_board_content,
+			@RequestParam("page_board_writer") String page_board_writer) {
 		GroupPageBoardVO board = new GroupPageBoardVO();
 
 		try {
 			board.setPage_board_content(page_board_content);
 			board.setStudyGroup_no(studygroup_no);
+			board.setPage_board_writer(page_board_writer);
+			
 			log.info(board);
 			groupPage_service.insertGroupBoard(board);
 

@@ -7,7 +7,7 @@
 	<insert id="insertGroupBoard" parameterType="org.coStudy.domain.GroupPageBoardVO">
 		INSERT INTO
 		group_page_board values (
-		seq_group_page_board.NEXTVAL,'title',#{page_board_content},'aa',
+		seq_group_page_board.NEXTVAL,'title',#{page_board_content},#{page_board_writer},
 		sysdate ,null,#{studyGroup_no})
 	</insert>
 

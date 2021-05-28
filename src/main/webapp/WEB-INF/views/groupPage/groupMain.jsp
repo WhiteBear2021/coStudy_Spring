@@ -86,16 +86,13 @@
 									<div class="post-heading">
 										<div class="pull-left image">
 											<img src="${user.user_thumbImg}" class="img-circle avatar"
-												alt="user profile image">
+												onerror="this.src='/resources/img/manager.png'"/>
 										</div>
 										<!--작성자 이름  -->
 										<div class="pull-left meta">
 											<div class="title h5">
 												<a href="#"><b>${board.page_board_writer }</b></a> 작성함
 											</div>
-											<%--  <input type="hidden" value="${board.page_board_no }">
-                              <h6 class="text-muted time">${board.page_board_date }</h6>
-                              <h1>${board.page_board_no }</h1> --%>
 										</div>
 									</div>
 									<!--글목록  -->
@@ -130,7 +127,7 @@
 
 												<ul class="comments-list">
 													<li class="comment"><a class="pull-left" href="#">
-															<img class="avatar" src="../img/manager.png" alt="avatar">
+															<img class="avatar" src="/resources/img/manager.png" alt="/resources/img/manager.png">
 													</a>
 														<div class="comment-body">
 															<div class="comment-heading">
@@ -194,6 +191,7 @@
 						<input type="hidden" name="studygroup_no" value="${studygroup_no}">
 						<input id="page_board_content" type="text"
 							name="page_board_content" style="width: 595px; height: 60px;">
+						<input type="hidden" name="page_board_writer" value="${sessionScope.user.user_firstName}">
 						<button id="button" class="btn btn--primary"
 							type="submit" style="width: 100px; height: 60px;">작성</button>
 					</div>
