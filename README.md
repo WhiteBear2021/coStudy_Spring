@@ -32,7 +32,7 @@ Web(Back) - Java
 
 
     
-## Function
+## 구현 기능
 
 0. 메인페이지
 - 스터디 그룹 추천(R)
