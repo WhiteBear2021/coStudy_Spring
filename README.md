@@ -1,6 +1,5 @@
-# coStudy_Spring
 
- 1조 - coStudy 스터디 그룹 매칭  
+# coStudy 스터디 그룹 매칭 솔루션
 
 ## Project 소개
 
