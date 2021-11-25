@@ -4,7 +4,8 @@
 ## Project 소개
 
 스터디를 찾기 위한 시간과 수고를 줄이기 위한 스터디그룹 매칭 시스템과 스터디 운영에 편의를 제공하는 솔루션을 개발한다.  
-https://github.com/commGom/coStudy_Spring/issues/1#issue-1063579426
+![시연 영상](https://user-images.githubusercontent.com/81788884/143448457-b1c20642-fda9-453e-8bec-8d6c80e8195b.gif)
+
 ## 소프트웨어 개발환경  
 운영체제 - Window 10  
 미들웨어 - Apache Tomcat 9.0  
