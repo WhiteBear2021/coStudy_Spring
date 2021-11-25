@@ -8,7 +8,7 @@
 ![시연 영상](https://user-images.githubusercontent.com/81788884/143448457-b1c20642-fda9-453e-8bec-8d6c80e8195b.gif)
 
 ## 소프트웨어 개발환경  
-운영체제 - Window 10  
+운영체제 - Windows 10  
 미들웨어 - Apache Tomcat 9.0  
 SDK -  JDK 1.8   
 DBMS - Oracle Xe  
